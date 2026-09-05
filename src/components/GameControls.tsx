@@ -1,6 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { GameState, SuburbProjected } from '../types';
-import { MelbourneMapModel } from '../utils/mapGeometry';
+import { MelbourneMapModel, getDistancesFrom } from '../utils/mapGeometry';
 import {
   MapPin,
   AlertCircle,
@@ -55,6 +55,12 @@ export const GameControls: React.FC<GameControlsProps> = ({
       .map((id) => mapModel.suburbMap.get(id))
       .filter((s): s is SuburbProjected => Boolean(s));
   }, [currentSuburb, mapModel.suburbMap]);
+
+  // Distances from current suburb to all suburbs in Melbourne
+  const distancesToCurrent = useMemo(() => {
+    if (!currentSuburb) return new Map<string, number>();
+    return getDistancesFrom(currentSuburb.id, mapModel.adjacency);
+  }, [currentSuburb, mapModel.adjacency]);
 
   // Helper to normalize suburb text for typo-forgiving search and multi-token matching
   const normalizeSuburbText = (text: string) => {
@@ -431,7 +437,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
               onKeyDown={handleKeyDown}
               placeholder={
                 gameState.status === 'playing'
-                  ? 'Type adjacent suburb name...'
+                  ? 'Type any suburb name (e.g. Richmond)...'
                   : 'Game ended'
               }
               className="w-full pl-8 pr-16 py-2.5 bg-neutral-50 border border-neutral-300 focus:border-neutral-900 focus:bg-white rounded-lg text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 outline-none transition-all shadow-2xs"
@@ -458,31 +464,57 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 <span>Matching Suburbs ({suggestions.length})</span>
                 <span>Enter to select</span>
               </div>
-              {suggestions.map((suburb, idx) => (
-                <button
-                  key={suburb.id}
-                  type="button"
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleSubmit(suburb);
-                  }}
-                  onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full px-2.5 py-2 text-left flex items-center justify-between text-xs transition-colors cursor-pointer ${
-                    idx === selectedIndex
-                      ? 'bg-neutral-900 text-white font-semibold'
-                      : 'text-neutral-700 hover:bg-neutral-100'
-                  }`}
-                >
-                  <span className="truncate">{suburb.name}</span>
-                  <span
-                    className={`text-[10px] font-mono ml-2 shrink-0 ${
-                      idx === selectedIndex ? 'text-neutral-300' : 'text-neutral-400'
+              {suggestions.map((suburb, idx) => {
+                const isBordering = currentSuburb?.neighbors.includes(suburb.id);
+                const stepsFromCurrent = distancesToCurrent.get(suburb.id) ?? -1;
+
+                return (
+                  <button
+                    key={suburb.id}
+                    type="button"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      handleSubmit(suburb);
+                    }}
+                    onMouseEnter={() => setSelectedIndex(idx)}
+                    className={`w-full px-2.5 py-2 text-left flex items-center justify-between text-xs transition-colors cursor-pointer ${
+                      idx === selectedIndex
+                        ? 'bg-neutral-900 text-white font-semibold'
+                        : 'text-neutral-700 hover:bg-neutral-100'
                     }`}
                   >
-                    {suburb.postcode}
-                  </span>
-                </button>
-              ))}
+                    <span className="truncate">{suburb.name}</span>
+                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                      {isBordering ? (
+                        <span
+                          className={`text-[9.5px] px-1.5 py-0.5 rounded font-medium ${
+                            idx === selectedIndex
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          }`}
+                        >
+                          Bordering
+                        </span>
+                      ) : stepsFromCurrent > 0 ? (
+                        <span
+                          className={`text-[9.5px] font-mono ${
+                            idx === selectedIndex ? 'text-neutral-300' : 'text-neutral-400'
+                          }`}
+                        >
+                          {stepsFromCurrent} {stepsFromCurrent === 1 ? 'step' : 'steps'}
+                        </span>
+                      ) : null}
+                      <span
+                        className={`text-[10px] font-mono ${
+                          idx === selectedIndex ? 'text-neutral-300' : 'text-neutral-400'
+                        }`}
+                      >
+                        {suburb.postcode}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
@@ -499,7 +531,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           disabled={gameState.status !== 'playing'}
           className="w-full bg-black text-white py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:bg-neutral-800 active:scale-95 transition-transform disabled:opacity-40"
         >
-          SUBMIT MOVE
+          SUBMIT GUESS
         </button>
 
         {/* Secondary Give Up Option */}
@@ -516,7 +548,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
         )}
 
         <p className="text-[10px] text-center text-neutral-400">
-          All path suburbs must be entered via typing.
+          Guess any suburb across Melbourne to chart your route.
         </p>
       </div>
     </aside>

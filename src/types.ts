@@ -21,7 +21,7 @@ export interface SuburbProjected extends SuburbData {
   neighbors: string[]; // Adjacent suburb IDs
 }
 
-export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path';
+export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path' | 'guessed';
 
 export interface GameState {
   startSuburbId: string;
@@ -34,6 +34,12 @@ export interface GameState {
   bestPathDistance: number; // Shortest distance
   difficulty: GameDifficulty;
   gaveUp?: boolean;
+  guessedSuburbs?: string[]; // All suburbs guessed anywhere on map
+  turnHistory?: {
+    type: 'step' | 'guess';
+    suburbId: string;
+    prevConsecutiveErrors: number;
+  }[];
 }
 
 export interface SuburbTooltipInfo {
@@ -43,4 +49,20 @@ export interface SuburbTooltipInfo {
   distanceToCurrent: number;
   screenX: number;
   screenY: number;
+  suburbBounds?: {
+    left: number;
+    top: number;
+    right: number;
+    bottom: number;
+    width: number;
+    height: number;
+  };
+  containerBounds?: {
+    left: number;
+    top: number;
+    right: number;
+    bottom: number;
+    width: number;
+    height: number;
+  };
 }

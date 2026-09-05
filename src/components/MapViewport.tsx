@@ -51,6 +51,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   const currentSuburbId = gameState.path[gameState.path.length - 1];
   const visitedSet = useMemo(() => new Set(gameState.path), [gameState.path]);
   const bestPathSet = useMemo(() => new Set(gameState.bestPath), [gameState.bestPath]);
+  const guessedSet = useMemo(() => new Set(gameState.guessedSuburbs || []), [gameState.guessedSuburbs]);
 
   // Current suburb
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
@@ -63,6 +64,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       if (id === currentSuburbId) return 'current';
       if (visitedSet.has(id)) return 'visited';
       if (showBestPathOverlay && bestPathSet.has(id)) return 'best-path';
+      if (guessedSet.has(id)) return 'guessed';
       return 'default';
     },
     [
@@ -72,6 +74,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       visitedSet,
       showBestPathOverlay,
       bestPathSet,
+      guessedSet,
     ]
   );
 
@@ -229,6 +232,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const mouseY = e.clientY - rect.top;
 
     const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
+    setTooltipInfo(null);
 
     setTransform((prev) => {
       const newScale = Math.max(0.4, Math.min(prev.scale * zoomFactor, 5.0));
@@ -244,6 +248,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     // Only primary button
     if (e.button !== 0) return;
     isDraggingRef.current = true;
+    setTooltipInfo(null);
     dragStartRef.current = { x: e.clientX - transform.x, y: e.clientY - transform.y };
   };
 
@@ -264,6 +269,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   // Touch handlers for mobile & pinch-to-zoom
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchMovedRef.current = false;
+    setTooltipInfo(null);
 
     if (e.touches.length === 1) {
       isDraggingRef.current = true;
@@ -326,12 +332,13 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
   // Suburb interaction
   const handleSuburbHover = (suburb: SuburbProjected, e: React.MouseEvent) => {
-    // In-game: only show tooltips for suburbs that are on the path, start or target
+    // In-game: only show tooltips for suburbs that are on the path, start or target, or entered guesses
     // Post-game: allow tooltips for ALL suburbs so the user can freely explore the entire metropolitan map
     const isGameOver = gameState.status !== 'playing';
     const isRelevant =
       isGameOver ||
       visitedSet.has(suburb.id) ||
+      guessedSet.has(suburb.id) ||
       suburb.id === gameState.startSuburbId ||
       suburb.id === gameState.targetSuburbId;
 
@@ -346,6 +353,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const distTarget = distancesToTarget.get(suburb.id) ?? -1;
     const distCurrent = distancesToCurrent.get(suburb.id) ?? -1;
 
+    const targetElem = e.currentTarget as SVGGraphicsElement;
+    const rect = targetElem?.getBoundingClientRect ? targetElem.getBoundingClientRect() : null;
+    const cRect = containerRef.current?.getBoundingClientRect();
+
     setTooltipInfo({
       suburb,
       role,
@@ -353,6 +364,26 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       distanceToCurrent: distCurrent,
       screenX: e.clientX,
       screenY: e.clientY,
+      suburbBounds: rect
+        ? {
+            left: rect.left,
+            top: rect.top,
+            right: rect.right,
+            bottom: rect.bottom,
+            width: rect.width,
+            height: rect.height,
+          }
+        : undefined,
+      containerBounds: cRect
+        ? {
+            left: cRect.left,
+            top: cRect.top,
+            right: cRect.right,
+            bottom: cRect.bottom,
+            width: cRect.width,
+            height: cRect.height,
+          }
+        : undefined,
     });
   };
 
@@ -364,6 +395,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   const handleSuburbClick = () => {
     // If the touch or mouse was a drag, ignore click
     if (touchMovedRef.current) return;
+    // Map clicking is only disabled during active gameplay
+    if (gameState.status !== 'playing') return;
     onMapClickDisabled?.();
   };
 
@@ -510,6 +543,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 strokeColor = '#c2410c'; // Deep Orange-700
                 strokeWidth = 2.2;
                 filter = 'url(#clean-shadow)';
+              } else if (role === 'guessed') {
+                fillColor = isHovered ? '#fef3c7' : '#fffbeb'; // Soft amber tint for guessed suburbs
+                strokeColor = '#d97706'; // Amber-600
+                strokeWidth = 1.8;
               } else if (isHovered) {
                 fillColor = '#f1f5f9';
                 strokeColor = '#94a3b8';
@@ -517,7 +554,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               }
 
               const isGameOver = gameState.status !== 'playing';
-              const isInPath = visitedSet.has(suburb.id) || suburb.id === gameState.startSuburbId || suburb.id === gameState.targetSuburbId;
+              const isInPath =
+                visitedSet.has(suburb.id) ||
+                guessedSet.has(suburb.id) ||
+                suburb.id === gameState.startSuburbId ||
+                suburb.id === gameState.targetSuburbId;
               const canInspect = isGameOver || isInPath;
               const cursorClass = canInspect ? 'cursor-help' : 'cursor-default';
 
@@ -728,7 +769,9 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               // When shortest path is revealed, also show labels for the revealed unvisited path suburbs with orange halo.
               const isStart = suburb.id === gameState.startSuburbId;
               const isTarget = suburb.id === gameState.targetSuburbId;
-              const isEnteredByPlayer = visitedSet.has(suburb.id);
+              const isVisitedByPlayer = visitedSet.has(suburb.id);
+              const isGuessedByPlayer = guessedSet.has(suburb.id);
+              const isEnteredByPlayer = isVisitedByPlayer || isGuessedByPlayer;
               const isBestPathRevealed = showBestPathOverlay && bestPathSet.has(suburb.id) && !isEnteredByPlayer;
 
               // Strictly hide name if not start, finishing, entered by player, or revealed best path
@@ -749,9 +792,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               } else if (isTarget) {
                 labelColor = '#ffffff';
                 haloColor = '#1e40af'; // Dark blue halo for finishing target suburb
-              } else if (isEnteredByPlayer) {
+              } else if (isVisitedByPlayer) {
                 labelColor = '#ffffff';
-                haloColor = '#065f46'; // Dark emerald halo for player-entered suburbs
+                haloColor = '#065f46'; // Dark emerald halo for player-visited suburbs
+              } else if (isGuessedByPlayer) {
+                labelColor = '#ffffff';
+                haloColor = '#b45309'; // Warm amber halo for player-guessed suburbs
               } else if (isBestPathRevealed) {
                 labelColor = '#ffffff';
                 haloColor = '#9a3412'; // Dark orange halo for revealed shortest path suburbs

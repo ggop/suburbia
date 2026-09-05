@@ -50,10 +50,10 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <CheckCircle2 className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-neutral-900 mb-0.5">2. Tactical Navigation</h4>
+              <h4 className="font-bold text-neutral-900 mb-0.5">2. Flexible Guessing & Navigation</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                At each turn, name an adjacent suburb that brings you closer to the target. Each chosen suburb turns{' '}
-                <strong className="text-emerald-600">Green</strong>, forming your path across Melbourne.
+                At each turn, you can guess <strong>any suburb anywhere across Melbourne</strong>. Bordering suburbs connect and advance your route in{' '}
+                <strong className="text-emerald-600">Green</strong>. Guesses that do not border your current suburb reveal their location and show step distance feedback.
               </p>
             </div>
           </div>
