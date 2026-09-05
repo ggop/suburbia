@@ -52,7 +52,10 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
             <div>
               <h4 className="font-bold text-neutral-900 mb-0.5">2. Neighbour Selection at Every Turn</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                At every step, all available bordering neighbours of your current position are listed as selectable options in the sidebar and highlighted on the map in <strong className="text-emerald-600">soft green</strong>. Choose a neighbour from the sidebar list to advance your route!
+                At every step, unvisited bordering neighbours of your current position are listed as selectable options in the sidebar and highlighted on the map in <strong className="text-emerald-600">soft green</strong>. Suburbs already in your path cannot be chosen again.
+              </p>
+              <p className="text-neutral-500 text-xs leading-relaxed mt-1.5 bg-blue-50/80 p-2 rounded-lg border border-blue-200/60 text-blue-900">
+                <strong>Automatic Target Finish:</strong> When your current position borders the target suburb, it is automatically chosen to complete your route and end the game!
               </p>
             </div>
           </div>

@@ -173,6 +173,59 @@ export default function App() {
     }
   }, [gameState.status]);
 
+  // If one of the available neighbours in the current turn is the target suburb,
+  // automatically choose it and end the game.
+  useEffect(() => {
+    if (gameState.status !== 'playing') return;
+
+    const currentId = gameState.path[gameState.path.length - 1];
+    const currentSuburb = mapModel?.suburbMap.get(currentId);
+    if (!currentSuburb) return;
+
+    // Check if target is an available neighbour in the current turn (and not already in path)
+    const isTargetAdjacent =
+      currentSuburb.neighbors.includes(gameState.targetSuburbId) &&
+      !gameState.path.includes(gameState.targetSuburbId);
+
+    if (!isTargetAdjacent) return;
+
+    // Target suburb is an available neighbour! Automatically choose it and end the game.
+    const targetSuburb = mapModel?.suburbMap.get(gameState.targetSuburbId);
+    const targetName = targetSuburb?.name || 'Target';
+
+    const timer = setTimeout(() => {
+      setGameState((prev) => {
+        if (prev.status !== 'playing') return prev;
+        const currId = prev.path[prev.path.length - 1];
+        const currSub = mapModel?.suburbMap.get(currId);
+        if (!currSub || !currSub.neighbors.includes(prev.targetSuburbId)) return prev;
+
+        const newTurnsUsed = prev.turnsUsed + 1;
+        const newPath = [...prev.path, prev.targetSuburbId];
+        const newHistory = [
+          ...(prev.turnHistory || []),
+          {
+            type: 'step' as const,
+            suburbId: prev.targetSuburbId,
+            prevConsecutiveErrors: 0,
+          },
+        ];
+
+        return {
+          ...prev,
+          path: newPath,
+          turnsUsed: newTurnsUsed,
+          status: 'won',
+          turnHistory: newHistory,
+        };
+      });
+
+      setErrorMessage(`Destination reached! Automatically connected into ${targetName}.`);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [gameState.status, gameState.path, gameState.targetSuburbId, mapModel]);
+
   // Core move execution
   const handleMoveToSuburb = useCallback(
     (nextSuburbId: string) => {
@@ -185,44 +238,22 @@ export default function App() {
 
       if (!currentSuburb || !nextSuburb) return;
 
+      // 1. Current position check
+      if (nextSuburbId === currentId) {
+        setErrorMessage(`You are currently in ${currentSuburb.name}. Choose an unvisited neighbouring suburb.`);
+        sounds.playError();
+        return;
+      }
+
+      // 2. Suburb already present in path cannot be chosen
+      if (gameState.path.includes(nextSuburbId)) {
+        setErrorMessage(`${nextSuburb.name} is already in your path! You cannot choose a previously visited suburb.`);
+        sounds.playError();
+        return;
+      }
+
       const newTurnsUsed = gameState.turnsUsed + 1;
       const isTurnLimitReached = newTurnsUsed >= gameState.maxTurns;
-
-      // 1. Current position guess
-      if (nextSuburbId === currentId) {
-        setErrorMessage(`You are currently in ${currentSuburb.name}. Guess a neighboring suburb to advance.`);
-        sounds.playError();
-        setConsecutiveErrors((prev) => prev + 1);
-        const newHistory = [
-          ...(gameState.turnHistory || []),
-          { type: 'guess' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
-        ];
-        setGameState((prev) => ({
-          ...prev,
-          turnsUsed: newTurnsUsed,
-          status: isTurnLimitReached ? 'lost' : prev.status,
-          turnHistory: newHistory,
-        }));
-        return;
-      }
-
-      // 2. Already in path
-      if (gameState.path.includes(nextSuburbId)) {
-        setErrorMessage(`You have already visited ${nextSuburb.name}! Guess an unvisited suburb.`);
-        sounds.playError();
-        setConsecutiveErrors((prev) => prev + 1);
-        const newHistory = [
-          ...(gameState.turnHistory || []),
-          { type: 'guess' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
-        ];
-        setGameState((prev) => ({
-          ...prev,
-          turnsUsed: newTurnsUsed,
-          status: isTurnLimitReached ? 'lost' : prev.status,
-          turnHistory: newHistory,
-        }));
-        return;
-      }
 
       // 3. Check adjacency (Allow guessing anywhere on the map!)
       const isAdjacent = currentSuburb.neighbors.includes(nextSuburbId);

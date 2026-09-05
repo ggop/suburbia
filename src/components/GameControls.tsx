@@ -52,10 +52,11 @@ export const GameControls: React.FC<GameControlsProps> = ({
   // Distance from current suburb to target
   const currentDistanceToTarget = distancesToTarget.get(currentSuburbId) ?? 0;
 
-  // Neighbors of current suburb - shown at every turn for the player to choose from (alphabetical order)
+  // Neighbors of current suburb - shown at every turn for the player to choose from (alphabetical order, excluding suburbs already in path)
   const neighboringSuburbs = useMemo(() => {
     if (!currentSuburb) return [];
     const list = currentSuburb.neighbors
+      .filter((id) => !gameState.path.includes(id))
       .map((id) => mapModel.suburbMap.get(id))
       .filter((s): s is SuburbProjected => Boolean(s));
 
@@ -65,7 +66,16 @@ export const GameControls: React.FC<GameControlsProps> = ({
       if (b.id === gameState.targetSuburbId) return 1;
       return a.name.localeCompare(b.name);
     });
-  }, [currentSuburb, mapModel.suburbMap, gameState.targetSuburbId]);
+  }, [currentSuburb, mapModel.suburbMap, gameState.targetSuburbId, gameState.path]);
+
+  // Check if target suburb is an available neighbour in the current turn
+  const isTargetAdjacent = useMemo(() => {
+    if (!currentSuburb || gameState.status !== 'playing') return false;
+    return (
+      currentSuburb.neighbors.includes(gameState.targetSuburbId) &&
+      !gameState.path.includes(gameState.targetSuburbId)
+    );
+  }, [currentSuburb, gameState.status, gameState.targetSuburbId, gameState.path]);
 
   const stepsRemaining = currentDistanceToTarget;
   const turnsLeft = Math.max(0, gameState.maxTurns - gameState.turnsUsed);
@@ -326,86 +336,113 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   Available Neighbours
                 </span>
               </div>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono">
-                {neighboringSuburbs.length} bordering
-              </span>
+              {!isTargetAdjacent && (
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono">
+                  {neighboringSuburbs.length} available
+                </span>
+              )}
             </div>
 
-            <p className="text-[11px] text-neutral-500 leading-tight">
-              Bordering <strong className="text-neutral-900">{currentSuburb?.name}</strong>. Choose one to advance:
-            </p>
+            {isTargetAdjacent ? (
+              <div className="p-3.5 rounded-xl bg-blue-50/90 border border-blue-300 flex items-center gap-3 animate-pulse shadow-xs">
+                <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <Flag className="w-4 h-4" />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-bold text-blue-950 leading-tight">
+                    Target Suburb Reached!
+                  </span>
+                  <span className="text-[11px] text-blue-700 leading-tight">
+                    {targetSuburb?.name} borders your position. Completing route...
+                  </span>
+                </div>
+              </div>
+            ) : neighboringSuburbs.length === 0 ? (
+              <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 space-y-1">
+                <p className="text-xs font-bold">No unvisited neighbours available</p>
+                <p className="text-[11px] text-amber-700 leading-relaxed">
+                  All bordering suburbs are already in your path. Click an earlier suburb in your path above to branch and explore a different route.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="text-[11px] text-neutral-500 leading-tight">
+                  Bordering <strong className="text-neutral-900">{currentSuburb?.name}</strong>. Choose one to advance:
+                </p>
 
-            {/* List of Available Neighbour Cards */}
-            <div
-              id="available-neighbours-list"
-              className="space-y-1.5 max-h-56 md:max-h-64 overflow-y-auto pr-1"
-            >
-              {neighboringSuburbs.map((neighbour) => {
-                const isTarget = neighbour.id === gameState.targetSuburbId;
+                {/* List of Available Neighbour Cards */}
+                <div
+                  id="available-neighbours-list"
+                  className="space-y-1.5 max-h-56 md:max-h-64 overflow-y-auto pr-1"
+                >
+                  {neighboringSuburbs.map((neighbour) => {
+                    const isTarget = neighbour.id === gameState.targetSuburbId;
 
-                return (
-                  <button
-                    key={neighbour.id}
-                    id={`neighbour-btn-${neighbour.id}`}
-                    type="button"
-                    onClick={() => onMoveToSuburb(neighbour.id)}
-                    className={`w-full p-2.5 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer group active:scale-[0.98] ${
-                      isTarget
-                        ? 'bg-blue-50/90 border-blue-400 hover:border-blue-600 hover:bg-blue-100 shadow-xs ring-2 ring-blue-400/30'
-                        : 'bg-white border-neutral-200 hover:border-emerald-500 hover:bg-emerald-50/40 hover:shadow-xs'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div
-                        className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold ${
+                    return (
+                      <button
+                        key={neighbour.id}
+                        id={`neighbour-btn-${neighbour.id}`}
+                        type="button"
+                        onClick={() => onMoveToSuburb(neighbour.id)}
+                        className={`w-full p-2.5 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer group active:scale-[0.98] ${
                           isTarget
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-neutral-100 text-neutral-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors'
+                            ? 'bg-blue-50/90 border-blue-400 hover:border-blue-600 hover:bg-blue-100 shadow-xs ring-2 ring-blue-400/30'
+                            : 'bg-white border-neutral-200 hover:border-emerald-500 hover:bg-emerald-50/40 hover:shadow-xs'
                         }`}
                       >
-                        {isTarget ? (
-                          <Flag className="w-3.5 h-3.5" />
-                        ) : (
-                          <MapPin className="w-3.5 h-3.5" />
-                        )}
-                      </div>
-                      <div className="flex flex-col min-w-0">
-                        <span
-                          className={`text-xs sm:text-sm font-bold truncate leading-tight ${
-                            isTarget ? 'text-blue-900' : 'text-neutral-900 group-hover:text-emerald-950'
-                          }`}
-                        >
-                          {neighbour.name}
-                        </span>
-                        <span className="text-[10px] text-neutral-400 font-mono">
-                          {neighbour.postcode}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                      {isTarget ? (
-                        <span className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white flex items-center gap-1 shadow-xs animate-pulse">
-                          <span>TARGET</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </span>
-                      ) : (
-                        <div className="flex items-center gap-1">
-                          <span className="text-[11px] font-medium text-neutral-400 group-hover:text-emerald-700 transition-colors">
-                            Choose
-                          </span>
-                          <ArrowRight className="w-3.5 h-3.5 text-neutral-300 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold ${
+                              isTarget
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-neutral-100 text-neutral-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors'
+                            }`}
+                          >
+                            {isTarget ? (
+                              <Flag className="w-3.5 h-3.5" />
+                            ) : (
+                              <MapPin className="w-3.5 h-3.5" />
+                            )}
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <span
+                              className={`text-xs sm:text-sm font-bold truncate leading-tight ${
+                                isTarget ? 'text-blue-900' : 'text-neutral-900 group-hover:text-emerald-950'
+                              }`}
+                            >
+                              {neighbour.name}
+                            </span>
+                            <span className="text-[10px] text-neutral-400 font-mono">
+                              {neighbour.postcode}
+                            </span>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
 
-            <p className="text-[10px] text-center text-neutral-400 pt-0.5">
-              Select a neighbour above to continue your route.
-            </p>
+                        <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                          {isTarget ? (
+                            <span className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white flex items-center gap-1 shadow-xs animate-pulse">
+                              <span>TARGET</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </span>
+                          ) : (
+                            <div className="flex items-center gap-1">
+                              <span className="text-[11px] font-medium text-neutral-400 group-hover:text-emerald-700 transition-colors">
+                                Choose
+                              </span>
+                              <ArrowRight className="w-3.5 h-3.5 text-neutral-300 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="text-[10px] text-center text-neutral-400 pt-0.5">
+                  Select a neighbour above to continue your route.
+                </p>
+              </>
+            )}
           </>
         ) : (
           /* Game Finished State */

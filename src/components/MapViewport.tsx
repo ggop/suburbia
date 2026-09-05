@@ -62,11 +62,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   // Current suburb
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
 
-  // Set of bordering neighbors of current suburb - available to choose at every turn
+  // Set of bordering neighbors of current suburb - available to choose at every turn (excluding already in path)
   const neighboringSet = useMemo(() => {
     if (!currentSuburb || gameState.status !== 'playing') return new Set<string>();
-    return new Set(currentSuburb.neighbors);
-  }, [currentSuburb, gameState.status]);
+    return new Set(currentSuburb.neighbors.filter((id) => !gameState.path.includes(id)));
+  }, [currentSuburb, gameState.status, gameState.path]);
 
   // Determine role of each suburb
   const getSuburbRole = useCallback(
