@@ -1,8 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { GameState } from '../types';
 import { MelbourneMapModel } from '../utils/mapGeometry';
-import { Trophy, XCircle, ArrowRight, RotateCcw, Map, Sparkles, Check, BookOpen, Flag } from 'lucide-react';
+import {
+  Trophy,
+  XCircle,
+  ArrowRight,
+  RotateCcw,
+  Map,
+  Sparkles,
+  Check,
+  BookOpen,
+  Flag,
+  Share2,
+  Calendar,
+  BarChart2,
+} from 'lucide-react';
+import {
+  formatDisplayDate,
+  generateDailyShareText,
+  getTodayDateString,
+  StoredDailyResult,
+} from '../utils/dailyChallenge';
 
 interface GameResultModalProps {
   gameState: GameState;
@@ -12,6 +31,7 @@ interface GameResultModalProps {
   onNewRound: () => void;
   onToggleBestPathReview: () => void;
   showBestPath: boolean;
+  onOpenDailyStats?: () => void;
 }
 
 export const GameResultModal: React.FC<GameResultModalProps> = ({
@@ -21,10 +41,12 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   onClose,
   onNewRound,
   onToggleBestPathReview,
+  onOpenDailyStats,
 }) => {
   const isWon = gameState.status === 'won';
   const isLost = gameState.status === 'lost';
   const gaveUp = Boolean(gameState.gaveUp);
+  const [copied, setCopied] = useState(false);
 
   // Trigger confetti when won
   useEffect(() => {
@@ -62,15 +84,54 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const turnsUsed = gameState.turnsUsed;
   const optimalTurns = gameState.bestPathDistance;
   const isOptimal = turnsUsed === optimalTurns;
+  const isDaily = gameState.gameMode === 'daily';
 
   const visitedSet = new Set(gameState.path);
+
+  const handleShare = () => {
+    const dailyResult: StoredDailyResult = {
+      dateStr: gameState.dailyDate || getTodayDateString(),
+      challengeNumber: gameState.challengeNumber || 1,
+      status: isWon ? 'won' : 'lost',
+      turnsUsed,
+      maxTurns: gameState.maxTurns,
+      path: gameState.path,
+      bestPath: gameState.bestPath,
+      bestPathDistance: optimalTurns,
+      startSuburbId: gameState.startSuburbId,
+      targetSuburbId: gameState.targetSuburbId,
+      completedAt: new Date().toISOString(),
+    };
+
+    const text = generateDailyShareText(dailyResult, mapModel);
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    });
+  };
 
   return (
     <div
       id="game-result-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-xs animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-xs animate-fade-in text-neutral-900 select-none"
     >
-      <div className="bg-white border border-neutral-200 rounded-2xl shadow-2xl max-w-xl w-full p-6 text-neutral-900 flex flex-col gap-5 max-h-[90vh] overflow-y-auto">
+      <div className="bg-white border border-neutral-200 rounded-2xl shadow-2xl max-w-xl w-full p-6 text-neutral-900 flex flex-col gap-4 max-h-[90vh] overflow-y-auto">
+        {/* Daily Challenge Banner */}
+        {isDaily && (
+          <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 flex items-center justify-between text-xs font-semibold text-amber-900">
+            <div className="flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-amber-600" />
+              <span>
+                Daily Challenge #{gameState.challengeNumber || 1} •{' '}
+                {formatDisplayDate(gameState.dailyDate || getTodayDateString())}
+              </span>
+            </div>
+            <span className="text-[10px] bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full font-bold uppercase">
+              Global Seed
+            </span>
+          </div>
+        )}
+
         {/* Header Icon & Title */}
         <div className="text-center flex flex-col items-center gap-2">
           {isWon ? (
@@ -104,31 +165,40 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           </p>
         </div>
 
-        {/* Turn statistics card */}
-        <div className="grid grid-cols-2 gap-3 bg-neutral-50 p-4 rounded-xl border border-neutral-200 text-center">
-          <div>
-            <div className="text-xs text-neutral-500 font-medium">Your Route</div>
+        {/* Path & Turn Comparison Cards */}
+        <div className="grid grid-cols-2 gap-3 bg-neutral-50 p-3.5 rounded-xl border border-neutral-200 text-center">
+          {/* Turn Count Comparison */}
+          <div className="flex flex-col items-center justify-center">
+            <div className="text-xs text-neutral-500 font-medium">Turn Count</div>
             <div className="text-2xl font-bold font-mono text-emerald-600 mt-0.5">
               {turnsUsed} {turnsUsed === 1 ? 'Turn' : 'Turns'}
             </div>
+            <div className="text-[11px] text-neutral-500 mt-1">
+              Optimal: <strong className="font-mono text-neutral-800">{optimalTurns} steps</strong>
+            </div>
             {isWon && (
-              <div className="text-[11px] text-neutral-500 mt-1">
+              <div className="text-[11px] mt-0.5">
                 {isOptimal ? (
                   <span className="text-amber-700 font-semibold flex items-center justify-center gap-1">
-                    <Sparkles className="w-3 h-3 text-amber-500" /> Optimal Route!
+                    <Sparkles className="w-3 h-3 text-amber-500" /> 100% Optimal!
                   </span>
                 ) : (
-                  <span>+{turnsUsed - optimalTurns} extra turns taken</span>
+                  <span className="text-neutral-500">+{turnsUsed - optimalTurns} extra turns</span>
                 )}
               </div>
             )}
           </div>
-          <div className="border-l border-neutral-200">
-            <div className="text-xs text-neutral-500 font-medium">Optimal Shortest Path</div>
+
+          {/* Path Length Comparison */}
+          <div className="border-l border-neutral-200 flex flex-col items-center justify-center">
+            <div className="text-xs text-neutral-500 font-medium">Path Length</div>
             <div className="text-2xl font-bold font-mono text-neutral-900 mt-0.5">
-              {optimalTurns} {optimalTurns === 1 ? 'Step' : 'Steps'}
+              {gameState.path.length} Suburbs
             </div>
             <div className="text-[11px] text-neutral-500 mt-1">
+              Shortest Route: <strong className="font-mono text-neutral-800">{optimalTurns + 1} suburbs</strong>
+            </div>
+            <div className="text-[11px] text-neutral-500 mt-0.5">
               <span
                 className={`font-bold px-1.5 py-0.5 rounded text-[10px] uppercase border ${
                   gameState.difficulty === 'Easy'
@@ -144,86 +214,93 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           </div>
         </div>
 
+        {/* Share & Compare Buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={handleShare}
+            className="flex-1 py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-95"
+            title="Copy formatted result with emoji trail to compare with friends"
+          >
+            {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+            <span>{copied ? 'Result Copied to Clipboard!' : 'Share & Compare Route'}</span>
+          </button>
+
+          {isDaily && onOpenDailyStats && (
+            <button
+              onClick={() => {
+                onClose();
+                onOpenDailyStats();
+              }}
+              className="py-2.5 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-xs flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer"
+            >
+              <BarChart2 className="w-4 h-4 text-neutral-600" />
+              <span>Daily Stats</span>
+            </button>
+          )}
+        </div>
+
         {/* Path Comparison: Player's Path vs Optimal Best Path */}
         <div className="flex flex-col gap-3">
           {/* Best Path Section */}
           <div className="bg-orange-50/40 p-3.5 rounded-xl border border-orange-200">
-            <div className="flex items-center justify-between text-xs mb-2">
-              <span className="font-bold text-orange-900 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-orange-600" /> Shortest Path ({gameState.bestPath.length - 1} steps):
-              </span>
-              <span className="text-[10px] text-orange-700 font-mono">Dijkstra Shortest</span>
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-xs font-bold text-orange-900 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+                <span>Shortest Route ({optimalTurns} steps / {gameState.bestPath.length} suburbs):</span>
+              </div>
+              <span className="text-[10px] text-orange-700 font-medium">BFS Optimal</span>
             </div>
-            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            <div className="flex flex-wrap items-center gap-1.5 text-xs leading-relaxed">
               {gameState.bestPath.map((id, index) => {
                 const s = mapModel.suburbMap.get(id);
-                const isStart = id === gameState.startSuburbId;
-                const isTarget = id === gameState.targetSuburbId;
-                const isIdentified = visitedSet.has(id);
-
+                const isUserFound = visitedSet.has(id);
                 return (
-                  <React.Fragment key={`best-${id}`}>
+                  <React.Fragment key={`opt-${id}`}>
                     <span
-                      className={`px-2 py-0.5 rounded font-medium ${
-                        isStart
-                          ? 'bg-red-100 text-red-800 border border-red-300 font-bold'
-                          : isTarget
-                          ? 'bg-blue-100 text-blue-800 border border-blue-300 font-bold'
-                          : isIdentified
-                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold'
-                          : 'bg-orange-100 text-orange-900 border border-orange-400 font-semibold shadow-2xs'
+                      className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center gap-1 ${
+                        isUserFound
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200 font-bold'
+                          : 'bg-white text-orange-800 border-orange-200'
                       }`}
                     >
-                      {s?.name || id}
+                      {isUserFound && <Check className="w-3 h-3 text-emerald-600 shrink-0" />}
+                      <span>{s?.name || id}</span>
                     </span>
                     {index < gameState.bestPath.length - 1 && (
-                      <ArrowRight className="w-3 h-3 text-orange-400" />
+                      <ArrowRight className="w-3 h-3 text-orange-400 shrink-0" />
                     )}
                   </React.Fragment>
                 );
               })}
             </div>
-            <div className="flex items-center gap-3 text-[10px] text-neutral-500 mt-2.5 pt-2 border-t border-orange-200/60">
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Identified by you
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-orange-500"></span> Shortest path (Orange)
-              </span>
-            </div>
           </div>
 
-          {/* User's Traversed Path */}
-          <div className="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200">
-            <div className="text-xs font-semibold text-neutral-700 mb-2 flex items-center justify-between">
-              <span>Your Green Path ({gameState.path.length - 1} turns):</span>
-              {isWon && (
-                <span className="text-[10px] text-emerald-700 font-medium flex items-center gap-0.5">
-                  <Check className="w-3 h-3 text-emerald-600" /> Success
-                </span>
-              )}
+          {/* Player's Actual Route */}
+          <div className="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200 text-xs">
+            <div className="text-xs font-bold text-neutral-700 mb-2">
+              Your Route Taken ({turnsUsed} turns / {gameState.path.length} suburbs):
             </div>
-            <div className="flex flex-wrap items-center gap-1 text-xs max-h-32 overflow-y-auto">
+            <div className="flex flex-wrap items-center gap-1.5 text-xs leading-relaxed">
               {gameState.path.map((id, index) => {
                 const s = mapModel.suburbMap.get(id);
-                const isStart = id === gameState.startSuburbId;
-                const isTarget = id === gameState.targetSuburbId;
-
+                const isOptimalSuburb = gameState.bestPath.includes(id);
                 return (
-                  <React.Fragment key={`user-${id}-${index}`}>
+                  <React.Fragment key={`user-${id}`}>
                     <span
-                      className={`px-2 py-0.5 rounded ${
-                        isStart
-                          ? 'bg-red-100 text-red-800 border border-red-200 font-bold'
-                          : isTarget
-                          ? 'bg-blue-100 text-blue-800 border border-blue-200 font-bold'
-                          : 'bg-emerald-100 text-emerald-900 border border-emerald-200'
+                      className={`px-2 py-0.5 rounded text-[11px] font-medium border ${
+                        index === 0
+                          ? 'bg-red-50 text-red-700 border-red-200 font-bold'
+                          : index === gameState.path.length - 1 && isWon
+                          ? 'bg-blue-50 text-blue-700 border-blue-200 font-bold'
+                          : isOptimalSuburb
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                          : 'bg-white text-neutral-700 border-neutral-200'
                       }`}
                     >
                       {s?.name || id}
                     </span>
                     {index < gameState.path.length - 1 && (
-                      <ArrowRight className="w-3 h-3 text-neutral-400" />
+                      <ArrowRight className="w-3 h-3 text-neutral-400 shrink-0" />
                     )}
                   </React.Fragment>
                 );
@@ -237,7 +314,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
               <BookOpen className="w-3.5 h-3.5 text-amber-700" />
               <span>Historical Facts from Your Journey:</span>
             </div>
-            <div className="flex flex-col gap-2 max-h-40 overflow-y-auto pr-1">
+            <div className="flex flex-col gap-2 max-h-36 overflow-y-auto pr-1">
               {gameState.path.map((id) => {
                 const s = mapModel.suburbMap.get(id);
                 if (!s || !s.historicalFact) return null;
@@ -260,7 +337,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
               onToggleBestPathReview();
               onClose();
             }}
-            className="flex-1 py-2.5 px-4 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 border border-neutral-200 transition-colors"
+            className="flex-1 py-2.5 px-4 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 border border-neutral-200 transition-colors cursor-pointer"
           >
             <Map className="w-4 h-4 text-neutral-600" />
             <span>Review on Map</span>
@@ -269,10 +346,10 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           <button
             id="new-round-btn"
             onClick={onNewRound}
-            className="flex-1 py-2.5 px-4 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xs"
+            className="flex-1 py-2.5 px-4 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xs cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
-            <span>Start New Round</span>
+            <span>{isDaily ? 'Restart Daily' : 'Start New Round'}</span>
           </button>
         </div>
       </div>

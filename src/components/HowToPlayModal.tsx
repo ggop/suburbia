@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Flag, Navigation, CheckCircle2, Touchpad, HelpCircle } from 'lucide-react';
+import { X, Flag, Navigation, CheckCircle2, Touchpad, HelpCircle, Calendar } from 'lucide-react';
 
 interface HowToPlayModalProps {
   isOpen: boolean;
@@ -80,6 +80,18 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <h4 className="font-bold text-neutral-900 mb-0.5">4. Suburb Stats & Post-Game Tooltips</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
                 During play, path suburbs show details on hover. After the game ends, tooltips are unlocked for <strong>all suburbs</strong> across Melbourne, showing estimated population, area (km²), established period/decade, and notable historical facts.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80">
+            <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shrink-0">
+              <Calendar className="w-4 h-4" />
+            </div>
+            <div>
+              <h4 className="font-bold text-neutral-900 mb-0.5">5. Daily Challenge & Compare Routes</h4>
+              <p className="text-neutral-500 text-xs leading-relaxed">
+                Every day, all players worldwide receive the <strong>exact same puzzle</strong>. Upon finishing, share your scorecard (Wordle-style) or copy your route code to compare path lengths and turn counts directly with friends!
               </p>
             </div>
           </div>

@@ -1,4 +1,5 @@
 export type GameDifficulty = 'Easy' | 'Medium' | 'Hard';
+export type GameMode = 'daily' | 'practice';
 
 export interface SuburbData {
   id: string;
@@ -24,6 +25,9 @@ export interface SuburbProjected extends SuburbData {
 export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path' | 'guessed' | 'guessed-optimal';
 
 export interface GameState {
+  gameMode: GameMode;
+  dailyDate?: string;
+  challengeNumber?: number;
   startSuburbId: string;
   targetSuburbId: string;
   path: string[]; // List of suburb IDs visited, starting with startSuburbId
@@ -35,6 +39,7 @@ export interface GameState {
   difficulty: GameDifficulty;
   gaveUp?: boolean;
   guessedSuburbs?: string[]; // All suburbs guessed anywhere on map
+  friendPath?: string[]; // Optional friend path for route comparison
   turnHistory?: {
     type: 'step' | 'guess';
     suburbId: string;

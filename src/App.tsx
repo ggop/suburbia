@@ -8,33 +8,71 @@ import {
   buildMelbourneMapModel,
   generateRandomGame,
   getDistancesFrom,
-  findShortestPath,
 } from './utils/mapGeometry';
-import { GameState } from './types';
+import { GameMode, GameState } from './types';
 import { MapViewport } from './components/MapViewport';
 import { GameControls } from './components/GameControls';
 import { Header } from './components/Header';
 import { GameResultModal } from './components/GameResultModal';
 import { HowToPlayModal } from './components/HowToPlayModal';
+import { DailyStatsModal } from './components/DailyStatsModal';
 import { sounds } from './utils/soundEffects';
+import {
+  generateDailyChallenge,
+  getTodayDateString,
+  loadDailyStats,
+  saveDailyResult,
+  StoredDailyResult,
+  DailyStats,
+} from './utils/dailyChallenge';
 
 export default function App() {
   // Pre-calculate Melbourne geometry, Voronoi line polygons, and adjacency graph
   const mapModel = useMemo(() => buildMelbourneMapModel(), []);
 
-  // Initialize random game on first load
+  // Daily statistics and history from localStorage
+  const [dailyStats, setDailyStats] = useState<DailyStats>(() => loadDailyStats());
+  const [isDailyStatsOpen, setIsDailyStatsOpen] = useState(false);
+
+  // Initialize game on first load (default to Daily Challenge)
   const [gameState, setGameState] = useState<GameState>(() => {
-    const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
+    const todayStr = getTodayDateString();
+    const dailyGame = generateDailyChallenge(mapModel.suburbs, mapModel.adjacency, todayStr);
+    const initialStats = loadDailyStats();
+    const existing = initialStats.history[todayStr];
+
+    if (existing) {
+      return {
+        gameMode: 'daily',
+        dailyDate: dailyGame.dateStr,
+        challengeNumber: dailyGame.challengeNumber,
+        startSuburbId: dailyGame.startSuburbId,
+        targetSuburbId: dailyGame.targetSuburbId,
+        path: existing.path,
+        turnsUsed: existing.turnsUsed,
+        maxTurns: existing.maxTurns,
+        status: existing.status,
+        bestPath: dailyGame.bestPath,
+        bestPathDistance: dailyGame.bestPathDistance,
+        difficulty: dailyGame.difficulty,
+        guessedSuburbs: [],
+        turnHistory: [],
+      };
+    }
+
     return {
-      startSuburbId: generated.startSuburbId,
-      targetSuburbId: generated.targetSuburbId,
-      path: [generated.startSuburbId],
+      gameMode: 'daily',
+      dailyDate: dailyGame.dateStr,
+      challengeNumber: dailyGame.challengeNumber,
+      startSuburbId: dailyGame.startSuburbId,
+      targetSuburbId: dailyGame.targetSuburbId,
+      path: [dailyGame.startSuburbId],
       turnsUsed: 0,
-      maxTurns: generated.maxTurns,
+      maxTurns: dailyGame.maxTurns,
       status: 'playing',
-      bestPath: generated.bestPath,
-      bestPathDistance: generated.bestPathDistance,
-      difficulty: generated.difficulty,
+      bestPath: dailyGame.bestPath,
+      bestPathDistance: dailyGame.bestPathDistance,
+      difficulty: dailyGame.difficulty,
       guessedSuburbs: [],
       turnHistory: [],
     };
@@ -86,16 +124,52 @@ export default function App() {
     return getDistancesFrom(currentSuburbId, mapModel.adjacency);
   }, [currentSuburbId, mapModel.adjacency]);
 
-  // Check if result modal should open
+  // When game completes (won or lost), trigger sounds, open results, and record stats for Daily Challenge
   useEffect(() => {
     if (gameState.status === 'won') {
       sounds.playVictory();
       setIsResultModalOpen(true);
       setShowBestPathOverlay(true);
+
+      if (gameState.gameMode === 'daily') {
+        const stored: StoredDailyResult = {
+          dateStr: gameState.dailyDate || getTodayDateString(),
+          challengeNumber: gameState.challengeNumber || 1,
+          status: 'won',
+          turnsUsed: gameState.turnsUsed,
+          maxTurns: gameState.maxTurns,
+          path: gameState.path,
+          bestPath: gameState.bestPath,
+          bestPathDistance: gameState.bestPathDistance,
+          startSuburbId: gameState.startSuburbId,
+          targetSuburbId: gameState.targetSuburbId,
+          completedAt: new Date().toISOString(),
+        };
+        const updated = saveDailyResult(stored);
+        setDailyStats(updated);
+      }
     } else if (gameState.status === 'lost') {
       sounds.playError();
       setIsResultModalOpen(true);
       setShowBestPathOverlay(true);
+
+      if (gameState.gameMode === 'daily') {
+        const stored: StoredDailyResult = {
+          dateStr: gameState.dailyDate || getTodayDateString(),
+          challengeNumber: gameState.challengeNumber || 1,
+          status: 'lost',
+          turnsUsed: gameState.turnsUsed,
+          maxTurns: gameState.maxTurns,
+          path: gameState.path,
+          bestPath: gameState.bestPath,
+          bestPathDistance: gameState.bestPathDistance,
+          startSuburbId: gameState.startSuburbId,
+          targetSuburbId: gameState.targetSuburbId,
+          completedAt: new Date().toISOString(),
+        };
+        const updated = saveDailyResult(stored);
+        setDailyStats(updated);
+      }
     }
   }, [gameState.status]);
 
@@ -223,7 +297,7 @@ export default function App() {
         return;
       }
 
-      // Check loss condition (exceeding 10 turns)
+      // Check loss condition (exceeding turn limit)
       if (isTurnLimitReached) {
         setGameState((prev) => ({
           ...prev,
@@ -302,28 +376,127 @@ export default function App() {
     setIsResultModalOpen(true);
   }, [gameState.status]);
 
-  // Start new random game
+  // Mode switcher (Daily vs Practice)
+  const handleSelectMode = useCallback(
+    (mode: GameMode) => {
+      if (mode === 'daily') {
+        const todayStr = getTodayDateString();
+        const dailyGame = generateDailyChallenge(mapModel.suburbs, mapModel.adjacency, todayStr);
+        const stats = loadDailyStats();
+        const existing = stats.history[todayStr];
+
+        if (existing) {
+          setGameState({
+            gameMode: 'daily',
+            dailyDate: dailyGame.dateStr,
+            challengeNumber: dailyGame.challengeNumber,
+            startSuburbId: dailyGame.startSuburbId,
+            targetSuburbId: dailyGame.targetSuburbId,
+            path: existing.path,
+            turnsUsed: existing.turnsUsed,
+            maxTurns: existing.maxTurns,
+            status: existing.status,
+            bestPath: dailyGame.bestPath,
+            bestPathDistance: dailyGame.bestPathDistance,
+            difficulty: dailyGame.difficulty,
+            guessedSuburbs: [],
+            turnHistory: [],
+          });
+          setIsResultModalOpen(true);
+          setShowBestPathOverlay(true);
+        } else {
+          setGameState({
+            gameMode: 'daily',
+            dailyDate: dailyGame.dateStr,
+            challengeNumber: dailyGame.challengeNumber,
+            startSuburbId: dailyGame.startSuburbId,
+            targetSuburbId: dailyGame.targetSuburbId,
+            path: [dailyGame.startSuburbId],
+            turnsUsed: 0,
+            maxTurns: dailyGame.maxTurns,
+            status: 'playing',
+            bestPath: dailyGame.bestPath,
+            bestPathDistance: dailyGame.bestPathDistance,
+            difficulty: dailyGame.difficulty,
+            guessedSuburbs: [],
+            turnHistory: [],
+          });
+          setIsResultModalOpen(false);
+          setShowBestPathOverlay(false);
+        }
+      } else {
+        // Practice mode
+        const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
+        setGameState({
+          gameMode: 'practice',
+          startSuburbId: generated.startSuburbId,
+          targetSuburbId: generated.targetSuburbId,
+          path: [generated.startSuburbId],
+          turnsUsed: 0,
+          maxTurns: generated.maxTurns,
+          status: 'playing',
+          bestPath: generated.bestPath,
+          bestPathDistance: generated.bestPathDistance,
+          difficulty: generated.difficulty,
+          guessedSuburbs: [],
+          turnHistory: [],
+        });
+        setIsResultModalOpen(false);
+        setShowBestPathOverlay(false);
+      }
+
+      setErrorMessage(null);
+      setConsecutiveErrors(0);
+      setShowNeighboursManual(null);
+    },
+    [mapModel]
+  );
+
+  // Start new round / restart
   const handleNewGame = useCallback(() => {
-    const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
-    setGameState({
-      startSuburbId: generated.startSuburbId,
-      targetSuburbId: generated.targetSuburbId,
-      path: [generated.startSuburbId],
-      turnsUsed: 0,
-      maxTurns: generated.maxTurns,
-      status: 'playing',
-      bestPath: generated.bestPath,
-      bestPathDistance: generated.bestPathDistance,
-      difficulty: generated.difficulty,
-      guessedSuburbs: [],
-      turnHistory: [],
-    });
+    if (gameState.gameMode === 'daily') {
+      const todayStr = getTodayDateString();
+      const dailyGame = generateDailyChallenge(mapModel.suburbs, mapModel.adjacency, todayStr);
+      setGameState({
+        gameMode: 'daily',
+        dailyDate: dailyGame.dateStr,
+        challengeNumber: dailyGame.challengeNumber,
+        startSuburbId: dailyGame.startSuburbId,
+        targetSuburbId: dailyGame.targetSuburbId,
+        path: [dailyGame.startSuburbId],
+        turnsUsed: 0,
+        maxTurns: dailyGame.maxTurns,
+        status: 'playing',
+        bestPath: dailyGame.bestPath,
+        bestPathDistance: dailyGame.bestPathDistance,
+        difficulty: dailyGame.difficulty,
+        guessedSuburbs: [],
+        turnHistory: [],
+      });
+    } else {
+      const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
+      setGameState({
+        gameMode: 'practice',
+        startSuburbId: generated.startSuburbId,
+        targetSuburbId: generated.targetSuburbId,
+        path: [generated.startSuburbId],
+        turnsUsed: 0,
+        maxTurns: generated.maxTurns,
+        status: 'playing',
+        bestPath: generated.bestPath,
+        bestPathDistance: generated.bestPathDistance,
+        difficulty: generated.difficulty,
+        guessedSuburbs: [],
+        turnHistory: [],
+      });
+    }
+
     setErrorMessage(null);
     setConsecutiveErrors(0);
     setShowNeighboursManual(null);
     setIsResultModalOpen(false);
     setShowBestPathOverlay(false);
-  }, [mapModel]);
+  }, [mapModel, gameState.gameMode]);
 
   return (
     <div className="flex flex-col w-screen h-screen bg-neutral-50 text-neutral-900 overflow-hidden font-sans select-none">
@@ -339,6 +512,9 @@ export default function App() {
         onGiveUp={handleGiveUp}
         isNeighboursVisible={isNeighboursVisible}
         onToggleNeighbours={handleToggleNeighbours}
+        onSelectMode={handleSelectMode}
+        onOpenDailyStats={() => setIsDailyStatsOpen(true)}
+        dailyStreak={dailyStats.streak}
       />
 
       {/* Main Container with Sidebar and Map Viewport */}
@@ -378,7 +554,11 @@ export default function App() {
       <footer className="h-9 sm:h-10 bg-neutral-900 text-neutral-400 text-[10px] flex items-center justify-between px-6 sm:px-8 uppercase tracking-widest font-bold shrink-0 select-none z-20">
         <div>COORD: -37.8136° S, 144.9631° E</div>
         <div className="hidden sm:block">SUBURBS: {mapModel.suburbs.length}</div>
-        <div>SESSION: {gameState.turnsUsed}/{gameState.maxTurns} TURNS</div>
+        <div>
+          {gameState.gameMode === 'daily'
+            ? `DAILY #${gameState.challengeNumber || 1} • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`
+            : `PRACTICE • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`}
+        </div>
       </footer>
 
       {/* Victory / Game Over Modal with Path Comparison */}
@@ -390,6 +570,15 @@ export default function App() {
         onNewRound={handleNewGame}
         onToggleBestPathReview={() => setShowBestPathOverlay(true)}
         showBestPath={showBestPathOverlay}
+        onOpenDailyStats={() => setIsDailyStatsOpen(true)}
+      />
+
+      {/* Daily Challenge Stats & Path Comparison Modal */}
+      <DailyStatsModal
+        stats={dailyStats}
+        isOpen={isDailyStatsOpen}
+        onClose={() => setIsDailyStatsOpen(false)}
+        mapModel={mapModel}
       />
 
       {/* Rules and How to Play Guide Modal */}
