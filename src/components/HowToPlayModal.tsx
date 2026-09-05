@@ -79,13 +79,13 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
             <div>
               <h4 className="font-bold text-neutral-900 mb-0.5">4. Suburb Stats & Post-Game Tooltips</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                During play, path suburbs show details on hover. After the game ends, tooltips are unlocked for <strong>all suburbs</strong> across Melbourne, showing estimated population, area (km²), approximate age, and notable historical facts.
+                During play, path suburbs show details on hover. After the game ends, tooltips are unlocked for <strong>all suburbs</strong> across Melbourne, showing estimated population, area (km²), established period/decade, and notable historical facts.
               </p>
             </div>
           </div>
 
           <div className="bg-neutral-100 border border-neutral-200 p-3 rounded-xl text-xs text-neutral-800">
-            <strong className="text-neutral-900">Rule:</strong> You have a strict limit of <strong>10 turns</strong> regardless of difficulty. Try to match the optimal shortest path!
+            <strong className="text-neutral-900">Rule:</strong> Each puzzle can be solved in <strong>5 to 8 steps</strong>. You have an allowance of <strong>9 to 13 steps</strong> before the game ends on its own. Try to match the optimal shortest path!
           </div>
         </div>
 

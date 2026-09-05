@@ -100,7 +100,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
               ? `You navigated successfully from ${startSuburb?.name} to ${targetSuburb?.name} in ${turnsUsed} turns!`
               : gaveUp
               ? `You gave up on this round. The shortest path is marked in orange below (excluding suburbs you identified correctly).`
-              : `You reached the 10-turn limit before arriving at ${targetSuburb?.name}. Compare your moves against the optimal route below.`}
+              : `You reached the ${gameState.maxTurns}-turn limit before arriving at ${targetSuburb?.name}. Compare your moves against the optimal route below.`}
           </p>
         </div>
 

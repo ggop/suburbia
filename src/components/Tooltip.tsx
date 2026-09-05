@@ -208,7 +208,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ info, targetSuburbName }) => {
         </div>
         <div className="flex flex-col">
           <span className="text-[10px] text-neutral-400 font-medium flex items-center gap-1">
-            <Clock className="w-2.5 h-2.5 text-neutral-400" /> Approx. Age
+            <Clock className="w-2.5 h-2.5 text-neutral-400" /> Established
           </span>
           <span className="font-semibold text-neutral-800 mt-0.5 text-[10.5px] truncate" title={suburb.approximateAge}>
             {suburb.approximateAge || 'N/A'}

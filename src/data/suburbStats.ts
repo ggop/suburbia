@@ -234,18 +234,13 @@ export function getEstimatedPopulation(suburb: SuburbData, areaKm2: number): num
  * Retrieve approximate age and era of the suburb.
  */
 export function getApproximateAge(suburb: SuburbData): string {
-  const currentYear = 2026;
-
   // 1. Direct known settlement/gazette year
   if (KNOWN_ESTABLISHED_YEARS[suburb.id] !== undefined) {
     const raw = KNOWN_ESTABLISHED_YEARS[suburb.id];
     if (typeof raw === 'number') {
-      const age = currentYear - raw;
-      return `Est. ${raw} (~${age} yrs)`;
+      return `c. ${raw}`;
     } else {
-      const numYear = parseInt(raw, 10);
-      const age = currentYear - numYear;
-      return `Est. ${raw} (~${age} yrs)`;
+      return `${raw}`;
     }
   }
 
@@ -254,23 +249,22 @@ export function getApproximateAge(suburb: SuburbData): string {
   if (fact && !fact.includes('Vibrant residential and community hub')) {
     const match = fact.match(/\b(18\d\d|19\d\d|20\d\d)(s?)\b/);
     if (match) {
-      const year = parseInt(match[1], 10);
+      const year = match[1];
       const suffix = match[2] ? 's' : '';
-      const age = currentYear - year;
-      return `Est. ${year}${suffix} (~${age} yrs)`;
+      return suffix ? `${year}s` : `c. ${year}`;
     }
   }
 
   // 3. Fallback based on distance to Melbourne CBD (-37.8136, 144.9631)
   const distCbd = Math.hypot(suburb.lat - -37.8136, suburb.lng - 144.9631) * 111;
   if (distCbd < 6) {
-    return 'Est. 1850s (~170 yrs)';
+    return '1850s';
   } else if (distCbd < 15) {
-    return 'Est. 1880s–1910s (~130 yrs)';
+    return '1880s–1910s';
   } else if (distCbd < 25) {
-    return 'Est. 1950s–1970s (~65 yrs)';
+    return '1950s–1970s';
   } else {
-    return 'Est. 1980s–2000s (~35 yrs)';
+    return '1980s–2000s';
   }
 }
 
