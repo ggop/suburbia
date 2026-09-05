@@ -1,14 +1,19 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import { SuburbTooltipInfo } from '../types';
-import { MapPin, Navigation, Compass, CheckCircle2, Flag, BookOpen, Users, Maximize2, Clock } from 'lucide-react';
+import { MapPin, Navigation, Compass, CheckCircle2, Flag, BookOpen, Users, Maximize2, Clock, CornerUpLeft } from 'lucide-react';
 
 interface TooltipProps {
   info: SuburbTooltipInfo | null;
   currentSuburbName?: string;
   targetSuburbName?: string;
+  onContinueFromHere?: (suburbId: string) => void;
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({ info, targetSuburbName }) => {
+export const Tooltip: React.FC<TooltipProps> = ({
+  info,
+  targetSuburbName,
+  onContinueFromHere,
+}) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 310, height: 230 });
 
@@ -244,6 +249,33 @@ export const Tooltip: React.FC<TooltipProps> = ({ info, targetSuburbName }) => {
           <span className={distanceToCurrent === 1 ? 'font-semibold text-emerald-600 font-mono' : 'text-neutral-600 font-mono'}>
             {distanceToCurrent === 1 ? 'Adjacent (1 step)' : `${distanceToCurrent} steps`}
           </span>
+        </div>
+      )}
+
+      {/* Continue from here button if suburb is an earlier step in the active path */}
+      {info.isInPath && role !== 'current' && onContinueFromHere && (
+        <div className="mt-2.5 pt-2 border-t border-emerald-200/80 bg-emerald-50/60 -mx-3 -mb-3 px-3 py-2 rounded-b-xl flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-[11px] font-bold text-emerald-900 leading-tight">
+              {typeof info.pathIndex === 'number'
+                ? info.pathIndex === 0
+                  ? 'Start of path'
+                  : `Step #${info.pathIndex} in path`
+                : 'In your path'}
+            </span>
+            <span className="text-[9.5px] text-emerald-700">Continue route from here</span>
+          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onContinueFromHere(suburb.id);
+            }}
+            className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-md text-[11px] font-bold flex items-center gap-1 shadow-xs transition-all cursor-pointer"
+          >
+            <CornerUpLeft className="w-3.5 h-3.5" />
+            <span>Continue</span>
+          </button>
         </div>
       )}
     </div>

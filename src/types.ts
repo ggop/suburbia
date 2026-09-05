@@ -41,9 +41,10 @@ export interface GameState {
   guessedSuburbs?: string[]; // All suburbs guessed anywhere on map
   friendPath?: string[]; // Optional friend path for route comparison
   turnHistory?: {
-    type: 'step' | 'guess';
+    type: 'step' | 'guess' | 'branch';
     suburbId: string;
     prevConsecutiveErrors: number;
+    prevPath?: string[];
   }[];
 }
 
@@ -54,6 +55,8 @@ export interface SuburbTooltipInfo {
   distanceToCurrent: number;
   screenX: number;
   screenY: number;
+  isInPath?: boolean;
+  pathIndex?: number;
   suburbBounds?: {
     left: number;
     top: number;

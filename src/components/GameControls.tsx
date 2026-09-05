@@ -1,18 +1,19 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { GameState, SuburbProjected } from '../types';
-import { MelbourneMapModel, getDistancesFrom } from '../utils/mapGeometry';
+import { MelbourneMapModel } from '../utils/mapGeometry';
 import {
   MapPin,
   AlertCircle,
-  CornerDownLeft,
+  CornerUpLeft,
   Undo2,
-  Check,
   ChevronDown,
   ChevronUp,
-  Lightbulb,
   Flag,
   Compass,
-  X,
+  ArrowRight,
+  Trophy,
+  RotateCcw,
+  Sparkles,
 } from 'lucide-react';
 
 interface GameControlsProps {
@@ -20,11 +21,11 @@ interface GameControlsProps {
   mapModel: MelbourneMapModel;
   distancesToTarget: Map<string, number>;
   errorMessage: string | null;
-  consecutiveErrors: number;
+  consecutiveErrors?: number;
   isNeighboursVisible?: boolean;
   onToggleNeighbours?: (forceState?: boolean) => void;
   onMoveToSuburb: (suburbId: string) => void;
-  onInvalidGuess?: (query: string) => void;
+  onSelectPathSuburb?: (suburbId: string) => void;
   onUndoLastMove?: () => void;
   onGiveUp?: () => void;
   onResetGame: () => void;
@@ -35,206 +36,54 @@ export const GameControls: React.FC<GameControlsProps> = ({
   mapModel,
   distancesToTarget,
   errorMessage,
-  consecutiveErrors,
-  isNeighboursVisible = false,
-  onToggleNeighbours,
   onMoveToSuburb,
-  onInvalidGuess,
+  onSelectPathSuburb,
   onUndoLastMove,
   onGiveUp,
+  onResetGame,
 }) => {
-  const [inputValue, setInputValue] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isMobileExpanded, setIsMobileExpanded] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const currentSuburbId = gameState.path[gameState.path.length - 1];
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
   const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
 
-  // Neighbors of current suburb for hint when consecutive errors >= 2
+  // Distance from current suburb to target
+  const currentDistanceToTarget = distancesToTarget.get(currentSuburbId) ?? 0;
+
+  // Neighbors of current suburb - shown at every turn for the player to choose from (alphabetical order)
   const neighboringSuburbs = useMemo(() => {
     if (!currentSuburb) return [];
-    return currentSuburb.neighbors
+    const list = currentSuburb.neighbors
       .map((id) => mapModel.suburbMap.get(id))
       .filter((s): s is SuburbProjected => Boolean(s));
-  }, [currentSuburb, mapModel.suburbMap]);
 
-  // Distances from current suburb to all suburbs in Melbourne
-  const distancesToCurrent = useMemo(() => {
-    if (!currentSuburb) return new Map<string, number>();
-    return getDistancesFrom(currentSuburb.id, mapModel.adjacency);
-  }, [currentSuburb, mapModel.adjacency]);
+    return list.sort((a, b) => {
+      // Put target suburb first if it is adjacent
+      if (a.id === gameState.targetSuburbId) return -1;
+      if (b.id === gameState.targetSuburbId) return 1;
+      return a.name.localeCompare(b.name);
+    });
+  }, [currentSuburb, mapModel.suburbMap, gameState.targetSuburbId]);
 
-  // Helper to normalize suburb text for typo-forgiving search and multi-token matching
-  const normalizeSuburbText = (text: string) => {
-    return text
-      .toLowerCase()
-      .replace(/\./g, '')
-      .replace(/[-_'/]/g, ' ')
-      .replace(/\bst\b/g, 'saint')
-      .replace(/\bmt\b/g, 'mount')
-      .replace(/\bnth\b/g, 'north')
-      .replace(/\bsth\b/g, 'south')
-      .replace(/\s+/g, ' ')
-      .trim();
-  };
-
-  // Autocomplete suggestions:
-  // Show matching options when user types at least 1 character.
-  // Uses normalization, multi-token matching, and smart ranking so options always appear reliably.
-  const suggestions = useMemo(() => {
-    const raw = inputValue.trim();
-    if (!raw || raw.length < 1) return [];
-
-    const queryLower = raw.toLowerCase();
-    const normQuery = normalizeSuburbText(raw);
-    const queryTokens = normQuery.split(' ').filter(Boolean);
-
-    interface ScoredSuburb {
-      suburb: SuburbProjected;
-      score: number;
-    }
-
-    const scored: ScoredSuburb[] = [];
-
-    for (const suburb of mapModel.suburbs) {
-      const nameLower = suburb.name.toLowerCase();
-      const normName = normalizeSuburbText(suburb.name);
-      const postcode = suburb.postcode;
-
-      let score = 0;
-
-      // 1. Exact matches
-      if (nameLower === queryLower || normName === normQuery) {
-        score = 1000;
-      }
-      // 2. Starts with query
-      else if (nameLower.startsWith(queryLower) || normName.startsWith(normQuery)) {
-        score = 500 - suburb.name.length;
-      }
-      // 3. Word within suburb name starts with query
-      else if (
-        normName.split(' ').some((word) => word.startsWith(normQuery)) ||
-        nameLower.split(' ').some((word) => word.startsWith(queryLower))
-      ) {
-        score = 300 - suburb.name.length;
-      }
-      // 4. All tokens in multi-word query match suburb name
-      else if (
-        queryTokens.length > 1 &&
-        queryTokens.every((token) => normName.includes(token))
-      ) {
-        score = 250;
-      }
-      // 5. Contains query as substring
-      else if (nameLower.includes(queryLower) || normName.includes(normQuery)) {
-        score = 100 - suburb.name.length;
-      }
-      // 6. Postcode match
-      else if (postcode.startsWith(raw)) {
-        score = 80;
-      } else if (postcode.includes(raw)) {
-        score = 50;
-      }
-
-      if (score > 0) {
-        scored.push({ suburb, score });
-      }
-    }
-
-    scored.sort((a, b) => b.score - a.score || a.suburb.name.localeCompare(b.suburb.name));
-    return scored.slice(0, 12).map((item) => item.suburb);
-  }, [inputValue, mapModel.suburbs]);
-
-  // Distance from current suburb to target
-  const stepsRemaining = distancesToTarget.get(currentSuburbId) ?? 0;
+  const stepsRemaining = currentDistanceToTarget;
   const turnsLeft = Math.max(0, gameState.maxTurns - gameState.turnsUsed);
   const turnsFormatted = `${String(turnsLeft).padStart(2, '0')}/${String(gameState.maxTurns).padStart(2, '0')}`;
   const progressPercent = Math.min(100, (gameState.turnsUsed / gameState.maxTurns) * 100);
 
-  // Suburbs on path (excluding start if it's rendered separately)
+  // Suburbs on current path
   const pathSuburbs = useMemo(() => {
     return gameState.path.map((id) => mapModel.suburbMap.get(id)!).filter(Boolean);
   }, [gameState.path, mapModel.suburbMap]);
 
-  // Handle move submission
-  const handleSubmit = (suburbToSubmit?: SuburbProjected) => {
-    let target = suburbToSubmit;
-
-    if (!target) {
-      const raw = inputValue.trim();
-      if (!raw) return;
-
-      const queryLower = raw.toLowerCase();
-      const normQuery = normalizeSuburbText(raw);
-
-      // 1. Exact name match
-      target = mapModel.suburbs.find(
-        (s) => s.name.toLowerCase() === queryLower || normalizeSuburbText(s.name) === normQuery
-      );
-
-      // 2. Exact postcode match
-      if (!target) {
-        target = mapModel.suburbs.find((s) => s.postcode === raw);
-      }
-
-      // 3. Unique prefix match or highlighted suggestion
-      if (!target) {
-        const prefixMatches = mapModel.suburbs.filter(
-          (s) =>
-            s.name.toLowerCase().startsWith(queryLower) ||
-            normalizeSuburbText(s.name).startsWith(normQuery)
-        );
-        if (prefixMatches.length === 1) {
-          target = prefixMatches[0];
-        } else if (suggestions.length > 0 && selectedIndex < suggestions.length) {
-          target = suggestions[selectedIndex];
-        }
-      }
-    }
-
-    if (target) {
-      onMoveToSuburb(target.id);
-      setInputValue('');
-      setSelectedIndex(0);
-      setIsFocused(false);
-    } else {
-      const rawQuery = inputValue.trim();
-      if (rawQuery) {
-        onInvalidGuess?.(rawQuery);
-      }
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (suggestions[selectedIndex]) {
-        handleSubmit(suggestions[selectedIndex]);
-      } else {
-        handleSubmit();
-      }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedIndex((prev) => (prev + 1) % Math.max(1, suggestions.length));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedIndex((prev) => (prev - 1 + suggestions.length) % Math.max(1, suggestions.length));
-    } else if (e.key === 'Escape') {
-      setIsFocused(false);
-    }
-  };
-
   return (
     <aside
       id="game-controls-sidebar"
-      className="w-full md:w-72 lg:w-80 bg-white border-b md:border-b-0 md:border-r border-neutral-200 p-4 sm:p-5 lg:p-6 flex flex-col justify-between shrink-0 shadow-xs z-20 text-neutral-900 transition-all duration-200 select-none overflow-y-auto max-h-[45vh] md:max-h-full"
+      className="w-full md:w-80 lg:w-88 bg-white border-b md:border-b-0 md:border-r border-neutral-200 p-4 sm:p-5 flex flex-col justify-between shrink-0 shadow-xs z-20 text-neutral-900 transition-all duration-200 select-none overflow-y-auto max-h-[50vh] md:max-h-full"
     >
-      <div className="flex flex-col gap-5">
-        {/* Mobile Header Toggle Bar */}
+      <div className="flex flex-col gap-4">
+        {/* Mobile Header Bar */}
         <div className="flex md:hidden items-center justify-between border-b border-neutral-100 pb-2">
           <div className="flex items-center gap-2 text-xs font-bold text-neutral-700">
             <span>Turns: {turnsFormatted}</span>
@@ -243,9 +92,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
           </div>
           <button
             onClick={() => setIsMobileExpanded((prev) => !prev)}
-            className="p-1 text-neutral-500 hover:text-neutral-900 text-xs flex items-center gap-1 font-semibold"
+            className="p-1 text-neutral-500 hover:text-neutral-900 text-xs flex items-center gap-1 font-semibold cursor-pointer"
           >
-            <span>{isMobileExpanded ? 'Hide Path' : 'Show Path'}</span>
+            <span>{isMobileExpanded ? 'Hide Route' : 'Show Route'}</span>
             {isMobileExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
         </div>
@@ -255,27 +104,12 @@ export const GameControls: React.FC<GameControlsProps> = ({
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Game Status</h2>
             <div className="flex items-center gap-1.5">
-              {gameState.status === 'playing' && onToggleNeighbours && (
-                <button
-                  id="show-neighbours-quick-btn"
-                  onClick={() => onToggleNeighbours()}
-                  title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
-                  className={`flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded transition-colors cursor-pointer ${
-                    isNeighboursVisible
-                      ? 'text-emerald-800 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300'
-                      : 'text-neutral-600 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200'
-                  }`}
-                >
-                  <Compass className="w-3 h-3 text-emerald-600" />
-                  <span>{isNeighboursVisible ? 'Hide' : 'Neighbours'}</span>
-                </button>
-              )}
               {onUndoLastMove && gameState.path.length > 1 && gameState.status === 'playing' && (
                 <button
                   id="undo-move-btn"
                   onClick={onUndoLastMove}
                   title="Undo last step"
-                  className="flex items-center gap-1 text-[11px] font-semibold text-neutral-500 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded transition-colors cursor-pointer"
+                  className="flex items-center gap-1 text-[11px] font-semibold text-neutral-600 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded transition-colors cursor-pointer"
                 >
                   <Undo2 className="w-3 h-3" />
                   <span>Undo</span>
@@ -295,7 +129,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
             </div>
           </div>
 
-          <div className="space-y-3 bg-neutral-50 p-3.5 rounded-xl border border-neutral-200/80">
+          <div className="space-y-2.5 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80">
             <div className="flex justify-between items-end">
               <span className="text-xs sm:text-sm text-neutral-500 font-medium">Turns Remaining</span>
               <span
@@ -339,283 +173,276 @@ export const GameControls: React.FC<GameControlsProps> = ({
           </div>
         </div>
 
-        {/* Error message alert banner if invalid move attempted */}
+        {/* Error message alert banner if invalid action attempted */}
         {errorMessage && (
-          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs animate-shake">
-            <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
+          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs animate-fadeIn">
+            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
             <span className="font-medium leading-tight">{errorMessage}</span>
           </div>
         )}
 
-        {/* 2. Current Path Timeline */}
-        <div className={`${isMobileExpanded ? 'block' : 'hidden md:block'}`}>
-          <h2 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-3">Current Path</h2>
-          <div className="space-y-2.5 max-h-48 md:max-h-64 overflow-y-auto pr-1">
+        {/* 2. Current Path Section */}
+        <div className={`flex flex-col gap-2 ${isMobileExpanded ? 'block' : 'hidden md:flex'}`}>
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
+              Current Path ({gameState.path.length})
+            </span>
+            {gameState.path.length > 1 && (
+              <span className="text-[10px] text-neutral-400">Tap step to continue from it</span>
+            )}
+          </div>
+
+          <div className="bg-neutral-50 rounded-xl border border-neutral-200/80 p-2 space-y-1 max-h-36 overflow-y-auto">
             {/* Start Node */}
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-full border-2 border-red-500 flex items-center justify-center text-[10px] font-bold text-red-500 shrink-0">
-                S
+            <div
+              onClick={() => {
+                if (gameState.status === 'playing' && gameState.path.length > 1) {
+                  onSelectPathSuburb?.(gameState.startSuburbId);
+                }
+              }}
+              className={`flex items-center justify-between p-1.5 rounded-lg transition-colors group ${
+                gameState.path.length > 1 ? 'hover:bg-neutral-100 cursor-pointer' : ''
+              }`}
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                  S
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs font-semibold text-neutral-900 truncate">
+                    {startSuburb?.name}
+                  </span>
+                  <span className="text-[9.5px] text-neutral-400">Starting suburb</span>
+                </div>
               </div>
-              <span className="text-xs sm:text-sm font-semibold text-neutral-900">{startSuburb?.name}</span>
+
+              {gameState.path.length > 1 && gameState.status === 'playing' && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectPathSuburb?.(gameState.startSuburbId);
+                  }}
+                  className="opacity-70 group-hover:opacity-100 px-2 py-0.5 rounded text-[10px] font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 flex items-center gap-1 transition-all cursor-pointer"
+                  title="Continue route from start suburb (turns used are preserved)"
+                >
+                  <CornerUpLeft className="w-3 h-3 text-emerald-600" />
+                  <span>Continue</span>
+                </button>
+              )}
             </div>
 
-            {/* Stepped Traversed Path */}
-            {pathSuburbs.length > 1 && (
-              <div className="ml-3 border-l-2 border-emerald-500 pl-5 py-1 space-y-2">
-                {pathSuburbs.slice(1).map((suburb, idx) => {
-                  const isLast = idx === pathSuburbs.length - 2;
-                  return (
-                    <div
-                      key={suburb.id}
-                      className={`flex items-center justify-between text-xs sm:text-sm ${
-                        isLast ? 'font-bold text-emerald-600' : 'text-neutral-700 font-medium'
+            {/* Path Steps (from index 1 onward) */}
+            {pathSuburbs.slice(1).map((suburb, idx) => {
+              const stepNum = idx + 1;
+              const isLast = idx === pathSuburbs.length - 2;
+              const distToTarget = distancesToTarget.get(suburb.id) ?? -1;
+
+              return (
+                <div
+                  key={`${suburb.id}-${stepNum}`}
+                  onClick={() => {
+                    if (!isLast && gameState.status === 'playing') {
+                      onSelectPathSuburb?.(suburb.id);
+                    }
+                  }}
+                  className={`flex items-center justify-between p-1.5 rounded-lg transition-colors group ${
+                    isLast
+                      ? 'bg-emerald-50/90 border border-emerald-200 font-semibold text-emerald-950'
+                      : 'text-neutral-700 hover:bg-neutral-100 cursor-pointer'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span
+                      className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
+                        isLast ? 'bg-emerald-600 text-white' : 'bg-neutral-200 text-neutral-700'
                       }`}
                     >
-                      <span className="truncate">{suburb.name}</span>
-                      {isLast && <Check className="w-4 h-4 text-emerald-600 shrink-0 ml-1" />}
+                      #{stepNum}
+                    </span>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs truncate">{suburb.name}</span>
+                      {!isLast && distToTarget >= 0 && (
+                        <span className="text-[9.5px] text-neutral-400 font-mono">
+                          {distToTarget} {distToTarget === 1 ? 'step' : 'steps'} from target
+                        </span>
+                      )}
                     </div>
-                  );
-                })}
-              </div>
-            )}
+                  </div>
 
-            {/* Target Destination Node */}
+                  {isLast ? (
+                    <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 shrink-0 ml-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                      <span>Current</span>
+                    </div>
+                  ) : (
+                    gameState.status === 'playing' && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectPathSuburb?.(suburb.id);
+                        }}
+                        className="opacity-70 group-hover:opacity-100 px-2 py-0.5 rounded text-[10px] font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 flex items-center gap-1 transition-all cursor-pointer"
+                        title={`Continue route from ${suburb.name}`}
+                      >
+                        <CornerUpLeft className="w-3 h-3 text-emerald-600" />
+                        <span>Continue</span>
+                      </button>
+                    )
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Target Destination Preview */}
             <div
-              className={`flex items-center gap-3 transition-opacity ${
+              className={`flex items-center gap-2 p-1.5 transition-opacity ${
                 gameState.status === 'won' ? 'opacity-100' : 'opacity-40'
               }`}
             >
-              <div className="w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center text-[10px] font-bold text-blue-500 shrink-0">
+              <div className="w-5 h-5 rounded-full border-2 border-blue-500 flex items-center justify-center text-[10px] font-bold text-blue-500 shrink-0">
                 T
               </div>
-              <span className="text-xs sm:text-sm font-semibold text-neutral-900">{targetSuburb?.name}</span>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-neutral-900 truncate">
+                  {targetSuburb?.name}
+                </span>
+                <span className="text-[9.5px] text-neutral-400">Target destination</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Input & Submit Move Section (Bottom of Sidebar) */}
-      <div className="mt-4 pt-4 border-t border-neutral-100 flex flex-col gap-2.5">
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
-            Next Move
-          </span>
-          {gameState.status === 'playing' && onToggleNeighbours && (
-            <button
-              id="toggle-neighbours-btn"
-              type="button"
-              onClick={() => onToggleNeighbours()}
-              title={isNeighboursVisible ? 'Hide neighbouring suburbs' : 'Show neighbouring suburbs of current step'}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
-                isNeighboursVisible
-                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs'
-                  : 'bg-white text-neutral-700 hover:text-neutral-900 border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 shadow-2xs'
-              }`}
-            >
-              <Compass className={`w-3.5 h-3.5 ${isNeighboursVisible ? 'text-emerald-600' : 'text-neutral-500'}`} />
-              <span>{isNeighboursVisible ? 'Hide Neighbours' : 'Show Neighbours'}</span>
-              <span className="text-[10px] opacity-75 font-mono">({neighboringSuburbs.length})</span>
-            </button>
-          )}
-        </div>
-
-        {/* Neighbor Hint: Displayed when consecutiveErrors >= 2 (retained feature) OR when toggled by button at any time */}
-        {(consecutiveErrors >= 2 || isNeighboursVisible) && gameState.status === 'playing' && currentSuburb && (
-          <div
-            id="neighbor-hint-banner"
-            className="p-3 rounded-xl bg-amber-50/90 border border-amber-300 text-amber-950 text-xs shadow-xs space-y-2 animate-fadeIn"
-          >
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-1.5 font-bold text-amber-900">
+      {/* 3. Available Neighbours Section (No typing - Choose one to continue) */}
+      <div className="mt-4 pt-3 border-t border-neutral-100 flex flex-col gap-2.5">
+        {gameState.status === 'playing' ? (
+          <>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
                 <Compass className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>
-                  {consecutiveErrors >= 2
-                    ? 'Neighbor Hint (2 failed guesses)'
-                    : `Neighbours of ${currentSuburb.name}`}
+                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
+                  Available Neighbours
                 </span>
               </div>
-              {onToggleNeighbours && (
-                <button
-                  type="button"
-                  onClick={() => onToggleNeighbours(false)}
-                  title="Hide neighbours"
-                  className="text-neutral-500 hover:text-neutral-800 p-0.5 rounded cursor-pointer transition-colors"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono">
+                {neighboringSuburbs.length} bordering
+              </span>
             </div>
-            <p className="text-[11px] text-amber-800 leading-snug">
-              Bordering suburbs of <strong>{currentSuburb.name}</strong> ({neighboringSuburbs.length} suburbs):
-            </p>
-            <div className="flex flex-wrap gap-1.5 pt-0.5 max-h-32 overflow-y-auto pr-0.5">
-              {neighboringSuburbs.map((n) => (
-                <button
-                  key={n.id}
-                  type="button"
-                  onClick={() => {
-                    setInputValue(n.name);
-                    handleSubmit(n);
-                  }}
-                  title={`Select ${n.name} to advance`}
-                  className="px-2.5 py-1 bg-white hover:bg-emerald-50 active:bg-emerald-100 border border-amber-200 hover:border-emerald-300 text-neutral-800 hover:text-emerald-900 rounded-md text-[11px] font-medium shadow-2xs transition-all cursor-pointer flex items-center gap-1"
-                >
-                  <span>{n.name}</span>
-                </button>
-              ))}
-            </div>
-            <p className="text-[10px] text-amber-700/90 italic pt-0.5">
-              Click any neighbour above to make your move, or type below.
-            </p>
-          </div>
-        )}
 
-        {/* Autocomplete Input */}
-        <div className="relative">
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-neutral-400">
-              <MapPin className="w-3.5 h-3.5 text-neutral-500" />
-            </div>
-            <input
-              ref={inputRef}
-              id="suburb-name-input"
-              type="text"
-              autoComplete="off"
-              spellCheck="false"
-              disabled={gameState.status !== 'playing'}
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-                setSelectedIndex(0);
-                setIsFocused(true);
-              }}
-              onFocus={() => {
-                setIsFocused(true);
-                // Ensure visible within scrollable sidebar
-                inputRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-              }}
-              onClick={() => setIsFocused(true)}
-              onBlur={() => {
-                setTimeout(() => {
-                  setIsFocused(false);
-                }, 250);
-              }}
-              onKeyDown={handleKeyDown}
-              placeholder={
-                gameState.status === 'playing'
-                  ? 'Type any suburb name (e.g. Richmond)...'
-                  : 'Game ended'
-              }
-              className="w-full pl-8 pr-16 py-2.5 bg-neutral-50 border border-neutral-300 focus:border-neutral-900 focus:bg-white rounded-lg text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 outline-none transition-all shadow-2xs"
-            />
-            <button
-              id="submit-suburb-btn"
-              disabled={gameState.status !== 'playing' || !inputValue.trim()}
-              onClick={() => handleSubmit()}
-              className="absolute inset-y-1 right-1 px-2.5 rounded bg-neutral-900 hover:bg-neutral-800 disabled:opacity-30 text-white text-[11px] font-bold flex items-center gap-1 transition-all"
-            >
-              <span>Go</span>
-              <CornerDownLeft className="w-3 h-3" />
-            </button>
-          </div>
+            <p className="text-[11px] text-neutral-500 leading-tight">
+              Bordering <strong className="text-neutral-900">{currentSuburb?.name}</strong>. Choose one to advance:
+            </p>
 
-          {/* Suggestions Dropdown */}
-          {isFocused && suggestions.length > 0 && (
+            {/* List of Available Neighbour Cards */}
             <div
-              id="suburb-suggestions-dropdown"
-              onMouseDown={(e) => e.preventDefault()}
-              className="absolute bottom-full mb-1.5 left-0 right-0 max-h-56 overflow-y-auto bg-white border border-neutral-200 rounded-lg shadow-2xl z-50 divide-y divide-neutral-100"
+              id="available-neighbours-list"
+              className="space-y-1.5 max-h-56 md:max-h-64 overflow-y-auto pr-1"
             >
-              <div className="px-2.5 py-1 text-[10px] font-bold text-neutral-400 uppercase tracking-wider bg-neutral-50 flex items-center justify-between sticky top-0 z-10 border-b border-neutral-100">
-                <span>Matching Suburbs ({suggestions.length})</span>
-                <span>Enter to select</span>
-              </div>
-              {suggestions.map((suburb, idx) => {
-                const isBordering = currentSuburb?.neighbors.includes(suburb.id);
-                const stepsFromCurrent = distancesToCurrent.get(suburb.id) ?? -1;
+              {neighboringSuburbs.map((neighbour) => {
+                const isTarget = neighbour.id === gameState.targetSuburbId;
 
                 return (
                   <button
-                    key={suburb.id}
+                    key={neighbour.id}
+                    id={`neighbour-btn-${neighbour.id}`}
                     type="button"
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      handleSubmit(suburb);
-                    }}
-                    onMouseEnter={() => setSelectedIndex(idx)}
-                    className={`w-full px-2.5 py-2 text-left flex items-center justify-between text-xs transition-colors cursor-pointer ${
-                      idx === selectedIndex
-                        ? 'bg-neutral-900 text-white font-semibold'
-                        : 'text-neutral-700 hover:bg-neutral-100'
+                    onClick={() => onMoveToSuburb(neighbour.id)}
+                    className={`w-full p-2.5 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer group active:scale-[0.98] ${
+                      isTarget
+                        ? 'bg-blue-50/90 border-blue-400 hover:border-blue-600 hover:bg-blue-100 shadow-xs ring-2 ring-blue-400/30'
+                        : 'bg-white border-neutral-200 hover:border-emerald-500 hover:bg-emerald-50/40 hover:shadow-xs'
                     }`}
                   >
-                    <span className="truncate">{suburb.name}</span>
-                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                      {isBordering ? (
-                        <span
-                          className={`text-[9.5px] px-1.5 py-0.5 rounded font-medium ${
-                            idx === selectedIndex
-                              ? 'bg-emerald-500 text-white'
-                              : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                          }`}
-                        >
-                          Bordering
-                        </span>
-                      ) : stepsFromCurrent > 0 ? (
-                        <span
-                          className={`text-[9.5px] font-mono ${
-                            idx === selectedIndex ? 'text-neutral-300' : 'text-neutral-400'
-                          }`}
-                        >
-                          {stepsFromCurrent} {stepsFromCurrent === 1 ? 'step' : 'steps'}
-                        </span>
-                      ) : null}
-                      <span
-                        className={`text-[10px] font-mono ${
-                          idx === selectedIndex ? 'text-neutral-300' : 'text-neutral-400'
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div
+                        className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold ${
+                          isTarget
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-neutral-100 text-neutral-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors'
                         }`}
                       >
-                        {suburb.postcode}
-                      </span>
+                        {isTarget ? (
+                          <Flag className="w-3.5 h-3.5" />
+                        ) : (
+                          <MapPin className="w-3.5 h-3.5" />
+                        )}
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span
+                          className={`text-xs sm:text-sm font-bold truncate leading-tight ${
+                            isTarget ? 'text-blue-900' : 'text-neutral-900 group-hover:text-emerald-950'
+                          }`}
+                        >
+                          {neighbour.name}
+                        </span>
+                        <span className="text-[10px] text-neutral-400 font-mono">
+                          {neighbour.postcode}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                      {isTarget ? (
+                        <span className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white flex items-center gap-1 shadow-xs animate-pulse">
+                          <span>TARGET</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </span>
+                      ) : (
+                        <div className="flex items-center gap-1">
+                          <span className="text-[11px] font-medium text-neutral-400 group-hover:text-emerald-700 transition-colors">
+                            Choose
+                          </span>
+                          <ArrowRight className="w-3.5 h-3.5 text-neutral-300 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
+                        </div>
+                      )}
                     </div>
                   </button>
                 );
               })}
             </div>
-          )}
-        </div>
 
-        {/* Primary Submit Button */}
-        <button
-          onClick={() => {
-            if (inputValue.trim()) {
-              handleSubmit();
-            } else if (suggestions[0]) {
-              handleSubmit(suggestions[0]);
-            }
-          }}
-          disabled={gameState.status !== 'playing'}
-          className="w-full bg-black text-white py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:bg-neutral-800 active:scale-95 transition-transform disabled:opacity-40"
-        >
-          SUBMIT GUESS
-        </button>
+            <p className="text-[10px] text-center text-neutral-400 pt-0.5">
+              Select a neighbour above to continue your route.
+            </p>
+          </>
+        ) : (
+          /* Game Finished State */
+          <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 space-y-3 text-center">
+            {gameState.status === 'won' ? (
+              <div className="space-y-1.5">
+                <div className="w-10 h-10 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                  <Trophy className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold text-emerald-900">Destination Reached!</h3>
+                <p className="text-xs text-neutral-600">
+                  Completed in <strong className="text-neutral-900">{gameState.turnsUsed} turns</strong> (optimal was {gameState.bestPathDistance} steps).
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-1.5">
+                <div className="w-10 h-10 mx-auto rounded-full bg-rose-100 text-rose-700 flex items-center justify-center">
+                  <Flag className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold text-rose-900">Puzzle Ended</h3>
+                <p className="text-xs text-neutral-600">
+                  Optimal shortest route is shown in orange on the map.
+                </p>
+              </div>
+            )}
 
-        {/* Secondary Give Up Option */}
-        {gameState.status === 'playing' && onGiveUp && (
-          <button
-            id="give-up-bottom-btn"
-            type="button"
-            onClick={onGiveUp}
-            className="w-full text-[11px] font-semibold text-neutral-500 hover:text-rose-600 py-0.5 flex items-center justify-center gap-1 transition-colors"
-          >
-            <Flag className="w-3 h-3 text-rose-500" />
-            <span>Give up on this puzzle</span>
-          </button>
+            <button
+              id="new-puzzle-btn"
+              type="button"
+              onClick={onResetGame}
+              className="w-full py-2 bg-neutral-900 hover:bg-neutral-800 active:scale-95 text-white font-bold text-xs rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>{gameState.gameMode === 'daily' ? 'View Daily Summary' : 'New Practice Puzzle'}</span>
+            </button>
+          </div>
         )}
-
-        <p className="text-[10px] text-center text-neutral-400">
-          Guess any suburb across Melbourne to chart your route.
-        </p>
       </div>
     </aside>
   );

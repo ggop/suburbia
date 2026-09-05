@@ -103,7 +103,7 @@ export default function App() {
 
   const handleMapClickDisabled = useCallback(() => {
     if (gameState.status !== 'playing') return;
-    setErrorMessage('Map clicking is disabled. Type any suburb name in the box to navigate.');
+    setErrorMessage('Please choose an available neighbour from the sidebar list to advance your route.');
     sounds.playError();
   }, [gameState.status]);
 
@@ -338,6 +338,14 @@ export default function App() {
       const lastAction = history[history.length - 1];
       const newHistory = history.slice(0, -1);
 
+      if (lastAction.type === 'branch' && lastAction.prevPath) {
+        return {
+          ...prev,
+          path: lastAction.prevPath,
+          turnHistory: newHistory,
+        };
+      }
+
       if (lastAction.type === 'step') {
         return {
           ...prev,
@@ -363,6 +371,63 @@ export default function App() {
     setConsecutiveErrors((prev) => Math.max(0, prev - 1));
     setShowNeighboursManual(null);
   }, [gameState.status, gameState.turnsUsed]);
+
+  // Continue from any suburb already visited in the path
+  const handleSelectPathSuburb = useCallback(
+    (suburbId: string) => {
+      if (gameState.status !== 'playing') return;
+      const targetIndex = gameState.path.indexOf(suburbId);
+      if (targetIndex === -1 || targetIndex === gameState.path.length - 1) return;
+
+      const targetSuburb = mapModel?.suburbMap.get(suburbId);
+
+      setGameState((prev) => {
+        const idx = prev.path.indexOf(suburbId);
+        if (idx === -1 || idx === prev.path.length - 1) return prev;
+
+        const newPath = prev.path.slice(0, idx + 1);
+        const prunedSuburbs = prev.path.slice(idx + 1);
+
+        // Do not remove suburbs already guessed.
+        // Keep all existing guessed suburbs, and preserve pruned path suburbs in guessedSuburbs
+        // so that all player explorations remain visible and active on the map!
+        const newGuessedSuburbs = Array.from(
+          new Set([...(prev.guessedSuburbs || []), ...prunedSuburbs])
+        );
+
+        // Record branch in turnHistory for undo capability without changing turnsUsed
+        const newHistory = [
+          ...(prev.turnHistory || []),
+          {
+            type: 'branch' as const,
+            suburbId,
+            prevConsecutiveErrors: consecutiveErrors,
+            prevPath: prev.path,
+          },
+        ];
+
+        return {
+          ...prev,
+          path: newPath,
+          // CRUCIAL: Players should not be able to gain back turns!
+          // turnsUsed is preserved and NOT reduced.
+          turnsUsed: prev.turnsUsed,
+          turnHistory: newHistory,
+          guessedSuburbs: newGuessedSuburbs,
+        };
+      });
+
+      sounds.playStep();
+      setErrorMessage(
+        targetSuburb
+          ? `Continuing route from ${targetSuburb.name} (${targetIndex === 0 ? 'Start' : `Step #${targetIndex}`}).`
+          : 'Continuing from selected step in path.'
+      );
+      setConsecutiveErrors(0);
+      setShowNeighboursManual(null);
+    },
+    [gameState.status, gameState.path, mapModel, consecutiveErrors]
+  );
 
   // Give up on puzzle
   const handleGiveUp = useCallback(() => {
@@ -529,6 +594,7 @@ export default function App() {
           isNeighboursVisible={isNeighboursVisible}
           onToggleNeighbours={handleToggleNeighbours}
           onMoveToSuburb={handleMoveToSuburb}
+          onSelectPathSuburb={handleSelectPathSuburb}
           onInvalidGuess={handleInvalidGuess}
           onUndoLastMove={handleUndoLastMove}
           onGiveUp={handleGiveUp}
@@ -545,6 +611,7 @@ export default function App() {
             showBestPathOverlay={showBestPathOverlay}
             isNeighboursVisible={isNeighboursVisible}
             onToggleNeighbours={handleToggleNeighbours}
+            onSelectPathSuburb={handleSelectPathSuburb}
             onMapClickDisabled={handleMapClickDisabled}
           />
         </section>

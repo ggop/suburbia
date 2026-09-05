@@ -50,11 +50,9 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <CheckCircle2 className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-neutral-900 mb-0.5">2. Flexible Guessing & Navigation</h4>
+              <h4 className="font-bold text-neutral-900 mb-0.5">2. Neighbour Selection at Every Turn</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                At each turn, you can guess <strong>any suburb anywhere across Melbourne</strong>. If a guess happens to be on the optimal shortest path, it is shaded in{' '}
-                <strong className="text-emerald-600">Green</strong> (even if not neighbouring yet!). Bordering suburbs connect and advance your route. Guesses off the optimal route show distance feedback in{' '}
-                <strong className="text-amber-600">Amber</strong>. While playing, suburb names appear on hover or tap.
+                At every step, all available bordering neighbours of your current position are listed as selectable options in the sidebar and highlighted on the map in <strong className="text-emerald-600">soft green</strong>. Choose a neighbour from the sidebar list to advance your route!
               </p>
             </div>
           </div>
@@ -64,10 +62,12 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <Navigation className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-neutral-900 mb-0.5">3. Typing-Only Navigation & Hints</h4>
+              <h4 className="font-bold text-neutral-900 mb-0.5">3. Branching from Earlier Suburbs</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                All path suburbs must be selected by typing their name in the input box. Map clicking is disabled.
-                After <strong>two consecutive incorrect guesses</strong>, a hint will offer all neighboring suburbs for only that step.
+                If you find yourself moving away from the target, you can click any suburb already in your path (either in the sidebar path list or directly on the map) to continue from that point.
+              </p>
+              <p className="text-neutral-500 text-xs leading-relaxed mt-1.5 bg-emerald-50/80 p-2 rounded-lg border border-emerald-200/60 text-emerald-900">
+                <strong>Turn count preserved:</strong> Branching allows you to explore alternate paths without losing your recorded progress, but no turns are refunded.
               </p>
             </div>
           </div>
