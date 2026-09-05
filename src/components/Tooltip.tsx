@@ -73,6 +73,13 @@ export const Tooltip: React.FC<TooltipProps> = ({ info, targetSuburbName }) => {
         <Navigation className="w-3 h-3 text-orange-600" /> Shortest Path (Orange)
       </span>
     );
+  } else if (role === 'guessed-optimal') {
+    borderColor = 'border-emerald-500';
+    roleBadge = (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300">
+        <CheckCircle2 className="w-3 h-3 text-emerald-600" /> On Optimal Path (Green)
+      </span>
+    );
   } else if (role === 'guessed') {
     borderColor = 'border-amber-400';
     roleBadge = (

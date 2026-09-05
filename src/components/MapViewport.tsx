@@ -10,6 +10,8 @@ interface MapViewportProps {
   distancesToTarget: Map<string, number>;
   distancesToCurrent: Map<string, number>;
   showBestPathOverlay?: boolean;
+  isNeighboursVisible?: boolean;
+  onToggleNeighbours?: () => void;
   onMapClickDisabled?: () => void;
 }
 
@@ -25,6 +27,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   distancesToTarget,
   distancesToCurrent,
   showBestPathOverlay = false,
+  isNeighboursVisible = false,
+  onToggleNeighbours,
   onMapClickDisabled,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,6 +60,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   // Current suburb
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
 
+  // Set of bordering neighbors of current suburb when neighbours are visible
+  const neighboringSet = useMemo(() => {
+    if (!currentSuburb || !isNeighboursVisible) return new Set<string>();
+    return new Set(currentSuburb.neighbors);
+  }, [currentSuburb, isNeighboursVisible]);
+
   // Determine role of each suburb
   const getSuburbRole = useCallback(
     (id: string): SuburbRole => {
@@ -63,8 +73,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       if (id === gameState.targetSuburbId) return 'target';
       if (id === currentSuburbId) return 'current';
       if (visitedSet.has(id)) return 'visited';
+      if (guessedSet.has(id)) {
+        if (bestPathSet.has(id)) return 'guessed-optimal';
+        return 'guessed';
+      }
       if (showBestPathOverlay && bestPathSet.has(id)) return 'best-path';
-      if (guessedSet.has(id)) return 'guessed';
+      if (isNeighboursVisible && neighboringSet.has(id)) return 'valid-move';
       return 'default';
     },
     [
@@ -75,6 +89,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       showBestPathOverlay,
       bestPathSet,
       guessedSet,
+      isNeighboursVisible,
+      neighboringSet,
     ]
   );
 
@@ -392,12 +408,28 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     setTooltipInfo(null);
   };
 
-  const handleSuburbClick = () => {
+  const handleSuburbClick = (suburb: SuburbProjected, e: React.MouseEvent) => {
     // If the touch or mouse was a drag, ignore click
     if (touchMovedRef.current) return;
-    // Map clicking is only disabled during active gameplay
-    if (gameState.status !== 'playing') return;
-    onMapClickDisabled?.();
+    
+    const isGameOver = gameState.status !== 'playing';
+    const isInPath =
+      visitedSet.has(suburb.id) ||
+      guessedSet.has(suburb.id) ||
+      suburb.id === gameState.startSuburbId ||
+      suburb.id === gameState.targetSuburbId;
+    const canInspect = isGameOver || isInPath;
+
+    // Tapping or clicking an active/shaded suburb displays its name and tooltip
+    if (canInspect) {
+      handleSuburbHover(suburb, e);
+      return;
+    }
+
+    // Map clicking to navigate is disabled during active gameplay
+    if (gameState.status === 'playing') {
+      onMapClickDisabled?.();
+    }
   };
 
   // Build the visited path line string
@@ -534,14 +566,21 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 strokeColor = '#ffffff';
                 strokeWidth = 1.8;
               } else if (role === 'valid-move') {
-                fillColor = isHovered ? '#d1fae5' : '#ffffff';
-                strokeColor = '#10b981';
+                fillColor = isHovered ? '#bbf7d0' : '#dcfce7'; // Soft mint green highlight for neighbouring suburbs
+                strokeColor = '#059669'; // Crisp emerald-600 border
                 strokeWidth = 2.0;
+                filter = 'url(#clean-shadow)';
               } else if (role === 'best-path') {
                 // Shortest path revealed is marked orange, not counting any suburbs the player identified correctly
                 fillColor = '#ea580c'; // Vibrant Orange-600
                 strokeColor = '#c2410c'; // Deep Orange-700
                 strokeWidth = 2.2;
+                filter = 'url(#clean-shadow)';
+              } else if (role === 'guessed-optimal') {
+                // Optimal path guess - shade green even if not a neighbouring suburb
+                fillColor = isHovered ? '#34d399' : '#10b981'; // Emerald-500 green
+                strokeColor = '#047857'; // Deep emerald border
+                strokeWidth = 2.0;
                 filter = 'url(#clean-shadow)';
               } else if (role === 'guessed') {
                 fillColor = isHovered ? '#fef3c7' : '#fffbeb'; // Soft amber tint for guessed suburbs
@@ -554,13 +593,15 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               }
 
               const isGameOver = gameState.status !== 'playing';
+              const isNeighbour = isNeighboursVisible && neighboringSet.has(suburb.id);
               const isInPath =
                 visitedSet.has(suburb.id) ||
                 guessedSet.has(suburb.id) ||
                 suburb.id === gameState.startSuburbId ||
-                suburb.id === gameState.targetSuburbId;
+                suburb.id === gameState.targetSuburbId ||
+                isNeighbour;
               const canInspect = isGameOver || isInPath;
-              const cursorClass = canInspect ? 'cursor-help' : 'cursor-default';
+              const cursorClass = canInspect ? 'cursor-pointer' : 'cursor-default';
 
               return (
                 <polygon
@@ -577,7 +618,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                   onMouseEnter={(e) => handleSuburbHover(suburb, e)}
                   onMouseMove={(e) => handleSuburbHover(suburb, e)}
                   onMouseLeave={handleSuburbLeave}
-                  onClick={handleSuburbClick}
+                  onClick={(e) => handleSuburbClick(suburb, e)}
                 />
               );
             })}
@@ -765,18 +806,31 @@ export const MapViewport: React.FC<MapViewportProps> = ({
           <g id="suburb-labels" className="pointer-events-none select-none">
             {mapModel.suburbs.map((suburb) => {
               // User Instruction:
-              // Hide the name of the suburbs on the map other than the starting suburb, finishing suburb and those entered by the player.
-              // When shortest path is revealed, also show labels for the revealed unvisited path suburbs with orange halo.
+              // While the game is in progress, do not show suburb name unless tapped on or mouse hover. Keep them shaded with the current scheme.
+              // When game finishes, show start, target, player-entered, and shortest path suburbs.
               const isStart = suburb.id === gameState.startSuburbId;
               const isTarget = suburb.id === gameState.targetSuburbId;
               const isVisitedByPlayer = visitedSet.has(suburb.id);
               const isGuessedByPlayer = guessedSet.has(suburb.id);
               const isEnteredByPlayer = isVisitedByPlayer || isGuessedByPlayer;
               const isBestPathRevealed = showBestPathOverlay && bestPathSet.has(suburb.id) && !isEnteredByPlayer;
+              const isGameInProgress = gameState.status === 'playing';
+              const isHovered = hoveredSuburbId === suburb.id;
 
-              // Strictly hide name if not start, finishing, entered by player, or revealed best path
-              if (!isStart && !isTarget && !isEnteredByPlayer && !isBestPathRevealed) {
-                return null;
+              // While game is in progress: strictly hide name unless tapped on or mouse hover!
+              const isNeighbour = isNeighboursVisible && neighboringSet.has(suburb.id);
+              if (isGameInProgress) {
+                if (!isHovered) {
+                  return null;
+                }
+                if (!isStart && !isTarget && !isEnteredByPlayer && !isNeighbour) {
+                  return null;
+                }
+              } else {
+                // When game is over: show start, target, entered, revealed best path, or currently hovered
+                if (!isStart && !isTarget && !isEnteredByPlayer && !isBestPathRevealed && !isHovered) {
+                  return null;
+                }
               }
 
               // Scale font inversely to zoom level so it stays crisp
@@ -792,15 +846,21 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               } else if (isTarget) {
                 labelColor = '#ffffff';
                 haloColor = '#1e40af'; // Dark blue halo for finishing target suburb
-              } else if (isVisitedByPlayer) {
+              } else if (isVisitedByPlayer || (isGuessedByPlayer && bestPathSet.has(suburb.id))) {
                 labelColor = '#ffffff';
-                haloColor = '#065f46'; // Dark emerald halo for player-visited suburbs
+                haloColor = '#065f46'; // Dark emerald halo for player-visited suburbs or optimal guesses
               } else if (isGuessedByPlayer) {
                 labelColor = '#ffffff';
                 haloColor = '#b45309'; // Warm amber halo for player-guessed suburbs
               } else if (isBestPathRevealed) {
                 labelColor = '#ffffff';
                 haloColor = '#9a3412'; // Dark orange halo for revealed shortest path suburbs
+              } else if (isNeighbour) {
+                labelColor = '#ffffff';
+                haloColor = '#065f46'; // Dark emerald halo for bordering neighbour
+              } else {
+                labelColor = '#ffffff';
+                haloColor = '#1e293b'; // Default slate halo
               }
 
               return (
@@ -927,6 +987,20 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         >
           <Locate className="w-5 h-5" />
         </button>
+        {gameState.status === 'playing' && onToggleNeighbours && (
+          <button
+            id="map-toggle-neighbours-btn"
+            title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
+            onClick={onToggleNeighbours}
+            className={`w-10 h-10 border rounded-lg flex items-center justify-center shadow-xs transition-colors active:scale-95 cursor-pointer ${
+              isNeighboursVisible
+                ? 'bg-emerald-50 border-emerald-400 text-emerald-700 shadow-sm'
+                : 'bg-white border-neutral-200 hover:bg-neutral-50 text-neutral-800'
+            }`}
+          >
+            <Compass className="w-5 h-5" />
+          </button>
+        )}
         <button
           id="reset-view-btn"
           title="Reset Whole Melbourne Metro View"
@@ -944,6 +1018,21 @@ export const MapViewport: React.FC<MapViewportProps> = ({
           Current: <strong className="text-neutral-900">{currentSuburb?.name}</strong> •{' '}
           <span className="text-neutral-600">Type next suburb in sidebar</span>
         </span>
+        {gameState.status === 'playing' && onToggleNeighbours && (
+          <button
+            id="status-pill-toggle-neighbours-btn"
+            onClick={onToggleNeighbours}
+            title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
+            className={`text-[11px] font-semibold px-2 py-0.5 rounded border transition-colors cursor-pointer flex items-center gap-1 ${
+              isNeighboursVisible
+                ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700 border-neutral-300'
+            }`}
+          >
+            <Compass className="w-3 h-3 text-emerald-600" />
+            <span>{isNeighboursVisible ? 'Hide Neighbours' : 'Show Neighbours'}</span>
+          </button>
+        )}
       </div>
 
       {/* Floating Tactical Legend Overlay */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameState } from '../types';
 import { MelbourneMapModel } from '../utils/mapGeometry';
-import { HelpCircle, Trophy, Sparkles, RotateCcw, Flag } from 'lucide-react';
+import { HelpCircle, Trophy, Sparkles, RotateCcw, Flag, Compass } from 'lucide-react';
 
 interface HeaderProps {
   gameState: GameState;
@@ -12,6 +12,8 @@ interface HeaderProps {
   showBestPath: boolean;
   onToggleBestPath: () => void;
   onGiveUp?: () => void;
+  isNeighboursVisible?: boolean;
+  onToggleNeighbours?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,6 +25,8 @@ export const Header: React.FC<HeaderProps> = ({
   showBestPath,
   onToggleBestPath,
   onGiveUp,
+  isNeighboursVisible = false,
+  onToggleNeighbours,
 }) => {
   const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
@@ -87,6 +91,24 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Action Buttons */}
       <div className="flex items-center gap-2">
+        {/* Show Neighbours button during active game */}
+        {!isGameOver && onToggleNeighbours && (
+          <button
+            id="header-toggle-neighbours-btn"
+            onClick={onToggleNeighbours}
+            title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border cursor-pointer ${
+              isNeighboursVisible
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-xs'
+                : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
+            }`}
+          >
+            <Compass className={`w-3.5 h-3.5 ${isNeighboursVisible ? 'text-emerald-600' : 'text-neutral-500'}`} />
+            <span className="hidden sm:inline">{isNeighboursVisible ? 'Hide Neighbours' : 'Show Neighbours'}</span>
+            <span className="sm:hidden">{isNeighboursVisible ? 'Hide' : 'Neighbours'}</span>
+          </button>
+        )}
+
         {/* Give up button during active game */}
         {!isGameOver && onGiveUp && (
           <button

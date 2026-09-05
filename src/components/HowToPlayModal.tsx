@@ -52,8 +52,9 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
             <div>
               <h4 className="font-bold text-neutral-900 mb-0.5">2. Flexible Guessing & Navigation</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                At each turn, you can guess <strong>any suburb anywhere across Melbourne</strong>. Bordering suburbs connect and advance your route in{' '}
-                <strong className="text-emerald-600">Green</strong>. Guesses that do not border your current suburb reveal their location and show step distance feedback.
+                At each turn, you can guess <strong>any suburb anywhere across Melbourne</strong>. If a guess happens to be on the optimal shortest path, it is shaded in{' '}
+                <strong className="text-emerald-600">Green</strong> (even if not neighbouring yet!). Bordering suburbs connect and advance your route. Guesses off the optimal route show distance feedback in{' '}
+                <strong className="text-amber-600">Amber</strong>. While playing, suburb names appear on hover or tap.
               </p>
             </div>
           </div>

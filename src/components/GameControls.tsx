@@ -11,6 +11,8 @@ import {
   ChevronUp,
   Lightbulb,
   Flag,
+  Compass,
+  X,
 } from 'lucide-react';
 
 interface GameControlsProps {
@@ -19,6 +21,8 @@ interface GameControlsProps {
   distancesToTarget: Map<string, number>;
   errorMessage: string | null;
   consecutiveErrors: number;
+  isNeighboursVisible?: boolean;
+  onToggleNeighbours?: (forceState?: boolean) => void;
   onMoveToSuburb: (suburbId: string) => void;
   onInvalidGuess?: (query: string) => void;
   onUndoLastMove?: () => void;
@@ -32,6 +36,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
   distancesToTarget,
   errorMessage,
   consecutiveErrors,
+  isNeighboursVisible = false,
+  onToggleNeighbours,
   onMoveToSuburb,
   onInvalidGuess,
   onUndoLastMove,
@@ -249,12 +255,27 @@ export const GameControls: React.FC<GameControlsProps> = ({
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Game Status</h2>
             <div className="flex items-center gap-1.5">
+              {gameState.status === 'playing' && onToggleNeighbours && (
+                <button
+                  id="show-neighbours-quick-btn"
+                  onClick={() => onToggleNeighbours()}
+                  title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
+                  className={`flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded transition-colors cursor-pointer ${
+                    isNeighboursVisible
+                      ? 'text-emerald-800 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300'
+                      : 'text-neutral-600 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200'
+                  }`}
+                >
+                  <Compass className="w-3 h-3 text-emerald-600" />
+                  <span>{isNeighboursVisible ? 'Hide' : 'Neighbours'}</span>
+                </button>
+              )}
               {onUndoLastMove && gameState.path.length > 1 && gameState.status === 'playing' && (
                 <button
                   id="undo-move-btn"
                   onClick={onUndoLastMove}
                   title="Undo last step"
-                  className="flex items-center gap-1 text-[11px] font-semibold text-neutral-500 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded transition-colors"
+                  className="flex items-center gap-1 text-[11px] font-semibold text-neutral-500 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded transition-colors cursor-pointer"
                 >
                   <Undo2 className="w-3 h-3" />
                   <span>Undo</span>
@@ -265,7 +286,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   id="give-up-btn"
                   onClick={onGiveUp}
                   title="Give up on this puzzle"
-                  className="flex items-center gap-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-0.5 rounded transition-colors"
+                  className="flex items-center gap-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-0.5 rounded transition-colors cursor-pointer"
                 >
                   <Flag className="w-3 h-3 text-rose-500" />
                   <span>Give Up</span>
@@ -375,31 +396,76 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
       {/* 3. Input & Submit Move Section (Bottom of Sidebar) */}
       <div className="mt-4 pt-4 border-t border-neutral-100 flex flex-col gap-2.5">
-        {/* Neighbor Hint after 2 consecutive incorrect guesses */}
-        {consecutiveErrors >= 2 && gameState.status === 'playing' && currentSuburb && (
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
+            Next Move
+          </span>
+          {gameState.status === 'playing' && onToggleNeighbours && (
+            <button
+              id="toggle-neighbours-btn"
+              type="button"
+              onClick={() => onToggleNeighbours()}
+              title={isNeighboursVisible ? 'Hide neighbouring suburbs' : 'Show neighbouring suburbs of current step'}
+              className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                isNeighboursVisible
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs'
+                  : 'bg-white text-neutral-700 hover:text-neutral-900 border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 shadow-2xs'
+              }`}
+            >
+              <Compass className={`w-3.5 h-3.5 ${isNeighboursVisible ? 'text-emerald-600' : 'text-neutral-500'}`} />
+              <span>{isNeighboursVisible ? 'Hide Neighbours' : 'Show Neighbours'}</span>
+              <span className="text-[10px] opacity-75 font-mono">({neighboringSuburbs.length})</span>
+            </button>
+          )}
+        </div>
+
+        {/* Neighbor Hint: Displayed when consecutiveErrors >= 2 (retained feature) OR when toggled by button at any time */}
+        {(consecutiveErrors >= 2 || isNeighboursVisible) && gameState.status === 'playing' && currentSuburb && (
           <div
             id="neighbor-hint-banner"
-            className="p-3 rounded-xl bg-amber-50/90 border border-amber-300 text-amber-950 text-xs shadow-xs space-y-1.5 animate-fadeIn"
+            className="p-3 rounded-xl bg-amber-50/90 border border-amber-300 text-amber-950 text-xs shadow-xs space-y-2 animate-fadeIn"
           >
-            <div className="flex items-center gap-1.5 font-bold text-amber-900">
-              <Lightbulb className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>Neighbor Hint (2 failed guesses)</span>
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 font-bold text-amber-900">
+                <Compass className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>
+                  {consecutiveErrors >= 2
+                    ? 'Neighbor Hint (2 failed guesses)'
+                    : `Neighbours of ${currentSuburb.name}`}
+                </span>
+              </div>
+              {onToggleNeighbours && (
+                <button
+                  type="button"
+                  onClick={() => onToggleNeighbours(false)}
+                  title="Hide neighbours"
+                  className="text-neutral-500 hover:text-neutral-800 p-0.5 rounded cursor-pointer transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
             <p className="text-[11px] text-amber-800 leading-snug">
-              Bordering suburbs of <strong>{currentSuburb.name}</strong>:
+              Bordering suburbs of <strong>{currentSuburb.name}</strong> ({neighboringSuburbs.length} suburbs):
             </p>
-            <div className="flex flex-wrap gap-1 pt-0.5 max-h-28 overflow-y-auto">
+            <div className="flex flex-wrap gap-1.5 pt-0.5 max-h-32 overflow-y-auto pr-0.5">
               {neighboringSuburbs.map((n) => (
-                <span
+                <button
                   key={n.id}
-                  className="px-2 py-0.5 bg-white border border-amber-200 text-amber-900 rounded text-[10.5px] font-medium shadow-2xs select-text"
+                  type="button"
+                  onClick={() => {
+                    setInputValue(n.name);
+                    handleSubmit(n);
+                  }}
+                  title={`Select ${n.name} to advance`}
+                  className="px-2.5 py-1 bg-white hover:bg-emerald-50 active:bg-emerald-100 border border-amber-200 hover:border-emerald-300 text-neutral-800 hover:text-emerald-900 rounded-md text-[11px] font-medium shadow-2xs transition-all cursor-pointer flex items-center gap-1"
                 >
-                  {n.name}
-                </span>
+                  <span>{n.name}</span>
+                </button>
               ))}
             </div>
             <p className="text-[10px] text-amber-700/90 italic pt-0.5">
-              Type any of these neighboring suburbs below to advance. This hint only applies to this step.
+              Click any neighbour above to make your move, or type below.
             </p>
           </div>
         )}

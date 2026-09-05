@@ -21,7 +21,7 @@ export interface SuburbProjected extends SuburbData {
   neighbors: string[]; // Adjacent suburb IDs
 }
 
-export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path' | 'guessed';
+export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path' | 'guessed' | 'guessed-optimal';
 
 export interface GameState {
   startSuburbId: string;

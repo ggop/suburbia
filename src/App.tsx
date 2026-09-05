@@ -42,9 +42,26 @@ export default function App() {
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [consecutiveErrors, setConsecutiveErrors] = useState<number>(0);
+  const [showNeighboursManual, setShowNeighboursManual] = useState<boolean | null>(null);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [showBestPathOverlay, setShowBestPathOverlay] = useState(false);
+
+  // Neighbours are displayed if toggled by button at any time OR automatically after two consecutive mistakes
+  const isNeighboursVisible =
+    (showNeighboursManual !== null ? showNeighboursManual : consecutiveErrors >= 2) &&
+    gameState.status === 'playing';
+
+  const handleToggleNeighbours = useCallback(
+    (forceState?: boolean) => {
+      setShowNeighboursManual((prev) => {
+        if (typeof forceState === 'boolean') return forceState;
+        const current = prev !== null ? prev : consecutiveErrors >= 2;
+        return !current;
+      });
+    },
+    [consecutiveErrors]
+  );
 
   const handleMapClickDisabled = useCallback(() => {
     if (gameState.status !== 'playing') return;
@@ -138,6 +155,7 @@ export default function App() {
       if (!isAdjacent) {
         const distFromCurrent = distancesToCurrent.get(nextSuburbId) ?? -1;
         const distFromTarget = distancesToTarget.get(nextSuburbId) ?? -1;
+        const isOnOptimalPath = gameState.bestPath.includes(nextSuburbId);
 
         let distanceMsg = '';
         if (distFromCurrent > 0) {
@@ -150,11 +168,20 @@ export default function App() {
           distanceMsg += ` and ${distFromTarget} ${distFromTarget === 1 ? 'step' : 'steps'} from ${targetSuburb?.name || 'target'}`;
         }
 
-        setErrorMessage(
-          `${distanceMsg}. Guess a bordering suburb of ${currentSuburb.name} to advance!`
-        );
-        sounds.playError();
-        setConsecutiveErrors((prev) => prev + 1);
+        if (isOnOptimalPath) {
+          // Guess is on the optimal shortest route: shade green and reward player with positive feedback
+          setErrorMessage(
+            `${nextSuburb.name} is on the optimal route! Shaded green on map. Connect to it by guessing a bordering suburb of ${currentSuburb.name}.`
+          );
+          sounds.playStep();
+          setConsecutiveErrors(0);
+        } else {
+          setErrorMessage(
+            `${distanceMsg}. Guess a bordering suburb of ${currentSuburb.name} to advance!`
+          );
+          sounds.playError();
+          setConsecutiveErrors((prev) => prev + 1);
+        }
 
         const newGuessed = Array.from(new Set([...(gameState.guessedSuburbs || []), nextSuburbId]));
         const newHistory = [
@@ -176,6 +203,7 @@ export default function App() {
       sounds.playStep();
       setErrorMessage(null);
       setConsecutiveErrors(0);
+      setShowNeighboursManual(null);
 
       const newPath = [...gameState.path, nextSuburbId];
       const newHistory = [
@@ -259,6 +287,7 @@ export default function App() {
 
     setErrorMessage(null);
     setConsecutiveErrors((prev) => Math.max(0, prev - 1));
+    setShowNeighboursManual(null);
   }, [gameState.status, gameState.turnsUsed]);
 
   // Give up on puzzle
@@ -291,6 +320,7 @@ export default function App() {
     });
     setErrorMessage(null);
     setConsecutiveErrors(0);
+    setShowNeighboursManual(null);
     setIsResultModalOpen(false);
     setShowBestPathOverlay(false);
   }, [mapModel]);
@@ -307,6 +337,8 @@ export default function App() {
         showBestPath={showBestPathOverlay}
         onToggleBestPath={() => setShowBestPathOverlay((prev) => !prev)}
         onGiveUp={handleGiveUp}
+        isNeighboursVisible={isNeighboursVisible}
+        onToggleNeighbours={handleToggleNeighbours}
       />
 
       {/* Main Container with Sidebar and Map Viewport */}
@@ -318,6 +350,8 @@ export default function App() {
           distancesToTarget={distancesToTarget}
           errorMessage={errorMessage}
           consecutiveErrors={consecutiveErrors}
+          isNeighboursVisible={isNeighboursVisible}
+          onToggleNeighbours={handleToggleNeighbours}
           onMoveToSuburb={handleMoveToSuburb}
           onInvalidGuess={handleInvalidGuess}
           onUndoLastMove={handleUndoLastMove}
@@ -333,6 +367,8 @@ export default function App() {
             distancesToTarget={distancesToTarget}
             distancesToCurrent={distancesToCurrent}
             showBestPathOverlay={showBestPathOverlay}
+            isNeighboursVisible={isNeighboursVisible}
+            onToggleNeighbours={handleToggleNeighbours}
             onMapClickDisabled={handleMapClickDisabled}
           />
         </section>
