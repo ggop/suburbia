@@ -1,0 +1,6 @@
+{
+  "name": "Melbourne Suburb Game",
+  "description": "Navigate between adjacent Melbourne metropolitan suburbs on an interactive map within ten turns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
