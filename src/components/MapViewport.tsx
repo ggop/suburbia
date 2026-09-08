@@ -14,6 +14,7 @@ interface MapViewportProps {
   onToggleNeighbours?: () => void;
   onSelectPathSuburb?: (suburbId: string) => void;
   onMapClickDisabled?: () => void;
+  onClearFriendPath?: () => void;
 }
 
 interface Transform {
@@ -32,6 +33,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   onToggleNeighbours,
   onSelectPathSuburb,
   onMapClickDisabled,
+  onClearFriendPath,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -58,6 +60,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   const visitedSet = useMemo(() => new Set(gameState.path), [gameState.path]);
   const bestPathSet = useMemo(() => new Set(gameState.bestPath), [gameState.bestPath]);
   const guessedSet = useMemo(() => new Set(gameState.guessedSuburbs || []), [gameState.guessedSuburbs]);
+  const friendPathSet = useMemo(() => new Set(gameState.friendPath || []), [gameState.friendPath]);
 
   // Current suburb
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
@@ -80,6 +83,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         return 'guessed';
       }
       if (showBestPathOverlay && bestPathSet.has(id)) return 'best-path';
+      if (friendPathSet.has(id)) return 'friend-path';
       if (gameState.status === 'playing' && neighboringSet.has(id)) return 'valid-move';
       return 'default';
     },
@@ -92,6 +96,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       showBestPathOverlay,
       bestPathSet,
       guessedSet,
+      friendPathSet,
       neighboringSet,
     ]
   );
@@ -473,7 +478,369 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       .join(' ');
   }, [gameState.bestPath, mapModel.suburbMap, showBestPathOverlay]);
 
+  // Build the friend path line string (for side-by-side route comparison)
+  const friendPathLinePoints = useMemo(() => {
+    if (!gameState.friendPath || gameState.friendPath.length < 2) return '';
+    return gameState.friendPath
+      .map((id) => {
+        const s = mapModel.suburbMap.get(id);
+        return s ? `${s.x},${s.y}` : '';
+      })
+      .filter(Boolean)
+      .join(' ');
+  }, [gameState.friendPath, mapModel.suburbMap]);
+
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
+  const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
+
+  // Compute non-overlapping callout labels with leader lines pointing to suburbs
+  const calloutLabels = useMemo(() => {
+    const isGameOver = gameState.status !== 'playing';
+
+    interface LabelCandidate {
+      id: string;
+      suburb: SuburbProjected;
+      role: 'start' | 'target' | 'current' | 'visited' | 'best-path' | 'friend-path' | 'hovered';
+      stepIndex?: number;
+      badgeText: string;
+      lineColor: string;
+      bgColor: string;
+      borderColor: string;
+      textColor: string;
+    }
+
+    const candidates: LabelCandidate[] = [];
+    const addedIds = new Set<string>();
+
+    // 1. Start Suburb Anchor
+    if (startSuburb) {
+      candidates.push({
+        id: startSuburb.id,
+        suburb: startSuburb,
+        role: 'start',
+        stepIndex: 0,
+        badgeText: `START • ${startSuburb.name}`,
+        lineColor: '#ef4444',
+        bgColor: '#ef4444',
+        borderColor: '#dc2626',
+        textColor: '#ffffff',
+      });
+      addedIds.add(startSuburb.id);
+    }
+
+    // 2. Target Suburb Anchor
+    if (targetSuburb && !addedIds.has(targetSuburb.id)) {
+      candidates.push({
+        id: targetSuburb.id,
+        suburb: targetSuburb,
+        role: 'target',
+        badgeText: `TARGET • ${targetSuburb.name}`,
+        lineColor: '#3b82f6',
+        bgColor: '#2563eb',
+        borderColor: '#1d4ed8',
+        textColor: '#ffffff',
+      });
+      addedIds.add(targetSuburb.id);
+    }
+
+    // 3. Chosen Suburbs along player's path (active during gameplay & final path)
+    gameState.path.forEach((id, idx) => {
+      if (addedIds.has(id)) return;
+      const s = mapModel.suburbMap.get(id);
+      if (!s) return;
+
+      const isCurrent = id === currentSuburbId && !isGameOver;
+      if (isCurrent) {
+        candidates.push({
+          id,
+          suburb: s,
+          role: 'current',
+          stepIndex: idx,
+          badgeText: `#${idx} • ${s.name}`,
+          lineColor: '#10b981',
+          bgColor: '#047857',
+          borderColor: '#10b981',
+          textColor: '#ffffff',
+        });
+      } else {
+        candidates.push({
+          id,
+          suburb: s,
+          role: 'visited',
+          stepIndex: idx,
+          badgeText: `#${idx} • ${s.name}`,
+          lineColor: '#059669',
+          bgColor: '#ffffff',
+          borderColor: '#10b981',
+          textColor: '#064e3b',
+        });
+      }
+      addedIds.add(id);
+    });
+
+    // 4. In game-over mode: optimal route and friend route labels
+    if (isGameOver) {
+      if (showBestPathOverlay && gameState.bestPath) {
+        gameState.bestPath.forEach((id) => {
+          if (addedIds.has(id)) return;
+          const s = mapModel.suburbMap.get(id);
+          if (!s) return;
+          candidates.push({
+            id,
+            suburb: s,
+            role: 'best-path',
+            badgeText: `★ ${s.name}`,
+            lineColor: '#ea580c',
+            bgColor: '#fff7ed',
+            borderColor: '#ea580c',
+            textColor: '#9a3412',
+          });
+          addedIds.add(id);
+        });
+      }
+
+      if (gameState.friendPath && gameState.friendPath.length > 0) {
+        gameState.friendPath.forEach((id) => {
+          if (addedIds.has(id)) return;
+          const s = mapModel.suburbMap.get(id);
+          if (!s) return;
+          candidates.push({
+            id,
+            suburb: s,
+            role: 'friend-path',
+            badgeText: `👥 ${s.name}`,
+            lineColor: '#8b5cf6',
+            bgColor: '#faf5ff',
+            borderColor: '#8b5cf6',
+            textColor: '#6b21a8',
+          });
+          addedIds.add(id);
+        });
+      }
+    }
+
+    // 5. Hovered suburb label (if user is hovering a suburb not yet labeled)
+    if (hoveredSuburbId && !addedIds.has(hoveredSuburbId)) {
+      const s = mapModel.suburbMap.get(hoveredSuburbId);
+      if (s) {
+        candidates.push({
+          id: s.id,
+          suburb: s,
+          role: 'hovered',
+          badgeText: s.name,
+          lineColor: '#64748b',
+          bgColor: '#0f172a',
+          borderColor: '#334155',
+          textColor: '#ffffff',
+        });
+        addedIds.add(s.id);
+      }
+    }
+
+    // Reduced text size to ensure compact, crisp display and avoid obscuring the map
+    const fontSize = Math.max(6.8, 8.2 / Math.sqrt(transform.scale));
+    const padX = 6 / Math.sqrt(transform.scale);
+    const padY = 3.2 / Math.sqrt(transform.scale);
+    const pillHeight = fontSize + padY * 2;
+    const margin = 3.5 / Math.sqrt(transform.scale);
+    const baseRadius = Math.max(22, 28 / Math.sqrt(transform.scale));
+    const radii = [
+      baseRadius,
+      baseRadius * 1.5,
+      baseRadius * 2.2,
+      baseRadius * 3.0,
+      baseRadius * 4.0,
+    ];
+
+    const baseAnglesDeg = [
+      -45, 45, -135, 135,
+      -90, 90, 0, 180,
+      -22.5, 22.5, -67.5, 67.5,
+      -112.5, 112.5, -157.5, 157.5,
+    ];
+
+    interface PlacedBox {
+      x1: number;
+      x2: number;
+      y1: number;
+      y2: number;
+    }
+
+    const placedBoxes: PlacedBox[] = [];
+
+    interface CalloutLabelResult {
+      id: string;
+      suburbX: number;
+      suburbY: number;
+      labelX: number;
+      labelY: number;
+      lineStartX: number;
+      lineStartY: number;
+      pillWidth: number;
+      pillHeight: number;
+      fontSize: number;
+      badgeText: string;
+      lineColor: string;
+      bgColor: string;
+      borderColor: string;
+      textColor: string;
+    }
+
+    const results: CalloutLabelResult[] = [];
+
+    const normAngle = (a: number) => {
+      while (a > Math.PI) a -= 2 * Math.PI;
+      while (a < -Math.PI) a += 2 * Math.PI;
+      return a;
+    };
+
+    const boxesOverlap = (b1: PlacedBox, b2: PlacedBox) => {
+      return !(b1.x2 < b2.x1 || b1.x1 > b2.x2 || b1.y2 < b2.y1 || b1.y1 > b2.y2);
+    };
+
+    candidates.forEach((cand) => {
+      const s = cand.suburb;
+      const textWidth = cand.badgeText.length * (fontSize * 0.54);
+      const pillWidth = textWidth + padX * 2;
+
+      // Determine preferred angle away from path or center
+      let preferredAngle = -Math.PI / 4;
+      const pathIdx = gameState.path.indexOf(cand.id);
+
+      if (pathIdx >= 0) {
+        if (pathIdx > 0 && pathIdx < gameState.path.length - 1) {
+          const prev = mapModel.suburbMap.get(gameState.path[pathIdx - 1]);
+          const next = mapModel.suburbMap.get(gameState.path[pathIdx + 1]);
+          if (prev && next) {
+            const tx = next.x - prev.x;
+            const ty = next.y - prev.y;
+            const side = pathIdx % 2 === 0 ? 1 : -1;
+            preferredAngle = Math.atan2(side * tx, -side * ty);
+          }
+        } else if (pathIdx === 0 && gameState.path.length > 1) {
+          const next = mapModel.suburbMap.get(gameState.path[1]);
+          if (next) {
+            preferredAngle = Math.atan2(s.y - next.y, s.x - next.x);
+          }
+        } else if (pathIdx === gameState.path.length - 1 && gameState.path.length > 1) {
+          const prev = mapModel.suburbMap.get(gameState.path[pathIdx - 1]);
+          if (prev) {
+            preferredAngle = Math.atan2(s.y - prev.y, s.x - prev.x);
+          }
+        }
+      } else if (cand.id === gameState.targetSuburbId) {
+        preferredAngle = Math.atan2(s.y - 550, s.x - 650);
+      }
+
+      const sortedAngles = [...baseAnglesDeg].sort((a, b) => {
+        const radA = (a * Math.PI) / 180;
+        const radB = (b * Math.PI) / 180;
+        const diffA = Math.abs(normAngle(radA - preferredAngle));
+        const diffB = Math.abs(normAngle(radB - preferredAngle));
+        return diffA - diffB;
+      });
+
+      let bestCand: { x: number; y: number; cost: number } | null = null;
+
+      for (const r of radii) {
+        for (const deg of sortedAngles) {
+          const rad = (deg * Math.PI) / 180;
+          const cx = s.x + r * Math.cos(rad);
+          const cy = s.y + r * Math.sin(rad);
+
+          const box: PlacedBox = {
+            x1: cx - pillWidth / 2 - margin,
+            x2: cx + pillWidth / 2 + margin,
+            y1: cy - pillHeight / 2 - margin,
+            y2: cy + pillHeight / 2 + margin,
+          };
+
+          let cost = 0;
+
+          if (box.x1 < 10 || box.x2 > SVG_WIDTH - 10 || box.y1 < 10 || box.y2 > SVG_HEIGHT - 10) {
+            cost += 5000;
+          }
+
+          for (const pb of placedBoxes) {
+            if (boxesOverlap(box, pb)) {
+              cost += 10000;
+              break;
+            }
+          }
+
+          for (const other of candidates) {
+            if (other.id === cand.id) continue;
+            const dx = cx - other.suburb.x;
+            const dy = cy - other.suburb.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < Math.max(pillWidth, pillHeight) / 2 + 6) {
+              cost += 4000;
+            }
+          }
+
+          cost += (r / baseRadius) * 20;
+
+          if (cost === 0) {
+            bestCand = { x: cx, y: cy, cost: 0 };
+            break;
+          }
+
+          if (!bestCand || cost < bestCand.cost) {
+            bestCand = { x: cx, y: cy, cost };
+          }
+        }
+        if (bestCand && bestCand.cost === 0) {
+          break;
+        }
+      }
+
+      const finalPos = bestCand ? { x: bestCand.x, y: bestCand.y } : { x: s.x, y: s.y - baseRadius };
+
+      placedBoxes.push({
+        x1: finalPos.x - pillWidth / 2 - margin,
+        x2: finalPos.x + pillWidth / 2 + margin,
+        y1: finalPos.y - pillHeight / 2 - margin,
+        y2: finalPos.y + pillHeight / 2 + margin,
+      });
+
+      const lineDist = Math.hypot(finalPos.x - s.x, finalPos.y - s.y);
+      const rStart = Math.min(lineDist * 0.4, 7 / Math.sqrt(transform.scale));
+      const lineStartX = lineDist > 0.1 ? s.x + ((finalPos.x - s.x) / lineDist) * rStart : s.x;
+      const lineStartY = lineDist > 0.1 ? s.y + ((finalPos.y - s.y) / lineDist) * rStart : s.y;
+
+      results.push({
+        id: cand.id,
+        suburbX: s.x,
+        suburbY: s.y,
+        labelX: finalPos.x,
+        labelY: finalPos.y,
+        lineStartX,
+        lineStartY,
+        pillWidth,
+        pillHeight,
+        fontSize,
+        badgeText: cand.badgeText,
+        lineColor: cand.lineColor,
+        bgColor: cand.bgColor,
+        borderColor: cand.borderColor,
+        textColor: cand.textColor,
+      });
+    });
+
+    return results;
+  }, [
+    gameState.status,
+    gameState.path,
+    gameState.bestPath,
+    gameState.friendPath,
+    currentSuburbId,
+    startSuburb,
+    targetSuburb,
+    mapModel,
+    showBestPathOverlay,
+    hoveredSuburbId,
+    transform.scale,
+  ]);
 
   return (
     <div
@@ -612,6 +979,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 fillColor = isHovered ? '#fef3c7' : '#fffbeb'; // Soft amber tint for guessed suburbs
                 strokeColor = '#d97706'; // Amber-600
                 strokeWidth = 1.8;
+              } else if (role === 'friend-path') {
+                fillColor = isHovered ? '#f3e8ff' : '#faf5ff'; // Soft violet tint for friend's route
+                strokeColor = '#9333ea'; // Purple-600
+                strokeWidth = 1.8;
+                filter = 'url(#clean-shadow)';
               } else if (isHovered) {
                 fillColor = '#f1f5f9';
                 strokeColor = '#94a3b8';
@@ -621,6 +993,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               const isInPath =
                 visitedSet.has(suburb.id) ||
                 guessedSet.has(suburb.id) ||
+                friendPathSet.has(suburb.id) ||
                 suburb.id === gameState.startSuburbId ||
                 suburb.id === gameState.targetSuburbId;
               const canInspect = isGameOver || isInPath;
@@ -776,6 +1149,49 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             </g>
           )}
 
+          {/* Friend Path Overlay Line (For comparing routes with a friend) */}
+          {friendPathLinePoints && gameState.friendPath && (
+            <g id="friend-path-route" className="pointer-events-none">
+              <polyline
+                points={friendPathLinePoints}
+                fill="none"
+                stroke="#8b5cf6"
+                strokeWidth={3.6 / transform.scale}
+                strokeDasharray="5 4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.95"
+              />
+              {gameState.friendPath.map((id, index) => {
+                const s = mapModel.suburbMap.get(id);
+                if (!s) return null;
+                const isStart = id === gameState.startSuburbId;
+                const isTarget = id === gameState.targetSuburbId;
+                if (isStart || isTarget) return null;
+
+                return (
+                  <g key={`friend-node-${id}`} transform={`translate(${s.x}, ${s.y})`}>
+                    <circle
+                      r={7.5 / transform.scale}
+                      fill="#8b5cf6"
+                      stroke="#ffffff"
+                      strokeWidth={1.8 / transform.scale}
+                    />
+                    <text
+                      textAnchor="middle"
+                      dy={3 / transform.scale}
+                      fill="#ffffff"
+                      fontSize={8.5 / transform.scale}
+                      fontWeight="bold"
+                    >
+                      {index}
+                    </text>
+                  </g>
+                );
+              })}
+            </g>
+          )}
+
           {/* Green Visual Path connecting visited suburbs */}
           {visitedLinePoints && (
             <g id="player-path-route" className="pointer-events-none">
@@ -829,150 +1245,79 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             </g>
           )}
 
-          {/* Suburb Name Labels */}
-          <g id="suburb-labels" className="pointer-events-none select-none">
-            {mapModel.suburbs.map((suburb) => {
-              // User Instruction:
-              // While the game is in progress, do not show suburb name unless tapped on or mouse hover. Keep them shaded with the current scheme.
-              // When game finishes, show start, target, player-entered, and shortest path suburbs.
-              const isStart = suburb.id === gameState.startSuburbId;
-              const isTarget = suburb.id === gameState.targetSuburbId;
-              const isVisitedByPlayer = visitedSet.has(suburb.id);
-              const isGuessedByPlayer = guessedSet.has(suburb.id);
-              const isEnteredByPlayer = isVisitedByPlayer || isGuessedByPlayer;
-              const isBestPathRevealed = showBestPathOverlay && bestPathSet.has(suburb.id) && !isEnteredByPlayer;
-              const isGameInProgress = gameState.status === 'playing';
-              const isHovered = hoveredSuburbId === suburb.id;
-
-              // While game is in progress: strictly hide name unless tapped on or mouse hover!
-              if (isGameInProgress) {
-                if (!isHovered) {
-                  return null;
-                }
-                if (!isStart && !isTarget && !isEnteredByPlayer) {
-                  return null;
-                }
-              } else {
-                // When game is over: show start, target, entered, revealed best path, or currently hovered
-                if (!isStart && !isTarget && !isEnteredByPlayer && !isBestPathRevealed && !isHovered) {
-                  return null;
-                }
-              }
-
-              // Scale font inversely to zoom level so it stays crisp
-              const fontSize = Math.max(11, 13 / Math.sqrt(transform.scale));
-
-              let labelColor = '#ffffff';
-              let haloColor = '#0f172a';
-              const fontWeight = '700';
-
-              if (isStart) {
-                labelColor = '#ffffff';
-                haloColor = '#991b1b'; // Dark red halo for starting suburb
-              } else if (isTarget) {
-                labelColor = '#ffffff';
-                haloColor = '#1e40af'; // Dark blue halo for finishing target suburb
-              } else if (isVisitedByPlayer || (isGuessedByPlayer && bestPathSet.has(suburb.id))) {
-                labelColor = '#ffffff';
-                haloColor = '#065f46'; // Dark emerald halo for player-visited suburbs or optimal guesses
-              } else if (isGuessedByPlayer) {
-                labelColor = '#ffffff';
-                haloColor = '#b45309'; // Warm amber halo for player-guessed suburbs
-              } else if (isBestPathRevealed) {
-                labelColor = '#ffffff';
-                haloColor = '#9a3412'; // Dark orange halo for revealed shortest path suburbs
-              } else {
-                labelColor = '#ffffff';
-                haloColor = '#1e293b'; // Default slate halo
-              }
-
-              return (
-                <g key={`label-${suburb.id}`} transform={`translate(${suburb.x}, ${suburb.y})`}>
-                  {/* Clean text halo for maximum legibility */}
-                  <text
-                    textAnchor="middle"
-                    dy="0.35em"
-                    fill={haloColor}
-                    stroke={haloColor}
-                    strokeWidth={4 / Math.sqrt(transform.scale)}
-                    strokeLinejoin="round"
-                    fontSize={fontSize}
-                    fontWeight={fontWeight}
-                  >
-                    {suburb.name}
-                  </text>
-                  <text
-                    textAnchor="middle"
-                    dy="0.35em"
-                    fill={labelColor}
-                    fontSize={fontSize}
-                    fontWeight={fontWeight}
-                  >
-                    {suburb.name}
-                  </text>
-                </g>
-              );
-            })}
-          </g>
-
-          {/* Start and Target Visual Badges */}
-          {mapModel.suburbMap.get(gameState.startSuburbId) && (
-            <g
-              transform={`translate(${mapModel.suburbMap.get(gameState.startSuburbId)!.x}, ${
-                mapModel.suburbMap.get(gameState.startSuburbId)!.y - 22 / transform.scale
-              })`}
-              className="pointer-events-none select-none"
-            >
-              <rect
-                x={-28 / transform.scale}
-                y={-12 / transform.scale}
-                width={56 / transform.scale}
-                height={16 / transform.scale}
-                rx={4 / transform.scale}
-                fill="#ef4444"
-                stroke="#ffffff"
-                strokeWidth={1.5 / transform.scale}
-              />
-              <text
-                textAnchor="middle"
-                dy={-1 / transform.scale}
-                fill="#ffffff"
-                fontSize={9 / transform.scale}
-                fontWeight="bold"
-                letterSpacing="0.5"
-              >
-                START
-              </text>
-            </g>
-          )}
-
+          {/* Target Suburb Pin / Bullseye Node */}
           {targetSuburb && (
             <g
-              transform={`translate(${targetSuburb.x}, ${targetSuburb.y - 22 / transform.scale})`}
+              transform={`translate(${targetSuburb.x}, ${targetSuburb.y})`}
               className="pointer-events-none select-none"
             >
-              <rect
-                x={-32 / transform.scale}
-                y={-12 / transform.scale}
-                width={64 / transform.scale}
-                height={16 / transform.scale}
-                rx={4 / transform.scale}
-                fill="#3b82f6"
+              <circle
+                r={8 / transform.scale}
+                fill="#2563eb"
                 stroke="#ffffff"
-                strokeWidth={1.5 / transform.scale}
+                strokeWidth={2 / transform.scale}
               />
-              <text
-                textAnchor="middle"
-                dy={-1 / transform.scale}
+              <circle
+                r={3.8 / transform.scale}
                 fill="#ffffff"
-                fontSize={9 / transform.scale}
-                fontWeight="bold"
-                letterSpacing="0.5"
-              >
-                TARGET
-              </text>
+              />
+              <circle
+                r={1.8 / transform.scale}
+                fill="#2563eb"
+              />
             </g>
           )}
+
+          {/* Non-Overlapping Callout Labels with Leader Lines */}
+          <g id="callout-labels" className="pointer-events-none select-none">
+            {calloutLabels.map((lbl) => (
+              <g key={`callout-${lbl.id}`} className="transition-opacity duration-200">
+                {/* Anchor pinpoint at suburb centroid */}
+                <circle
+                  cx={lbl.suburbX}
+                  cy={lbl.suburbY}
+                  r={2.2 / Math.sqrt(transform.scale)}
+                  fill={lbl.lineColor}
+                />
+                {/* Pointer leader line from suburb to label */}
+                <line
+                  x1={lbl.lineStartX}
+                  y1={lbl.lineStartY}
+                  x2={lbl.labelX}
+                  y2={lbl.labelY}
+                  stroke={lbl.lineColor}
+                  strokeWidth={1.2 / Math.sqrt(transform.scale)}
+                  strokeDasharray={transform.scale > 1.2 ? '3 1.8' : undefined}
+                  strokeOpacity={0.9}
+                  strokeLinecap="round"
+                />
+                {/* Callout pill containing text */}
+                <g transform={`translate(${lbl.labelX}, ${lbl.labelY})`}>
+                  <rect
+                    x={-lbl.pillWidth / 2}
+                    y={-lbl.pillHeight / 2}
+                    width={lbl.pillWidth}
+                    height={lbl.pillHeight}
+                    rx={lbl.pillHeight / 2}
+                    fill={lbl.bgColor}
+                    stroke={lbl.borderColor}
+                    strokeWidth={1.2 / Math.sqrt(transform.scale)}
+                    filter="url(#clean-shadow)"
+                  />
+                  <text
+                    textAnchor="middle"
+                    dy="0.35em"
+                    fill={lbl.textColor}
+                    fontSize={lbl.fontSize}
+                    fontWeight="700"
+                    letterSpacing="0.2"
+                  >
+                    {lbl.badgeText}
+                  </text>
+                </g>
+              </g>
+            ))}
+          </g>
         </g>
       </svg>
 
@@ -1067,7 +1412,29 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             <span className="text-amber-700 font-medium">Optimal Route</span>
           </div>
         )}
+        {gameState.friendPath && gameState.friendPath.length > 0 && (
+          <div className="flex items-center gap-1.5 border-l border-neutral-200 pl-3">
+            <span className="w-3 h-3 rounded bg-purple-500 border border-white shadow-xs" />
+            <span className="text-purple-700 font-medium">Friend's Route</span>
+          </div>
+        )}
       </div>
+
+      {/* Floating Friend Route Comparison Pill */}
+      {gameState.friendPath && gameState.friendPath.length > 0 && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-purple-900/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full shadow-lg border border-purple-400 flex items-center gap-2.5 text-xs font-semibold animate-fade-in">
+          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse shrink-0" />
+          <span>Comparing Friend's Route ({gameState.friendPath.length} suburbs)</span>
+          {onClearFriendPath && (
+            <button
+              onClick={onClearFriendPath}
+              className="ml-1 text-[10px] bg-purple-700/80 hover:bg-purple-600 px-2 py-0.5 rounded-full text-white cursor-pointer font-bold uppercase transition-colors"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Touch Pan/Zoom Hint on Mobile */}
       <div className="absolute top-4 left-4 z-20 md:hidden flex items-center gap-1.5 bg-white/90 backdrop-blur-xs px-2.5 py-1.5 rounded-lg border border-neutral-200 text-[11px] text-neutral-600 shadow-xs">

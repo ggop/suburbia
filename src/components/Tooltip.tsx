@@ -92,6 +92,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
         <MapPin className="w-3 h-3 text-amber-600" /> Guessed Suburb
       </span>
     );
+  } else if (role === 'friend-path') {
+    borderColor = 'border-purple-400';
+    roleBadge = (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-50 text-purple-800 border border-purple-300">
+        <Users className="w-3 h-3 text-purple-600" /> Friend's Route
+      </span>
+    );
   } else {
     roleBadge = (
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-100 text-neutral-600 border border-neutral-200">

@@ -26,6 +26,7 @@ interface GameControlsProps {
   onToggleNeighbours?: (forceState?: boolean) => void;
   onMoveToSuburb: (suburbId: string) => void;
   onSelectPathSuburb?: (suburbId: string) => void;
+  onInvalidGuess?: (query: string) => void;
   onUndoLastMove?: () => void;
   onGiveUp?: () => void;
   onResetGame: () => void;

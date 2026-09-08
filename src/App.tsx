@@ -16,7 +16,6 @@ import { Header } from './components/Header';
 import { GameResultModal } from './components/GameResultModal';
 import { HowToPlayModal } from './components/HowToPlayModal';
 import { DailyStatsModal } from './components/DailyStatsModal';
-import { sounds } from './utils/soundEffects';
 import {
   generateDailyChallenge,
   getTodayDateString,
@@ -104,12 +103,10 @@ export default function App() {
   const handleMapClickDisabled = useCallback(() => {
     if (gameState.status !== 'playing') return;
     setErrorMessage('Please choose an available neighbour from the sidebar list to advance your route.');
-    sounds.playError();
   }, [gameState.status]);
 
   const handleInvalidGuess = useCallback((query: string) => {
     setErrorMessage(`No Melbourne suburb found matching "${query}". Check your spelling.`);
-    sounds.playError();
     setConsecutiveErrors((prev) => prev + 1);
   }, []);
 
@@ -124,10 +121,9 @@ export default function App() {
     return getDistancesFrom(currentSuburbId, mapModel.adjacency);
   }, [currentSuburbId, mapModel.adjacency]);
 
-  // When game completes (won or lost), trigger sounds, open results, and record stats for Daily Challenge
+  // When game completes (won or lost), open results, and record stats for Daily Challenge
   useEffect(() => {
     if (gameState.status === 'won') {
-      sounds.playVictory();
       setIsResultModalOpen(true);
       setShowBestPathOverlay(true);
 
@@ -149,7 +145,6 @@ export default function App() {
         setDailyStats(updated);
       }
     } else if (gameState.status === 'lost') {
-      sounds.playError();
       setIsResultModalOpen(true);
       setShowBestPathOverlay(true);
 
@@ -241,14 +236,12 @@ export default function App() {
       // 1. Current position check
       if (nextSuburbId === currentId) {
         setErrorMessage(`You are currently in ${currentSuburb.name}. Choose an unvisited neighbouring suburb.`);
-        sounds.playError();
         return;
       }
 
       // 2. Suburb already present in path cannot be chosen
       if (gameState.path.includes(nextSuburbId)) {
         setErrorMessage(`${nextSuburb.name} is already in your path! You cannot choose a previously visited suburb.`);
-        sounds.playError();
         return;
       }
 
@@ -278,13 +271,11 @@ export default function App() {
           setErrorMessage(
             `${nextSuburb.name} is on the optimal route! Shaded green on map. Connect to it by guessing a bordering suburb of ${currentSuburb.name}.`
           );
-          sounds.playStep();
           setConsecutiveErrors(0);
         } else {
           setErrorMessage(
             `${distanceMsg}. Guess a bordering suburb of ${currentSuburb.name} to advance!`
           );
-          sounds.playError();
           setConsecutiveErrors((prev) => prev + 1);
         }
 
@@ -305,7 +296,6 @@ export default function App() {
       }
 
       // 4. Valid tactical move! Reset consecutive errors so hint clears for the next step
-      sounds.playStep();
       setErrorMessage(null);
       setConsecutiveErrors(0);
       setShowNeighboursManual(null);
@@ -448,7 +438,6 @@ export default function App() {
         };
       });
 
-      sounds.playStep();
       setErrorMessage(
         targetSuburb
           ? `Continuing route from ${targetSuburb.name} (${targetIndex === 0 ? 'Start' : `Step #${targetIndex}`}).`
@@ -594,6 +583,23 @@ export default function App() {
     setShowBestPathOverlay(false);
   }, [mapModel, gameState.gameMode]);
 
+  // Load a friend's route code for side-by-side comparison on the map
+  const handleLoadFriendPath = useCallback((path: string[]) => {
+    setGameState((prev) => ({
+      ...prev,
+      friendPath: path,
+    }));
+    setShowBestPathOverlay(true);
+    setErrorMessage("Friend's route loaded on map for side-by-side comparison!");
+  }, []);
+
+  const handleClearFriendPath = useCallback(() => {
+    setGameState((prev) => ({
+      ...prev,
+      friendPath: undefined,
+    }));
+  }, []);
+
   return (
     <div className="flex flex-col w-screen h-screen bg-neutral-50 text-neutral-900 overflow-hidden font-sans select-none">
       {/* Top Application Header */}
@@ -644,6 +650,7 @@ export default function App() {
             onToggleNeighbours={handleToggleNeighbours}
             onSelectPathSuburb={handleSelectPathSuburb}
             onMapClickDisabled={handleMapClickDisabled}
+            onClearFriendPath={handleClearFriendPath}
           />
         </section>
       </main>
@@ -654,7 +661,7 @@ export default function App() {
         <div className="hidden sm:block">SUBURBS: {mapModel.suburbs.length}</div>
         <div>
           {gameState.gameMode === 'daily'
-            ? `DAILY #${gameState.challengeNumber || 1} • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`
+            ? `DAILY • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`
             : `PRACTICE • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`}
         </div>
       </footer>
@@ -677,6 +684,8 @@ export default function App() {
         isOpen={isDailyStatsOpen}
         onClose={() => setIsDailyStatsOpen(false)}
         mapModel={mapModel}
+        onPlayDaily={() => handleSelectMode('daily')}
+        onLoadFriendPath={handleLoadFriendPath}
       />
 
       {/* Rules and How to Play Guide Modal */}

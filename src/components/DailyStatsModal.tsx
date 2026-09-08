@@ -23,7 +23,6 @@ import {
   decodeRouteShareCode,
   DecodedFriendRoute,
   getTodayDateString,
-  getDailyChallengeNumber,
 } from '../utils/dailyChallenge';
 
 interface DailyStatsModalProps {
@@ -54,7 +53,6 @@ export const DailyStatsModal: React.FC<DailyStatsModalProps> = ({
   const todayStr = getTodayDateString();
   const todayResult = stats.history[todayStr];
   const winRate = stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0;
-  const challengeNumber = getDailyChallengeNumber(todayStr);
 
   const handleShare = () => {
     if (!todayResult) return;
@@ -110,7 +108,7 @@ export const DailyStatsModal: React.FC<DailyStatsModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900">
-                  Daily Challenge #{challengeNumber}
+                  Daily Challenge
                 </h3>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 uppercase">
                   Global Seed
@@ -356,7 +354,7 @@ export const DailyStatsModal: React.FC<DailyStatsModalProps> = ({
                     className="flex items-center justify-between text-xs p-2 bg-neutral-50 rounded-lg border border-neutral-100"
                   >
                     <span className="font-medium text-neutral-700">
-                      #{item.challengeNumber} ({formatDisplayDate(item.dateStr)})
+                      {formatDisplayDate(item.dateStr)}
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-neutral-600 text-[11px]">

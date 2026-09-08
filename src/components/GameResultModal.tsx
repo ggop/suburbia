@@ -20,6 +20,7 @@ import {
   formatDisplayDate,
   generateDailyShareText,
   getTodayDateString,
+  encodeRouteShareCode,
   StoredDailyResult,
 } from '../utils/dailyChallenge';
 
@@ -47,6 +48,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const isLost = gameState.status === 'lost';
   const gaveUp = Boolean(gameState.gaveUp);
   const [copied, setCopied] = useState(false);
+  const [codeCopied, setCodeCopied] = useState(false);
 
   // Trigger confetti when won
   useEffect(() => {
@@ -110,6 +112,28 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
     });
   };
 
+  const handleCopyCode = () => {
+    const dailyResult: StoredDailyResult = {
+      dateStr: gameState.dailyDate || getTodayDateString(),
+      challengeNumber: gameState.challengeNumber || 1,
+      status: isWon ? 'won' : 'lost',
+      turnsUsed,
+      maxTurns: gameState.maxTurns,
+      path: gameState.path,
+      bestPath: gameState.bestPath,
+      bestPathDistance: optimalTurns,
+      startSuburbId: gameState.startSuburbId,
+      targetSuburbId: gameState.targetSuburbId,
+      completedAt: new Date().toISOString(),
+    };
+
+    const code = encodeRouteShareCode(dailyResult);
+    navigator.clipboard.writeText(code).then(() => {
+      setCodeCopied(true);
+      setTimeout(() => setCodeCopied(false), 2500);
+    });
+  };
+
   return (
     <div
       id="game-result-modal"
@@ -122,7 +146,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             <div className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4 text-amber-600" />
               <span>
-                Daily Challenge #{gameState.challengeNumber || 1} •{' '}
+                Daily Challenge •{' '}
                 {formatDisplayDate(gameState.dailyDate || getTodayDateString())}
               </span>
             </div>
@@ -215,7 +239,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
         </div>
 
         {/* Share & Compare Buttons */}
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <button
             onClick={handleShare}
             className="flex-1 py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-95"
@@ -224,6 +248,17 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
             <span>{copied ? 'Result Copied to Clipboard!' : 'Share & Compare Route'}</span>
           </button>
+
+          {isDaily && (
+            <button
+              onClick={handleCopyCode}
+              className="py-2.5 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-xs flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer active:scale-95"
+              title="Copy route code for side-by-side comparison"
+            >
+              {codeCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Sparkles className="w-4 h-4 text-neutral-600" />}
+              <span>{codeCopied ? 'Code Copied!' : 'Copy Code'}</span>
+            </button>
+          )}
 
           {isDaily && onOpenDailyStats && (
             <button
