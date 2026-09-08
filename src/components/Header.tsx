@@ -7,7 +7,6 @@ import {
   Sparkles,
   RotateCcw,
   Flag,
-  Compass,
   Calendar,
   Flame,
   Dices,
@@ -22,8 +21,6 @@ interface HeaderProps {
   showBestPath: boolean;
   onToggleBestPath: () => void;
   onGiveUp?: () => void;
-  isNeighboursVisible?: boolean;
-  onToggleNeighbours?: () => void;
   onSelectMode: (mode: GameMode) => void;
   onOpenDailyStats: () => void;
   dailyStreak: number;
@@ -38,8 +35,6 @@ export const Header: React.FC<HeaderProps> = ({
   showBestPath,
   onToggleBestPath,
   onGiveUp,
-  isNeighboursVisible = false,
-  onToggleNeighbours,
   onSelectMode,
   onOpenDailyStats,
   dailyStreak,
@@ -53,21 +48,21 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header
       id="game-header"
-      className="h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-3 sm:px-6 z-30 shadow-xs shrink-0 select-none text-neutral-900"
+      className="h-14 sm:h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-2.5 sm:px-5 z-30 shadow-xs shrink-0 select-none text-neutral-900 gap-2"
     >
       {/* Brand & Suburb Route Info */}
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 bg-black rounded flex items-center justify-center text-white font-bold text-sm shrink-0">
-          M
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center text-white font-black text-sm tracking-wider shrink-0 shadow-xs">
+          S
         </div>
-        <div>
-          <div className="flex items-center gap-2">
-            <h1 className="font-bold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
-              <span>MELBOURNE TRAVERSE</span>
+        <div className="min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <h1 className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
+              <span>SUBURBIA</span>
             </h1>
             <span
               id="header-difficulty-badge"
-              className={`px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide uppercase border ${
+              className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase border shrink-0 ${
                 gameState.difficulty === 'Easy'
                   ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                   : gameState.difficulty === 'Medium'
@@ -75,31 +70,32 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-rose-50 text-rose-700 border-rose-200'
               }`}
             >
-              {gameState.difficulty} ({gameState.bestPathDistance} steps)
+              <span className="sm:hidden">{gameState.difficulty.slice(0, 3)} ({gameState.bestPathDistance})</span>
+              <span className="hidden sm:inline">{gameState.difficulty} ({gameState.bestPathDistance} steps)</span>
             </span>
           </div>
-          <p className="text-[11px] text-neutral-500 truncate max-w-xs sm:max-w-md lg:hidden">
-            <span className="text-red-600 font-semibold">{startSuburb?.name || 'Start'}</span> to{' '}
-            <span className="text-blue-600 font-semibold">{targetSuburb?.name || 'Target'}</span> (≤ {gameState.maxTurns} turns)
+          <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[130px] xs:max-w-[200px] sm:max-w-md lg:hidden leading-tight">
+            <span className="text-red-600 font-semibold">{startSuburb?.name || 'Start'}</span> ➔{' '}
+            <span className="text-blue-600 font-semibold">{targetSuburb?.name || 'Target'}</span>
           </p>
         </div>
       </div>
 
       {/* Mode Switcher Tabs */}
-      <div className="flex items-center bg-neutral-100 p-1 rounded-lg border border-neutral-200 text-xs font-semibold">
+      <div className="flex items-center bg-neutral-100 p-0.5 sm:p-1 rounded-lg border border-neutral-200 text-xs font-semibold shrink-0">
         <button
           onClick={() => onSelectMode('daily')}
-          className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
+          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             isDaily
               ? 'bg-white text-neutral-900 shadow-xs font-bold'
               : 'text-neutral-500 hover:text-neutral-900'
           }`}
           title="Play today's universal daily challenge"
         >
-          <Calendar className={`w-3.5 h-3.5 ${isDaily ? 'text-amber-500' : 'text-neutral-400'}`} />
+          <Calendar className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isDaily ? 'text-amber-500' : 'text-neutral-400'}`} />
           <span>Daily</span>
           {dailyStreak > 0 && (
-            <span className="flex items-center gap-0.5 text-[10px] text-amber-600 font-bold ml-0.5">
+            <span className="flex items-center gap-0.5 text-[9px] sm:text-[10px] text-amber-600 font-bold ml-0.5">
               <Flame className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
               {dailyStreak}
             </span>
@@ -108,19 +104,20 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={() => onSelectMode('practice')}
-          className={`px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all cursor-pointer ${
+          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             !isDaily
               ? 'bg-white text-neutral-900 shadow-xs font-bold'
               : 'text-neutral-500 hover:text-neutral-900'
           }`}
           title="Play unlimited random practice puzzles"
         >
-          <Dices className={`w-3.5 h-3.5 ${!isDaily ? 'text-indigo-500' : 'text-neutral-400'}`} />
-          <span>Practice</span>
+          <Dices className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${!isDaily ? 'text-indigo-500' : 'text-neutral-400'}`} />
+          <span className="hidden xs:inline">Practice</span>
+          <span className="xs:hidden">Free</span>
         </button>
       </div>
 
-      {/* Center Route Status */}
+      {/* Center Route Status (Large desktop) */}
       <div className="hidden xl:flex items-center gap-4 text-xs font-medium text-neutral-700">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-red-500 shrink-0"></span>
@@ -142,35 +139,17 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-1.5 sm:gap-2">
+      <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
         {/* Daily Stats Button */}
         <button
           id="header-daily-stats-btn"
           onClick={onOpenDailyStats}
           title="Daily Challenge Statistics & Route Comparisons"
-          className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer"
         >
           <Trophy className="w-3.5 h-3.5 text-amber-500" />
-          <span className="hidden md:inline">Daily Stats</span>
+          <span className="hidden md:inline">Stats</span>
         </button>
-
-        {/* Show Neighbours button during active game */}
-        {!isGameOver && onToggleNeighbours && (
-          <button
-            id="header-toggle-neighbours-btn"
-            onClick={onToggleNeighbours}
-            title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
-            className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border cursor-pointer ${
-              isNeighboursVisible
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-xs'
-                : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
-            }`}
-          >
-            <Compass className={`w-3.5 h-3.5 ${isNeighboursVisible ? 'text-emerald-600' : 'text-neutral-500'}`} />
-            <span className="hidden sm:inline">{isNeighboursVisible ? 'Hide Neighbours' : 'Show Neighbours'}</span>
-            <span className="sm:hidden">{isNeighboursVisible ? 'Hide' : 'Hint'}</span>
-          </button>
-        )}
 
         {/* Give up button during active game */}
         {!isGameOver && onGiveUp && (
@@ -178,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="header-give-up-btn"
             onClick={onGiveUp}
             title="Give up and reveal shortest path"
-            className="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <Flag className="w-3.5 h-3.5 text-rose-500" />
             <span className="hidden sm:inline">Give Up</span>
@@ -191,14 +170,14 @@ export const Header: React.FC<HeaderProps> = ({
             id="toggle-best-path-header-btn"
             onClick={onToggleBestPath}
             title="Toggle optimal path overlay on map"
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border ${
+            className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border ${
               showBestPath
                 ? 'bg-amber-50 text-amber-800 border-amber-300 shadow-xs'
                 : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span className="hidden md:inline">Optimal Path</span>
+            <span className="hidden md:inline">Optimal</span>
           </button>
         )}
 
@@ -207,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="view-results-btn"
             onClick={onOpenResultModal}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1.5 transition-colors"
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1.5 transition-colors"
           >
             <Trophy className="w-3.5 h-3.5 text-neutral-700" />
             <span className="hidden sm:inline">Scorecard</span>
@@ -219,23 +198,36 @@ export const Header: React.FC<HeaderProps> = ({
           id="how-to-play-btn"
           onClick={onOpenHowToPlay}
           title="How to Play"
-          className="p-2 sm:px-3 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center gap-1"
+          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center gap-1"
         >
-          <HelpCircle className="w-4 h-4 text-neutral-500" />
+          <HelpCircle className="w-3.5 h-3.5 text-neutral-500" />
           <span className="hidden sm:inline">Help</span>
         </button>
 
-        {/* New Round / Reset button */}
-        <button
-          id="header-new-round-btn"
-          onClick={onNewGame}
-          title={isDaily ? 'Restart today\'s daily challenge' : 'Start a new challenge with random suburbs'}
-          className="px-3 py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center gap-1.5 active:scale-95"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">{isDaily ? 'Restart Daily' : 'New Round'}</span>
-          <span className="sm:hidden">{isDaily ? 'Restart' : 'New'}</span>
-        </button>
+        {/* Practice Mode New Round OR Daily Switch */}
+        {!isDaily ? (
+          <button
+            id="header-new-round-btn"
+            onClick={onNewGame}
+            title="Start a new practice puzzle with random suburbs"
+            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center gap-1.5 active:scale-95 cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">New Round</span>
+            <span className="sm:hidden">New</span>
+          </button>
+        ) : isGameOver ? (
+          <button
+            id="header-practice-mode-btn"
+            onClick={() => onSelectMode('practice')}
+            title="Today's Daily is finished. Play unlimited Practice puzzles!"
+            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center gap-1.5 active:scale-95 cursor-pointer"
+          >
+            <Dices className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden sm:inline">Play Practice</span>
+            <span className="sm:hidden">Practice</span>
+          </button>
+        ) : null}
       </div>
     </header>
   );

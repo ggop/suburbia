@@ -10,9 +10,8 @@ interface MapViewportProps {
   distancesToTarget: Map<string, number>;
   distancesToCurrent: Map<string, number>;
   showBestPathOverlay?: boolean;
-  isNeighboursVisible?: boolean;
-  onToggleNeighbours?: () => void;
   onSelectPathSuburb?: (suburbId: string) => void;
+  onMoveToSuburb?: (suburbId: string) => void;
   onMapClickDisabled?: () => void;
   onClearFriendPath?: () => void;
 }
@@ -29,9 +28,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   distancesToTarget,
   distancesToCurrent,
   showBestPathOverlay = false,
-  isNeighboursVisible = false,
-  onToggleNeighbours,
   onSelectPathSuburb,
+  onMoveToSuburb,
   onMapClickDisabled,
   onClearFriendPath,
 }) => {
@@ -449,8 +447,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       return;
     }
 
-    // Clicking an unvisited suburb or neighbour triggers clear guidance to use sidebar selection
+    // Clicking an unvisited neighbouring suburb moves to it directly
     if (gameState.status === 'playing') {
+      if (neighboringSet.has(suburb.id) && onMoveToSuburb) {
+        onMoveToSuburb(suburb.id);
+        return;
+      }
       onMapClickDisabled?.();
     }
   };
@@ -1321,70 +1323,56 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         </g>
       </svg>
 
-      {/* Map Interactive HUD Floating Controls (Zoom, Pan, Reset) matching Clean Minimalism */}
-      <div className="absolute top-4 right-4 z-30 flex flex-col gap-2">
+      {/* Map Interactive HUD Floating Controls (Zoom, Pan, Reset) */}
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex flex-col gap-1.5 sm:gap-2">
         <button
           id="zoom-in-btn"
           title="Zoom In (or pinch / scroll)"
           onClick={() => handleZoom('in')}
-          className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95"
+          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
         >
-          <ZoomIn className="w-5 h-5" />
+          <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           id="zoom-out-btn"
           title="Zoom Out (or pinch / scroll)"
           onClick={() => handleZoom('out')}
-          className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95"
+          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
         >
-          <ZoomOut className="w-5 h-5" />
+          <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           id="focus-game-btn"
           title="Zoom to Area of Interest (Start & Target Route)"
           onClick={focusOnAreaOfInterest}
-          className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 mt-2"
+          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 mt-1 sm:mt-2 cursor-pointer"
         >
-          <Eye className="w-5 h-5" />
+          <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           id="focus-current-btn"
           title="Center on Current Suburb"
           onClick={focusOnCurrent}
-          className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-emerald-600 transition-colors active:scale-95"
+          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-emerald-600 transition-colors active:scale-95 cursor-pointer"
         >
-          <Locate className="w-5 h-5" />
+          <Locate className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
-        {gameState.status === 'playing' && onToggleNeighbours && (
-          <button
-            id="map-toggle-neighbours-btn"
-            title={isNeighboursVisible ? 'Hide neighbours of current step' : 'Show neighbours of current step'}
-            onClick={onToggleNeighbours}
-            className={`w-10 h-10 border rounded-lg flex items-center justify-center shadow-xs transition-colors active:scale-95 cursor-pointer ${
-              isNeighboursVisible
-                ? 'bg-emerald-50 border-emerald-400 text-emerald-700 shadow-sm'
-                : 'bg-white border-neutral-200 hover:bg-neutral-50 text-neutral-800'
-            }`}
-          >
-            <Compass className="w-5 h-5" />
-          </button>
-        )}
         <button
           id="reset-view-btn"
           title="Reset Whole Melbourne Metro View"
           onClick={resetView}
-          className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95"
+          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
         >
-          <RotateCcw className="w-5 h-5" />
+          <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
 
-      {/* Floating Tactical Status Pill */}
-      <div className="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-lg border border-neutral-200 shadow-sm flex items-center gap-3">
+      {/* Floating Tactical Status Pill (desktop) */}
+      <div className="hidden md:flex absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-lg border border-neutral-200 shadow-sm items-center gap-3">
         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
         <span className="text-xs font-medium text-neutral-800">
           Current: <strong className="text-neutral-900">{currentSuburb?.name}</strong> •{' '}
-          <span className="text-neutral-600">Choose a neighbour from the sidebar list</span>
+          <span className="text-neutral-600">Choose a neighbour to advance your route</span>
         </span>
       </div>
 

@@ -313,7 +313,7 @@ export function generateDailyShareText(
   }
   trail += isWon ? '🏁' : '❌';
 
-  const shareText = `Melbourne Suburb Traverse 🗺️
+  const shareText = `Suburbia 🗺️
 Daily Challenge (${displayDate})
 📍 ${startName} ➔ ${targetName}
 ${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed} turns!` : 'Turn limit reached'} [${ratingText}]

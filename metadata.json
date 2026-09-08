@@ -1,6 +1,6 @@
 {
-  "name": "Melbourne Suburb Game",
-  "description": "Navigate between adjacent Melbourne metropolitan suburbs on an interactive map. Features Daily Challenge mode, path length and turn comparisons, and practice puzzles.",
+  "name": "Suburbia",
+  "description": "Navigate between adjacent Melbourne suburbs on an interactive map. Features Daily Challenge mode, path optimization, and practice puzzles.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
