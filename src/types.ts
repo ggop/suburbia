@@ -1,4 +1,3 @@
-export type GameDifficulty = 'Easy' | 'Medium' | 'Hard';
 export type GameMode = 'daily' | 'practice';
 
 export interface SuburbData {
@@ -22,7 +21,16 @@ export interface SuburbProjected extends SuburbData {
   neighbors: string[]; // Adjacent suburb IDs
 }
 
-export type SuburbRole = 'start' | 'target' | 'visited' | 'current' | 'valid-move' | 'default' | 'best-path' | 'guessed' | 'guessed-optimal' | 'friend-path';
+export type SuburbRole =
+  | 'start'
+  | 'target'
+  | 'visited'
+  | 'current'
+  | 'valid-move'
+  | 'default'
+  | 'best-path'
+  | 'guessed'
+  | 'guessed-optimal';
 
 export interface GameState {
   gameMode: GameMode;
@@ -35,11 +43,9 @@ export interface GameState {
   maxTurns: number;
   status: 'playing' | 'won' | 'lost';
   bestPath: string[]; // BFS shortest path from start to target
-  bestPathDistance: number; // Shortest distance
-  difficulty: GameDifficulty;
+  bestPathDistance: number; // Shortest distance (fixed to 5 steps)
   gaveUp?: boolean;
   guessedSuburbs?: string[]; // All suburbs guessed anywhere on map
-  friendPath?: string[]; // Optional friend path for route comparison
   turnHistory?: {
     type: 'step' | 'guess' | 'branch';
     suburbId: string;

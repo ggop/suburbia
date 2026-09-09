@@ -14,14 +14,12 @@ import {
   Flag,
   Share2,
   Calendar,
-  BarChart2,
 } from 'lucide-react';
 import {
   formatDisplayDate,
   generateDailyShareText,
   getTodayDateString,
-  encodeRouteShareCode,
-  StoredDailyResult,
+  DailyResultData,
 } from '../utils/dailyChallenge';
 
 interface GameResultModalProps {
@@ -32,7 +30,6 @@ interface GameResultModalProps {
   onNewRound: () => void;
   onToggleBestPathReview: () => void;
   showBestPath: boolean;
-  onOpenDailyStats?: () => void;
 }
 
 export const GameResultModal: React.FC<GameResultModalProps> = ({
@@ -42,13 +39,11 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   onClose,
   onNewRound,
   onToggleBestPathReview,
-  onOpenDailyStats,
 }) => {
   const isWon = gameState.status === 'won';
   const isLost = gameState.status === 'lost';
   const gaveUp = Boolean(gameState.gaveUp);
   const [copied, setCopied] = useState(false);
-  const [codeCopied, setCodeCopied] = useState(false);
 
   // Trigger confetti when won
   useEffect(() => {
@@ -91,7 +86,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const visitedSet = new Set(gameState.path);
 
   const handleShare = () => {
-    const dailyResult: StoredDailyResult = {
+    const dailyResult: DailyResultData = {
       dateStr: gameState.dailyDate || getTodayDateString(),
       challengeNumber: gameState.challengeNumber || 1,
       status: isWon ? 'won' : 'lost',
@@ -102,35 +97,12 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
       bestPathDistance: optimalTurns,
       startSuburbId: gameState.startSuburbId,
       targetSuburbId: gameState.targetSuburbId,
-      completedAt: new Date().toISOString(),
     };
 
     const text = generateDailyShareText(dailyResult, mapModel);
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
-    });
-  };
-
-  const handleCopyCode = () => {
-    const dailyResult: StoredDailyResult = {
-      dateStr: gameState.dailyDate || getTodayDateString(),
-      challengeNumber: gameState.challengeNumber || 1,
-      status: isWon ? 'won' : 'lost',
-      turnsUsed,
-      maxTurns: gameState.maxTurns,
-      path: gameState.path,
-      bestPath: gameState.bestPath,
-      bestPathDistance: optimalTurns,
-      startSuburbId: gameState.startSuburbId,
-      targetSuburbId: gameState.targetSuburbId,
-      completedAt: new Date().toISOString(),
-    };
-
-    const code = encodeRouteShareCode(dailyResult);
-    navigator.clipboard.writeText(code).then(() => {
-      setCodeCopied(true);
-      setTimeout(() => setCodeCopied(false), 2500);
     });
   };
 
@@ -243,35 +215,11 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           <button
             onClick={handleShare}
             className="flex-1 py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer active:scale-95"
-            title="Copy formatted result with emoji trail to compare with friends"
+            title="Copy formatted result with emoji trail to share"
           >
             {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-            <span>{copied ? 'Result Copied to Clipboard!' : 'Share & Compare Route'}</span>
+            <span>{copied ? 'Result Copied to Clipboard!' : 'Share Result'}</span>
           </button>
-
-          {isDaily && (
-            <button
-              onClick={handleCopyCode}
-              className="py-2.5 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-xs flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer active:scale-95"
-              title="Copy route code for side-by-side comparison"
-            >
-              {codeCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Sparkles className="w-4 h-4 text-neutral-600" />}
-              <span>{codeCopied ? 'Code Copied!' : 'Copy Code'}</span>
-            </button>
-          )}
-
-          {isDaily && onOpenDailyStats && (
-            <button
-              onClick={() => {
-                onClose();
-                onOpenDailyStats();
-              }}
-              className="py-2.5 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-xs flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer"
-            >
-              <BarChart2 className="w-4 h-4 text-neutral-600" />
-              <span>Daily Stats</span>
-            </button>
-          )}
         </div>
 
         {/* Path Comparison: Player's Path vs Optimal Best Path */}

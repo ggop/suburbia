@@ -8,7 +8,6 @@ import {
   RotateCcw,
   Flag,
   Calendar,
-  Flame,
   Dices,
 } from 'lucide-react';
 
@@ -22,8 +21,6 @@ interface HeaderProps {
   onToggleBestPath: () => void;
   onGiveUp?: () => void;
   onSelectMode: (mode: GameMode) => void;
-  onOpenDailyStats: () => void;
-  dailyStreak: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -36,8 +33,6 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleBestPath,
   onGiveUp,
   onSelectMode,
-  onOpenDailyStats,
-  dailyStreak,
 }) => {
   const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
@@ -61,17 +56,10 @@ export const Header: React.FC<HeaderProps> = ({
               <span>SUBURBIA</span>
             </h1>
             <span
-              id="header-difficulty-badge"
-              className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase border shrink-0 ${
-                gameState.difficulty === 'Easy'
-                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                  : gameState.difficulty === 'Medium'
-                  ? 'bg-amber-50 text-amber-700 border-amber-200'
-                  : 'bg-rose-50 text-rose-700 border-rose-200'
-              }`}
+              id="header-goal-badge"
+              className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase border shrink-0 bg-neutral-100 text-neutral-700 border-neutral-200"
             >
-              <span className="sm:hidden">{gameState.difficulty.slice(0, 3)} ({gameState.bestPathDistance})</span>
-              <span className="hidden sm:inline">{gameState.difficulty} ({gameState.bestPathDistance} steps)</span>
+              5 steps • 10 turns
             </span>
           </div>
           <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[130px] xs:max-w-[200px] sm:max-w-md lg:hidden leading-tight">
@@ -94,12 +82,6 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Calendar className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isDaily ? 'text-amber-500' : 'text-neutral-400'}`} />
           <span>Daily</span>
-          {dailyStreak > 0 && (
-            <span className="flex items-center gap-0.5 text-[9px] sm:text-[10px] text-amber-600 font-bold ml-0.5">
-              <Flame className="w-2.5 h-2.5 fill-amber-500 text-amber-500" />
-              {dailyStreak}
-            </span>
-          )}
         </button>
 
         <button
@@ -133,24 +115,13 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
         <div className="text-neutral-400 font-normal">|</div>
         <div className="flex items-center gap-1.5 text-neutral-600">
-          <span>Min Steps:</span>
-          <strong className="text-neutral-900 font-mono">{gameState.bestPathDistance}</strong>
+          <span>Target:</span>
+          <strong className="text-neutral-900 font-mono">5 steps</strong>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-        {/* Daily Stats Button */}
-        <button
-          id="header-daily-stats-btn"
-          onClick={onOpenDailyStats}
-          title="Daily Challenge Statistics & Route Comparisons"
-          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer"
-        >
-          <Trophy className="w-3.5 h-3.5 text-amber-500" />
-          <span className="hidden md:inline">Stats</span>
-        </button>
-
         {/* Give up button during active game */}
         {!isGameOver && onGiveUp && (
           <button

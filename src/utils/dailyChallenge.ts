@@ -1,5 +1,5 @@
 import { SuburbData } from '../types';
-import { findShortestPath, getDifficulty, getDistancesFrom, MelbourneMapModel } from './mapGeometry';
+import { findShortestPath, getDistancesFrom, MelbourneMapModel } from './mapGeometry';
 
 /**
  * Deterministic hash function (xmur3) for string date seeds
@@ -89,15 +89,14 @@ export interface DailyChallengeGame {
   targetSuburbId: string;
   bestPath: string[];
   bestPathDistance: number;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
   maxTurns: number;
 }
 
 /**
  * Deterministically generate the Daily Challenge for all players worldwide.
  * Guarantees:
- * 1. Shortest path is strictly between 5 and 8 steps.
- * 2. Allowed turns is strictly between 9 and 13 steps.
+ * 1. Shortest path is strictly 5 steps.
+ * 2. Allowed turns is strictly 10.
  * 3. Identical start & target suburbs for all players on this date.
  */
 export function generateDailyChallenge(
@@ -112,19 +111,18 @@ export function generateDailyChallenge(
   const sortedSuburbs = [...suburbs].sort((a, b) => a.id.localeCompare(b.id));
   const allIds = sortedSuburbs.map((s) => s.id);
 
-  // We find candidate pairs between 5 and 8 steps
-  // To keep it fast and deterministic, we sample candidate starts using our PRNG
+  // Sample candidate starts using our PRNG to find a pair strictly 5 steps away
   for (let attempt = 0; attempt < 500; attempt++) {
     const startIndex = Math.floor(rng() * allIds.length);
     const startId = allIds[startIndex];
     const distances = getDistancesFrom(startId, adjacency);
 
-    // Collect valid candidate targets strictly 5 to 8 steps away
+    // Collect valid candidate targets strictly 5 steps away
     const validTargets: { id: string; dist: number }[] = [];
     allIds.forEach((targetId) => {
       if (targetId !== startId) {
         const dist = distances.get(targetId);
-        if (dist !== undefined && dist >= 5 && dist <= 8) {
+        if (dist === 5) {
           validTargets.push({ id: targetId, dist });
         }
       }
@@ -137,29 +135,22 @@ export function generateDailyChallenge(
       const chosen = validTargets[targetIndex];
       const bestPath = findShortestPath(startId, chosen.id, adjacency);
 
-      // Buffer of 4-5 steps, strictly in 9-13 range
-      const buffer = Math.floor(rng() * 2) + 4;
-      const maxTurns = Math.min(13, Math.max(9, chosen.dist + buffer));
-
       return {
         dateStr,
         challengeNumber,
         startSuburbId: startId,
         targetSuburbId: chosen.id,
         bestPath,
-        bestPathDistance: chosen.dist,
-        difficulty: getDifficulty(chosen.dist),
-        maxTurns,
+        bestPathDistance: 5,
+        maxTurns: 10,
       };
     }
   }
 
-  // Deterministic fallback if search attempts exhausted
+  // Deterministic fallback (5 steps)
   const startId = 'melbourne-cbd';
   const targetId = 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
-  const dist = bestPath.length > 0 ? bestPath.length - 1 : 5;
-  const maxTurns = Math.min(13, Math.max(9, dist + 4));
 
   return {
     dateStr,
@@ -167,13 +158,12 @@ export function generateDailyChallenge(
     startSuburbId: startId,
     targetSuburbId: targetId,
     bestPath,
-    bestPathDistance: dist,
-    difficulty: getDifficulty(dist),
-    maxTurns,
+    bestPathDistance: 5,
+    maxTurns: 10,
   };
 }
 
-export interface StoredDailyResult {
+export interface DailyResultData {
   dateStr: string;
   challengeNumber: number;
   status: 'won' | 'lost';
@@ -184,96 +174,13 @@ export interface StoredDailyResult {
   bestPathDistance: number;
   startSuburbId: string;
   targetSuburbId: string;
-  completedAt: string;
-}
-
-export interface DailyStats {
-  played: number;
-  won: number;
-  streak: number;
-  maxStreak: number;
-  lastPlayedDate?: string;
-  history: Record<string, StoredDailyResult>;
-}
-
-const STORAGE_KEY = 'melbourne_daily_challenge_stats_v1';
-
-export function loadDailyStats(): DailyStats {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      return { played: 0, won: 0, streak: 0, maxStreak: 0, history: {} };
-    }
-    return JSON.parse(raw);
-  } catch {
-    return { played: 0, won: 0, streak: 0, maxStreak: 0, history: {} };
-  }
-}
-
-export function saveDailyResult(result: StoredDailyResult): DailyStats {
-  const current = loadDailyStats();
-  const existingForDate = current.history[result.dateStr];
-
-  // If already recorded for today, don't double count streak/plays
-  if (existingForDate) {
-    current.history[result.dateStr] = result;
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
-    } catch {
-      // Ignore quota errors
-    }
-    return current;
-  }
-
-  // Check if consecutive day
-  const today = result.dateStr;
-  let newStreak = current.streak;
-
-  if (result.status === 'won') {
-    if (current.lastPlayedDate) {
-      const last = new Date(current.lastPlayedDate);
-      const curr = new Date(today);
-      const diffDays = Math.round((curr.getTime() - last.getTime()) / (1000 * 60 * 60 * 24));
-      if (diffDays === 1) {
-        newStreak += 1;
-      } else if (diffDays === 0) {
-        // same day
-      } else {
-        newStreak = 1;
-      }
-    } else {
-      newStreak = 1;
-    }
-  } else {
-    newStreak = 0;
-  }
-
-  const updated: DailyStats = {
-    played: current.played + 1,
-    won: current.won + (result.status === 'won' ? 1 : 0),
-    streak: newStreak,
-    maxStreak: Math.max(current.maxStreak, newStreak),
-    lastPlayedDate: today,
-    history: {
-      ...current.history,
-      [today]: result,
-    },
-  };
-
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-  } catch {
-    // Ignore storage quota
-  }
-
-  return updated;
 }
 
 /**
- * Generate Wordle-like shareable text to compare with friends
+ * Generate Wordle-like shareable text
  */
 export function generateDailyShareText(
-  result: StoredDailyResult,
+  result: DailyResultData,
   mapModel: MelbourneMapModel
 ): string {
   const startName = mapModel.suburbMap.get(result.startSuburbId)?.name || 'Start';
@@ -316,53 +223,11 @@ export function generateDailyShareText(
   const shareText = `Suburbia 🗺️
 Daily Challenge (${displayDate})
 📍 ${startName} ➔ ${targetName}
-${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed} turns!` : 'Turn limit reached'} [${ratingText}]
-🛣️ Your Path: ${pathLength} suburbs | Optimal: ${optimalSuburbs} suburbs (${optimalSteps} steps)
+${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed}/10 turns!` : 'Turn limit reached'} [${ratingText}]
+🛣️ Your Path: ${pathLength} suburbs | Target: 5 steps
 ${trail}
 
 Play today's daily: ${window.location.origin}${window.location.pathname}`;
 
   return shareText;
-}
-
-/**
- * Compact share code for comparing routes side-by-side with a friend
- * E.g. "MST-2026-09-05-6T-fitzroy.collingwood.richmond"
- */
-export function encodeRouteShareCode(result: StoredDailyResult): string {
-  const pathStr = result.path.join('.');
-  return `MST-${result.dateStr}-${result.turnsUsed}T-${result.status === 'won' ? 'W' : 'L'}-${pathStr}`;
-}
-
-export interface DecodedFriendRoute {
-  dateStr: string;
-  turnsUsed: number;
-  isWon: boolean;
-  path: string[];
-}
-
-export function decodeRouteShareCode(code: string): DecodedFriendRoute | null {
-  try {
-    const trimmed = code.trim();
-    if (!trimmed.startsWith('MST-')) return null;
-    const parts = trimmed.split('-');
-    if (parts.length < 5) return null;
-
-    const dateStr = `${parts[1]}-${parts[2]}-${parts[3]}`;
-    const turnsStr = parts[4].replace('T', '');
-    const turnsUsed = parseInt(turnsStr, 10);
-    const isWon = parts[5] === 'W';
-    const path = parts.slice(6).join('-').split('.');
-
-    if (isNaN(turnsUsed) || path.length === 0) return null;
-
-    return {
-      dateStr,
-      turnsUsed,
-      isWon,
-      path,
-    };
-  } catch {
-    return null;
-  }
 }

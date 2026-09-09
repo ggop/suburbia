@@ -15,7 +15,7 @@ import {
   getApproximateAge,
   getNotableHistoricalFact,
 } from '../data/suburbStats';
-import { SuburbProjected, SuburbData, GameDifficulty } from '../types';
+import { SuburbProjected, SuburbData } from '../types';
 
 export const SVG_WIDTH = 1500;
 export const SVG_HEIGHT = 1100;
@@ -256,39 +256,16 @@ export function getDistancesFrom(
   return distances;
 }
 
-export function getDifficulty(steps: number): GameDifficulty {
-  if (steps <= 5) return 'Easy';
-  if (steps <= 7) return 'Medium';
-  return 'Hard';
-}
-
 export interface GeneratedGame {
   startSuburbId: string;
   targetSuburbId: string;
   bestPath: string[];
   bestPathDistance: number;
-  difficulty: GameDifficulty;
   maxTurns: number;
 }
 
 /**
- * Calculate allowed steps before the game ends on its own.
- * Strictly allows for 9 to 13 steps, providing a balanced margin for 5 to 8 step puzzles:
- * - 5 steps (Easy): 9 or 10 allowed steps
- * - 6 steps (Medium): 10 or 11 allowed steps
- * - 7 steps (Medium): 11 or 12 allowed steps
- * - 8 steps (Hard): 12 or 13 allowed steps
- */
-export function calculateAllowedSteps(shortestSteps: number): number {
-  const buffer = Math.floor(Math.random() * 2) + 4; // 4 or 5 extra margin steps
-  const total = shortestSteps + buffer;
-  return Math.min(13, Math.max(9, total));
-}
-
-/**
- * Generate a new random game where minimum steps required is 5 and maximum is 8.
- * 5 step problems = Easy, 6-7 = Medium, 8 = Hard.
- * Allows 9 to 13 steps before the game ends on its own.
+ * Generate a new random game where shortest path is strictly 5 steps, and allowed turns is strictly 10.
  */
 export function generateRandomGame(
   suburbs: SuburbData[],
@@ -296,15 +273,15 @@ export function generateRandomGame(
 ): GeneratedGame {
   const allIds = suburbs.map((s) => s.id);
 
-  // Try multiple times to find a pairing strictly between 5 and 8 steps away
+  // Try multiple times to find a pairing strictly 5 steps away
   for (let attempt = 0; attempt < 800; attempt++) {
     const randomStart = allIds[Math.floor(Math.random() * allIds.length)];
     const distances = getDistancesFrom(randomStart, adjacency);
 
-    // Candidates strictly between 5 and 8 steps away
+    // Candidates strictly 5 steps away
     const validCandidates: { id: string; dist: number }[] = [];
     distances.forEach((dist, id) => {
-      if (dist >= 5 && dist <= 8) {
+      if (dist === 5) {
         validCandidates.push({ id, dist });
       }
     });
@@ -312,29 +289,25 @@ export function generateRandomGame(
     if (validCandidates.length > 0) {
       const chosen = validCandidates[Math.floor(Math.random() * validCandidates.length)];
       const bestPath = findShortestPath(randomStart, chosen.id, adjacency);
-      const maxTurns = calculateAllowedSteps(chosen.dist);
       return {
         startSuburbId: randomStart,
         targetSuburbId: chosen.id,
         bestPath,
-        bestPathDistance: chosen.dist,
-        difficulty: getDifficulty(chosen.dist),
-        maxTurns,
+        bestPathDistance: 5,
+        maxTurns: 10,
       };
     }
   }
 
-  // Guaranteed fallback: Melbourne CBD to Box Hill (5 steps, Easy)
+  // Guaranteed fallback: Melbourne CBD to Box Hill (5 steps)
   const startId = 'melbourne-cbd';
   const targetId = 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
-  const dist = bestPath.length > 0 ? bestPath.length - 1 : 5;
   return {
     startSuburbId: startId,
     targetSuburbId: targetId,
     bestPath,
-    bestPathDistance: dist,
-    difficulty: getDifficulty(dist),
-    maxTurns: calculateAllowedSteps(dist),
+    bestPathDistance: 5,
+    maxTurns: 10,
   };
 }

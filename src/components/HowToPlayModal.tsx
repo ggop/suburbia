@@ -37,10 +37,7 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <h4 className="font-bold text-neutral-900 mb-0.5">1. Start and Target Suburbs</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
                 The <strong className="text-red-600">Red suburb</strong> is your start point, and the{' '}
-                <strong className="text-blue-600">Blue suburb</strong> is your target. Problems require between <strong>5 and 8 steps</strong>:
-                <span className="block mt-1 text-[11px] text-neutral-600">
-                  • <strong>Easy</strong>: 5 steps &nbsp;|&nbsp; <strong>Medium</strong>: 6–7 steps &nbsp;|&nbsp; <strong>Hard</strong>: 8 steps
-                </span>
+                <strong className="text-blue-600">Blue suburb</strong> is your target. Every game can be solved in exactly <strong className="text-neutral-900">5 steps</strong>, and you have an allowance of <strong className="text-neutral-900">10 turns</strong> to reach your destination.
               </p>
             </div>
           </div>
@@ -92,15 +89,15 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <Calendar className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-neutral-900 mb-0.5">5. Daily Challenge & Compare Routes</h4>
+              <h4 className="font-bold text-neutral-900 mb-0.5">5. Daily Challenge & Score Sharing</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                Every day, all players worldwide receive the <strong>exact same puzzle</strong>. Upon finishing, share your scorecard (Wordle-style) or copy your route code to compare path lengths and turn counts directly with friends!
+                Every day, all players receive the <strong>exact same daily puzzle</strong>. Upon finishing, share your scorecard (Wordle-style) with your emoji step trail!
               </p>
             </div>
           </div>
 
           <div className="bg-neutral-100 border border-neutral-200 p-3 rounded-xl text-xs text-neutral-800">
-            <strong className="text-neutral-900">Rule:</strong> Each puzzle can be solved in <strong>5 to 8 steps</strong>. You have an allowance of <strong>9 to 13 steps</strong> before the game ends on its own. Try to match the optimal shortest path!
+            <strong className="text-neutral-900">Rule:</strong> All games can be solved in <strong>5 steps</strong>, and you are allowed up to <strong>10 turns</strong>. Try to find the optimal 5-step route!
           </div>
         </div>
 

@@ -415,7 +415,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 <span className="text-xs sm:text-sm text-neutral-500 font-medium">Turns Used</span>
                 <span
                   className={`text-xl sm:text-2xl font-mono font-bold ${
-                    turnsLeft <= 2 ? 'text-red-600 animate-pulse' : 'text-neutral-900'
+                    turnsLeft <= 2 ? 'text-red-600' : 'text-neutral-900'
                   }`}
                 >
                   {turnsFormatted}
@@ -438,17 +438,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
               </div>
 
               <div className="flex justify-between items-center text-[11px] text-neutral-500 pt-1.5 border-t border-neutral-200/60">
-                <span>Difficulty</span>
-                <span
-                  className={`font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wide border ${
-                    gameState.difficulty === 'Easy'
-                      ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
-                      : gameState.difficulty === 'Medium'
-                      ? 'text-amber-700 bg-amber-50 border-amber-200'
-                      : 'text-rose-700 bg-rose-50 border-rose-200'
-                  }`}
-                >
-                  {gameState.difficulty} ({gameState.bestPathDistance} min steps)
+                <span>Goal</span>
+                <span className="font-bold px-2 py-0.5 rounded text-[10px] tracking-wide border text-neutral-700 bg-neutral-100 border-neutral-200 font-mono">
+                  5 steps • 10 turns max
                 </span>
               </div>
             </div>
@@ -553,7 +545,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
                     {isLast ? (
                       <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 shrink-0 ml-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         <span>Current</span>
                       </div>
                     ) : (
@@ -617,7 +609,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
               {isTargetAdjacent ? (
                 <div
                   onClick={() => onMoveToSuburb(gameState.targetSuburbId)}
-                  className="p-3.5 rounded-xl bg-blue-50/90 border border-blue-300 flex items-center gap-3 animate-pulse shadow-xs cursor-pointer hover:bg-blue-100 transition-colors"
+                  className="p-3.5 rounded-xl bg-blue-50/90 border border-blue-300 flex items-center gap-3 shadow-xs cursor-pointer hover:bg-blue-100 transition-colors"
                 >
                   <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
                     <Flag className="w-4 h-4" />
@@ -694,7 +686,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
                           <div className="flex items-center gap-1.5 shrink-0 ml-2">
                             {isTarget ? (
-                              <span className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white flex items-center gap-1 shadow-xs animate-pulse">
+                              <span className="px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-blue-600 text-white flex items-center gap-1 shadow-xs">
                                 <span>TARGET</span>
                                 <ArrowRight className="w-3 h-3" />
                               </span>

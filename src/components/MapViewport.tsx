@@ -13,7 +13,6 @@ interface MapViewportProps {
   onSelectPathSuburb?: (suburbId: string) => void;
   onMoveToSuburb?: (suburbId: string) => void;
   onMapClickDisabled?: () => void;
-  onClearFriendPath?: () => void;
 }
 
 interface Transform {
@@ -31,7 +30,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   onSelectPathSuburb,
   onMoveToSuburb,
   onMapClickDisabled,
-  onClearFriendPath,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -49,16 +47,21 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   // Gesture refs for smooth touch & mouse interaction
   const isDraggingRef = useRef(false);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const touchStartDistRef = useRef<number | null>(null);
-  const touchCenterRef = useRef<{ x: number; y: number } | null>(null);
+  const touchPinchRef = useRef<{
+    lastDist: number;
+    lastCenter: { x: number; y: number };
+  } | null>(null);
   const touchMovedRef = useRef(false);
+
+  // Track active puzzle so selecting next suburb does NOT reset the user's zoom/pan
+  const puzzleIdRef = useRef<string>('');
+  const initialFittedRef = useRef(false);
 
   // Derive current position and visited set
   const currentSuburbId = gameState.path[gameState.path.length - 1];
   const visitedSet = useMemo(() => new Set(gameState.path), [gameState.path]);
   const bestPathSet = useMemo(() => new Set(gameState.bestPath), [gameState.bestPath]);
   const guessedSet = useMemo(() => new Set(gameState.guessedSuburbs || []), [gameState.guessedSuburbs]);
-  const friendPathSet = useMemo(() => new Set(gameState.friendPath || []), [gameState.friendPath]);
 
   // Current suburb
   const currentSuburb = mapModel.suburbMap.get(currentSuburbId);
@@ -81,7 +84,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         return 'guessed';
       }
       if (showBestPathOverlay && bestPathSet.has(id)) return 'best-path';
-      if (friendPathSet.has(id)) return 'friend-path';
       if (gameState.status === 'playing' && neighboringSet.has(id)) return 'valid-move';
       return 'default';
     },
@@ -94,12 +96,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       showBestPathOverlay,
       bestPathSet,
       guessedSet,
-      friendPathSet,
       neighboringSet,
     ]
   );
 
-  // Zoom to start/current/target view bounds so area of interest and surrounding context occupies the view comfortably
+  // Zoom to start/target view bounds so area of interest and surrounding context occupies the view comfortably
   const focusOnAreaOfInterest = useCallback(() => {
     if (!containerRef.current) return;
     const startSub = mapModel.suburbMap.get(gameState.startSuburbId);
@@ -113,7 +114,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       gameState.startSuburbId,
       gameState.targetSuburbId,
       ...gameState.bestPath,
-      ...gameState.path,
     ]);
 
     // Ensure all surrounding suburbs around start and target are included in the view bounds
@@ -166,31 +166,42 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
 
-    setTransform({
-      x: clientWidth / 2 - centerX * clampedScale,
-      y: clientHeight / 2 - centerY * clampedScale,
-      scale: clampedScale,
-    });
-  }, [gameState.startSuburbId, gameState.targetSuburbId, gameState.bestPath, gameState.path, mapModel.suburbMap]);
+    const newX = clientWidth / 2 - centerX * clampedScale;
+    const newY = clientHeight / 2 - centerY * clampedScale;
 
-  // When game starts or new round begins, zoom in so area of interest occupies the entire view
+    if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(clampedScale)) {
+      setTransform({
+        x: newX,
+        y: newY,
+        scale: clampedScale,
+      });
+    }
+  }, [gameState.startSuburbId, gameState.targetSuburbId, gameState.bestPath, mapModel.suburbMap]);
+
+  // Unique identifier for current puzzle round
+  const currentPuzzleKey = `${gameState.startSuburbId}->${gameState.targetSuburbId}`;
+
+  // When game starts or a new round begins, zoom in so area of interest occupies the view.
+  // CRITICAL: Only triggers on new puzzle, NEVER on selecting the next suburb in an active game!
   useEffect(() => {
-    const timer = setTimeout(() => {
-      focusOnAreaOfInterest();
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [gameState.startSuburbId, gameState.targetSuburbId, focusOnAreaOfInterest]);
+    if (puzzleIdRef.current !== currentPuzzleKey) {
+      puzzleIdRef.current = currentPuzzleKey;
+      const timer = setTimeout(() => {
+        focusOnAreaOfInterest();
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [currentPuzzleKey, focusOnAreaOfInterest]);
 
-  // Observe container resize to ensure proper initial zoom when mounted
+  // Observe container resize to ensure proper initial zoom when mounted (runs once)
   useEffect(() => {
     if (!containerRef.current) return;
-    let initialZoomDone = false;
 
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
-          if (!initialZoomDone) {
-            initialZoomDone = true;
+          if (!initialFittedRef.current) {
+            initialFittedRef.current = true;
             focusOnAreaOfInterest();
           }
         }
@@ -201,43 +212,85 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     return () => observer.disconnect();
   }, [focusOnAreaOfInterest]);
 
+  // Native touchmove listener to prevent mobile browser pinch-zoom blanking or shifting the web page
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const onNativeTouchMove = (e: TouchEvent) => {
+      if (e.touches.length >= 2) {
+        e.preventDefault();
+      }
+    };
+
+    container.addEventListener('touchmove', onNativeTouchMove, { passive: false });
+    return () => {
+      container.removeEventListener('touchmove', onNativeTouchMove);
+    };
+  }, []);
+
   // Reset to entire Melbourne metropolitan area overview
   const resetView = useCallback(() => {
     if (!containerRef.current) return;
     const { clientWidth, clientHeight } = containerRef.current;
+    if (clientWidth <= 0 || clientHeight <= 0) return;
+
     const scaleX = clientWidth / SVG_WIDTH;
     const scaleY = clientHeight / SVG_HEIGHT;
     const initialScale = Math.min(scaleX, scaleY) * 0.95;
-    setTransform({
-      x: (clientWidth - SVG_WIDTH * initialScale) / 2,
-      y: (clientHeight - SVG_HEIGHT * initialScale) / 2,
-      scale: initialScale,
-    });
+    const newX = (clientWidth - SVG_WIDTH * initialScale) / 2;
+    const newY = (clientHeight - SVG_HEIGHT * initialScale) / 2;
+
+    if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(initialScale)) {
+      setTransform({
+        x: newX,
+        y: newY,
+        scale: initialScale,
+      });
+    }
   }, []);
 
   const focusOnCurrent = useCallback(() => {
     if (!containerRef.current || !currentSuburb) return;
     const { clientWidth, clientHeight } = containerRef.current;
-    const targetScale = Math.max(transform.scale, 1.4);
-    setTransform({
-      x: clientWidth / 2 - currentSuburb.x * targetScale,
-      y: clientHeight / 2 - currentSuburb.y * targetScale,
-      scale: targetScale,
-    });
+    if (clientWidth <= 0 || clientHeight <= 0) return;
+
+    const currentScale = Number.isFinite(transform.scale) && transform.scale > 0 ? transform.scale : 1.0;
+    const targetScale = Math.max(currentScale, 1.4);
+    const newX = clientWidth / 2 - currentSuburb.x * targetScale;
+    const newY = clientHeight / 2 - currentSuburb.y * targetScale;
+
+    if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(targetScale)) {
+      setTransform({
+        x: newX,
+        y: newY,
+        scale: targetScale,
+      });
+    }
   }, [currentSuburb, transform.scale]);
 
   const handleZoom = useCallback((direction: 'in' | 'out', factor = 1.3) => {
     if (!containerRef.current) return;
     const { clientWidth, clientHeight } = containerRef.current;
+    if (clientWidth <= 0 || clientHeight <= 0) return;
+
     const centerPoint = { x: clientWidth / 2, y: clientHeight / 2 };
 
     setTransform((prev) => {
-      const newScale = direction === 'in' ? prev.scale * factor : prev.scale / factor;
+      const validScale = Number.isFinite(prev.scale) && prev.scale > 0 ? prev.scale : 1.0;
+      const validX = Number.isFinite(prev.x) ? prev.x : 0;
+      const validY = Number.isFinite(prev.y) ? prev.y : 0;
+
+      const newScale = direction === 'in' ? validScale * factor : validScale / factor;
       const clampedScale = Math.max(0.4, Math.min(newScale, 5.0));
 
-      const ratio = clampedScale / prev.scale;
-      const newX = centerPoint.x - (centerPoint.x - prev.x) * ratio;
-      const newY = centerPoint.y - (centerPoint.y - prev.y) * ratio;
+      const ratio = clampedScale / validScale;
+      const newX = centerPoint.x - (centerPoint.x - validX) * ratio;
+      const newY = centerPoint.y - (centerPoint.y - validY) * ratio;
+
+      if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(clampedScale)) {
+        return prev;
+      }
 
       return { x: newX, y: newY, scale: clampedScale };
     });
@@ -256,10 +309,19 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     setTooltipInfo(null);
 
     setTransform((prev) => {
-      const newScale = Math.max(0.4, Math.min(prev.scale * zoomFactor, 5.0));
-      const ratio = newScale / prev.scale;
-      const newX = mouseX - (mouseX - prev.x) * ratio;
-      const newY = mouseY - (mouseY - prev.y) * ratio;
+      const validScale = Number.isFinite(prev.scale) && prev.scale > 0 ? prev.scale : 1.0;
+      const validX = Number.isFinite(prev.x) ? prev.x : 0;
+      const validY = Number.isFinite(prev.y) ? prev.y : 0;
+
+      const newScale = Math.max(0.4, Math.min(validScale * zoomFactor, 5.0));
+      const ratio = newScale / validScale;
+      const newX = mouseX - (mouseX - validX) * ratio;
+      const newY = mouseY - (mouseY - validY) * ratio;
+
+      if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(newScale)) {
+        return prev;
+      }
+
       return { x: newX, y: newY, scale: newScale };
     });
   };
@@ -275,11 +337,15 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isDraggingRef.current) {
-      setTransform((prev) => ({
-        ...prev,
-        x: e.clientX - dragStartRef.current.x,
-        y: e.clientY - dragStartRef.current.y,
-      }));
+      const newX = e.clientX - dragStartRef.current.x;
+      const newY = e.clientY - dragStartRef.current.y;
+      if (Number.isFinite(newX) && Number.isFinite(newY)) {
+        setTransform((prev) => ({
+          ...prev,
+          x: newX,
+          y: newY,
+        }));
+      }
     }
   };
 
@@ -287,30 +353,31 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     isDraggingRef.current = false;
   };
 
-  // Touch handlers for mobile & pinch-to-zoom
+  // Touch handlers for mobile & pinch-to-zoom (Rock-solid NaN-safe implementation)
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchMovedRef.current = false;
     setTooltipInfo(null);
 
     if (e.touches.length === 1) {
+      touchPinchRef.current = null;
       isDraggingRef.current = true;
       dragStartRef.current = {
         x: e.touches[0].clientX - transform.x,
         y: e.touches[0].clientY - transform.y,
       };
-      touchStartDistRef.current = null;
     } else if (e.touches.length === 2) {
       isDraggingRef.current = false;
       const t1 = e.touches[0];
       const t2 = e.touches[1];
       const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-      touchStartDistRef.current = dist;
-
       const rect = containerRef.current?.getBoundingClientRect();
-      if (rect) {
-        touchCenterRef.current = {
-          x: (t1.clientX + t2.clientX) / 2 - rect.left,
-          y: (t1.clientY + t2.clientY) / 2 - rect.top,
+      if (rect && dist > 10) {
+        touchPinchRef.current = {
+          lastDist: dist,
+          lastCenter: {
+            x: (t1.clientX + t2.clientX) / 2 - rect.left,
+            y: (t1.clientY + t2.clientY) / 2 - rect.top,
+          },
         };
       }
     }
@@ -320,35 +387,76 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     touchMovedRef.current = true;
 
     if (e.touches.length === 1 && isDraggingRef.current) {
-      setTransform((prev) => ({
-        ...prev,
-        x: e.touches[0].clientX - dragStartRef.current.x,
-        y: e.touches[0].clientY - dragStartRef.current.y,
-      }));
-    } else if (e.touches.length === 2 && touchStartDistRef.current !== null && touchCenterRef.current) {
+      const newX = e.touches[0].clientX - dragStartRef.current.x;
+      const newY = e.touches[0].clientY - dragStartRef.current.y;
+      if (Number.isFinite(newX) && Number.isFinite(newY)) {
+        setTransform((prev) => ({
+          ...prev,
+          x: newX,
+          y: newY,
+        }));
+      }
+    } else if (e.touches.length === 2) {
       const t1 = e.touches[0];
       const t2 = e.touches[1];
       const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-      const factor = dist / touchStartDistRef.current;
-      touchStartDistRef.current = dist;
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect || dist < 10) return;
 
-      setTransform((prev) => {
-        const newScale = Math.max(0.4, Math.min(prev.scale * factor, 5.0));
-        const ratio = newScale / prev.scale;
-        const center = touchCenterRef.current!;
-        return {
-          scale: newScale,
-          x: center.x - (center.x - prev.x) * ratio,
-          y: center.y - (center.y - prev.y) * ratio,
-        };
-      });
+      const currentCenter = {
+        x: (t1.clientX + t2.clientX) / 2 - rect.left,
+        y: (t1.clientY + t2.clientY) / 2 - rect.top,
+      };
+
+      if (!touchPinchRef.current) {
+        touchPinchRef.current = { lastDist: dist, lastCenter: currentCenter };
+        return;
+      }
+
+      const { lastDist, lastCenter } = touchPinchRef.current;
+      if (lastDist > 10) {
+        const factor = dist / lastDist;
+        // Clamp factor per frame to prevent erratic scale jumps
+        const clampedFactor = Math.max(0.75, Math.min(factor, 1.35));
+        const dx = currentCenter.x - lastCenter.x;
+        const dy = currentCenter.y - lastCenter.y;
+
+        setTransform((prev) => {
+          const currentScale = Number.isFinite(prev.scale) && prev.scale > 0 ? prev.scale : 1.0;
+          const currentX = Number.isFinite(prev.x) ? prev.x : 0;
+          const currentY = Number.isFinite(prev.y) ? prev.y : 0;
+
+          const newScale = Math.max(0.4, Math.min(currentScale * clampedFactor, 5.0));
+          const ratio = newScale / currentScale;
+
+          const newX = currentCenter.x - (currentCenter.x - (currentX + dx)) * ratio;
+          const newY = currentCenter.y - (currentCenter.y - (currentY + dy)) * ratio;
+
+          if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(newScale)) {
+            return prev;
+          }
+
+          return { scale: newScale, x: newX, y: newY };
+        });
+
+        touchPinchRef.current = { lastDist: dist, lastCenter: currentCenter };
+      }
     }
   };
 
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
-    touchStartDistRef.current = null;
-    touchCenterRef.current = null;
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length === 1) {
+      // Transition back smoothly to 1-finger panning without jumping
+      touchPinchRef.current = null;
+      isDraggingRef.current = true;
+      dragStartRef.current = {
+        x: e.touches[0].clientX - transform.x,
+        y: e.touches[0].clientY - transform.y,
+      };
+    } else if (e.touches.length === 0) {
+      isDraggingRef.current = false;
+      touchPinchRef.current = null;
+    }
   };
 
   // Suburb interaction
@@ -914,7 +1022,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             )}
           </g>
 
-          {/* Suburb Cadastral Line Map */}
+          {/* Suburb Cadastral Line Map - Fills & Interactive Hit Areas */}
           <g id="suburb-polygons">
             {mapModel.suburbs.map((suburb) => {
               const role = getSuburbRole(suburb.id);
@@ -922,19 +1030,15 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               const pointsStr = suburb.polygon.map((pt) => pt.join(',')).join(' ');
 
               // Clean Minimalism tile styling:
-              // - Default: crisp white tiles with hairline border
-              // - Start: red-500 with white stroke
-              // - Target: blue-500 with white stroke
-              // - Chosen during turns: emerald-500 with white stroke
-              // - Valid adjacent moves: white with emerald stroke
+              // - Default: crisp white tiles
+              // - Start: red-500
+              // - Target: blue-500
+              // - Chosen during turns: emerald-500
+              // - Valid adjacent moves: soft mint green
               let fillColor = '#ffffff';
-              let strokeColor = '#cbd5e1';
-              let strokeWidth = 1.0;
-              let filter = '';
               let opacity = 1.0;
 
               const isGameOver = gameState.status !== 'playing';
-              const isNeighbour = neighboringSet.has(suburb.id);
               const isPathEarlierSuburb =
                 gameState.status === 'playing' &&
                 visitedSet.has(suburb.id) &&
@@ -942,60 +1046,27 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
               if (role === 'start') {
                 fillColor = isPathEarlierSuburb && isHovered ? '#f87171' : '#ef4444'; // Red-500 for start
-                strokeColor = '#ffffff';
-                strokeWidth = isPathEarlierSuburb && isHovered ? 3.0 : 2.2;
-                filter = 'url(#clean-shadow)';
               } else if (role === 'target') {
                 fillColor = '#3b82f6'; // Blue-500 for target
-                strokeColor = '#ffffff';
-                strokeWidth = 2.2;
-                filter = 'url(#clean-shadow)';
               } else if (role === 'current') {
                 fillColor = '#10b981'; // Emerald-500 for current position
-                strokeColor = '#ffffff';
-                strokeWidth = 2.5;
-                filter = 'url(#clean-shadow)';
               } else if (role === 'visited') {
                 fillColor = isHovered ? '#34d399' : '#10b981'; // Chosen during turn shaded emerald
-                strokeColor = isHovered ? '#065f46' : '#ffffff';
-                strokeWidth = isHovered ? 2.5 : 1.8;
-                if (isHovered) filter = 'url(#clean-shadow)';
               } else if (role === 'valid-move') {
-                fillColor = '#dcfce7'; // Soft mint green highlight for neighbouring suburbs
-                strokeColor = '#059669'; // Crisp emerald-600 border
-                strokeWidth = 2.0;
-                filter = 'url(#clean-shadow)';
+                fillColor = isHovered ? '#bbf7d0' : '#dcfce7'; // Soft mint green highlight for neighbouring suburbs
               } else if (role === 'best-path') {
-                // Shortest path revealed is marked orange, not counting any suburbs the player identified correctly
                 fillColor = '#ea580c'; // Vibrant Orange-600
-                strokeColor = '#c2410c'; // Deep Orange-700
-                strokeWidth = 2.2;
-                filter = 'url(#clean-shadow)';
               } else if (role === 'guessed-optimal') {
-                // Optimal path guess - shade green even if not a neighbouring suburb
                 fillColor = isHovered ? '#34d399' : '#10b981'; // Emerald-500 green
-                strokeColor = '#047857'; // Deep emerald border
-                strokeWidth = 2.0;
-                filter = 'url(#clean-shadow)';
               } else if (role === 'guessed') {
                 fillColor = isHovered ? '#fef3c7' : '#fffbeb'; // Soft amber tint for guessed suburbs
-                strokeColor = '#d97706'; // Amber-600
-                strokeWidth = 1.8;
-              } else if (role === 'friend-path') {
-                fillColor = isHovered ? '#f3e8ff' : '#faf5ff'; // Soft violet tint for friend's route
-                strokeColor = '#9333ea'; // Purple-600
-                strokeWidth = 1.8;
-                filter = 'url(#clean-shadow)';
               } else if (isHovered) {
                 fillColor = '#f1f5f9';
-                strokeColor = '#94a3b8';
-                strokeWidth = 1.6;
               }
 
               const isInPath =
                 visitedSet.has(suburb.id) ||
                 guessedSet.has(suburb.id) ||
-                friendPathSet.has(suburb.id) ||
                 suburb.id === gameState.startSuburbId ||
                 suburb.id === gameState.targetSuburbId;
               const canInspect = isGameOver || isInPath;
@@ -1011,11 +1082,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                   id={`suburb-${suburb.id}`}
                   points={pointsStr}
                   fill={fillColor}
-                  stroke={strokeColor}
-                  strokeWidth={strokeWidth / Math.sqrt(transform.scale)}
-                  strokeLinejoin="round"
+                  stroke="none"
                   opacity={opacity}
-                  filter={filter}
                   className={`transition-colors duration-150 ${cursorClass}`}
                   onMouseEnter={(e) => handleSuburbHover(suburb, e)}
                   onMouseMove={(e) => handleSuburbHover(suburb, e)}
@@ -1026,20 +1094,69 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             })}
           </g>
 
-          {/* High-Resolution GIS Waterways Overlay Layer (Coastline, Rivers & Labels) */}
-          <g id="gis-waterways" className="pointer-events-none select-none">
-            {/* High-Resolution GPS Coastline stroke */}
-            {mapModel.coastlinePath && (
-              <path
-                d={mapModel.coastlinePath}
-                fill="none"
-                stroke="#38bdf8"
-                strokeWidth={2.4 / Math.sqrt(transform.scale)}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            )}
+          {/* Suburb Cadastral Line Map - Distinct Borders Layer
+              Rendered on top of all fills so adjacent green suburbs never meld together */}
+          <g id="suburb-borders" className="pointer-events-none select-none">
+            {mapModel.suburbs.map((suburb) => {
+              const role = getSuburbRole(suburb.id);
+              const isHovered = hoveredSuburbId === suburb.id;
+              const pointsStr = suburb.polygon.map((pt) => pt.join(',')).join(' ');
 
+              const safeScale = Number.isFinite(transform.scale) && transform.scale > 0 ? transform.scale : 1.0;
+              const sqrtScale = Math.sqrt(safeScale);
+
+              let strokeColor = '#cbd5e1';
+              let strokeWidth = Math.max(0.75, 1.0 / sqrtScale);
+
+              if (role === 'start') {
+                strokeColor = '#991b1b'; // Deep dark red border
+                strokeWidth = Math.max(1.8, 2.6 / sqrtScale);
+              } else if (role === 'target') {
+                strokeColor = '#1e40af'; // Deep blue border
+                strokeWidth = Math.max(1.8, 2.6 / sqrtScale);
+              } else if (role === 'current') {
+                // High contrast dark forest emerald border keeps current suburb crystal clear
+                strokeColor = '#064e3b';
+                strokeWidth = Math.max(2.0, 2.8 / sqrtScale);
+              } else if (role === 'visited') {
+                // Retain distinct border so green suburbs in player's path never meld
+                strokeColor = isHovered ? '#022c22' : '#064e3b';
+                strokeWidth = Math.max(1.6, 2.4 / sqrtScale);
+              } else if (role === 'valid-move') {
+                // Crisp forest green border for available neighbour suburbs
+                strokeColor = isHovered ? '#064e3b' : '#047857';
+                strokeWidth = Math.max(1.4, 2.0 / sqrtScale);
+              } else if (role === 'best-path') {
+                strokeColor = '#c2410c'; // Deep Orange-700
+                strokeWidth = Math.max(1.6, 2.4 / sqrtScale);
+              } else if (role === 'guessed-optimal') {
+                strokeColor = '#064e3b'; // Deep emerald
+                strokeWidth = Math.max(1.6, 2.4 / sqrtScale);
+              } else if (role === 'guessed') {
+                strokeColor = '#d97706'; // Amber-600
+                strokeWidth = Math.max(1.2, 1.8 / sqrtScale);
+              } else if (isHovered) {
+                strokeColor = '#64748b';
+                strokeWidth = Math.max(1.2, 1.6 / sqrtScale);
+              }
+
+              return (
+                <polygon
+                  key={`border-${suburb.id}`}
+                  id={`suburb-border-${suburb.id}`}
+                  points={pointsStr}
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeWidth={strokeWidth}
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                />
+              );
+            })}
+          </g>
+
+          {/* High-Resolution GIS Waterways Overlay Layer (Rivers & Labels, Coastline blue line removed) */}
+          <g id="gis-waterways" className="pointer-events-none select-none">
             {/* Water label */}
             <text
               x="260"
@@ -1216,20 +1333,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 return (
                   <g key={`path-node-${id}`} transform={`translate(${s.x}, ${s.y})`}>
                     <circle
-                      r={(isCurrent ? 11 : 6.5) / transform.scale}
+                      r={(isCurrent ? 9.5 : 6.0) / transform.scale}
                       fill={isStart ? '#ef4444' : '#10b981'}
                       stroke="#ffffff"
                       strokeWidth={2 / transform.scale}
                     />
-                    {isCurrent && (
-                      <circle
-                        r={16 / transform.scale}
-                        fill="none"
-                        stroke="#10b981"
-                        strokeWidth={2 / transform.scale}
-                        className="animate-ping"
-                      />
-                    )}
                     {index > 0 && (
                       <text
                         textAnchor="middle"
@@ -1369,7 +1477,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
       {/* Floating Tactical Status Pill (desktop) */}
       <div className="hidden md:flex absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-lg border border-neutral-200 shadow-sm items-center gap-3">
-        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
         <span className="text-xs font-medium text-neutral-800">
           Current: <strong className="text-neutral-900">{currentSuburb?.name}</strong> •{' '}
           <span className="text-neutral-600">Choose a neighbour to advance your route</span>
@@ -1400,29 +1508,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             <span className="text-amber-700 font-medium">Optimal Route</span>
           </div>
         )}
-        {gameState.friendPath && gameState.friendPath.length > 0 && (
-          <div className="flex items-center gap-1.5 border-l border-neutral-200 pl-3">
-            <span className="w-3 h-3 rounded bg-purple-500 border border-white shadow-xs" />
-            <span className="text-purple-700 font-medium">Friend's Route</span>
-          </div>
-        )}
       </div>
-
-      {/* Floating Friend Route Comparison Pill */}
-      {gameState.friendPath && gameState.friendPath.length > 0 && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-purple-900/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full shadow-lg border border-purple-400 flex items-center gap-2.5 text-xs font-semibold animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse shrink-0" />
-          <span>Comparing Friend's Route ({gameState.friendPath.length} suburbs)</span>
-          {onClearFriendPath && (
-            <button
-              onClick={onClearFriendPath}
-              className="ml-1 text-[10px] bg-purple-700/80 hover:bg-purple-600 px-2 py-0.5 rounded-full text-white cursor-pointer font-bold uppercase transition-colors"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-      )}
 
       {/* Touch Pan/Zoom Hint on Mobile */}
       <div className="absolute top-4 left-4 z-20 md:hidden flex items-center gap-1.5 bg-white/90 backdrop-blur-xs px-2.5 py-1.5 rounded-lg border border-neutral-200 text-[11px] text-neutral-600 shadow-xs">
