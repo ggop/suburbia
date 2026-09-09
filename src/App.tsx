@@ -82,6 +82,7 @@ export default function App() {
       startSuburbId: dailyGame.startSuburbId,
       targetSuburbId: dailyGame.targetSuburbId,
       path: [dailyGame.startSuburbId],
+      routeHistory: [{ suburbId: dailyGame.startSuburbId, backtracked: false }],
       turnsUsed: 0,
       maxTurns: dailyGame.maxTurns,
       status: 'playing',
@@ -163,6 +164,10 @@ export default function App() {
 
         const newTurnsUsed = prev.turnsUsed + 1;
         const newPath = [...prev.path, prev.targetSuburbId];
+        const newRouteHistory = [
+          ...(prev.routeHistory || [{ suburbId: prev.startSuburbId, backtracked: false }]),
+          { suburbId: prev.targetSuburbId, backtracked: false },
+        ];
         const newHistory = [
           ...(prev.turnHistory || []),
           {
@@ -175,6 +180,7 @@ export default function App() {
         return {
           ...prev,
           path: newPath,
+          routeHistory: newRouteHistory,
           turnsUsed: newTurnsUsed,
           status: 'won',
           turnHistory: newHistory,
@@ -266,6 +272,10 @@ export default function App() {
       setConsecutiveErrors(0);
 
       const newPath = [...gameState.path, nextSuburbId];
+      const newRouteHistory = [
+        ...(gameState.routeHistory || [{ suburbId: gameState.startSuburbId, backtracked: false }]),
+        { suburbId: nextSuburbId, backtracked: false },
+      ];
       const newHistory = [
         ...(gameState.turnHistory || []),
         { type: 'step' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
@@ -276,6 +286,7 @@ export default function App() {
         setGameState((prev) => ({
           ...prev,
           path: newPath,
+          routeHistory: newRouteHistory,
           turnsUsed: newTurnsUsed,
           status: 'won',
           turnHistory: newHistory,
@@ -288,6 +299,7 @@ export default function App() {
         setGameState((prev) => ({
           ...prev,
           path: newPath,
+          routeHistory: newRouteHistory,
           turnsUsed: newTurnsUsed,
           status: 'lost',
           turnHistory: newHistory,
@@ -299,6 +311,7 @@ export default function App() {
       setGameState((prev) => ({
         ...prev,
         path: newPath,
+        routeHistory: newRouteHistory,
         turnsUsed: newTurnsUsed,
         turnHistory: newHistory,
       }));
@@ -306,111 +319,50 @@ export default function App() {
     [gameState, mapModel, distancesToCurrent, distancesToTarget, consecutiveErrors]
   );
 
-  // Undo last move
+  // Undo last move: goes back one step, but DO NOT return any turns used.
+  // The undone suburb is recorded in routeHistory as backtracked.
   const handleUndoLastMove = useCallback(() => {
-    if (gameState.status !== 'playing' || gameState.turnsUsed <= 0) return;
+    if (gameState.status !== 'playing' || gameState.path.length <= 1) return;
 
     setGameState((prev) => {
-      const history = prev.turnHistory || [];
-      if (history.length === 0) {
-        if (prev.path.length <= 1) return prev;
-        return {
-          ...prev,
-          path: prev.path.slice(0, -1),
-          turnsUsed: Math.max(0, prev.turnsUsed - 1),
-        };
-      }
+      if (prev.path.length <= 1 || prev.status !== 'playing') return prev;
 
-      const lastAction = history[history.length - 1];
-      const newHistory = history.slice(0, -1);
+      const backtrackedSuburbId = prev.path[prev.path.length - 1];
+      const newPath = prev.path.slice(0, -1);
 
-      if (lastAction.type === 'branch' && lastAction.prevPath) {
-        return {
-          ...prev,
-          path: lastAction.prevPath,
-          turnHistory: newHistory,
-        };
-      }
+      // In routeHistory, mark the last non-backtracked occurrence as backtracked
+      const currentRoute = prev.routeHistory || prev.path.map((id) => ({ suburbId: id, backtracked: false }));
+      let marked = false;
+      const newRouteHistory = [...currentRoute].reverse().map((step) => {
+        if (!marked && !step.backtracked && step.suburbId === backtrackedSuburbId) {
+          marked = true;
+          return { ...step, backtracked: true };
+        }
+        return step;
+      }).reverse();
 
-      if (lastAction.type === 'step') {
-        return {
-          ...prev,
-          path: prev.path.length > 1 ? prev.path.slice(0, -1) : prev.path,
-          turnsUsed: Math.max(0, prev.turnsUsed - 1),
-          turnHistory: newHistory,
-        };
-      } else {
-        // Last turn was an off-path guess
-        const newGuessed = (prev.guessedSuburbs || []).filter((id, i, arr) => {
-          return !(id === lastAction.suburbId && i === arr.lastIndexOf(lastAction.suburbId));
-        });
-        return {
-          ...prev,
-          turnsUsed: Math.max(0, prev.turnsUsed - 1),
-          guessedSuburbs: newGuessed,
-          turnHistory: newHistory,
-        };
-      }
+      const newHistory = [
+        ...(prev.turnHistory || []),
+        {
+          type: 'undo' as const,
+          suburbId: backtrackedSuburbId,
+          prevConsecutiveErrors: consecutiveErrors,
+        },
+      ];
+
+      return {
+        ...prev,
+        path: newPath,
+        routeHistory: newRouteHistory,
+        // DO NOT return any turns used!
+        turnsUsed: prev.turnsUsed,
+        turnHistory: newHistory,
+      };
     });
 
     setErrorMessage(null);
-    setConsecutiveErrors((prev) => Math.max(0, prev - 1));
-  }, [gameState.status, gameState.turnsUsed]);
-
-  // Continue from any suburb already visited in the path
-  const handleSelectPathSuburb = useCallback(
-    (suburbId: string) => {
-      if (gameState.status !== 'playing') return;
-      const targetIndex = gameState.path.indexOf(suburbId);
-      if (targetIndex === -1 || targetIndex === gameState.path.length - 1) return;
-
-      const targetSuburb = mapModel?.suburbMap.get(suburbId);
-
-      setGameState((prev) => {
-        const idx = prev.path.indexOf(suburbId);
-        if (idx === -1 || idx === prev.path.length - 1) return prev;
-
-        const newPath = prev.path.slice(0, idx + 1);
-        const prunedSuburbs = prev.path.slice(idx + 1);
-
-        // Do not remove suburbs already guessed.
-        // Keep all existing guessed suburbs, and preserve pruned path suburbs in guessedSuburbs
-        // so that all player explorations remain visible and active on the map!
-        const newGuessedSuburbs = Array.from(
-          new Set([...(prev.guessedSuburbs || []), ...prunedSuburbs])
-        );
-
-        // Record branch in turnHistory for undo capability without changing turnsUsed
-        const newHistory = [
-          ...(prev.turnHistory || []),
-          {
-            type: 'branch' as const,
-            suburbId,
-            prevConsecutiveErrors: consecutiveErrors,
-            prevPath: prev.path,
-          },
-        ];
-
-        return {
-          ...prev,
-          path: newPath,
-          // CRUCIAL: Players should not be able to gain back turns!
-          // turnsUsed is preserved and NOT reduced.
-          turnsUsed: prev.turnsUsed,
-          turnHistory: newHistory,
-          guessedSuburbs: newGuessedSuburbs,
-        };
-      });
-
-      setErrorMessage(
-        targetSuburb
-          ? `Continuing route from ${targetSuburb.name} (${targetIndex === 0 ? 'Start' : `Step #${targetIndex}`}).`
-          : 'Continuing from selected step in path.'
-      );
-      setConsecutiveErrors(0);
-    },
-    [gameState.status, gameState.path, mapModel, consecutiveErrors]
-  );
+    setConsecutiveErrors(0);
+  }, [gameState.status, gameState.path.length, consecutiveErrors]);
 
   // Give up on puzzle
   const handleGiveUp = useCallback(() => {
@@ -449,6 +401,7 @@ export default function App() {
             startSuburbId: dailyGame.startSuburbId,
             targetSuburbId: dailyGame.targetSuburbId,
             path: [dailyGame.startSuburbId],
+            routeHistory: [{ suburbId: dailyGame.startSuburbId, backtracked: false }],
             turnsUsed: 0,
             maxTurns: dailyGame.maxTurns,
             status: 'playing',
@@ -479,6 +432,7 @@ export default function App() {
             startSuburbId: generated.startSuburbId,
             targetSuburbId: generated.targetSuburbId,
             path: [generated.startSuburbId],
+            routeHistory: [{ suburbId: generated.startSuburbId, backtracked: false }],
             turnsUsed: 0,
             maxTurns: generated.maxTurns,
             status: 'playing',
@@ -514,6 +468,7 @@ export default function App() {
       startSuburbId: generated.startSuburbId,
       targetSuburbId: generated.targetSuburbId,
       path: [generated.startSuburbId],
+      routeHistory: [{ suburbId: generated.startSuburbId, backtracked: false }],
       turnsUsed: 0,
       maxTurns: generated.maxTurns,
       status: 'playing',
@@ -554,7 +509,6 @@ export default function App() {
           errorMessage={errorMessage}
           consecutiveErrors={consecutiveErrors}
           onMoveToSuburb={handleMoveToSuburb}
-          onSelectPathSuburb={handleSelectPathSuburb}
           onInvalidGuess={handleInvalidGuess}
           onUndoLastMove={handleUndoLastMove}
           onGiveUp={handleGiveUp}
@@ -569,7 +523,6 @@ export default function App() {
             distancesToTarget={distancesToTarget}
             distancesToCurrent={distancesToCurrent}
             showBestPathOverlay={showBestPathOverlay}
-            onSelectPathSuburb={handleSelectPathSuburb}
             onMoveToSuburb={handleMoveToSuburb}
             onMapClickDisabled={handleMapClickDisabled}
           />

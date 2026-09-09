@@ -37,7 +37,8 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <h4 className="font-bold text-neutral-900 mb-0.5">1. Start and Target Suburbs</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
                 The <strong className="text-red-600">Red suburb</strong> is your start point, and the{' '}
-                <strong className="text-blue-600">Blue suburb</strong> is your target. Every game can be solved in exactly <strong className="text-neutral-900">5 steps</strong>, and you have an allowance of <strong className="text-neutral-900">10 turns</strong> to reach your destination.
+                <strong className="text-blue-600">Blue suburb</strong> is your target. You have an allowance of{' '}
+                <strong className="text-neutral-900">10 turns</strong> to reach your destination.
               </p>
             </div>
           </div>
@@ -62,12 +63,12 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
               <Navigation className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-neutral-900 mb-0.5">3. Branching from Earlier Suburbs</h4>
+              <h4 className="font-bold text-neutral-900 mb-0.5">3. Undo Last Move</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                If you find yourself moving away from the target, you can click any suburb already in your path (either in the sidebar path list or directly on the map) to continue from that point.
+                If you encounter a dead end or wish to backtrack, tap the <strong>Undo</strong> button to go back one step.
               </p>
-              <p className="text-neutral-500 text-xs leading-relaxed mt-1.5 bg-emerald-50/80 p-2 rounded-lg border border-emerald-200/60 text-emerald-900">
-                <strong>Turn count preserved:</strong> Branching allows you to explore alternate paths without losing your recorded progress, but no turns are refunded.
+              <p className="text-neutral-500 text-xs leading-relaxed mt-1.5 bg-amber-50/80 p-2 rounded-lg border border-amber-200/60 text-amber-900">
+                <strong>Turns not refunded:</strong> The Undo button steps back your current position, but any turns used remain counted toward your 10-turn limit.
               </p>
             </div>
           </div>
@@ -97,7 +98,7 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
           </div>
 
           <div className="bg-neutral-100 border border-neutral-200 p-3 rounded-xl text-xs text-neutral-800">
-            <strong className="text-neutral-900">Rule:</strong> All games can be solved in <strong>5 steps</strong>, and you are allowed up to <strong>10 turns</strong>. Try to find the optimal 5-step route!
+            <strong className="text-neutral-900">Rule:</strong> You are allowed up to <strong>10 turns</strong> to connect the start and target suburbs.
           </div>
         </div>
 

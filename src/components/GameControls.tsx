@@ -4,7 +4,6 @@ import { MelbourneMapModel } from '../utils/mapGeometry';
 import {
   MapPin,
   AlertCircle,
-  CornerUpLeft,
   Undo2,
   ChevronDown,
   ChevronUp,
@@ -22,7 +21,6 @@ interface GameControlsProps {
   errorMessage: string | null;
   consecutiveErrors?: number;
   onMoveToSuburb: (suburbId: string) => void;
-  onSelectPathSuburb?: (suburbId: string) => void;
   onInvalidGuess?: (query: string) => void;
   onUndoLastMove?: () => void;
   onGiveUp?: () => void;
@@ -35,7 +33,6 @@ export const GameControls: React.FC<GameControlsProps> = ({
   distancesToTarget,
   errorMessage,
   onMoveToSuburb,
-  onSelectPathSuburb,
   onUndoLastMove,
   onGiveUp,
   onResetGame,
@@ -168,9 +165,21 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 <ArrowRight className="w-4 h-4" />
               </div>
             ) : neighboringSuburbs.length === 0 ? (
-              <p className="text-xs text-amber-800 text-center py-2">
-                No unvisited neighbours. Expand route to branch back.
-              </p>
+              <div className="py-2 text-center">
+                <p className="text-xs text-amber-800 font-medium">
+                  No unvisited neighbours available.
+                </p>
+                {onUndoLastMove && gameState.path.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={onUndoLastMove}
+                    className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-neutral-800 bg-amber-100 hover:bg-amber-200 border border-amber-300 px-3 py-1 rounded-lg transition-colors cursor-pointer"
+                  >
+                    <Undo2 className="w-3.5 h-3.5" />
+                    <span>Undo Last Step</span>
+                  </button>
+                )}
+              </div>
             ) : (
               <div>
                 <div className="text-[10px] uppercase font-bold tracking-wider text-neutral-400 mb-1 flex items-center justify-between">
@@ -247,39 +256,34 @@ export const GameControls: React.FC<GameControlsProps> = ({
               </div>
             </div>
 
-            {/* Current Path with Tap-to-Branch */}
+            {/* Current Path with Undo */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
                   Current Route ({gameState.path.length})
                 </span>
-                <span className="text-[10px] text-neutral-400">Tap step to continue from it</span>
+                {onUndoLastMove && gameState.path.length > 1 && gameState.status === 'playing' && (
+                  <button
+                    type="button"
+                    onClick={onUndoLastMove}
+                    className="text-[11px] text-neutral-700 font-bold bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded border border-neutral-200 flex items-center gap-1 cursor-pointer"
+                  >
+                    <Undo2 className="w-3 h-3" />
+                    <span>Undo</span>
+                  </button>
+                )}
               </div>
 
               <div className="bg-neutral-50 rounded-xl border border-neutral-200 p-2 space-y-1 max-h-40 overflow-y-auto">
                 {/* Start Suburb */}
-                <div
-                  onClick={() => {
-                    if (gameState.status === 'playing' && gameState.path.length > 1) {
-                      onSelectPathSuburb?.(gameState.startSuburbId);
-                      setIsMobileExpanded(false);
-                    }
-                  }}
-                  className={`flex items-center justify-between p-1.5 rounded-lg text-xs ${
-                    gameState.path.length > 1 ? 'hover:bg-neutral-100 cursor-pointer' : ''
-                  }`}
-                >
+                <div className="flex items-center justify-between p-1.5 rounded-lg text-xs">
                   <div className="flex items-center gap-2">
                     <span className="w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center text-[10px] font-bold">
                       S
                     </span>
                     <span className="font-semibold text-neutral-900">{startSuburb?.name}</span>
                   </div>
-                  {gameState.path.length > 1 && gameState.status === 'playing' && (
-                    <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                      Branch
-                    </span>
-                  )}
+                  <span className="text-[10px] text-neutral-400">Start</span>
                 </div>
 
                 {/* Intermediate Steps */}
@@ -289,14 +293,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   return (
                     <div
                       key={`mobile-step-${suburb.id}-${stepNum}`}
-                      onClick={() => {
-                        if (!isLast && gameState.status === 'playing') {
-                          onSelectPathSuburb?.(suburb.id);
-                          setIsMobileExpanded(false);
-                        }
-                      }}
                       className={`flex items-center justify-between p-1.5 rounded-lg text-xs ${
-                        isLast ? 'bg-emerald-50 font-bold text-emerald-950 border border-emerald-200' : 'hover:bg-neutral-100 cursor-pointer text-neutral-700'
+                        isLast ? 'bg-emerald-50 font-bold text-emerald-950 border border-emerald-200' : 'text-neutral-700'
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -307,14 +305,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
                         </span>
                         <span>{suburb.name}</span>
                       </div>
-                      {isLast ? (
+                      {isLast && (
                         <span className="text-[10px] text-emerald-700 font-bold">Current</span>
-                      ) : (
-                        gameState.status === 'playing' && (
-                          <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                            Branch
-                          </span>
-                        )
                       )}
                     </div>
                   );
@@ -438,9 +430,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
               </div>
 
               <div className="flex justify-between items-center text-[11px] text-neutral-500 pt-1.5 border-t border-neutral-200/60">
-                <span>Goal</span>
+                <span>Allowance</span>
                 <span className="font-bold px-2 py-0.5 rounded text-[10px] tracking-wide border text-neutral-700 bg-neutral-100 border-neutral-200 font-mono">
-                  5 steps • 10 turns max
+                  10 turns max
                 </span>
               </div>
             </div>
@@ -460,23 +452,21 @@ export const GameControls: React.FC<GameControlsProps> = ({
               <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
                 Current Path ({gameState.path.length})
               </span>
-              {gameState.path.length > 1 && (
-                <span className="text-[10px] text-neutral-400">Tap step to branch</span>
+              {onUndoLastMove && gameState.path.length > 1 && gameState.status === 'playing' && (
+                <button
+                  type="button"
+                  onClick={onUndoLastMove}
+                  className="text-[10.5px] font-bold text-neutral-700 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2 py-0.5 rounded border border-neutral-200 flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <Undo2 className="w-3 h-3" />
+                  <span>Undo</span>
+                </button>
               )}
             </div>
 
             <div className="bg-neutral-50 rounded-xl border border-neutral-200/80 p-2 space-y-1 max-h-36 overflow-y-auto">
               {/* Start Node */}
-              <div
-                onClick={() => {
-                  if (gameState.status === 'playing' && gameState.path.length > 1) {
-                    onSelectPathSuburb?.(gameState.startSuburbId);
-                  }
-                }}
-                className={`flex items-center justify-between p-1.5 rounded-lg transition-colors group ${
-                  gameState.path.length > 1 ? 'hover:bg-neutral-100 cursor-pointer' : ''
-                }`}
-              >
+              <div className="flex items-center justify-between p-1.5 rounded-lg">
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
                     S
@@ -488,41 +478,21 @@ export const GameControls: React.FC<GameControlsProps> = ({
                     <span className="text-[9.5px] text-neutral-400">Starting suburb</span>
                   </div>
                 </div>
-
-                {gameState.path.length > 1 && gameState.status === 'playing' && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectPathSuburb?.(gameState.startSuburbId);
-                    }}
-                    className="opacity-70 group-hover:opacity-100 px-2 py-0.5 rounded text-[10px] font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 flex items-center gap-1 transition-all cursor-pointer"
-                    title="Continue route from start suburb"
-                  >
-                    <CornerUpLeft className="w-3 h-3 text-emerald-600" />
-                    <span>Continue</span>
-                  </button>
-                )}
+                <span className="text-[10px] text-neutral-400 font-medium">Start</span>
               </div>
 
               {/* Path Steps (from index 1 onward) */}
               {pathSuburbs.slice(1).map((suburb, idx) => {
                 const stepNum = idx + 1;
                 const isLast = idx === pathSuburbs.length - 2;
-                const distToTarget = distancesToTarget.get(suburb.id) ?? -1;
 
                 return (
                   <div
                     key={`${suburb.id}-${stepNum}`}
-                    onClick={() => {
-                      if (!isLast && gameState.status === 'playing') {
-                        onSelectPathSuburb?.(suburb.id);
-                      }
-                    }}
-                    className={`flex items-center justify-between p-1.5 rounded-lg transition-colors group ${
+                    className={`flex items-center justify-between p-1.5 rounded-lg ${
                       isLast
                         ? 'bg-emerald-50/90 border border-emerald-200 font-semibold text-emerald-950'
-                        : 'text-neutral-700 hover:bg-neutral-100 cursor-pointer'
+                        : 'text-neutral-700'
                     }`}
                   >
                     <div className="flex items-center gap-2 min-w-0">
@@ -535,34 +505,14 @@ export const GameControls: React.FC<GameControlsProps> = ({
                       </span>
                       <div className="flex flex-col min-w-0">
                         <span className="text-xs truncate">{suburb.name}</span>
-                        {!isLast && distToTarget >= 0 && (
-                          <span className="text-[9.5px] text-neutral-400 font-mono">
-                            {distToTarget} {distToTarget === 1 ? 'step' : 'steps'} from target
-                          </span>
-                        )}
                       </div>
                     </div>
 
-                    {isLast ? (
+                    {isLast && (
                       <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 shrink-0 ml-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         <span>Current</span>
                       </div>
-                    ) : (
-                      gameState.status === 'playing' && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onSelectPathSuburb?.(suburb.id);
-                          }}
-                          className="opacity-70 group-hover:opacity-100 px-2 py-0.5 rounded text-[10px] font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 flex items-center gap-1 transition-all cursor-pointer"
-                          title={`Continue route from ${suburb.name}`}
-                        >
-                          <CornerUpLeft className="w-3 h-3 text-emerald-600" />
-                          <span>Continue</span>
-                        </button>
-                      )
                     )}
                   </div>
                 );
@@ -624,11 +574,23 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   </div>
                 </div>
               ) : neighboringSuburbs.length === 0 ? (
-                <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 space-y-1">
-                  <p className="text-xs font-bold">No unvisited neighbours available</p>
-                  <p className="text-[11px] text-amber-700 leading-relaxed">
-                    All bordering suburbs are already in your path. Click an earlier suburb in your path above to branch.
-                  </p>
+                <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 space-y-2">
+                  <div>
+                    <p className="text-xs font-bold">No unvisited neighbours available</p>
+                    <p className="text-[11px] text-amber-700 leading-relaxed">
+                      All bordering suburbs are already in your route. Use the Undo button to step back.
+                    </p>
+                  </div>
+                  {onUndoLastMove && gameState.path.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={onUndoLastMove}
+                      className="w-full py-1.5 px-2 bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg text-xs font-bold text-amber-900 flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
+                    >
+                      <Undo2 className="w-3.5 h-3.5" />
+                      <span>Undo Last Move</span>
+                    </button>
+                  )}
                 </div>
               ) : (
                 <>
@@ -716,7 +678,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   </div>
                   <h3 className="text-sm font-bold text-emerald-900">Destination Reached!</h3>
                   <p className="text-xs text-neutral-600">
-                    Completed in <strong className="text-neutral-900">{gameState.turnsUsed} turns</strong> (optimal was {gameState.bestPathDistance} steps).
+                    Completed in <strong className="text-neutral-900">{gameState.turnsUsed} turns</strong>.
                   </p>
                 </div>
               ) : (

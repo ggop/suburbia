@@ -10,7 +10,6 @@ interface MapViewportProps {
   distancesToTarget: Map<string, number>;
   distancesToCurrent: Map<string, number>;
   showBestPathOverlay?: boolean;
-  onSelectPathSuburb?: (suburbId: string) => void;
   onMoveToSuburb?: (suburbId: string) => void;
   onMapClickDisabled?: () => void;
 }
@@ -27,7 +26,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   distancesToTarget,
   distancesToCurrent,
   showBestPathOverlay = false,
-  onSelectPathSuburb,
   onMoveToSuburb,
   onMapClickDisabled,
 }) => {
@@ -529,18 +527,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     // If the touch or mouse was a drag, ignore click
     if (touchMovedRef.current) return;
 
-    // 1. If active game: clicking any earlier suburb already in the path selects and continues from it!
-    if (
-      gameState.status === 'playing' &&
-      gameState.path.includes(suburb.id) &&
-      suburb.id !== currentSuburbId &&
-      onSelectPathSuburb
-    ) {
-      handleSuburbHover(suburb, e);
-      onSelectPathSuburb(suburb.id);
-      return;
-    }
-    
     const isGameOver = gameState.status !== 'playing';
     const isInPath =
       visitedSet.has(suburb.id) ||
@@ -1006,18 +992,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 d={mapModel.waterPolygonPath}
                 fill="url(#bay-water-grad)"
                 className="transition-opacity duration-300"
-              />
-            )}
-
-            {/* Bathymetric depth contour */}
-            {mapModel.waterDepthContourPath && (
-              <path
-                d={mapModel.waterDepthContourPath}
-                fill="none"
-                stroke="#93c5fd"
-                strokeWidth={1.2 / Math.sqrt(transform.scale)}
-                strokeDasharray="4 4"
-                opacity="0.7"
               />
             )}
           </g>
@@ -1521,7 +1495,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         info={tooltipInfo}
         currentSuburbName={currentSuburb?.name}
         targetSuburbName={targetSuburb?.name}
-        onContinueFromHere={onSelectPathSuburb}
       />
     </div>
   );

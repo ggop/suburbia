@@ -32,25 +32,30 @@ export type SuburbRole =
   | 'guessed'
   | 'guessed-optimal';
 
+export interface RouteStep {
+  suburbId: string;
+  backtracked?: boolean;
+}
+
 export interface GameState {
   gameMode: GameMode;
   dailyDate?: string;
   challengeNumber?: number;
   startSuburbId: string;
   targetSuburbId: string;
-  path: string[]; // List of suburb IDs visited, starting with startSuburbId
+  path: string[]; // List of suburb IDs currently in path from start to current
+  routeHistory?: RouteStep[]; // Full chronological sequence including backtracked suburbs
   turnsUsed: number;
   maxTurns: number;
   status: 'playing' | 'won' | 'lost';
   bestPath: string[]; // BFS shortest path from start to target
-  bestPathDistance: number; // Shortest distance (fixed to 5 steps)
+  bestPathDistance: number; // Shortest distance
   gaveUp?: boolean;
   guessedSuburbs?: string[]; // All suburbs guessed anywhere on map
   turnHistory?: {
-    type: 'step' | 'guess' | 'branch';
+    type: 'step' | 'guess' | 'undo';
     suburbId: string;
     prevConsecutiveErrors: number;
-    prevPath?: string[];
   }[];
 }
 

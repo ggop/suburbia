@@ -224,7 +224,7 @@ export function generateDailyShareText(
 Daily Challenge (${displayDate})
 📍 ${startName} ➔ ${targetName}
 ${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed}/10 turns!` : 'Turn limit reached'} [${ratingText}]
-🛣️ Your Path: ${pathLength} suburbs | Target: 5 steps
+🛣️ Route: ${pathLength} suburbs (${result.turnsUsed} turns)
 ${trail}
 
 Play today's daily: ${window.location.origin}${window.location.pathname}`;

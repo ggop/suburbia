@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { GameState } from '../types';
 import { MelbourneMapModel } from '../utils/mapGeometry';
@@ -72,6 +72,36 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
       return () => clearTimeout(timer);
     }
   }, [isWon, isOpen]);
+
+  // Compute historical facts discovered along the journey
+  const historicalFacts = useMemo(() => {
+    const suburbsToCheck = (gameState.routeHistory && gameState.routeHistory.length > 0)
+      ? gameState.routeHistory.map((step) => step.suburbId)
+      : gameState.path;
+    const seenIds = new Set<string>();
+    const facts: { id: string; name: string; fact: string }[] = [];
+    suburbsToCheck.forEach((id) => {
+      if (seenIds.has(id)) return;
+      seenIds.add(id);
+      const s = mapModel.suburbMap.get(id);
+      if (s && s.historicalFact) {
+        facts.push({ id, name: s.name, fact: s.historicalFact });
+      }
+    });
+    return facts;
+  }, [gameState.routeHistory, gameState.path, mapModel.suburbMap]);
+
+  // Route steps including backtracked choices
+  const routeSteps = useMemo(() => {
+    if (gameState.routeHistory && gameState.routeHistory.length > 0) {
+      return gameState.routeHistory;
+    }
+    return gameState.path.map((id) => ({ suburbId: id, backtracked: false }));
+  }, [gameState.routeHistory, gameState.path]);
+
+  const backtrackedCount = useMemo(() => {
+    return routeSteps.filter((s) => s.backtracked).length;
+  }, [routeSteps]);
 
   if (!isOpen || (!isWon && !isLost)) return null;
 
@@ -156,61 +186,41 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             {isWon
               ? `You navigated successfully from ${startSuburb?.name} to ${targetSuburb?.name} in ${turnsUsed} turns!`
               : gaveUp
-              ? `You gave up on this round. The shortest path is marked in orange below (excluding suburbs you identified correctly).`
+              ? `You gave up on this round. The optimal route is displayed below.`
               : `You reached the ${gameState.maxTurns}-turn limit before arriving at ${targetSuburb?.name}. Compare your moves against the optimal route below.`}
           </p>
         </div>
 
-        {/* Path & Turn Comparison Cards */}
+        {/* Turn & Route Summary Cards */}
         <div className="grid grid-cols-2 gap-3 bg-neutral-50 p-3.5 rounded-xl border border-neutral-200 text-center">
-          {/* Turn Count Comparison */}
+          {/* Turn Count */}
           <div className="flex flex-col items-center justify-center">
-            <div className="text-xs text-neutral-500 font-medium">Turn Count</div>
+            <div className="text-xs text-neutral-500 font-medium">Turns Used</div>
             <div className="text-2xl font-bold font-mono text-emerald-600 mt-0.5">
-              {turnsUsed} {turnsUsed === 1 ? 'Turn' : 'Turns'}
+              {turnsUsed} / {gameState.maxTurns}
             </div>
             <div className="text-[11px] text-neutral-500 mt-1">
-              Optimal: <strong className="font-mono text-neutral-800">{optimalTurns} steps</strong>
+              Allowance: <strong className="font-mono text-neutral-800">{gameState.maxTurns} turns max</strong>
             </div>
-            {isWon && (
-              <div className="text-[11px] mt-0.5">
-                {isOptimal ? (
-                  <span className="text-amber-700 font-semibold flex items-center justify-center gap-1">
-                    <Sparkles className="w-3 h-3 text-amber-500" /> 100% Optimal!
-                  </span>
-                ) : (
-                  <span className="text-neutral-500">+{turnsUsed - optimalTurns} extra turns</span>
-                )}
-              </div>
-            )}
           </div>
 
-          {/* Path Length Comparison */}
+          {/* Suburbs in Final Path */}
           <div className="border-l border-neutral-200 flex flex-col items-center justify-center">
-            <div className="text-xs text-neutral-500 font-medium">Path Length</div>
+            <div className="text-xs text-neutral-500 font-medium">Final Path</div>
             <div className="text-2xl font-bold font-mono text-neutral-900 mt-0.5">
               {gameState.path.length} Suburbs
             </div>
             <div className="text-[11px] text-neutral-500 mt-1">
-              Shortest Route: <strong className="font-mono text-neutral-800">{optimalTurns + 1} suburbs</strong>
-            </div>
-            <div className="text-[11px] text-neutral-500 mt-0.5">
-              <span
-                className={`font-bold px-1.5 py-0.5 rounded text-[10px] uppercase border ${
-                  gameState.difficulty === 'Easy'
-                    ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
-                    : gameState.difficulty === 'Medium'
-                    ? 'text-amber-700 bg-amber-50 border-amber-200'
-                    : 'text-rose-700 bg-rose-50 border-rose-200'
-                }`}
-              >
-                {gameState.difficulty} Difficulty
-              </span>
+              {backtrackedCount > 0 ? (
+                <span className="text-amber-700 font-medium">{backtrackedCount} backtracked move{backtrackedCount === 1 ? '' : 's'}</span>
+              ) : (
+                <span className="text-neutral-600">Direct route</span>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Share & Compare Buttons */}
+        {/* Share Button */}
         <div className="flex flex-col sm:flex-row gap-2">
           <button
             onClick={handleShare}
@@ -229,9 +239,9 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             <div className="flex items-center justify-between mb-2">
               <div className="text-xs font-bold text-orange-900 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-orange-600" />
-                <span>Shortest Route ({optimalTurns} steps / {gameState.bestPath.length} suburbs):</span>
+                <span>Optimal Route ({gameState.bestPath.length} suburbs):</span>
               </div>
-              <span className="text-[10px] text-orange-700 font-medium">BFS Optimal</span>
+              <span className="text-[10px] text-orange-700 font-medium">Shortest Path</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5 text-xs leading-relaxed">
               {gameState.bestPath.map((id, index) => {
@@ -258,31 +268,47 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             </div>
           </div>
 
-          {/* Player's Actual Route */}
+          {/* Player's Actual Route (Including backtracked choices) */}
           <div className="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200 text-xs">
-            <div className="text-xs font-bold text-neutral-700 mb-2">
-              Your Route Taken ({turnsUsed} turns / {gameState.path.length} suburbs):
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-xs font-bold text-neutral-700">
+                Your Route Taken ({turnsUsed} {turnsUsed === 1 ? 'turn' : 'turns'}):
+              </div>
+              {backtrackedCount > 0 && (
+                <span className="text-[10px] text-amber-700 font-medium bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
+                  Includes backtracked suburbs
+                </span>
+              )}
             </div>
             <div className="flex flex-wrap items-center gap-1.5 text-xs leading-relaxed">
-              {gameState.path.map((id, index) => {
-                const s = mapModel.suburbMap.get(id);
-                const isOptimalSuburb = gameState.bestPath.includes(id);
+              {routeSteps.map((step, index) => {
+                const s = mapModel.suburbMap.get(step.suburbId);
+                const isStart = index === 0;
+                const isTargetReached = index === routeSteps.length - 1 && isWon && !step.backtracked;
+                const isBacktracked = !!step.backtracked;
+
                 return (
-                  <React.Fragment key={`user-${id}`}>
+                  <React.Fragment key={`route-${step.suburbId}-${index}`}>
                     <span
-                      className={`px-2 py-0.5 rounded text-[11px] font-medium border ${
-                        index === 0
+                      className={`px-2 py-0.5 rounded text-[11px] font-medium border flex items-center gap-1.5 ${
+                        isBacktracked
+                          ? 'bg-amber-50/90 text-amber-900 border-amber-300 line-through decoration-amber-600'
+                          : isStart
                           ? 'bg-red-50 text-red-700 border-red-200 font-bold'
-                          : index === gameState.path.length - 1 && isWon
+                          : isTargetReached
                           ? 'bg-blue-50 text-blue-700 border-blue-200 font-bold'
-                          : isOptimalSuburb
-                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                          : 'bg-white text-neutral-700 border-neutral-200'
+                          : 'bg-white text-neutral-800 border-neutral-200'
                       }`}
+                      title={isBacktracked ? `${s?.name || step.suburbId} (Backtracked)` : s?.name || step.suburbId}
                     >
-                      {s?.name || id}
+                      <span>{s?.name || step.suburbId}</span>
+                      {isBacktracked && (
+                        <span className="no-underline text-[9px] font-semibold text-amber-700 bg-amber-100 px-1 py-0.2 rounded">
+                          backtracked
+                        </span>
+                      )}
                     </span>
-                    {index < gameState.path.length - 1 && (
+                    {index < routeSteps.length - 1 && (
                       <ArrowRight className="w-3 h-3 text-neutral-400 shrink-0" />
                     )}
                   </React.Fragment>
@@ -291,25 +317,23 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             </div>
           </div>
 
-          {/* Historical Facts Discovered Along Your Journey */}
-          <div className="bg-amber-50/60 p-3.5 rounded-xl border border-amber-200/90 text-xs">
-            <div className="font-bold text-amber-900 mb-2 flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-amber-700" />
-              <span>Historical Facts from Your Journey:</span>
-            </div>
-            <div className="flex flex-col gap-2 max-h-36 overflow-y-auto pr-1">
-              {gameState.path.map((id) => {
-                const s = mapModel.suburbMap.get(id);
-                if (!s || !s.historicalFact) return null;
-                return (
-                  <div key={`fact-${id}`} className="bg-white/80 p-2 rounded-lg border border-amber-200/60 text-[11px] leading-relaxed">
-                    <strong className="text-neutral-900 font-semibold mr-1">{s.name}:</strong>
-                    <span className="text-neutral-700">{s.historicalFact}</span>
+          {/* Historical Facts Discovered Along Your Journey (Only shown if any exist) */}
+          {historicalFacts.length > 0 && (
+            <div className="bg-amber-50/60 p-3.5 rounded-xl border border-amber-200/90 text-xs">
+              <div className="font-bold text-amber-900 mb-2 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-amber-700" />
+                <span>Historical Facts from Your Journey:</span>
+              </div>
+              <div className="flex flex-col gap-2 max-h-36 overflow-y-auto pr-1">
+                {historicalFacts.map((item) => (
+                  <div key={`fact-${item.id}`} className="bg-white/80 p-2 rounded-lg border border-amber-200/60 text-[11px] leading-relaxed">
+                    <strong className="text-neutral-900 font-semibold mr-1">{item.name}:</strong>
+                    <span className="text-neutral-700">{item.fact}</span>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Action Buttons: Review on Map & Start New Round */}

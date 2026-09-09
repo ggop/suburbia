@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
               id="header-goal-badge"
               className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase border shrink-0 bg-neutral-100 text-neutral-700 border-neutral-200"
             >
-              5 steps • 10 turns
+              10 turns max
             </span>
           </div>
           <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[130px] xs:max-w-[200px] sm:max-w-md lg:hidden leading-tight">
@@ -112,11 +112,6 @@ export const Header: React.FC<HeaderProps> = ({
           <span>
             TARGET: <strong className="text-neutral-900">{targetSuburb?.name?.toUpperCase() || 'TARGET'}</strong>
           </span>
-        </div>
-        <div className="text-neutral-400 font-normal">|</div>
-        <div className="flex items-center gap-1.5 text-neutral-600">
-          <span>Target:</span>
-          <strong className="text-neutral-900 font-mono">5 steps</strong>
         </div>
       </div>
 
