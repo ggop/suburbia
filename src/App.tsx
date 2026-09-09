@@ -534,9 +534,7 @@ export default function App() {
         <div>COORD: -37.8136° S, 144.9631° E</div>
         <div className="hidden sm:block">SUBURBS: {mapModel.suburbs.length}</div>
         <div>
-          {gameState.gameMode === 'daily'
-            ? `DAILY • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`
-            : `PRACTICE • ${gameState.turnsUsed}/${gameState.maxTurns} TURNS`}
+          {gameState.gameMode === 'daily' ? 'DAILY MODE' : 'PRACTICE MODE'}
         </div>
       </footer>
 

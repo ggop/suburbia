@@ -104,7 +104,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           <div className="w-full flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 min-w-0">
               <span className="text-[11px] font-mono font-bold text-neutral-500 shrink-0">
-                Turn {turnsFormatted}
+                Turn {gameState.turnsUsed}
               </span>
               <span className="text-neutral-300">•</span>
               <span className="text-xs font-bold text-neutral-900 truncate">
@@ -237,9 +237,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
             {/* Status card */}
             <div className="bg-neutral-50 p-3 rounded-xl border border-neutral-200 text-xs space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-neutral-500">Turns Remaining</span>
+                <span className="text-neutral-500">Turns Used</span>
                 <span className="font-mono font-bold text-base text-neutral-900">
-                  {turnsLeft} / {gameState.maxTurns}
+                  {turnsFormatted}
                 </span>
               </div>
               <div className="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
@@ -688,7 +688,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   </div>
                   <h3 className="text-sm font-bold text-rose-900">Puzzle Ended</h3>
                   <p className="text-xs text-neutral-600">
-                    Optimal shortest route is shown in orange on the map.
+                    Optimal shortest route is shown in pastel violet on the map.
                   </p>
                 </div>
               )}

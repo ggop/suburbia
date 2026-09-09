@@ -686,10 +686,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             suburb: s,
             role: 'best-path',
             badgeText: `★ ${s.name}`,
-            lineColor: '#ea580c',
-            bgColor: '#fff7ed',
-            borderColor: '#ea580c',
-            textColor: '#9a3412',
+            lineColor: '#8b5cf6',
+            bgColor: '#f5f3ff',
+            borderColor: '#c4b5fd',
+            textColor: '#6d28d9',
           });
           addedIds.add(id);
         });
@@ -1029,7 +1029,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               } else if (role === 'valid-move') {
                 fillColor = isHovered ? '#bbf7d0' : '#dcfce7'; // Soft mint green highlight for neighbouring suburbs
               } else if (role === 'best-path') {
-                fillColor = '#ea580c'; // Vibrant Orange-600
+                fillColor = isHovered ? '#c4b5fd' : '#ddd6fe'; // Soft pastel lavender/violet
               } else if (role === 'guessed-optimal') {
                 fillColor = isHovered ? '#34d399' : '#10b981'; // Emerald-500 green
               } else if (role === 'guessed') {
@@ -1101,7 +1101,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 strokeColor = isHovered ? '#064e3b' : '#047857';
                 strokeWidth = Math.max(1.4, 2.0 / sqrtScale);
               } else if (role === 'best-path') {
-                strokeColor = '#c2410c'; // Deep Orange-700
+                strokeColor = '#8b5cf6'; // Violet-500
                 strokeWidth = Math.max(1.6, 2.4 / sqrtScale);
               } else if (role === 'guessed-optimal') {
                 strokeColor = '#064e3b'; // Deep emerald
@@ -1202,7 +1202,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               <polyline
                 points={bestPathLinePoints}
                 fill="none"
-                stroke="#ea580c"
+                stroke="#8b5cf6"
                 strokeWidth={3.8 / transform.scale}
                 strokeDasharray="6 4"
                 strokeLinecap="round"
@@ -1217,7 +1217,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                   ? id === gameState.startSuburbId
                     ? '#ef4444'
                     : '#10b981'
-                  : '#ea580c'; // Marked orange if player didn't identify it
+                  : '#8b5cf6'; // Marked violet if player didn't identify it
 
                 return (
                   <g key={`best-node-${id}`} transform={`translate(${s.x}, ${s.y})`}>
@@ -1478,8 +1478,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         </div>
         {showBestPathOverlay && (
           <div className="flex items-center gap-1.5 border-l border-neutral-200 pl-3">
-            <span className="w-3 h-3 rounded bg-amber-500 border border-white shadow-xs" />
-            <span className="text-amber-700 font-medium">Optimal Route</span>
+            <span className="w-3 h-3 rounded bg-violet-300 border border-violet-500 shadow-xs" />
+            <span className="text-violet-700 font-medium">Optimal Route</span>
           </div>
         )}
       </div>

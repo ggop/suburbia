@@ -51,17 +51,9 @@ export const Header: React.FC<HeaderProps> = ({
           S
         </div>
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <h1 className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
-              <span>SUBURBIA</span>
-            </h1>
-            <span
-              id="header-goal-badge"
-              className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase border shrink-0 bg-neutral-100 text-neutral-700 border-neutral-200"
-            >
-              10 turns max
-            </span>
-          </div>
+          <h1 className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
+            <span>SUBURBIA</span>
+          </h1>
           <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[130px] xs:max-w-[200px] sm:max-w-md lg:hidden leading-tight">
             <span className="text-red-600 font-semibold">{startSuburb?.name || 'Start'}</span> ➔{' '}
             <span className="text-blue-600 font-semibold">{targetSuburb?.name || 'Target'}</span>
@@ -138,11 +130,11 @@ export const Header: React.FC<HeaderProps> = ({
             title="Toggle optimal path overlay on map"
             className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border ${
               showBestPath
-                ? 'bg-amber-50 text-amber-800 border-amber-300 shadow-xs'
+                ? 'bg-violet-50 text-violet-800 border-violet-300 shadow-xs'
                 : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <Sparkles className={`w-3.5 h-3.5 ${showBestPath ? 'text-violet-600' : 'text-neutral-500'}`} />
             <span className="hidden md:inline">Optimal</span>
           </button>
         )}

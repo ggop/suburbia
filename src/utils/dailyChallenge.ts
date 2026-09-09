@@ -223,7 +223,7 @@ export function generateDailyShareText(
   const shareText = `Suburbia 🗺️
 Daily Challenge (${displayDate})
 📍 ${startName} ➔ ${targetName}
-${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed}/10 turns!` : 'Turn limit reached'} [${ratingText}]
+${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed} turns!` : 'Turn limit reached'} [${ratingText}]
 🛣️ Route: ${pathLength} suburbs (${result.turnsUsed} turns)
 ${trail}
 

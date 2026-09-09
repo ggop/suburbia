@@ -1,6 +1,6 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import { SuburbTooltipInfo } from '../types';
-import { MapPin, Navigation, Compass, CheckCircle2, Flag, BookOpen, Users, Maximize2, Clock } from 'lucide-react';
+import { MapPin, Navigation, Compass, CheckCircle2, Flag, BookOpen, Users, Maximize2, Clock, Sparkles } from 'lucide-react';
 
 interface TooltipProps {
   info: SuburbTooltipInfo | null;
@@ -70,10 +70,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
       </span>
     );
   } else if (role === 'best-path') {
-    borderColor = 'border-orange-400';
+    borderColor = 'border-violet-300';
     roleBadge = (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-300">
-        <Navigation className="w-3 h-3 text-orange-600" /> Shortest Path (Orange)
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-violet-50 text-violet-800 border border-violet-200">
+        <Sparkles className="w-3 h-3 text-violet-600" /> Optimal Route (Pastel Violet)
       </span>
     );
   } else if (role === 'guessed-optimal') {
