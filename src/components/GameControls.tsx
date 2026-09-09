@@ -249,10 +249,8 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 />
               </div>
               <div className="flex justify-between items-center text-[11px] text-neutral-500 pt-1 border-t border-neutral-200/60">
-                <span>Route: {startSuburb?.name} ➔ {targetSuburb?.name}</span>
-                <span className="font-bold text-blue-600 font-mono">
-                  {stepsRemaining === 0 ? 'Arrived' : `${stepsRemaining} steps away`}
-                </span>
+                <span>Route</span>
+                <span className="font-semibold text-neutral-700">{startSuburb?.name} ➔ {targetSuburb?.name}</span>
               </div>
             </div>
 
@@ -388,17 +386,6 @@ export const GameControls: React.FC<GameControlsProps> = ({
                     <span>Undo</span>
                   </button>
                 )}
-                {gameState.status === 'playing' && onGiveUp && (
-                  <button
-                    id="give-up-btn"
-                    onClick={onGiveUp}
-                    title="Give up on this puzzle"
-                    className="flex items-center gap-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-0.5 rounded transition-colors cursor-pointer"
-                  >
-                    <Flag className="w-3 h-3 text-rose-500" />
-                    <span>Give Up</span>
-                  </button>
-                )}
               </div>
             </div>
 
@@ -420,20 +407,6 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   className="bg-neutral-900 h-full transition-all duration-300 rounded-full"
                   style={{ width: `${progressPercent}%` }}
                 />
-              </div>
-
-              <div className="flex justify-between items-center text-[11px] text-neutral-500 pt-0.5">
-                <span>Target Distance</span>
-                <span className="font-bold text-blue-600 font-mono">
-                  {stepsRemaining === 0 ? 'Arrived!' : `${stepsRemaining} steps away`}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center text-[11px] text-neutral-500 pt-1.5 border-t border-neutral-200/60">
-                <span>Allowance</span>
-                <span className="font-bold px-2 py-0.5 rounded text-[10px] tracking-wide border text-neutral-700 bg-neutral-100 border-neutral-200 font-mono">
-                  10 turns max
-                </span>
               </div>
             </div>
           </div>
