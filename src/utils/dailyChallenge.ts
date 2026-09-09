@@ -1,6 +1,7 @@
-import { SuburbData } from '../types';
-import { findShortestPath, getDistancesFrom, MelbourneMapModel } from './mapGeometry';
+import { SuburbData, CityId } from '../types';
+import { findShortestPath, getDistancesFrom, CityMapModel } from './mapGeometry';
 import { CANONICAL_DAILY_CHALLENGES } from '../data/canonicalDailyChallenges';
+import { CANONICAL_ADELAIDE_DAILY_CHALLENGES } from '../data/canonicalAdelaideDailyChallenges';
 
 /**
  * Deterministic hash function (xmur3) for string date seeds
@@ -31,10 +32,10 @@ function mulberry32(a: number): () => number {
 }
 
 /**
- * Create a seeded random number generator for a specific date string (YYYY-MM-DD)
+ * Create a seeded random number generator for a specific date string and city
  */
-export function getSeededRandom(dateStr: string): () => number {
-  const seedGen = xmur3(`melbourne-traverse-daily-${dateStr}`);
+export function getSeededRandom(dateStr: string, cityId: CityId = 'melbourne'): () => number {
+  const seedGen = xmur3(`${cityId}-traverse-daily-${dateStr}`);
   return mulberry32(seedGen());
 }
 
@@ -103,15 +104,19 @@ export interface DailyChallengeGame {
 export function generateDailyChallenge(
   suburbs: SuburbData[],
   adjacency: Map<string, string[]>,
-  dateStr: string = getTodayDateString()
+  dateStr: string = getTodayDateString(),
+  cityId: CityId = 'melbourne'
 ): DailyChallengeGame {
   const challengeNumber = getDailyChallengeNumber(dateStr);
+
+  const isAdelaide = cityId === 'adelaide';
+  const canonicalMap = isAdelaide ? CANONICAL_ADELAIDE_DAILY_CHALLENGES : CANONICAL_DAILY_CHALLENGES;
 
   // 1. Immutable Canonical Schedule:
   // Guarantees the daily challenge for any date NEVER changes across deployments,
   // runtime environments, or code updates on any given day.
-  if (CANONICAL_DAILY_CHALLENGES && CANONICAL_DAILY_CHALLENGES[dateStr]) {
-    const [startId, targetId] = CANONICAL_DAILY_CHALLENGES[dateStr];
+  if (canonicalMap && canonicalMap[dateStr]) {
+    const [startId, targetId] = canonicalMap[dateStr];
     const bestPath = findShortestPath(startId, targetId, adjacency);
     return {
       dateStr,
@@ -125,7 +130,7 @@ export function generateDailyChallenge(
   }
 
   // 2. Deterministic PRNG fallback for unlisted dates
-  const rng = getSeededRandom(dateStr);
+  const rng = getSeededRandom(dateStr, cityId);
 
   // Sort suburbs deterministically so index ordering never varies between runtimes
   const sortedSuburbs = [...suburbs].sort((a, b) => a.id.localeCompare(b.id));
@@ -168,8 +173,8 @@ export function generateDailyChallenge(
   }
 
   // Deterministic fallback (5 steps)
-  const startId = 'melbourne-cbd';
-  const targetId = 'box-hill';
+  const startId = isAdelaide ? 'adelaide-cbd' : 'melbourne-cbd';
+  const targetId = isAdelaide ? 'glenelg' : 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
 
   return {
@@ -201,16 +206,16 @@ export interface DailyResultData {
  */
 export function generateDailyShareText(
   result: DailyResultData,
-  mapModel: MelbourneMapModel
+  mapModel: CityMapModel
 ): string {
   const startName = mapModel.suburbMap.get(result.startSuburbId)?.name || 'Start';
   const targetName = mapModel.suburbMap.get(result.targetSuburbId)?.name || 'Target';
   const displayDate = formatDisplayDate(result.dateStr);
+  const cityName = mapModel.cityName || 'City';
 
   const isWon = result.status === 'won';
   const optimalSteps = Math.max(1, result.bestPath.length - 2);
   const pathLength = result.path.length;
-  const optimalSuburbs = optimalSteps + 1;
 
   // Turn accuracy badge
   const turnDiff = result.turnsUsed - optimalSteps;
@@ -240,7 +245,7 @@ export function generateDailyShareText(
   }
   trail += isWon ? '🏁' : '❌';
 
-  const shareText = `Suburbia 🗺️
+  const shareText = `Suburbia 🗺️ (${cityName})
 Daily Challenge (${displayDate})
 📍 ${startName} ➔ ${targetName}
 ${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed} turns!` : 'Turn limit reached'} [${ratingText}]

@@ -1,6 +1,6 @@
 import React from 'react';
-import { GameMode, GameState } from '../types';
-import { MelbourneMapModel } from '../utils/mapGeometry';
+import { GameMode, GameState, CityId } from '../types';
+import { CityMapModel, CITIES } from '../utils/mapGeometry';
 import {
   HelpCircle,
   Trophy,
@@ -9,11 +9,14 @@ import {
   Flag,
   Calendar,
   Dices,
+  MapPin,
 } from 'lucide-react';
 
 interface HeaderProps {
   gameState: GameState;
-  mapModel: MelbourneMapModel;
+  mapModel: CityMapModel;
+  selectedCity: CityId;
+  onSelectCity: (city: CityId) => void;
   onNewGame: () => void;
   onOpenHowToPlay: () => void;
   onOpenResultModal: () => void;
@@ -26,6 +29,8 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   gameState,
   mapModel,
+  selectedCity,
+  onSelectCity,
   onNewGame,
   onOpenHowToPlay,
   onOpenResultModal,
@@ -43,10 +48,10 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header
       id="game-header"
-      className="h-14 sm:h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-2.5 sm:px-5 z-30 shadow-xs shrink-0 select-none text-neutral-900 gap-2"
+      className="h-14 sm:h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-2.5 sm:px-4 md:px-5 z-30 shadow-xs shrink-0 select-none text-neutral-900 gap-2"
     >
       {/* Brand & Suburb Route Info */}
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
         <div className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center text-white font-black text-sm tracking-wider shrink-0 shadow-xs">
           S
         </div>
@@ -54,16 +59,55 @@ export const Header: React.FC<HeaderProps> = ({
           <h1 className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
             <span>SUBURBIA</span>
           </h1>
-          <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[130px] xs:max-w-[200px] sm:max-w-md lg:hidden leading-tight">
+          <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[110px] xs:max-w-[170px] sm:max-w-md lg:hidden leading-tight">
             <span className="text-red-600 font-semibold">{startSuburb?.name || 'Start'}</span> ➔{' '}
             <span className="text-blue-600 font-semibold">{targetSuburb?.name || 'Target'}</span>
           </p>
         </div>
       </div>
 
-      {/* Mode Switcher Tabs */}
-      <div className="flex items-center bg-neutral-100 p-0.5 sm:p-1 rounded-lg border border-neutral-200 text-xs font-semibold shrink-0">
+      {/* City / Map Selector */}
+      <div
+        id="map-city-selector"
+        className="flex items-center bg-neutral-100 p-0.5 rounded-lg border border-neutral-200 text-xs font-semibold shrink-0"
+      >
         <button
+          id="city-melbourne-btn"
+          onClick={() => onSelectCity('melbourne')}
+          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
+            selectedCity === 'melbourne'
+              ? 'bg-white text-neutral-900 shadow-xs font-bold'
+              : 'text-neutral-500 hover:text-neutral-900'
+          }`}
+          title="Play Melbourne map (88 suburbs • VIC)"
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'melbourne' ? 'bg-emerald-500' : 'bg-neutral-400'}`}></span>
+          <span className="hidden xs:inline">Melbourne</span>
+          <span className="xs:hidden">Melb</span>
+          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">VIC</span>
+        </button>
+
+        <button
+          id="city-adelaide-btn"
+          onClick={() => onSelectCity('adelaide')}
+          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
+            selectedCity === 'adelaide'
+              ? 'bg-white text-neutral-900 shadow-xs font-bold'
+              : 'text-neutral-500 hover:text-neutral-900'
+          }`}
+          title="Play Adelaide map (75 suburbs • SA)"
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'adelaide' ? 'bg-sky-500' : 'bg-neutral-400'}`}></span>
+          <span className="hidden xs:inline">Adelaide</span>
+          <span className="xs:hidden">Adel</span>
+          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">SA</span>
+        </button>
+      </div>
+
+      {/* Mode Switcher Tabs */}
+      <div className="flex items-center bg-neutral-100 p-0.5 rounded-lg border border-neutral-200 text-xs font-semibold shrink-0">
+        <button
+          id="mode-daily-btn"
           onClick={() => onSelectMode('daily')}
           className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             isDaily
@@ -77,6 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         <button
+          id="mode-practice-btn"
           onClick={() => onSelectMode('practice')}
           className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             !isDaily
@@ -86,8 +131,8 @@ export const Header: React.FC<HeaderProps> = ({
           title="Play unlimited random practice puzzles"
         >
           <Dices className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${!isDaily ? 'text-indigo-500' : 'text-neutral-400'}`} />
-          <span className="hidden xs:inline">Practice</span>
-          <span className="xs:hidden">Free</span>
+          <span className="hidden sm:inline">Practice</span>
+          <span className="sm:hidden">Free</span>
         </button>
       </div>
 
@@ -144,7 +189,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="view-results-btn"
             onClick={onOpenResultModal}
-            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1.5 transition-colors"
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <Trophy className="w-3.5 h-3.5 text-neutral-700" />
             <span className="hidden sm:inline">Scorecard</span>
@@ -156,7 +201,7 @@ export const Header: React.FC<HeaderProps> = ({
           id="how-to-play-btn"
           onClick={onOpenHowToPlay}
           title="How to Play"
-          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center gap-1"
+          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center gap-1 cursor-pointer"
         >
           <HelpCircle className="w-3.5 h-3.5 text-neutral-500" />
           <span className="hidden sm:inline">Help</span>

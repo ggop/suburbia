@@ -1,12 +1,23 @@
 export type GameMode = 'daily' | 'practice';
 
+export type CityId = 'melbourne' | 'adelaide';
+
+export interface CityOption {
+  id: CityId;
+  name: string;
+  state: string;
+  badge: string;
+  suburbCount: number;
+  waterBodyName: string;
+}
+
 export interface SuburbData {
   id: string;
   name: string;
   lat: number;
   lng: number;
   postcode: string;
-  region: 'Inner' | 'Northern' | 'Western' | 'Eastern' | 'Bayside' | 'South Eastern';
+  region: string;
   historicalFact?: string;
   description?: string;
   population?: number;
@@ -38,6 +49,7 @@ export interface RouteStep {
 }
 
 export interface GameState {
+  cityId: CityId;
   gameMode: GameMode;
   dailyDate?: string;
   challengeNumber?: number;

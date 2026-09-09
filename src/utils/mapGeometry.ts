@@ -5,32 +5,75 @@ import {
   MARIBYRNONG_RIVER_GIS,
 } from '../data/melbourneSuburbs';
 import {
-  SUBURB_BOUNDARIES,
-  SUBURB_CENTERS,
-  SUBURB_ADJACENCY,
+  SUBURB_BOUNDARIES as MELBOURNE_BOUNDARIES,
+  SUBURB_CENTERS as MELBOURNE_CENTERS,
+  SUBURB_ADJACENCY as MELBOURNE_ADJACENCY,
 } from '../data/suburbGeoData';
+import {
+  ADELAIDE_SUBURBS,
+  GULF_ST_VINCENT_SHORELINE,
+  RIVER_TORRENS_GIS,
+  PORT_RIVER_GIS,
+} from '../data/adelaideSuburbs';
+import {
+  ADELAIDE_SUBURB_BOUNDARIES,
+  ADELAIDE_SUBURB_CENTERS,
+  ADELAIDE_SUBURB_ADJACENCY,
+} from '../data/adelaideGeoData';
 import {
   computePolygonAreaKm2,
   getEstimatedPopulation,
   getApproximateAge,
   getNotableHistoricalFact,
 } from '../data/suburbStats';
-import { SuburbProjected, SuburbData } from '../types';
+import { SuburbProjected, SuburbData, CityId, CityOption } from '../types';
 
 export const SVG_WIDTH = 1500;
 export const SVG_HEIGHT = 1100;
 const PADDING = 60;
 
-export interface MelbourneMapModel {
+export const CITIES: Record<CityId, CityOption> = {
+  melbourne: {
+    id: 'melbourne',
+    name: 'Melbourne',
+    state: 'Victoria',
+    badge: 'VIC',
+    suburbCount: 88,
+    waterBodyName: 'Port Phillip Bay',
+  },
+  adelaide: {
+    id: 'adelaide',
+    name: 'Adelaide',
+    state: 'South Australia',
+    badge: 'SA',
+    suburbCount: 401,
+    waterBodyName: 'Gulf St Vincent',
+  },
+};
+
+export interface CityMapModel {
+  cityId: CityId;
+  cityName: string;
+  stateName: string;
   suburbs: SuburbProjected[];
   suburbMap: Map<string, SuburbProjected>;
   adjacency: Map<string, string[]>;
   waterPolygonPath: string;
   coastlinePath: string;
+  primaryRiverPath: string;
+  secondaryRiverPath: string;
+  waterDepthContourPath: string;
+  waterBodyName: string;
+  primaryRiverName: string;
+  secondaryRiverName: string;
+  waterLabelX: number;
+  waterLabelY: number;
+  // Aliases for Melbourne backward-compatibility
   yarraRiverPath: string;
   maribyrnongRiverPath: string;
-  waterDepthContourPath: string;
 }
+
+export type MelbourneMapModel = CityMapModel;
 
 /**
  * Convert an array of 2D points to an SVG smooth curve path
@@ -50,17 +93,40 @@ function pointsToSvgPath(points: [number, number][], close = false): string {
 }
 
 /**
- * Build projected geometry with authentic Victorian cadastral suburb boundaries,
+ * Build projected geometry with authentic cadastral suburb boundaries,
  * realistic sizes, high-resolution GIS waterways, and connected adjacency graph.
  */
-export function buildMelbourneMapModel(): MelbourneMapModel {
-  // Compute bounds across all actual suburb boundary polygons
+export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
+  const isAdelaide = cityId === 'adelaide';
+
+  const rawSuburbs: SuburbData[] = isAdelaide ? ADELAIDE_SUBURBS : MELBOURNE_SUBURBS;
+  const rawBoundaries: Record<string, [number, number][]> = isAdelaide
+    ? ADELAIDE_SUBURB_BOUNDARIES
+    : MELBOURNE_BOUNDARIES;
+  const rawCenters: Record<string, [number, number]> = isAdelaide
+    ? ADELAIDE_SUBURB_CENTERS
+    : MELBOURNE_CENTERS;
+  const rawAdjacency: Record<string, string[]> = isAdelaide
+    ? ADELAIDE_SUBURB_ADJACENCY
+    : MELBOURNE_ADJACENCY;
+
+  const shorelineCoords: [number, number][] = isAdelaide
+    ? GULF_ST_VINCENT_SHORELINE
+    : PORT_PHILLIP_BAY_SHORELINE;
+  const primaryRiverCoords: [number, number][] = isAdelaide
+    ? RIVER_TORRENS_GIS
+    : YARRA_RIVER_GIS;
+  const secondaryRiverCoords: [number, number][] = isAdelaide
+    ? PORT_RIVER_GIS
+    : MARIBYRNONG_RIVER_GIS;
+
+  // Compute bounds across all suburb boundary polygons
   let minLng = Infinity;
   let maxLng = -Infinity;
   let minLat = Infinity;
   let maxLat = -Infinity;
 
-  for (const ring of Object.values(SUBURB_BOUNDARIES)) {
+  for (const ring of Object.values(rawBoundaries)) {
     for (const [lng, lat] of ring) {
       if (lng < minLng) minLng = lng;
       if (lng > maxLng) maxLng = lng;
@@ -69,13 +135,13 @@ export function buildMelbourneMapModel(): MelbourneMapModel {
     }
   }
 
-  // Subtle margin around metropolitan bounds
+  // Margin around metropolitan bounds
   minLat -= 0.02;
   maxLat += 0.02;
   minLng -= 0.02;
   maxLng += 0.02;
 
-  // Aspect ratio correction for Melbourne latitude ~ -37.8 degrees
+  // Aspect ratio correction for city latitude
   const midLatRad = ((minLat + maxLat) / 2) * (Math.PI / 180);
   const cosLat = Math.cos(midLatRad);
 
@@ -99,17 +165,17 @@ export function buildMelbourneMapModel(): MelbourneMapModel {
 
   // Convert to final adjacency map
   const adjacency = new Map<string, string[]>();
-  for (const [id, neighbors] of Object.entries(SUBURB_ADJACENCY)) {
+  for (const [id, neighbors] of Object.entries(rawAdjacency)) {
     adjacency.set(id, neighbors);
   }
 
   // Build projected suburbs with authentic cadastral boundaries and demographic stats
-  const suburbs: SuburbProjected[] = MELBOURNE_SUBURBS.map((s) => {
-    const rawRing = SUBURB_BOUNDARIES[s.id] || [];
+  const suburbs: SuburbProjected[] = rawSuburbs.map((s) => {
+    const rawRing = rawBoundaries[s.id] || [];
     const projectedPolygon: [number, number][] = rawRing.map(([lng, lat]) => project(lng, lat));
 
     // Place label & badge at authentic visual center inside suburb polygon
-    const centerLngLat = SUBURB_CENTERS[s.id] || [s.lng, s.lat];
+    const centerLngLat = rawCenters[s.id] || [s.lng, s.lat];
     const [cx, cy] = project(centerLngLat[0], centerLngLat[1]);
 
     const areaKm2 = computePolygonAreaKm2(rawRing);
@@ -134,56 +200,89 @@ export function buildMelbourneMapModel(): MelbourneMapModel {
   suburbs.forEach((s) => suburbMap.set(s.id, s));
 
   // --- Project High-Resolution GIS Waterways ---
-
-  // 1. Port Phillip Bay Shoreline
-  const projectedCoastline: [number, number][] = PORT_PHILLIP_BAY_SHORELINE.map(([lng, lat]) =>
+  const projectedCoastline: [number, number][] = shorelineCoords.map(([lng, lat]) =>
     project(lng, lat)
   );
-
   const coastlinePath = pointsToSvgPath(projectedCoastline);
 
-  // High-Resolution Port Phillip Bay Water Polygon:
-  // Traces along the projected coastline, then around the bottom perimeter of the SVG canvas
-  const firstCoastPoint = projectedCoastline[0];
-  const lastCoastPoint = projectedCoastline[projectedCoastline.length - 1];
+  // High-Resolution Water Polygon
+  let waterPolygonPath = '';
+  if (projectedCoastline.length > 0) {
+    const firstCoastPoint = projectedCoastline[0];
+    const lastCoastPoint = projectedCoastline[projectedCoastline.length - 1];
 
-  let waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
-  for (let i = 1; i < projectedCoastline.length; i++) {
-    waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
+    if (isAdelaide) {
+      // For Adelaide, Gulf St Vincent is to the WEST of the coastline
+      waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
+      for (let i = 1; i < projectedCoastline.length; i++) {
+        waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
+      }
+      waterPolygonPath += ` L -200,${lastCoastPoint[1]}`;
+      waterPolygonPath += ` L -200,${firstCoastPoint[1]}`;
+      waterPolygonPath += ' Z';
+    } else {
+      // For Melbourne, Port Phillip Bay is to the SOUTH of the coastline
+      waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
+      for (let i = 1; i < projectedCoastline.length; i++) {
+        waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
+      }
+      waterPolygonPath += ` L ${lastCoastPoint[0]},${SVG_HEIGHT + 300}`;
+      waterPolygonPath += ` L -200,${SVG_HEIGHT + 300}`;
+      waterPolygonPath += ` L -200,${firstCoastPoint[1]}`;
+      waterPolygonPath += ' Z';
+    }
   }
-  // From Frankston / Oliver's Hill south to bottom of SVG, across to bottom-left, up to Werribee South
-  waterPolygonPath += ` L ${lastCoastPoint[0]},${SVG_HEIGHT + 300}`;
-  waterPolygonPath += ` L -200,${SVG_HEIGHT + 300}`;
-  waterPolygonPath += ` L -200,${firstCoastPoint[1]}`;
-  waterPolygonPath += ' Z';
 
-  // Water depth contour (subtle bathymetry contour offset slightly deeper into the bay)
+  // Water depth contour (subtle bathymetry contour offset slightly deeper into the bay/gulf)
   const depthContourPoints: [number, number][] = projectedCoastline.map(([x, y]) => [
-    Math.round((x - 14) * 10) / 10,
-    Math.round((y + 12) * 10) / 10,
+    Math.round((isAdelaide ? x - 18 : x - 14) * 10) / 10,
+    Math.round((isAdelaide ? y : y + 12) * 10) / 10,
   ]);
   const waterDepthContourPath = pointsToSvgPath(depthContourPoints);
 
-  // 2. Yarra River (Birrarung)
-  const projectedYarra: [number, number][] = YARRA_RIVER_GIS.map(([lng, lat]) => project(lng, lat));
-  const yarraRiverPath = pointsToSvgPath(projectedYarra);
-
-  // 3. Maribyrnong River
-  const projectedMaribyrnong: [number, number][] = MARIBYRNONG_RIVER_GIS.map(([lng, lat]) =>
+  // Rivers
+  const projectedPrimaryRiver: [number, number][] = primaryRiverCoords.map(([lng, lat]) =>
     project(lng, lat)
   );
-  const maribyrnongRiverPath = pointsToSvgPath(projectedMaribyrnong);
+  const primaryRiverPath = pointsToSvgPath(projectedPrimaryRiver);
+
+  const projectedSecondaryRiver: [number, number][] = secondaryRiverCoords.map(([lng, lat]) =>
+    project(lng, lat)
+  );
+  const secondaryRiverPath = pointsToSvgPath(projectedSecondaryRiver);
+
+  const cityName = isAdelaide ? 'Adelaide' : 'Melbourne';
+  const stateName = isAdelaide ? 'South Australia' : 'Victoria';
+  const waterBodyName = isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
+  const primaryRiverName = isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
+  const secondaryRiverName = isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
+  const waterLabelX = isAdelaide ? 60 : 260;
+  const waterLabelY = isAdelaide ? 540 : 930;
 
   return {
+    cityId,
+    cityName,
+    stateName,
     suburbs,
     suburbMap,
     adjacency,
     waterPolygonPath,
     coastlinePath,
-    yarraRiverPath,
-    maribyrnongRiverPath,
+    primaryRiverPath,
+    secondaryRiverPath,
     waterDepthContourPath,
+    waterBodyName,
+    primaryRiverName,
+    secondaryRiverName,
+    waterLabelX,
+    waterLabelY,
+    yarraRiverPath: primaryRiverPath,
+    maribyrnongRiverPath: secondaryRiverPath,
   };
+}
+
+export function buildMelbourneMapModel(): MelbourneMapModel {
+  return buildCityMapModel('melbourne');
 }
 
 /**
@@ -269,7 +368,8 @@ export interface GeneratedGame {
  */
 export function generateRandomGame(
   suburbs: SuburbData[],
-  adjacency: Map<string, string[]>
+  adjacency: Map<string, string[]>,
+  cityId: CityId = 'melbourne'
 ): GeneratedGame {
   const allIds = suburbs.map((s) => s.id);
 
@@ -299,9 +399,9 @@ export function generateRandomGame(
     }
   }
 
-  // Guaranteed fallback: Melbourne CBD to Box Hill (5 steps)
-  const startId = 'melbourne-cbd';
-  const targetId = 'box-hill';
+  // Guaranteed fallback
+  const startId = cityId === 'adelaide' ? 'adelaide-cbd' : 'melbourne-cbd';
+  const targetId = cityId === 'adelaide' ? 'glenelg' : 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
   return {
     startSuburbId: startId,

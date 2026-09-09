@@ -6,11 +6,13 @@ interface TooltipProps {
   info: SuburbTooltipInfo | null;
   currentSuburbName?: string;
   targetSuburbName?: string;
+  cityName?: string;
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({
   info,
   targetSuburbName,
+  cityName = 'Melbourne',
 }) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 310, height: 230 });
@@ -100,7 +102,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   } else {
     roleBadge = (
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-100 text-neutral-600 border border-neutral-200">
-        Melbourne Suburb
+        {cityName} Suburb
       </span>
     );
   }

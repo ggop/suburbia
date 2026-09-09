@@ -186,22 +186,9 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
         </div>
 
         {/* Concise Stats Bar */}
-        <div className="grid grid-cols-2 gap-2 bg-neutral-50 p-2.5 rounded-xl border border-neutral-200 text-center">
-          <div>
-            <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">Turns Used</div>
-            <div className="text-lg font-bold font-mono text-neutral-900">{turnsUsed}</div>
-          </div>
-          <div className="border-l border-neutral-200">
-            <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">Suburbs Visited</div>
-            <div className="text-lg font-bold font-mono text-neutral-900">
-              {gameState.path.length}
-              {backtrackedCount > 0 && (
-                <span className="text-[10px] font-normal text-amber-700 ml-1">
-                  ({backtrackedCount} undone)
-                </span>
-              )}
-            </div>
-          </div>
+        <div className="bg-neutral-50 p-2.5 rounded-xl border border-neutral-200 text-center">
+          <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">Turns Used</div>
+          <div className="text-lg font-bold font-mono text-neutral-900">{turnsUsed}</div>
         </div>
 
         {/* Route Comparison */}

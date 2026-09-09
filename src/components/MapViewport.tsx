@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { SuburbProjected, SuburbRole, SuburbTooltipInfo, GameState } from '../types';
-import { SVG_WIDTH, SVG_HEIGHT, MelbourneMapModel } from '../utils/mapGeometry';
+import { SVG_WIDTH, SVG_HEIGHT, CityMapModel } from '../utils/mapGeometry';
 import { Tooltip } from './Tooltip';
 import { ZoomIn, ZoomOut, RotateCcw, Locate, Eye, Compass } from 'lucide-react';
 
 interface MapViewportProps {
-  mapModel: MelbourneMapModel;
+  mapModel: CityMapModel;
   gameState: GameState;
   distancesToTarget: Map<string, number>;
   distancesToCurrent: Map<string, number>;
@@ -174,8 +174,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     }
   }, [gameState.startSuburbId, gameState.targetSuburbId, gameState.bestPath, mapModel.suburbMap]);
 
-  // Unique identifier for current puzzle round
-  const currentPuzzleKey = `${gameState.startSuburbId}->${gameState.targetSuburbId}`;
+  // Unique identifier for current puzzle round (tied to city and start/target)
+  const currentPuzzleKey = `${gameState.cityId}_${gameState.startSuburbId}->${gameState.targetSuburbId}`;
 
   // When game starts or a new round begins, zoom in so area of interest occupies the view.
   // CRITICAL: Only triggers on new puzzle, NEVER on selecting the next suburb in an active game!
@@ -1115,10 +1115,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
           {/* High-Resolution GIS Waterways Overlay Layer (Rivers & Labels, Coastline blue line removed) */}
           <g id="gis-waterways" className="pointer-events-none select-none">
-            {/* Water label */}
+            {/* Water body label */}
             <text
-              x="260"
-              y="930"
+              x={mapModel.waterLabelX ?? 260}
+              y={mapModel.waterLabelY ?? 930}
               fill="#64748b"
               fontSize="24"
               fontFamily="'Space Grotesk', sans-serif"
@@ -1126,15 +1126,15 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               letterSpacing="6"
               className="opacity-60 uppercase"
             >
-              Port Phillip Bay
+              {mapModel.waterBodyName || 'Waterway'}
             </text>
 
-            {/* 2. Yarra River (Birrarung) GIS Flowline */}
-            {mapModel.yarraRiverPath && (
-              <g id="yarra-river">
+            {/* Primary River GIS Flowline (e.g. River Torrens or Yarra River) */}
+            {mapModel.primaryRiverPath && (
+              <g id="primary-river">
                 {/* River buffer / bank */}
                 <path
-                  d={mapModel.yarraRiverPath}
+                  d={mapModel.primaryRiverPath}
                   fill="none"
                   stroke="#e0f2fe"
                   strokeWidth={6 / Math.sqrt(transform.scale)}
@@ -1144,7 +1144,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 />
                 {/* River water channel */}
                 <path
-                  d={mapModel.yarraRiverPath}
+                  d={mapModel.primaryRiverPath}
                   fill="none"
                   stroke="#0284c7"
                   strokeWidth={2.8 / Math.sqrt(transform.scale)}
@@ -1154,12 +1154,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
               </g>
             )}
 
-            {/* 3. Maribyrnong River GIS Flowline */}
-            {mapModel.maribyrnongRiverPath && (
-              <g id="maribyrnong-river">
+            {/* Secondary River GIS Flowline (e.g. Port River or Maribyrnong River) */}
+            {mapModel.secondaryRiverPath && (
+              <g id="secondary-river">
                 {/* River buffer */}
                 <path
-                  d={mapModel.maribyrnongRiverPath}
+                  d={mapModel.secondaryRiverPath}
                   fill="none"
                   stroke="#e0f2fe"
                   strokeWidth={4.8 / Math.sqrt(transform.scale)}
@@ -1169,7 +1169,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 />
                 {/* River channel */}
                 <path
-                  d={mapModel.maribyrnongRiverPath}
+                  d={mapModel.secondaryRiverPath}
                   fill="none"
                   stroke="#0284c7"
                   strokeWidth={2.2 / Math.sqrt(transform.scale)}
@@ -1479,6 +1479,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         info={tooltipInfo}
         currentSuburbName={currentSuburb?.name}
         targetSuburbName={targetSuburb?.name}
+        cityName={gameState.cityId === 'adelaide' ? 'Adelaide' : 'Melbourne'}
       />
     </div>
   );

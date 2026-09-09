@@ -80,7 +80,7 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
             <div>
               <h4 className="font-bold text-neutral-900 mb-0.5">4. Suburb Stats & Post-Game Tooltips</h4>
               <p className="text-neutral-500 text-xs leading-relaxed">
-                During play, path suburbs show details on hover. After the game ends, tooltips are unlocked for <strong>all suburbs</strong> across Melbourne, showing estimated population, area (km²), established period/decade, and notable historical facts.
+                During play, path suburbs show details on hover. After the game ends, tooltips are unlocked for <strong>all suburbs</strong> across the metropolitan area, showing estimated population, area (km²), established period/decade, and notable historical facts.
               </p>
             </div>
           </div>

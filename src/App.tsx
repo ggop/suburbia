@@ -5,16 +5,18 @@
 
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  buildMelbourneMapModel,
+  buildCityMapModel,
   generateRandomGame,
   getDistancesFrom,
+  CityMapModel,
 } from './utils/mapGeometry';
-import { GameMode, GameState } from './types';
+import { GameMode, GameState, CityId } from './types';
 import { MapViewport } from './components/MapViewport';
 import { GameControls } from './components/GameControls';
 import { Header } from './components/Header';
 import { GameResultModal } from './components/GameResultModal';
 import { HowToPlayModal } from './components/HowToPlayModal';
+import { FirstTimeVisitorModal } from './components/FirstTimeVisitorModal';
 import {
   generateDailyChallenge,
   getTodayDateString,
@@ -24,75 +26,93 @@ import {
   loadActiveDailyState,
   loadActivePracticeState,
   loadLastMode,
+  loadSelectedCity,
+  saveSelectedCity,
 } from './utils/gameStateStorage';
 
+function createInitialGameState(
+  cityId: CityId,
+  mode: GameMode,
+  model: CityMapModel
+): GameState {
+  const todayStr = getTodayDateString();
+
+  if (mode === 'practice') {
+    const savedPractice = loadActivePracticeState(cityId);
+    if (
+      savedPractice &&
+      model.suburbMap.has(savedPractice.startSuburbId) &&
+      model.suburbMap.has(savedPractice.targetSuburbId)
+    ) {
+      return savedPractice;
+    }
+    const generated = generateRandomGame(model.suburbs, model.adjacency, cityId);
+    const newPracticeState: GameState = {
+      cityId,
+      gameMode: 'practice',
+      startSuburbId: generated.startSuburbId,
+      targetSuburbId: generated.targetSuburbId,
+      path: [generated.startSuburbId],
+      routeHistory: [{ suburbId: generated.startSuburbId, backtracked: false }],
+      turnsUsed: 0,
+      maxTurns: generated.maxTurns,
+      status: 'playing',
+      bestPath: generated.bestPath,
+      bestPathDistance: generated.bestPathDistance,
+      guessedSuburbs: [],
+      turnHistory: [],
+    };
+    saveActiveGameState(newPracticeState);
+    return newPracticeState;
+  }
+
+  // Default to Daily Challenge
+  const dailyGame = generateDailyChallenge(model.suburbs, model.adjacency, todayStr, cityId);
+
+  // Check if player had an in-progress daily challenge for today in this city
+  const savedActiveDaily = loadActiveDailyState(todayStr, cityId);
+  if (
+    savedActiveDaily &&
+    savedActiveDaily.startSuburbId === dailyGame.startSuburbId &&
+    savedActiveDaily.targetSuburbId === dailyGame.targetSuburbId
+  ) {
+    return savedActiveDaily;
+  }
+
+  const freshDailyState: GameState = {
+    cityId,
+    gameMode: 'daily',
+    dailyDate: dailyGame.dateStr,
+    challengeNumber: dailyGame.challengeNumber,
+    startSuburbId: dailyGame.startSuburbId,
+    targetSuburbId: dailyGame.targetSuburbId,
+    path: [dailyGame.startSuburbId],
+    routeHistory: [{ suburbId: dailyGame.startSuburbId, backtracked: false }],
+    turnsUsed: 0,
+    maxTurns: dailyGame.maxTurns,
+    status: 'playing',
+    bestPath: dailyGame.bestPath,
+    bestPathDistance: dailyGame.bestPathDistance,
+    guessedSuburbs: [],
+    turnHistory: [],
+  };
+  saveActiveGameState(freshDailyState);
+  return freshDailyState;
+}
+
 export default function App() {
-  // Pre-calculate Melbourne geometry, Voronoi line polygons, and adjacency graph
-  const mapModel = useMemo(() => buildMelbourneMapModel(), []);
+  // Selected city/map (persisted across sessions)
+  const [selectedCity, setSelectedCity] = useState<CityId>(() => loadSelectedCity());
+
+  // Pre-calculate city geometry, Voronoi line polygons, and adjacency graph for selected city
+  const mapModel = useMemo(() => buildCityMapModel(selectedCity), [selectedCity]);
 
   // Initialize game on load with full refresh persistence (preventing reset on tab refresh)
   const [gameState, setGameState] = useState<GameState>(() => {
     const lastMode = loadLastMode();
-    const todayStr = getTodayDateString();
-
-    if (lastMode === 'practice') {
-      const savedPractice = loadActivePracticeState();
-      if (
-        savedPractice &&
-        mapModel.suburbMap.has(savedPractice.startSuburbId) &&
-        mapModel.suburbMap.has(savedPractice.targetSuburbId)
-      ) {
-        return savedPractice;
-      }
-      const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
-      const newPracticeState: GameState = {
-        gameMode: 'practice',
-        startSuburbId: generated.startSuburbId,
-        targetSuburbId: generated.targetSuburbId,
-        path: [generated.startSuburbId],
-        turnsUsed: 0,
-        maxTurns: generated.maxTurns,
-        status: 'playing',
-        bestPath: generated.bestPath,
-        bestPathDistance: generated.bestPathDistance,
-        guessedSuburbs: [],
-        turnHistory: [],
-      };
-      saveActiveGameState(newPracticeState);
-      return newPracticeState;
-    }
-
-    // Default to Daily Challenge
-    const dailyGame = generateDailyChallenge(mapModel.suburbs, mapModel.adjacency, todayStr);
-
-    // Check if player had an in-progress daily challenge for today
-    const savedActiveDaily = loadActiveDailyState(todayStr);
-    if (
-      savedActiveDaily &&
-      savedActiveDaily.startSuburbId === dailyGame.startSuburbId &&
-      savedActiveDaily.targetSuburbId === dailyGame.targetSuburbId
-    ) {
-      return savedActiveDaily;
-    }
-
-    const freshDailyState: GameState = {
-      gameMode: 'daily',
-      dailyDate: dailyGame.dateStr,
-      challengeNumber: dailyGame.challengeNumber,
-      startSuburbId: dailyGame.startSuburbId,
-      targetSuburbId: dailyGame.targetSuburbId,
-      path: [dailyGame.startSuburbId],
-      routeHistory: [{ suburbId: dailyGame.startSuburbId, backtracked: false }],
-      turnsUsed: 0,
-      maxTurns: dailyGame.maxTurns,
-      status: 'playing',
-      bestPath: dailyGame.bestPath,
-      bestPathDistance: dailyGame.bestPathDistance,
-      guessedSuburbs: [],
-      turnHistory: [],
-    };
-    saveActiveGameState(freshDailyState);
-    return freshDailyState;
+    const city = loadSelectedCity();
+    const initialModel = buildCityMapModel(city);
+    return createInitialGameState(city, lastMode, initialModel);
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -101,6 +121,31 @@ export default function App() {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [showBestPathOverlay, setShowBestPathOverlay] = useState(false);
 
+  // Check if someone is visiting the game for the first time
+  const [showFirstTimeOffer, setShowFirstTimeOffer] = useState<boolean>(() => {
+    try {
+      const hasVisited = localStorage.getItem('suburb_game_has_visited_v1');
+      return !hasVisited;
+    } catch {
+      return false;
+    }
+  });
+
+  const handleAcceptRulesOffer = useCallback(() => {
+    try {
+      localStorage.setItem('suburb_game_has_visited_v1', 'true');
+    } catch {}
+    setShowFirstTimeOffer(false);
+    setIsHowToPlayOpen(true);
+  }, []);
+
+  const handleDeclineRulesOffer = useCallback(() => {
+    try {
+      localStorage.setItem('suburb_game_has_visited_v1', 'true');
+    } catch {}
+    setShowFirstTimeOffer(false);
+  }, []);
+
   // Automatically persist every state change to localStorage immediately
   useEffect(() => {
     saveActiveGameState(gameState);
@@ -108,13 +153,18 @@ export default function App() {
 
   const handleMapClickDisabled = useCallback(() => {
     if (gameState.status !== 'playing') return;
-    setErrorMessage('Map suburb selection is disabled. Please select from the "Available Neighbours" list to make your move.');
+    setErrorMessage(
+      'Map suburb selection is disabled. Please select from the "Available Neighbours" list to make your move.'
+    );
   }, [gameState.status]);
 
-  const handleInvalidGuess = useCallback((query: string) => {
-    setErrorMessage(`No Melbourne suburb found matching "${query}". Check your spelling.`);
-    setConsecutiveErrors((prev) => prev + 1);
-  }, []);
+  const handleInvalidGuess = useCallback(
+    (query: string) => {
+      setErrorMessage(`No ${mapModel.cityName} suburb found matching "${query}". Check your spelling.`);
+      setConsecutiveErrors((prev) => prev + 1);
+    },
+    [mapModel.cityName]
+  );
 
   // Distances to target for every suburb (used for tactical guidance & tooltips)
   const distancesToTarget = useMemo(() => {
@@ -222,7 +272,9 @@ export default function App() {
       const isDirectTargetClick = nextSuburbId === gameState.targetSuburbId;
       // Moving to target from an adjacent suburb does not count as an extra turn
       const newTurnsUsed = isDirectTargetClick
-        ? (gameState.path.length <= 1 ? 1 : gameState.turnsUsed)
+        ? gameState.path.length <= 1
+          ? 1
+          : gameState.turnsUsed
         : gameState.turnsUsed + 1;
       const isTurnLimitReached = newTurnsUsed >= gameState.maxTurns;
 
@@ -249,31 +301,46 @@ export default function App() {
           setErrorMessage(
             `${nextSuburb.name} is on the optimal route! Shaded green on map. Connect to it by guessing a bordering suburb of ${currentSuburb.name}.`
           );
-          setConsecutiveErrors(0);
         } else {
           setErrorMessage(
-            `${distanceMsg}. Guess a bordering suburb of ${currentSuburb.name} to advance!`
+            `Not an available neighbour! ${distanceMsg}. Select an adjacent bordering suburb.`
           );
-          setConsecutiveErrors((prev) => prev + 1);
         }
 
-        const newGuessed = Array.from(new Set([...(gameState.guessedSuburbs || []), nextSuburbId]));
+        // Add to guessedSuburbs list
+        const updatedGuessed = Array.from(new Set([...(gameState.guessedSuburbs || []), nextSuburbId]));
         const newHistory = [
           ...(gameState.turnHistory || []),
-          { type: 'guess' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
+          {
+            type: 'guess' as const,
+            suburbId: nextSuburbId,
+            prevConsecutiveErrors: consecutiveErrors,
+          },
         ];
 
-        setGameState((prev) => ({
-          ...prev,
-          turnsUsed: newTurnsUsed,
-          status: isTurnLimitReached ? 'lost' : prev.status,
-          guessedSuburbs: newGuessed,
-          turnHistory: newHistory,
-        }));
+        // If turn limit reached through guessing
+        if (isTurnLimitReached) {
+          setGameState((prev) => ({
+            ...prev,
+            turnsUsed: newTurnsUsed,
+            status: 'lost',
+            guessedSuburbs: updatedGuessed,
+            turnHistory: newHistory,
+          }));
+        } else {
+          setGameState((prev) => ({
+            ...prev,
+            turnsUsed: newTurnsUsed,
+            guessedSuburbs: updatedGuessed,
+            turnHistory: newHistory,
+          }));
+        }
+
+        setConsecutiveErrors((prev) => prev + 1);
         return;
       }
 
-      // 4. Valid tactical move! Reset consecutive errors so hint clears for the next step
+      // Valid move to an adjacent bordering suburb!
       setErrorMessage(null);
       setConsecutiveErrors(0);
 
@@ -284,11 +351,15 @@ export default function App() {
       ];
       const newHistory = [
         ...(gameState.turnHistory || []),
-        { type: 'step' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
+        {
+          type: 'step' as const,
+          suburbId: nextSuburbId,
+          prevConsecutiveErrors: consecutiveErrors,
+        },
       ];
 
-      // Check if move is directly to target
-      if (isDirectTargetClick) {
+      // Check win condition (landing on target directly)
+      if (nextSuburbId === gameState.targetSuburbId) {
         setGameState((prev) => ({
           ...prev,
           path: newPath,
@@ -318,7 +389,7 @@ export default function App() {
           ...prev,
           path: newPathWithTarget,
           routeHistory: newRouteWithTarget,
-          turnsUsed: newTurnsUsed, // Only the turn to reach nextSuburbId is counted; target does NOT count as an extra turn
+          turnsUsed: newTurnsUsed,
           status: 'won',
           turnHistory: newTurnHistoryWithTarget,
         }));
@@ -365,13 +436,16 @@ export default function App() {
       // In routeHistory, mark the last non-backtracked occurrence as backtracked
       const currentRoute = prev.routeHistory || prev.path.map((id) => ({ suburbId: id, backtracked: false }));
       let marked = false;
-      const newRouteHistory = [...currentRoute].reverse().map((step) => {
-        if (!marked && !step.backtracked && step.suburbId === backtrackedSuburbId) {
-          marked = true;
-          return { ...step, backtracked: true };
-        }
-        return step;
-      }).reverse();
+      const newRouteHistory = [...currentRoute]
+        .reverse()
+        .map((step) => {
+          if (!marked && !step.backtracked && step.suburbId === backtrackedSuburbId) {
+            marked = true;
+            return { ...step, backtracked: true };
+          }
+          return step;
+        })
+        .reverse();
 
       const newHistory = [
         ...(prev.turnHistory || []),
@@ -386,7 +460,6 @@ export default function App() {
         ...prev,
         path: newPath,
         routeHistory: newRouteHistory,
-        // DO NOT return any turns used!
         turnsUsed: prev.turnsUsed,
         turnHistory: newHistory,
       };
@@ -408,81 +481,41 @@ export default function App() {
     setIsResultModalOpen(true);
   }, [gameState.status]);
 
+  // City Switcher (Melbourne vs. Adelaide)
+  const handleSelectCity = useCallback(
+    (newCity: CityId) => {
+      if (newCity === selectedCity) return;
+      saveSelectedCity(newCity);
+      setSelectedCity(newCity);
+      setErrorMessage(null);
+      setConsecutiveErrors(0);
+      setShowBestPathOverlay(false);
+      setIsResultModalOpen(false);
+
+      const newModel = buildCityMapModel(newCity);
+      const nextState = createInitialGameState(newCity, gameState.gameMode, newModel);
+      setGameState(nextState);
+    },
+    [selectedCity, gameState.gameMode]
+  );
+
   // Mode switcher (Daily vs Practice)
   const handleSelectMode = useCallback(
     (mode: GameMode) => {
-      if (mode === 'daily') {
-        const todayStr = getTodayDateString();
-        const dailyGame = generateDailyChallenge(mapModel.suburbs, mapModel.adjacency, todayStr);
-
-        // Restore active in-progress daily challenge if available
-        const savedActiveDaily = loadActiveDailyState(todayStr);
-        if (
-          savedActiveDaily &&
-          savedActiveDaily.startSuburbId === dailyGame.startSuburbId &&
-          savedActiveDaily.targetSuburbId === dailyGame.targetSuburbId
-        ) {
-          setGameState(savedActiveDaily);
-          setIsResultModalOpen(savedActiveDaily.status !== 'playing');
-          setShowBestPathOverlay(savedActiveDaily.status !== 'playing');
-        } else {
-          const freshState: GameState = {
-            gameMode: 'daily',
-            dailyDate: dailyGame.dateStr,
-            challengeNumber: dailyGame.challengeNumber,
-            startSuburbId: dailyGame.startSuburbId,
-            targetSuburbId: dailyGame.targetSuburbId,
-            path: [dailyGame.startSuburbId],
-            routeHistory: [{ suburbId: dailyGame.startSuburbId, backtracked: false }],
-            turnsUsed: 0,
-            maxTurns: dailyGame.maxTurns,
-            status: 'playing',
-            bestPath: dailyGame.bestPath,
-            bestPathDistance: dailyGame.bestPathDistance,
-            guessedSuburbs: [],
-            turnHistory: [],
-          };
-          setGameState(freshState);
-          setIsResultModalOpen(false);
-          setShowBestPathOverlay(false);
-        }
-      } else {
-        // Practice mode: restore active in-progress game or create a new one
-        const savedPractice = loadActivePracticeState();
-        if (
-          savedPractice &&
-          mapModel.suburbMap.has(savedPractice.startSuburbId) &&
-          mapModel.suburbMap.has(savedPractice.targetSuburbId)
-        ) {
-          setGameState(savedPractice);
-          setIsResultModalOpen(savedPractice.status !== 'playing');
-          setShowBestPathOverlay(savedPractice.status !== 'playing');
-        } else {
-          const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
-          const freshPracticeState: GameState = {
-            gameMode: 'practice',
-            startSuburbId: generated.startSuburbId,
-            targetSuburbId: generated.targetSuburbId,
-            path: [generated.startSuburbId],
-            routeHistory: [{ suburbId: generated.startSuburbId, backtracked: false }],
-            turnsUsed: 0,
-            maxTurns: generated.maxTurns,
-            status: 'playing',
-            bestPath: generated.bestPath,
-            bestPathDistance: generated.bestPathDistance,
-            guessedSuburbs: [],
-            turnHistory: [],
-          };
-          setGameState(freshPracticeState);
-          setIsResultModalOpen(false);
-          setShowBestPathOverlay(false);
-        }
-      }
-
+      if (mode === gameState.gameMode) return;
       setErrorMessage(null);
       setConsecutiveErrors(0);
+      setShowBestPathOverlay(false);
+      setIsResultModalOpen(false);
+
+      const nextState = createInitialGameState(selectedCity, mode, mapModel);
+      setGameState(nextState);
+      if (nextState.status !== 'playing') {
+        setIsResultModalOpen(true);
+        setShowBestPathOverlay(true);
+      }
     },
-    [mapModel]
+    [gameState.gameMode, selectedCity, mapModel]
   );
 
   // Start new round / restart (Practice only; Daily cannot be restarted mid-game)
@@ -494,8 +527,9 @@ export default function App() {
       return;
     }
 
-    const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency);
-    setGameState({
+    const generated = generateRandomGame(mapModel.suburbs, mapModel.adjacency, selectedCity);
+    const freshPracticeState: GameState = {
+      cityId: selectedCity,
       gameMode: 'practice',
       startSuburbId: generated.startSuburbId,
       targetSuburbId: generated.targetSuburbId,
@@ -508,13 +542,15 @@ export default function App() {
       bestPathDistance: generated.bestPathDistance,
       guessedSuburbs: [],
       turnHistory: [],
-    });
+    };
+    setGameState(freshPracticeState);
+    saveActiveGameState(freshPracticeState);
 
     setErrorMessage(null);
     setConsecutiveErrors(0);
     setIsResultModalOpen(false);
     setShowBestPathOverlay(false);
-  }, [mapModel, gameState.gameMode, gameState.status]);
+  }, [mapModel, gameState.gameMode, gameState.status, selectedCity]);
 
   return (
     <div className="flex flex-col w-screen h-screen bg-neutral-50 text-neutral-900 overflow-hidden font-sans select-none">
@@ -522,6 +558,8 @@ export default function App() {
       <Header
         gameState={gameState}
         mapModel={mapModel}
+        selectedCity={selectedCity}
+        onSelectCity={handleSelectCity}
         onNewGame={handleNewGame}
         onOpenHowToPlay={() => setIsHowToPlayOpen(true)}
         onOpenResultModal={() => setIsResultModalOpen(true)}
@@ -575,6 +613,13 @@ export default function App() {
       <HowToPlayModal
         isOpen={isHowToPlayOpen}
         onClose={() => setIsHowToPlayOpen(false)}
+      />
+
+      {/* First-Time Visitor Rules Prompt Modal */}
+      <FirstTimeVisitorModal
+        isOpen={showFirstTimeOffer}
+        onShowRules={handleAcceptRulesOffer}
+        onSkip={handleDeclineRulesOffer}
       />
     </div>
   );
