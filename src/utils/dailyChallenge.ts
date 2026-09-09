@@ -141,7 +141,7 @@ export function generateDailyChallenge(
         startSuburbId: startId,
         targetSuburbId: chosen.id,
         bestPath,
-        bestPathDistance: 5,
+        bestPathDistance: Math.max(1, bestPath.length - 2),
         maxTurns: 10,
       };
     }
@@ -158,7 +158,7 @@ export function generateDailyChallenge(
     startSuburbId: startId,
     targetSuburbId: targetId,
     bestPath,
-    bestPathDistance: 5,
+    bestPathDistance: Math.max(1, bestPath.length - 2),
     maxTurns: 10,
   };
 }
@@ -188,7 +188,7 @@ export function generateDailyShareText(
   const displayDate = formatDisplayDate(result.dateStr);
 
   const isWon = result.status === 'won';
-  const optimalSteps = result.bestPathDistance;
+  const optimalSteps = Math.max(1, result.bestPath.length - 2);
   const pathLength = result.path.length;
   const optimalSuburbs = optimalSteps + 1;
 

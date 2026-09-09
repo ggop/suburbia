@@ -293,7 +293,7 @@ export function generateRandomGame(
         startSuburbId: randomStart,
         targetSuburbId: chosen.id,
         bestPath,
-        bestPathDistance: 5,
+        bestPathDistance: Math.max(1, bestPath.length - 2),
         maxTurns: 10,
       };
     }
@@ -307,7 +307,7 @@ export function generateRandomGame(
     startSuburbId: startId,
     targetSuburbId: targetId,
     bestPath,
-    bestPathDistance: 5,
+    bestPathDistance: Math.max(1, bestPath.length - 2),
     maxTurns: 10,
   };
 }

@@ -151,7 +151,7 @@ export default function App() {
 
     if (!isTargetAdjacent) return;
 
-    // Target suburb is an available neighbour! Automatically choose it and end the game.
+    // Target suburb is an available neighbour! Automatically connect it without counting target as an extra turn.
     const targetSuburb = mapModel?.suburbMap.get(gameState.targetSuburbId);
     const targetName = targetSuburb?.name || 'Target';
 
@@ -162,7 +162,8 @@ export default function App() {
         const currSub = mapModel?.suburbMap.get(currId);
         if (!currSub || !currSub.neighbors.includes(prev.targetSuburbId)) return prev;
 
-        const newTurnsUsed = prev.turnsUsed + 1;
+        // The turn to reach currSub already counted. Target does NOT count as an extra turn.
+        const newTurnsUsed = prev.turnsUsed;
         const newPath = [...prev.path, prev.targetSuburbId];
         const newRouteHistory = [
           ...(prev.routeHistory || [{ suburbId: prev.startSuburbId, backtracked: false }]),
@@ -217,7 +218,12 @@ export default function App() {
         return;
       }
 
-      const newTurnsUsed = gameState.turnsUsed + 1;
+      // Check if clicking directly on the target from an adjacent suburb
+      const isDirectTargetClick = nextSuburbId === gameState.targetSuburbId;
+      // Moving to target from an adjacent suburb does not count as an extra turn
+      const newTurnsUsed = isDirectTargetClick
+        ? (gameState.path.length <= 1 ? 1 : gameState.turnsUsed)
+        : gameState.turnsUsed + 1;
       const isTurnLimitReached = newTurnsUsed >= gameState.maxTurns;
 
       // 3. Check adjacency (Allow guessing anywhere on the map!)
@@ -281,8 +287,8 @@ export default function App() {
         { type: 'step' as const, suburbId: nextSuburbId, prevConsecutiveErrors: consecutiveErrors },
       ];
 
-      // Check win condition
-      if (nextSuburbId === gameState.targetSuburbId) {
+      // Check if move is directly to target
+      if (isDirectTargetClick) {
         setGameState((prev) => ({
           ...prev,
           path: newPath,
@@ -291,6 +297,32 @@ export default function App() {
           status: 'won',
           turnHistory: newHistory,
         }));
+        return;
+      }
+
+      // Check if this turn directly touches the target suburb
+      const touchesTarget = nextSuburb.neighbors.includes(gameState.targetSuburbId);
+      if (touchesTarget) {
+        // Target is reached! Connect target to complete route without counting target as an extra turn.
+        const newPathWithTarget = [...newPath, gameState.targetSuburbId];
+        const newRouteWithTarget = [
+          ...newRouteHistory,
+          { suburbId: gameState.targetSuburbId, backtracked: false },
+        ];
+        const newTurnHistoryWithTarget = [
+          ...newHistory,
+          { type: 'step' as const, suburbId: gameState.targetSuburbId, prevConsecutiveErrors: 0 },
+        ];
+
+        setGameState((prev) => ({
+          ...prev,
+          path: newPathWithTarget,
+          routeHistory: newRouteWithTarget,
+          turnsUsed: newTurnsUsed, // Only the turn to reach nextSuburbId is counted; target does NOT count as an extra turn
+          status: 'won',
+          turnHistory: newTurnHistoryWithTarget,
+        }));
+        setErrorMessage(`Destination reached! Your turn directly touched ${targetSuburb?.name || 'Target'}.`);
         return;
       }
 

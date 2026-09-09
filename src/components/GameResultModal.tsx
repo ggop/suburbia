@@ -109,7 +109,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
 
   const turnsUsed = gameState.turnsUsed;
-  const optimalTurns = gameState.bestPathDistance;
+  const optimalTurns = Math.max(1, gameState.bestPath.length - 2);
   const isOptimal = turnsUsed === optimalTurns;
   const isDaily = gameState.gameMode === 'daily';
 
@@ -299,7 +299,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           <span>{copied ? 'Copied to Clipboard!' : 'Share Result'}</span>
         </button>
 
-        {/* Action Buttons: Review on Map & Start New Round */}
+        {/* Action Buttons: Review on Map & Start New Round (Practice only) */}
         <div className="flex items-center gap-2 pt-1 border-t border-neutral-100">
           <button
             id="review-map-btn"
@@ -313,14 +313,16 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             <span>Review on Map</span>
           </button>
 
-          <button
-            id="new-round-btn"
-            onClick={onNewRound}
-            className="flex-1 py-2 px-3 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-xs cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>{isDaily ? 'Restart Daily' : 'New Puzzle'}</span>
-          </button>
+          {!isDaily && (
+            <button
+              id="new-round-btn"
+              onClick={onNewRound}
+              className="flex-1 py-2 px-3 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-xs cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>New Puzzle</span>
+            </button>
+          )}
         </div>
       </div>
     </div>
