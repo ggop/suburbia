@@ -45,29 +45,53 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const gaveUp = Boolean(gameState.gaveUp);
   const [copied, setCopied] = useState(false);
 
-  // Trigger confetti when won
+  // Trigger celebratory confetti with Melbourne trams and coffee cups when won
   useEffect(() => {
     if (isWon && isOpen) {
+      let celebrationShapes: ReturnType<typeof confetti.shapeFromText>[] | undefined;
+      try {
+        if (typeof confetti.shapeFromText === 'function') {
+          // Iconic Melbourne Trams and Coffee Cups
+          const tramShape = confetti.shapeFromText({ text: '🚋', scalar: 3 });
+          const coffeeShape = confetti.shapeFromText({ text: '☕', scalar: 3 });
+          celebrationShapes = [tramShape, coffeeShape];
+        }
+      } catch {
+        // Gracefully fallback to default shapes if OffscreenCanvas or shapeFromText is unavailable
+      }
+
       confetti({
-        particleCount: 100,
+        particleCount: 55,
         spread: 70,
         origin: { y: 0.6 },
+        scalar: celebrationShapes ? 3 : 1,
+        shapes: celebrationShapes,
+        ticks: 200,
+        gravity: 0.75,
       });
 
       const timer = setTimeout(() => {
         confetti({
-          particleCount: 60,
+          particleCount: 35,
           angle: 60,
           spread: 55,
           origin: { x: 0 },
+          scalar: celebrationShapes ? 3 : 1,
+          shapes: celebrationShapes,
+          ticks: 220,
+          gravity: 0.75,
         });
         confetti({
-          particleCount: 60,
+          particleCount: 35,
           angle: 120,
           spread: 55,
           origin: { x: 1 },
+          scalar: celebrationShapes ? 3 : 1,
+          shapes: celebrationShapes,
+          ticks: 220,
+          gravity: 0.75,
         });
-      }, 300);
+      }, 280);
 
       return () => clearTimeout(timer);
     }

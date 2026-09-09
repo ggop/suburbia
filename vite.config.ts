@@ -1,15 +1,50 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { execSync } from 'child_process';
+import { defineConfig } from 'vite';
 import compression from 'vite-plugin-compression';
 
+function getGitCommitShortSha(): string {
+  if (process.env.GITHUB_SHA) {
+    return process.env.GITHUB_SHA.substring(0, 7);
+  }
+  if (process.env.VITE_APP_VERSION) {
+    return process.env.VITE_APP_VERSION.substring(0, 7);
+  }
+  if (process.env.COMMIT_REF) {
+    return process.env.COMMIT_REF.substring(0, 7);
+  }
+  try {
+    return execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] })
+      .toString()
+      .trim();
+  } catch {
+    return 'dev';
+  }
+}
+
 export default defineConfig(() => {
+  const gitCommitSha = getGitCommitShortSha();
+
   return {
     base: './',
+    define: {
+      __APP_VERSION__: JSON.stringify(gitCommitSha),
+    },
     plugins: [
       react(),
       tailwindcss(),
+      // Inject git commit short SHA into HTML source (invisible in UI)
+      {
+        name: 'html-version-meta',
+        transformIndexHtml(html) {
+          return html.replace(
+            '</head>',
+            `    <!-- Deployed Version: ${gitCommitSha} -->\n    <meta name="app-version" content="${gitCommitSha}">\n  </head>`
+          );
+        },
+      },
       // Pre-compress all assets with Gzip for web servers & GitHub Pages CDN
       compression({
         algorithm: 'gzip',

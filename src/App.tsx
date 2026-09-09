@@ -529,15 +529,6 @@ export default function App() {
         </section>
       </main>
 
-      {/* Minimalist Footer (hidden on mobile phones to maximize map screen real-estate) */}
-      <footer className="hidden md:flex h-9 sm:h-10 bg-neutral-900 text-neutral-400 text-[10px] items-center justify-between px-6 sm:px-8 uppercase tracking-widest font-bold shrink-0 select-none z-20">
-        <div>COORD: -37.8136° S, 144.9631° E</div>
-        <div className="hidden sm:block">SUBURBS: {mapModel.suburbs.length}</div>
-        <div>
-          {gameState.gameMode === 'daily' ? 'DAILY MODE' : 'PRACTICE MODE'}
-        </div>
-      </footer>
-
       {/* Victory / Game Over Modal with Path Comparison */}
       <GameResultModal
         gameState={gameState}
