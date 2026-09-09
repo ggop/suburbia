@@ -1,6 +1,6 @@
 {
   "name": "Suburbia",
-  "description": "Navigate between adjacent suburbs on interactive Australian city maps (Melbourne & Adelaide). Features Daily Challenge mode, path optimization, and practice puzzles.",
+  "description": "Navigate between adjacent suburbs and wards on interactive city maps (Melbourne, Adelaide & Chennai). Features Daily Challenge mode, path optimization, and practice puzzles.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

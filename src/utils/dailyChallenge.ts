@@ -2,6 +2,7 @@ import { SuburbData, CityId } from '../types';
 import { findShortestPath, getDistancesFrom, CityMapModel } from './mapGeometry';
 import { CANONICAL_DAILY_CHALLENGES } from '../data/canonicalDailyChallenges';
 import { CANONICAL_ADELAIDE_DAILY_CHALLENGES } from '../data/canonicalAdelaideDailyChallenges';
+import { CANONICAL_CHENNAI_DAILY_CHALLENGES } from '../data/canonicalChennaiDailyChallenges';
 
 /**
  * Deterministic hash function (xmur3) for string date seeds
@@ -109,8 +110,12 @@ export function generateDailyChallenge(
 ): DailyChallengeGame {
   const challengeNumber = getDailyChallengeNumber(dateStr);
 
-  const isAdelaide = cityId === 'adelaide';
-  const canonicalMap = isAdelaide ? CANONICAL_ADELAIDE_DAILY_CHALLENGES : CANONICAL_DAILY_CHALLENGES;
+  const canonicalMap =
+    cityId === 'adelaide'
+      ? CANONICAL_ADELAIDE_DAILY_CHALLENGES
+      : cityId === 'chennai'
+      ? CANONICAL_CHENNAI_DAILY_CHALLENGES
+      : CANONICAL_DAILY_CHALLENGES;
 
   // 1. Immutable Canonical Schedule:
   // Guarantees the daily challenge for any date NEVER changes across deployments,
@@ -173,8 +178,10 @@ export function generateDailyChallenge(
   }
 
   // Deterministic fallback (5 steps)
-  const startId = isAdelaide ? 'adelaide-cbd' : 'melbourne-cbd';
-  const targetId = isAdelaide ? 'glenelg' : 'box-hill';
+  const startId =
+    cityId === 'chennai' ? 't-nagar' : cityId === 'adelaide' ? 'adelaide-cbd' : 'melbourne-cbd';
+  const targetId =
+    cityId === 'chennai' ? 'besant-nagar' : cityId === 'adelaide' ? 'glenelg' : 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
 
   return {

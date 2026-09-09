@@ -1479,7 +1479,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         info={tooltipInfo}
         currentSuburbName={currentSuburb?.name}
         targetSuburbName={targetSuburb?.name}
-        cityName={gameState.cityId === 'adelaide' ? 'Adelaide' : 'Melbourne'}
+        cityName={mapModel.cityName}
       />
     </div>
   );

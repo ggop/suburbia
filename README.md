@@ -4,7 +4,7 @@ An interactive Australian metropolitan geography traversal puzzle game featuring
 
 ## Features
 
-- **Multi-City Support**: Seamlessly toggle between **Melbourne** (423 suburbs) and **Adelaide** (401 suburbs).
+- **Multi-City Support**: Seamlessly toggle between **Melbourne** (88 inner/metro suburbs), **Adelaide** (401 suburbs), and **Chennai** (201 wards).
 - **Daily Challenge Mode**: Every player worldwide gets the exact same start and target suburbs based on today's date!
   - Compare your path lengths and turn counts against the optimal Dijkstra/BFS shortest route.
   - One-click share to compare routes with friends (Wordle-style visual summary and compact route codes).
@@ -27,8 +27,13 @@ The geographic boundaries, cadastral data, and cartographic overlays in Suburbia
 - **Department for Environment and Water (DEW) / SA Water**: Geographic water network data for the River Torrens (*Karrawirra Parri*), Port River (*Yerta Bulti*), Barker Inlet, and Gulf St Vincent shoreline.
 - **Australian Bureau of Statistics (ABS)**: Suburb and Locality geographic classification and demographic estimates.
 
-### 3. Spatial Processing & Topology
-- **Turf.js**: Open-source spatial analysis engine used to compute topological shared-border adjacency (`booleanTouches`, `booleanIntersects`), polygon simplification, and interior visual centerpoints (`pointOnFeature`).
+### 3. Tamil Nadu (Chennai)
+- **Greater Chennai Corporation (GCC) & DataMeet India Community**: Official Corporation of Chennai Ward administrative boundaries covering 200 wards across 15 zones plus Cantonment (St. Thomas Mount) under Open Data Commons Open Database License (ODbL).
+- **Public Works Department (PWD) Water Resources Organization & OpenStreetMap Contributors**: Hydrographic flowlines for the Cooum River (*Koovam*), Adyar River, and Bay of Bengal Coromandel coastline.
+- **India Post (Department of Posts, Ministry of Communications)**: Pincode locator and postal delivery zone mapping.
+
+### 4. Spatial Processing & Topology
+- **Spatial Topological Graphing**: Automated shared-boundary contact detection (`touches`), centroid calculations, and polygon simplifications ensuring 100% gapless cadastral alignment and verified BFS graph connectivity.
 
 ## Hosting on GitHub Pages
 

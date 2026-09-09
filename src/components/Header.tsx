@@ -95,12 +95,28 @@ export const Header: React.FC<HeaderProps> = ({
               ? 'bg-white text-neutral-900 shadow-xs font-bold'
               : 'text-neutral-500 hover:text-neutral-900'
           }`}
-          title="Play Adelaide map (75 suburbs • SA)"
+          title="Play Adelaide map (401 suburbs • SA)"
         >
           <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'adelaide' ? 'bg-sky-500' : 'bg-neutral-400'}`}></span>
           <span className="hidden xs:inline">Adelaide</span>
           <span className="xs:hidden">Adel</span>
           <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">SA</span>
+        </button>
+
+        <button
+          id="city-chennai-btn"
+          onClick={() => onSelectCity('chennai')}
+          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
+            selectedCity === 'chennai'
+              ? 'bg-white text-neutral-900 shadow-xs font-bold'
+              : 'text-neutral-500 hover:text-neutral-900'
+          }`}
+          title="Play Chennai map (201 wards • TN)"
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'chennai' ? 'bg-amber-500' : 'bg-neutral-400'}`}></span>
+          <span className="hidden xs:inline">Chennai</span>
+          <span className="xs:hidden">Maa</span>
+          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">TN</span>
         </button>
       </div>
 
