@@ -1440,6 +1440,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
           Current: <strong className="text-neutral-900">{currentSuburb?.name}</strong> •{' '}
           <span className="text-neutral-600">Choose a neighbour to advance your route</span>
         </span>
+        {mapModel.cityId === 'chennai' && (
+          <span className="ml-1 px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wider">
+            Chennai Beta Map
+          </span>
+        )}
       </div>
 
       {/* Floating Tactical Legend Overlay */}

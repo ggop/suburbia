@@ -4,7 +4,7 @@ An interactive Australian metropolitan geography traversal puzzle game featuring
 
 ## Features
 
-- **Multi-City Support**: Seamlessly toggle between **Melbourne** (88 inner/metro suburbs), **Adelaide** (401 suburbs), and **Chennai** (201 wards).
+- **Multi-City Support**: Seamlessly toggle between **Melbourne** (423 suburbs), **Adelaide** (401 suburbs), and **Chennai** (201 wards).
 - **Daily Challenge Mode**: Every player worldwide gets the exact same start and target suburbs based on today's date!
   - Compare your path lengths and turn counts against the optimal Dijkstra/BFS shortest route.
   - One-click share to compare routes with friends (Wordle-style visual summary and compact route codes).

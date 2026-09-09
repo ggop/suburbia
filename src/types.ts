@@ -9,6 +9,7 @@ export interface CityOption {
   badge: string;
   suburbCount: number;
   waterBodyName: string;
+  isBeta?: boolean;
 }
 
 export interface SuburbData {

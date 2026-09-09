@@ -49,7 +49,7 @@ export const CITIES: Record<CityId, CityOption> = {
     name: 'Melbourne',
     state: 'Victoria',
     badge: 'VIC',
-    suburbCount: 88,
+    suburbCount: MELBOURNE_SUBURBS.length,
     waterBodyName: 'Port Phillip Bay',
   },
   adelaide: {
@@ -57,7 +57,7 @@ export const CITIES: Record<CityId, CityOption> = {
     name: 'Adelaide',
     state: 'South Australia',
     badge: 'SA',
-    suburbCount: 401,
+    suburbCount: ADELAIDE_SUBURBS.length,
     waterBodyName: 'Gulf St Vincent',
   },
   chennai: {
@@ -65,8 +65,9 @@ export const CITIES: Record<CityId, CityOption> = {
     name: 'Chennai',
     state: 'Tamil Nadu',
     badge: 'TN',
-    suburbCount: 201,
+    suburbCount: CHENNAI_SUBURBS.length,
     waterBodyName: 'Bay of Bengal',
+    isBeta: true,
   },
 };
 

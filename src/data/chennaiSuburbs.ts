@@ -38,180 +38,176 @@ export const BAY_OF_BENGAL_SHORELINE: [number, number][] = [
     13.20076
   ],
   [
-    80.24928,
-    13.19673
+    80.32054,
+    13.19554
   ],
   [
-    80.26186,
-    13.19272
+    80.25257,
+    13.19142
   ],
   [
-    80.26907,
-    13.18829
+    80.26906,
+    13.18723
   ],
   [
-    80.27208,
-    13.1841
+    80.30168,
+    13.18305
   ],
   [
-    80.28629,
-    13.17989
+    80.30058,
+    13.17898
   ],
   [
-    80.3038,
-    13.17564
+    80.2906,
+    13.17493
   ],
   [
-    80.25694,
-    13.17139
+    80.30155,
+    13.17083
   ],
   [
-    80.3127,
-    13.16736
+    80.2566,
+    13.16682
   ],
   [
-    80.31171,
-    13.16319
+    80.25607,
+    13.16264
   ],
   [
-    80.25789,
-    13.15897
+    80.29602,
+    13.15839
   ],
   [
-    80.29863,
-    13.15494
+    80.30906,
+    13.15402
   ],
   [
-    80.30299,
-    13.15061
+    80.29772,
+    13.14997
   ],
   [
-    80.29749,
-    13.14657
+    80.2849,
+    13.14595
   ],
   [
-    80.24038,
-    13.14252
+    80.26507,
+    13.14166
   ],
   [
-    80.24349,
-    13.1385
+    80.29798,
+    13.13752
   ],
   [
-    80.29254,
-    13.13419
+    80.2925,
+    13.13332
   ],
   [
-    80.2499,
-    13.13003
+    80.29819,
+    13.12895
   ],
   [
-    80.27722,
-    13.12596
+    80.28898,
+    13.12494
   ],
   [
-    80.24833,
-    13.12192
+    80.2863,
+    13.12092
   ],
   [
-    80.2811,
-    13.11789
+    80.284,
+    13.11682
   ],
   [
-    80.24785,
-    13.11385
+    80.25253,
+    13.11265
   ],
   [
-    80.24398,
-    13.10984
+    80.2807,
+    13.10839
   ],
   [
-    80.27997,
-    13.10576
+    80.26108,
+    13.10432
   ],
   [
-    80.26531,
-    13.10167
+    80.26733,
+    13.10027
   ],
   [
-    80.242,
-    13.09763
+    80.29052,
+    13.09621
   ],
   [
-    80.26658,
-    13.09354
+    80.27457,
+    13.09216
   ],
   [
-    80.27523,
-    13.08953
+    80.27377,
+    13.08802
   ],
   [
-    80.242,
-    13.08546
+    80.2565,
+    13.08395
   ],
   [
-    80.24972,
-    13.08145
+    80.27064,
+    13.07965
   ],
   [
-    80.24101,
-    13.07731
+    80.26612,
+    13.07561
   ],
   [
-    80.26607,
-    13.07315
+    80.27507,
+    13.07159
   ],
   [
-    80.2432,
-    13.06907
+    80.28032,
+    13.06756
   ],
   [
-    80.27796,
-    13.06498
+    80.26017,
+    13.06354
   ],
   [
-    80.24303,
-    13.0609
+    80.2702,
+    13.0595
   ],
   [
-    80.24273,
-    13.0568
+    80.25778,
+    13.05535
   ],
   [
-    80.24183,
-    13.05275
+    80.27768,
+    13.05131
   ],
   [
-    80.27311,
-    13.0487
+    80.26053,
+    13.04723
   ],
   [
-    80.27005,
-    13.04437
+    80.27421,
+    13.04319
   ],
   [
-    80.24014,
-    13.04032
+    80.26079,
+    13.0391
   ],
   [
-    80.27372,
-    13.03629
+    80.27101,
+    13.03493
   ],
   [
-    80.2708,
-    13.03227
+    80.27406,
+    13.03091
   ],
   [
-    80.277,
-    13.02816
+    80.27873,
+    13.02658
   ],
   [
-    80.2739,
-    13.02393
-  ],
-  [
-    80.2778,
-    13.01968
+    80.27721,
+    13.02224
   ],
   [
     80.27728,
@@ -254,56 +250,48 @@ export const BAY_OF_BENGAL_SHORELINE: [number, number][] = [
     12.97793
   ],
   [
-    80.24621,
-    12.97287
+    80.26562,
+    12.97142
   ],
   [
-    80.24925,
-    12.96815
+    80.25278,
+    12.9674
   ],
   [
-    80.24712,
-    12.96391
+    80.26413,
+    12.96283
   ],
   [
-    80.26294,
-    12.95924
+    80.25233,
+    12.95778
   ],
   [
-    80.24887,
-    12.95276
+    80.26176,
+    12.9517
   ],
   [
-    80.26073,
-    12.94773
+    80.26033,
+    12.94532
   ],
   [
-    80.24021,
-    12.94309
+    80.25006,
+    12.94051
   ],
   [
-    80.24518,
-    12.93863
+    80.25825,
+    12.93214
   ],
   [
-    80.24496,
-    12.93274
+    80.2576,
+    12.92526
   ],
   [
-    80.24337,
-    12.92873
+    80.25687,
+    12.92084
   ],
   [
-    80.24179,
-    12.92359
-  ],
-  [
-    80.25677,
-    12.91914
-  ],
-  [
-    80.24345,
-    12.9142
+    80.2556,
+    12.91384
   ],
   [
     80.25502,
@@ -328,43 +316,85 @@ export const BAY_OF_BENGAL_SHORELINE: [number, number][] = [
   [
     80.25104,
     12.8758
-  ],
-  [
-    80.2432,
-    12.87147
-  ],
-  [
-    80.24301,
-    12.86743
-  ],
-  [
-    80.24036,
-    12.85872
   ]
 ];
 
 export const COOUM_RIVER_GIS: [number, number][] = [
-  [80.170, 13.072],
-  [80.185, 13.074],
-  [80.200, 13.075],
-  [80.215, 13.074],
-  [80.230, 13.072],
-  [80.245, 13.070],
-  [80.258, 13.073],
-  [80.272, 13.069],
-  [80.282, 13.068],
-  [80.288, 13.067]
+  [
+    80.17,
+    13.072
+  ],
+  [
+    80.185,
+    13.074
+  ],
+  [
+    80.2,
+    13.075
+  ],
+  [
+    80.215,
+    13.074
+  ],
+  [
+    80.23,
+    13.072
+  ],
+  [
+    80.245,
+    13.07
+  ],
+  [
+    80.258,
+    13.073
+  ],
+  [
+    80.272,
+    13.069
+  ],
+  [
+    80.282,
+    13.068
+  ],
+  [
+    80.288,
+    13.067
+  ]
 ];
 
 export const ADYAR_RIVER_GIS: [number, number][] = [
-  [80.165, 13.008],
-  [80.182, 13.013],
-  [80.200, 13.016],
-  [80.218, 13.019],
-  [80.235, 13.018],
-  [80.248, 13.016],
-  [80.260, 13.008],
-  [80.272, 13.007]
+  [
+    80.165,
+    13.008
+  ],
+  [
+    80.182,
+    13.013
+  ],
+  [
+    80.2,
+    13.016
+  ],
+  [
+    80.218,
+    13.019
+  ],
+  [
+    80.235,
+    13.018
+  ],
+  [
+    80.248,
+    13.016
+  ],
+  [
+    80.26,
+    13.008
+  ],
+  [
+    80.272,
+    13.007
+  ]
 ];
 
 export const CHENNAI_SUBURBS: SuburbData[] = [
@@ -425,7 +455,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kodungaiyur-west",
-    "name": "Kodungaiyur West",
+    "name": "Muthamizh Nagar",
     "lat": 13.1323,
     "lng": 80.26648,
     "postcode": "600001",
@@ -502,7 +532,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "maduravoyal-south",
-    "name": "Maduravoyal South",
+    "name": "Krishna Nagar",
     "lat": 13.05258,
     "lng": 80.16992,
     "postcode": "600001",
@@ -678,7 +708,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "periyar-nagar",
-    "name": "Periyar Nagar",
+    "name": "Rajaji Nagar (Thiruvottiyur)",
     "lat": 13.16621,
     "lng": 80.30704,
     "postcode": "600001",
@@ -711,7 +741,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kaladipet-north",
-    "name": "Kaladipet North",
+    "name": "Shanmugam Pillai Nagar",
     "lat": 13.15542,
     "lng": 80.30397,
     "postcode": "600001",
@@ -722,7 +752,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kaladipet-south",
-    "name": "Kaladipet South",
+    "name": "Kaladipet",
     "lat": 13.15195,
     "lng": 80.29685,
     "postcode": "600001",
@@ -799,7 +829,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kathirvedu-north",
-    "name": "Kathirvedu North",
+    "name": "Kathirvedu",
     "lat": 13.14928,
     "lng": 80.20629,
     "postcode": "600001",
@@ -887,7 +917,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kodungaiyur-east",
-    "name": "Kodungaiyur East",
+    "name": "Kodungaiyur",
     "lat": 13.13179,
     "lng": 80.24877,
     "postcode": "600001",
@@ -964,7 +994,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "old-washermanpet-north",
-    "name": "Old Washermanpet North",
+    "name": "Korukkupet",
     "lat": 13.12296,
     "lng": 80.28508,
     "postcode": "600001",
@@ -1041,7 +1071,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kolathur-east",
-    "name": "Kolathur East",
+    "name": "Kumaran Nagar (Kolathur)",
     "lat": 13.11851,
     "lng": 80.20968,
     "postcode": "600099",
@@ -1074,7 +1104,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "periyar-nagar-north",
-    "name": "Periyar Nagar North",
+    "name": "Jawahar Nagar",
     "lat": 13.11828,
     "lng": 80.22717,
     "postcode": "600082",
@@ -1195,7 +1225,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "old-washermanpet-south",
-    "name": "Old Washermanpet South",
+    "name": "Sanjeevirayanpet",
     "lat": 13.11208,
     "lng": 80.28554,
     "postcode": "600001",
@@ -1206,7 +1236,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "old-washermanpet-central",
-    "name": "Old Washermanpet Central",
+    "name": "Old Washermanpet",
     "lat": 13.11799,
     "lng": 80.28968,
     "postcode": "600001",
@@ -1459,7 +1489,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "aminjikarai-north",
-    "name": "Aminjikarai North",
+    "name": "Gajalakshmi Colony",
     "lat": 13.08315,
     "lng": 80.22767,
     "postcode": "600029",
@@ -1470,7 +1500,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "saligramam-west",
-    "name": "Saligramam West",
+    "name": "Dasarathapuram",
     "lat": 13.0634,
     "lng": 80.21755,
     "postcode": "600093",
@@ -1679,7 +1709,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "puzhal-south",
-    "name": "Puzhal South",
+    "name": "Oragadam (Ambattur)",
     "lat": 13.13314,
     "lng": 80.15219,
     "postcode": "600066",
@@ -1701,7 +1731,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kathirvedu-south",
-    "name": "Kathirvedu South",
+    "name": "Ambattur Industrial Estate",
     "lat": 13.12119,
     "lng": 80.18871,
     "postcode": "600001",
@@ -1756,7 +1786,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "nolambur-north",
-    "name": "Nolambur North",
+    "name": "Mogappair West Extension",
     "lat": 13.07852,
     "lng": 80.18772,
     "postcode": "600037",
@@ -1800,7 +1830,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "korattur-north",
-    "name": "Korattur North",
+    "name": "Korattur",
     "lat": 13.09716,
     "lng": 80.19055,
     "postcode": "600080",
@@ -1822,7 +1852,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "korattur-south",
-    "name": "Korattur South",
+    "name": "TVS Nagar",
     "lat": 13.08999,
     "lng": 80.1848,
     "postcode": "600080",
@@ -1844,7 +1874,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "okkiyam-thuraipakkam-east",
-    "name": "Okkiyam Thuraipakkam East",
+    "name": "Kannagi Nagar",
     "lat": 12.94645,
     "lng": 80.24238,
     "postcode": "600097",
@@ -1855,7 +1885,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "okkiyam-thuraipakkam",
-    "name": "Okkiyam Thuraipakkam",
+    "name": "Thuraipakkam",
     "lat": 12.93667,
     "lng": 80.23786,
     "postcode": "600001",
@@ -1866,7 +1896,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "sholinganallur-east",
-    "name": "Sholinganallur East",
+    "name": "Mettukuppam",
     "lat": 12.9263,
     "lng": 80.2354,
     "postcode": "600119",
@@ -1987,7 +2017,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "velachery-east",
-    "name": "Velachery East",
+    "name": "Baby Nagar",
     "lat": 12.97081,
     "lng": 80.20374,
     "postcode": "600042",
@@ -1998,7 +2028,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "velachery-west",
-    "name": "Velachery West",
+    "name": "Dhandeeswaram",
     "lat": 12.97783,
     "lng": 80.19478,
     "postcode": "600042",
@@ -2009,7 +2039,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "pallikaranai-south",
-    "name": "Pallikaranai South",
+    "name": "Narayanapuram",
     "lat": 12.92418,
     "lng": 80.20938,
     "postcode": "600100",
@@ -2020,7 +2050,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "madipakkam-south",
-    "name": "Madipakkam South",
+    "name": "Kuberan Nagar",
     "lat": 12.95545,
     "lng": 80.20467,
     "postcode": "600091",
@@ -2031,7 +2061,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "thiruvanmiyur-east",
-    "name": "Thiruvanmiyur East",
+    "name": "Valmiki Nagar",
     "lat": 12.97792,
     "lng": 80.22608,
     "postcode": "600041",
@@ -2064,7 +2094,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "adyar-south",
-    "name": "Adyar South",
+    "name": "Shastri Nagar",
     "lat": 13.00411,
     "lng": 80.26555,
     "postcode": "600020",
@@ -2119,7 +2149,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "thiruvanmiyur-south",
-    "name": "Thiruvanmiyur South",
+    "name": "Kamaraj Nagar",
     "lat": 12.98639,
     "lng": 80.24591,
     "postcode": "600041",
@@ -2163,7 +2193,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "alandur-north",
-    "name": "Alandur North",
+    "name": "Kathipara",
     "lat": 13.00434,
     "lng": 80.20659,
     "postcode": "600016",
@@ -2174,7 +2204,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "alandur-south",
-    "name": "Alandur South",
+    "name": "Surendra Nagar",
     "lat": 12.99637,
     "lng": 80.20281,
     "postcode": "600016",
@@ -2262,7 +2292,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "nanganallur-north",
-    "name": "Nanganallur North",
+    "name": "Nanganallur",
     "lat": 12.99167,
     "lng": 80.19231,
     "postcode": "600061",
@@ -2273,7 +2303,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "nanganallur-south",
-    "name": "Nanganallur South",
+    "name": "Moovarasampettai",
     "lat": 12.99041,
     "lng": 80.20126,
     "postcode": "600061",
@@ -2295,7 +2325,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "porur-south",
-    "name": "Porur South",
+    "name": "Giri Nagar",
     "lat": 13.02902,
     "lng": 80.15602,
     "postcode": "600001",
@@ -2306,7 +2336,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "valasaravakkam-north",
-    "name": "Valasaravakkam North",
+    "name": "Valasaravakkam",
     "lat": 13.04703,
     "lng": 80.17866,
     "postcode": "600001",
@@ -2317,7 +2347,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "valasaravakkam-south",
-    "name": "Valasaravakkam South",
+    "name": "Choudhary Nagar",
     "lat": 13.03985,
     "lng": 80.17946,
     "postcode": "600001",
@@ -2328,7 +2358,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "ramapuram-south",
-    "name": "Ramapuram South",
+    "name": "Rayala Nagar",
     "lat": 13.0309,
     "lng": 80.1842,
     "postcode": "600001",
@@ -2339,7 +2369,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "ramapuram-north",
-    "name": "Ramapuram North",
+    "name": "Ramapuram",
     "lat": 13.02925,
     "lng": 80.17596,
     "postcode": "600001",
@@ -2350,7 +2380,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "porur-north",
-    "name": "Porur North",
+    "name": "Porur",
     "lat": 13.03312,
     "lng": 80.16672,
     "postcode": "600001",
@@ -2361,7 +2391,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "maduravoyal-central",
-    "name": "Maduravoyal Central",
+    "name": "Alapakkam",
     "lat": 13.05319,
     "lng": 80.16391,
     "postcode": "600001",
@@ -2383,7 +2413,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "nerkundram-north",
-    "name": "Nerkundram North",
+    "name": "Nerkundram",
     "lat": 13.06596,
     "lng": 80.18579,
     "postcode": "600001",
@@ -2394,7 +2424,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "maduravoyal-north",
-    "name": "Maduravoyal North",
+    "name": "Maduravoyal",
     "lat": 13.06497,
     "lng": 80.17621,
     "postcode": "600001",
@@ -2405,7 +2435,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "nerkundram-south",
-    "name": "Nerkundram South",
+    "name": "Padmavathi Nagar",
     "lat": 13.05619,
     "lng": 80.18279,
     "postcode": "600001",
@@ -2471,7 +2501,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kk-nagar-east",
-    "name": "K.K. Nagar East",
+    "name": "K.K. Nagar",
     "lat": 13.03593,
     "lng": 80.19483,
     "postcode": "600001",
@@ -2482,7 +2512,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "saidapet-east",
-    "name": "Saidapet East",
+    "name": "Saidapet",
     "lat": 13.02182,
     "lng": 80.22049,
     "postcode": "600001",
@@ -2504,7 +2534,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "saidapet-west",
-    "name": "Saidapet West",
+    "name": "Jones Road",
     "lat": 13.03041,
     "lng": 80.22222,
     "postcode": "600001",
@@ -2559,7 +2589,7 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "kk-nagar-west",
-    "name": "K.K. Nagar West",
+    "name": "Nesapakkam",
     "lat": 13.04154,
     "lng": 80.2036,
     "postcode": "600001",

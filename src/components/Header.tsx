@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { GameMode, GameState, CityId } from '../types';
 import { CityMapModel, CITIES } from '../utils/mapGeometry';
 import {
@@ -9,7 +9,8 @@ import {
   Flag,
   Calendar,
   Dices,
-  MapPin,
+  ChevronDown,
+  Check,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -39,6 +40,34 @@ export const Header: React.FC<HeaderProps> = ({
   onGiveUp,
   onSelectMode,
 }) => {
+  const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
+  const cityDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click or escape key
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        cityDropdownRef.current &&
+        !cityDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsCityDropdownOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsCityDropdownOpen(false);
+      }
+    }
+    if (isCityDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isCityDropdownOpen]);
+
   const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
 
@@ -66,58 +95,109 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* City / Map Selector */}
-      <div
-        id="map-city-selector"
-        className="flex items-center bg-neutral-100 p-0.5 rounded-lg border border-neutral-200 text-xs font-semibold shrink-0"
-      >
+      {/* City / Map Dropdown Selector */}
+      <div ref={cityDropdownRef} className="relative shrink-0" id="map-city-dropdown-container">
         <button
-          id="city-melbourne-btn"
-          onClick={() => onSelectCity('melbourne')}
-          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
-            selectedCity === 'melbourne'
-              ? 'bg-white text-neutral-900 shadow-xs font-bold'
-              : 'text-neutral-500 hover:text-neutral-900'
-          }`}
-          title="Play Melbourne map (88 suburbs • VIC)"
+          id="city-dropdown-trigger"
+          type="button"
+          onClick={() => setIsCityDropdownOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={isCityDropdownOpen}
+          className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-neutral-100 hover:bg-neutral-200/90 border border-neutral-200 rounded-lg text-xs font-semibold text-neutral-900 transition-all cursor-pointer shadow-xs select-none"
+          title="Select city map"
         >
-          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'melbourne' ? 'bg-emerald-500' : 'bg-neutral-400'}`}></span>
-          <span className="hidden xs:inline">Melbourne</span>
-          <span className="xs:hidden">Melb</span>
-          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">VIC</span>
+          <span
+            className={`w-2 h-2 rounded-full shrink-0 ${
+              selectedCity === 'melbourne'
+                ? 'bg-emerald-500'
+                : selectedCity === 'adelaide'
+                ? 'bg-sky-500'
+                : 'bg-amber-500'
+            }`}
+          />
+          <span className="font-bold">{CITIES[selectedCity]?.name || 'City'}</span>
+          <span className="text-[10px] text-neutral-500 font-mono hidden xs:inline">
+            ({CITIES[selectedCity]?.badge})
+          </span>
+          {CITIES[selectedCity]?.isBeta && (
+            <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wide">
+              Beta
+            </span>
+          )}
+          <ChevronDown
+            className={`w-3.5 h-3.5 text-neutral-500 transition-transform duration-200 ${
+              isCityDropdownOpen ? 'rotate-180 text-neutral-900' : ''
+            }`}
+          />
         </button>
 
-        <button
-          id="city-adelaide-btn"
-          onClick={() => onSelectCity('adelaide')}
-          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
-            selectedCity === 'adelaide'
-              ? 'bg-white text-neutral-900 shadow-xs font-bold'
-              : 'text-neutral-500 hover:text-neutral-900'
-          }`}
-          title="Play Adelaide map (401 suburbs • SA)"
-        >
-          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'adelaide' ? 'bg-sky-500' : 'bg-neutral-400'}`}></span>
-          <span className="hidden xs:inline">Adelaide</span>
-          <span className="xs:hidden">Adel</span>
-          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">SA</span>
-        </button>
+        {/* Dropdown Menu Popover */}
+        {isCityDropdownOpen && (
+          <div
+            id="city-dropdown-menu"
+            role="listbox"
+            aria-label="Available cities"
+            className="absolute left-0 mt-1.5 w-60 sm:w-68 bg-white border border-neutral-200 rounded-xl shadow-xl z-50 p-1.5"
+          >
+            <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-400 border-b border-neutral-100 flex items-center justify-between">
+              <span>Available Cities</span>
+              <span className="font-mono text-neutral-400">3 maps</span>
+            </div>
 
-        <button
-          id="city-chennai-btn"
-          onClick={() => onSelectCity('chennai')}
-          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
-            selectedCity === 'chennai'
-              ? 'bg-white text-neutral-900 shadow-xs font-bold'
-              : 'text-neutral-500 hover:text-neutral-900'
-          }`}
-          title="Play Chennai map (201 wards • TN)"
-        >
-          <span className={`w-1.5 h-1.5 rounded-full ${selectedCity === 'chennai' ? 'bg-amber-500' : 'bg-neutral-400'}`}></span>
-          <span className="hidden xs:inline">Chennai</span>
-          <span className="xs:hidden">Maa</span>
-          <span className="text-[10px] text-neutral-400 font-mono hidden md:inline">TN</span>
-        </button>
+            <div className="py-1 flex flex-col gap-0.5">
+              {Object.values(CITIES).map((city) => {
+                const isSelected = selectedCity === city.id;
+                return (
+                  <button
+                    key={city.id}
+                    id={`city-option-${city.id}`}
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => {
+                      onSelectCity(city.id);
+                      setIsCityDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
+                      isSelected
+                        ? 'bg-neutral-100 text-neutral-900 font-bold'
+                        : 'text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span
+                        className={`w-2 h-2 rounded-full shrink-0 ${
+                          city.id === 'melbourne'
+                            ? 'bg-emerald-500'
+                            : city.id === 'adelaide'
+                            ? 'bg-sky-500'
+                            : 'bg-amber-500'
+                        }`}
+                      />
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold text-neutral-900">{city.name}</span>
+                          <span className="text-[10px] text-neutral-400 font-mono">({city.badge})</span>
+                          {city.isBeta && (
+                            <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wider">
+                              Beta
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[10px] text-neutral-500 font-normal">
+                          {city.suburbCount} {city.id === 'chennai' ? 'wards' : 'suburbs'} • {city.state}
+                        </p>
+                      </div>
+                    </div>
+
+                    {isSelected && (
+                      <Check className="w-4 h-4 text-emerald-600 shrink-0 ml-2" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Mode Switcher Tabs */}
