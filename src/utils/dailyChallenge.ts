@@ -1,5 +1,6 @@
 import { SuburbData } from '../types';
 import { findShortestPath, getDistancesFrom, MelbourneMapModel } from './mapGeometry';
+import { CANONICAL_DAILY_CHALLENGES } from '../data/canonicalDailyChallenges';
 
 /**
  * Deterministic hash function (xmur3) for string date seeds
@@ -104,8 +105,27 @@ export function generateDailyChallenge(
   adjacency: Map<string, string[]>,
   dateStr: string = getTodayDateString()
 ): DailyChallengeGame {
-  const rng = getSeededRandom(dateStr);
   const challengeNumber = getDailyChallengeNumber(dateStr);
+
+  // 1. Immutable Canonical Schedule:
+  // Guarantees the daily challenge for any date NEVER changes across deployments,
+  // runtime environments, or code updates on any given day.
+  if (CANONICAL_DAILY_CHALLENGES && CANONICAL_DAILY_CHALLENGES[dateStr]) {
+    const [startId, targetId] = CANONICAL_DAILY_CHALLENGES[dateStr];
+    const bestPath = findShortestPath(startId, targetId, adjacency);
+    return {
+      dateStr,
+      challengeNumber,
+      startSuburbId: startId,
+      targetSuburbId: targetId,
+      bestPath,
+      bestPathDistance: Math.max(1, bestPath.length - 2),
+      maxTurns: 10,
+    };
+  }
+
+  // 2. Deterministic PRNG fallback for unlisted dates
+  const rng = getSeededRandom(dateStr);
 
   // Sort suburbs deterministically so index ordering never varies between runtimes
   const sortedSuburbs = [...suburbs].sort((a, b) => a.id.localeCompare(b.id));
