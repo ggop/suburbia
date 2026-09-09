@@ -10,7 +10,6 @@ interface MapViewportProps {
   distancesToTarget: Map<string, number>;
   distancesToCurrent: Map<string, number>;
   showBestPathOverlay?: boolean;
-  onMoveToSuburb?: (suburbId: string) => void;
   onMapClickDisabled?: () => void;
 }
 
@@ -26,7 +25,6 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   distancesToTarget,
   distancesToCurrent,
   showBestPathOverlay = false,
-  onMoveToSuburb,
   onMapClickDisabled,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -527,26 +525,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     // If the touch or mouse was a drag, ignore click
     if (touchMovedRef.current) return;
 
-    const isGameOver = gameState.status !== 'playing';
-    const isInPath =
-      visitedSet.has(suburb.id) ||
-      guessedSet.has(suburb.id) ||
-      suburb.id === gameState.startSuburbId ||
-      suburb.id === gameState.targetSuburbId;
-    const canInspect = isGameOver || isInPath;
+    // Tapping or clicking any suburb inspects its name and details in tooltip
+    handleSuburbHover(suburb, e);
 
-    // Tapping or clicking an active/shaded suburb displays its name and tooltip
-    if (canInspect) {
-      handleSuburbHover(suburb, e);
-      return;
-    }
-
-    // Clicking an unvisited neighbouring suburb moves to it directly
+    // CRITICAL INVARIANT: Direct selection of the next suburb from the map is not allowed.
+    // All player selections must be made exclusively from the "Available Neighbours" list.
     if (gameState.status === 'playing') {
-      if (neighboringSet.has(suburb.id) && onMoveToSuburb) {
-        onMoveToSuburb(suburb.id);
-        return;
-      }
       onMapClickDisabled?.();
     }
   };

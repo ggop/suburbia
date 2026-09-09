@@ -66,7 +66,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     borderColor = 'border-emerald-400';
     roleBadge = (
       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-300">
-        <Compass className="w-3 h-3 text-emerald-600" /> Adjacent Move
+        <Compass className="w-3 h-3 text-emerald-600" /> Available Neighbour
       </span>
     );
   } else if (role === 'best-path') {

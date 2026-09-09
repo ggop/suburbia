@@ -108,7 +108,7 @@ export default function App() {
 
   const handleMapClickDisabled = useCallback(() => {
     if (gameState.status !== 'playing') return;
-    setErrorMessage('Please choose an available neighbour to advance your route.');
+    setErrorMessage('Map suburb selection is disabled. Please select from the "Available Neighbours" list to make your move.');
   }, [gameState.status]);
 
   const handleInvalidGuess = useCallback((query: string) => {
@@ -523,7 +523,6 @@ export default function App() {
             distancesToTarget={distancesToTarget}
             distancesToCurrent={distancesToCurrent}
             showBestPathOverlay={showBestPathOverlay}
-            onMoveToSuburb={handleMoveToSuburb}
             onMapClickDisabled={handleMapClickDisabled}
           />
         </section>
