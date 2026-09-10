@@ -9,6 +9,7 @@ import {
   generateRandomGame,
   getDistancesFrom,
   CityMapModel,
+  CITIES,
 } from './utils/mapGeometry';
 import { GameMode, GameState, CityId } from './types';
 import { MapViewport } from './components/MapViewport';
@@ -103,7 +104,10 @@ function createInitialGameState(
 
 export default function App() {
   // Selected city/map (persisted across sessions)
-  const [selectedCity, setSelectedCity] = useState<CityId>(() => loadSelectedCity());
+  const [selectedCity, setSelectedCity] = useState<CityId>(() => {
+    const loaded = loadSelectedCity();
+    return CITIES[loaded]?.hidden ? 'melbourne' : loaded;
+  });
 
   // Pre-calculate city geometry, Voronoi line polygons, and adjacency graph for selected city
   const mapModel = useMemo(() => buildCityMapModel(selectedCity), [selectedCity]);
@@ -112,8 +116,9 @@ export default function App() {
   const [gameState, setGameState] = useState<GameState>(() => {
     const lastMode = loadLastMode();
     const city = loadSelectedCity();
-    const initialModel = buildCityMapModel(city);
-    return createInitialGameState(city, lastMode, initialModel);
+    const effectiveCity = CITIES[city]?.hidden ? 'melbourne' : city;
+    const initialModel = buildCityMapModel(effectiveCity);
+    return createInitialGameState(effectiveCity, lastMode, initialModel);
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -485,7 +490,7 @@ export default function App() {
   // City Switcher (Melbourne vs. Adelaide)
   const handleSelectCity = useCallback(
     (newCity: CityId) => {
-      if (newCity === selectedCity) return;
+      if (newCity === selectedCity || CITIES[newCity]?.hidden) return;
       saveSelectedCity(newCity);
       setSelectedCity(newCity);
       setErrorMessage(null);

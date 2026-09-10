@@ -86,7 +86,7 @@ export function loadActivePracticeState(cityId: CityId = 'melbourne'): GameState
 export function loadSelectedCity(): CityId {
   try {
     const saved = localStorage.getItem(SELECTED_CITY_KEY);
-    if (saved === 'adelaide' || saved === 'melbourne' || saved === 'chennai') {
+    if (saved === 'adelaide' || saved === 'melbourne') {
       return saved;
     }
   } catch {

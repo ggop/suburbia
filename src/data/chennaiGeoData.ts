@@ -39614,6 +39614,20 @@ export const CHENNAI_SUBURB_BOUNDARIES: Record<string, [number, number][]> = {
       13.02425
     ],
     [
+      80.26474,
+      13.01179
+    ],
+    [
+      80.259,
+      13.01134
+    ]
+  ],
+  "mrc-nagar": [
+    [
+      80.26446,
+      13.02425
+    ],
+    [
       80.26449,
       13.02437
     ],
@@ -39722,8 +39736,8 @@ export const CHENNAI_SUBURB_BOUNDARIES: Record<string, [number, number][]> = {
       13.01179
     ],
     [
-      80.259,
-      13.01134
+      80.26446,
+      13.02425
     ]
   ],
   "guindy": [
@@ -52910,8 +52924,12 @@ export const CHENNAI_SUBURB_CENTERS: Record<string, [number, number]> = {
     12.99094
   ],
   "raja-annamalaipuram": [
-    80.26441,
-    13.01812
+    80.25805,
+    13.01805
+  ],
+  "mrc-nagar": [
+    80.27075,
+    13.01818
   ],
   "guindy": [
     80.2089,
@@ -53983,6 +54001,7 @@ export const CHENNAI_SUBURB_ADJACENCY: Record<string, string[]> = {
   ],
   "awai-nagar": [
     "beemanpet",
+    "mrc-nagar",
     "mylapore",
     "raja-annamalaipuram",
     "santhome"
@@ -54266,16 +54285,22 @@ export const CHENNAI_SUBURB_ADJACENCY: Record<string, string[]> = {
   ],
   "besant-nagar": [
     "adyar",
-    "raja-annamalaipuram",
+    "mrc-nagar",
     "thiruvanmiyur"
   ],
   "raja-annamalaipuram": [
     "adyar",
-    "besant-nagar",
     "alwarpet",
     "awai-nagar",
     "beemanpet",
-    "kotturpuram"
+    "kotturpuram",
+    "mrc-nagar"
+  ],
+  "mrc-nagar": [
+    "adyar",
+    "awai-nagar",
+    "besant-nagar",
+    "raja-annamalaipuram"
   ],
   "guindy": [
     "alandur-north",
@@ -54299,6 +54324,7 @@ export const CHENNAI_SUBURB_ADJACENCY: Record<string, string[]> = {
   "adyar": [
     "besant-nagar",
     "kotturpuram",
+    "mrc-nagar",
     "raja-annamalaipuram",
     "thiruvanmiyur",
     "taramani"

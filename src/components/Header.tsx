@@ -132,72 +132,75 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         {/* Dropdown Menu Popover */}
-        {isCityDropdownOpen && (
-          <div
-            id="city-dropdown-menu"
-            role="listbox"
-            aria-label="Available cities"
-            className="absolute left-0 mt-1.5 w-60 sm:w-68 bg-white border border-neutral-200 rounded-xl shadow-xl z-50 p-1.5"
-          >
-            <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-400 border-b border-neutral-100 flex items-center justify-between">
-              <span>Available Cities</span>
-              <span className="font-mono text-neutral-400">3 maps</span>
-            </div>
+        {isCityDropdownOpen && (() => {
+          const visibleCities = Object.values(CITIES).filter((city) => !city.hidden);
+          return (
+            <div
+              id="city-dropdown-menu"
+              role="listbox"
+              aria-label="Available cities"
+              className="absolute left-0 mt-1.5 w-60 sm:w-68 bg-white border border-neutral-200 rounded-xl shadow-xl z-50 p-1.5"
+            >
+              <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-400 border-b border-neutral-100 flex items-center justify-between">
+                <span>Available Cities</span>
+                <span className="font-mono text-neutral-400">{visibleCities.length} maps</span>
+              </div>
 
-            <div className="py-1 flex flex-col gap-0.5">
-              {Object.values(CITIES).map((city) => {
-                const isSelected = selectedCity === city.id;
-                return (
-                  <button
-                    key={city.id}
-                    id={`city-option-${city.id}`}
-                    role="option"
-                    aria-selected={isSelected}
-                    onClick={() => {
-                      onSelectCity(city.id);
-                      setIsCityDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
-                      isSelected
-                        ? 'bg-neutral-100 text-neutral-900 font-bold'
-                        : 'text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <span
-                        className={`w-2 h-2 rounded-full shrink-0 ${
-                          city.id === 'melbourne'
-                            ? 'bg-emerald-500'
-                            : city.id === 'adelaide'
-                            ? 'bg-sky-500'
-                            : 'bg-amber-500'
-                        }`}
-                      />
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-semibold text-neutral-900">{city.name}</span>
-                          <span className="text-[10px] text-neutral-400 font-mono">({city.badge})</span>
-                          {city.isBeta && (
-                            <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wider">
-                              Beta
-                            </span>
-                          )}
+              <div className="py-1 flex flex-col gap-0.5">
+                {visibleCities.map((city) => {
+                  const isSelected = selectedCity === city.id;
+                  return (
+                    <button
+                      key={city.id}
+                      id={`city-option-${city.id}`}
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        onSelectCity(city.id);
+                        setIsCityDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-2.5 py-2 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
+                        isSelected
+                          ? 'bg-neutral-100 text-neutral-900 font-bold'
+                          : 'text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span
+                          className={`w-2 h-2 rounded-full shrink-0 ${
+                            city.id === 'melbourne'
+                              ? 'bg-emerald-500'
+                              : city.id === 'adelaide'
+                              ? 'bg-sky-500'
+                              : 'bg-amber-500'
+                          }`}
+                        />
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-semibold text-neutral-900">{city.name}</span>
+                            <span className="text-[10px] text-neutral-400 font-mono">({city.badge})</span>
+                            {city.isBeta && (
+                              <span className="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wider">
+                                Beta
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-neutral-500 font-normal">
+                            {city.suburbCount} {city.id === 'chennai' ? 'wards' : 'suburbs'} • {city.state}
+                          </p>
                         </div>
-                        <p className="text-[10px] text-neutral-500 font-normal">
-                          {city.suburbCount} {city.id === 'chennai' ? 'wards' : 'suburbs'} • {city.state}
-                        </p>
                       </div>
-                    </div>
 
-                    {isSelected && (
-                      <Check className="w-4 h-4 text-emerald-600 shrink-0 ml-2" />
-                    )}
-                  </button>
-                );
-              })}
+                      {isSelected && (
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0 ml-2" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
 
       {/* Mode Switcher Tabs */}

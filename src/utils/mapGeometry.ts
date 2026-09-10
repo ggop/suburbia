@@ -68,6 +68,7 @@ export const CITIES: Record<CityId, CityOption> = {
     suburbCount: CHENNAI_SUBURBS.length,
     waterBodyName: 'Bay of Bengal',
     isBeta: true,
+    hidden: true,
   },
 };
 

@@ -10,6 +10,7 @@ export interface CityOption {
   suburbCount: number;
   waterBodyName: string;
   isBeta?: boolean;
+  hidden?: boolean;
 }
 
 export interface SuburbData {

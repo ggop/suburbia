@@ -2098,13 +2098,24 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   {
     "id": "raja-annamalaipuram",
     "name": "Raja Annamalaipuram",
-    "lat": 13.01812,
-    "lng": 80.26441,
-    "postcode": "600001",
+    "lat": 13.01805,
+    "lng": 80.25805,
+    "postcode": "600028",
     "region": "South Chennai",
-    "population": 46800,
-    "areaKm2": 3.99,
-    "description": "Corporation Ward 173 (ADYAR)"
+    "population": 32000,
+    "areaKm2": 1.99,
+    "description": "Corporation Ward 173 West (Raja Annamalaipuram)"
+  },
+  {
+    "id": "mrc-nagar",
+    "name": "MRC Nagar",
+    "lat": 13.01818,
+    "lng": 80.27075,
+    "postcode": "600028",
+    "region": "South Chennai",
+    "population": 28000,
+    "areaKm2": 1.99,
+    "description": "Corporation Ward 173 East (MRC Nagar / Adyar Estuary)"
   },
   {
     "id": "guindy",
