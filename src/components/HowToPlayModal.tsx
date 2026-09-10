@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Flag, Navigation, CheckCircle2, Touchpad, HelpCircle, Calendar } from 'lucide-react';
+import { X, Flag, Navigation, CheckCircle2, Touchpad, HelpCircle, Calendar, Mail } from 'lucide-react';
 
 interface HowToPlayModalProps {
   isOpen: boolean;
@@ -99,6 +99,21 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose 
 
           <div className="bg-neutral-100 border border-neutral-200 p-3 rounded-xl text-xs text-neutral-800">
             <strong className="text-neutral-900">Rule:</strong> You are allowed up to <strong>10 turns</strong> to connect the start and target suburbs.
+          </div>
+
+          <div
+            id="how-to-play-contact-note"
+            className="flex items-center justify-center gap-1.5 text-xs text-neutral-500 pt-0.5 text-center flex-wrap"
+          >
+            <Mail className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+            <span>Questions or feedback? Contact the author at</span>
+            <a
+              id="how-to-play-email-link"
+              href="mailto:feedback@suburbia.dev"
+              className="text-neutral-900 hover:text-black font-semibold underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              feedback@suburbia.dev
+            </a>
           </div>
         </div>
 
