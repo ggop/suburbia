@@ -346,6 +346,37 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             </div>
           </div>
 
+          {/* Support & Author Feedback Note */}
+          <div className="pt-2 border-t border-neutral-100 flex flex-col items-center gap-2">
+            {/* Buy Me a Coffee Badge */}
+            <a
+              id="game-result-buy-me-coffee-btn"
+              href="https://buymeacoffee.com/suburbia"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Support Suburbia on Buy Me a Coffee"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFDD00] hover:bg-[#F2D200] text-neutral-900 text-xs font-bold shadow-xs border border-amber-400/60 transition-all hover:scale-102 active:scale-95 cursor-pointer"
+            >
+              <Coffee className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
+              <span>Buy me a coffee</span>
+            </a>
+
+            <div
+              id="game-result-contact-note"
+              className="flex items-center justify-center gap-1.5 text-[11px] text-neutral-400 text-center flex-wrap"
+            >
+              <Mail className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+              <span>Have questions or feedback? Contact the author at</span>
+              <a
+                id="game-result-email-link"
+                href="mailto:feedback@suburbia.dev"
+                className="text-neutral-600 hover:text-neutral-900 font-medium underline underline-offset-2 transition-colors cursor-pointer"
+              >
+                feedback@suburbia.dev
+              </a>
+            </div>
+          </div>
+
           {/* Historical Facts Discovered Along Your Journey (Only shown if any exist) */}
           {historicalFacts.length > 0 && (
             <div className="bg-amber-50/50 p-2.5 rounded-xl border border-amber-200/70 text-[11px] space-y-1.5">
@@ -363,37 +394,6 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
               </div>
             </div>
           )}
-        </div>
-
-        {/* Support & Author Contact Note */}
-        <div className="pt-2.5 border-t border-neutral-100 flex flex-col items-center gap-2">
-          {/* Buy Me a Coffee Badge */}
-          <a
-            id="game-result-buy-me-coffee-btn"
-            href="https://buymeacoffee.com/suburbia"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Support Suburbia on Buy Me a Coffee"
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFDD00] hover:bg-[#F2D200] text-neutral-900 text-xs font-bold shadow-xs border border-amber-400/60 transition-all hover:scale-102 active:scale-95 cursor-pointer"
-          >
-            <Coffee className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
-            <span>Buy me a coffee</span>
-          </a>
-
-          <div
-            id="game-result-contact-note"
-            className="flex items-center justify-center gap-1.5 text-[11px] text-neutral-400 text-center flex-wrap"
-          >
-            <Mail className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
-            <span>Have questions or feedback? Contact the author at</span>
-            <a
-              id="game-result-email-link"
-              href="mailto:feedback@suburbia.dev"
-              className="text-neutral-600 hover:text-neutral-900 font-medium underline underline-offset-2 transition-colors cursor-pointer"
-            >
-              feedback@suburbia.dev
-            </a>
-          </div>
         </div>
       </div>
     </div>
