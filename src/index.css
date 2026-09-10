@@ -37,3 +37,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a3a3a3;
 }
+
+/* Mobile landscape enforcement: Lock mobile to portrait, prevent layout from rotating to desktop layout */
+@media screen and (orientation: landscape) and (max-height: 550px) {
+  #mobile-landscape-blocker-root {
+    display: flex !important;
+  }
+  #main-app-content {
+    flex-direction: column !important;
+  }
+  #game-controls-sidebar {
+    display: none !important;
+  }
+  #mobile-game-controls {
+    display: flex !important;
+  }
+}
+

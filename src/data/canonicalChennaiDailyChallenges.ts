@@ -344,7 +344,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "george-town"
   ],
   "2025-03-27": [
-    "adyar-south",
+    "iit-madras",
     "velachery-east"
   ],
   "2025-03-28": [
@@ -532,7 +532,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "aminjikarai"
   ],
   "2025-05-13": [
-    "adyar-south",
+    "iit-madras",
     "choolaimedu"
   ],
   "2025-05-14": [
@@ -905,7 +905,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2025-08-14": [
     "pazhavanthangal",
-    "adyar-south"
+    "iit-madras"
   ],
   "2025-08-15": [
     "vivekananda-nagar",
@@ -1581,7 +1581,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2026-01-30": [
     "nanganallur-south",
-    "adyar-south"
+    "iit-madras"
   ],
   "2026-01-31": [
     "madhavaram",
@@ -2017,7 +2017,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2026-05-19": [
     "madipakkam",
-    "adyar-south"
+    "iit-madras"
   ],
   "2026-05-20": [
     "kodungaiyur-west",
@@ -2224,7 +2224,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "kodungaiyur-west"
   ],
   "2026-07-10": [
-    "adyar-south",
+    "iit-madras",
     "komaleeswaran-pettai"
   ],
   "2026-07-11": [
@@ -2676,7 +2676,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "edayanchavadi"
   ],
   "2026-10-31": [
-    "adyar-south",
+    "iit-madras",
     "pazhavanthangal"
   ],
   "2026-11-01": [
@@ -3185,7 +3185,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2027-03-07": [
     "madipakkam",
-    "adyar-south"
+    "iit-madras"
   ],
   "2027-03-08": [
     "kk-nagar-west",
@@ -3548,7 +3548,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "nerkundram-north"
   ],
   "2027-06-06": [
-    "adyar-south",
+    "iit-madras",
     "st-thomas-mount"
   ],
   "2027-06-07": [
@@ -3773,7 +3773,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2027-08-01": [
     "jafferkhanpet",
-    "adyar-south"
+    "iit-madras"
   ],
   "2027-08-02": [
     "krishnamapet",
@@ -4585,7 +4585,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
   ],
   "2028-02-20": [
     "okkiyam-thuraipakkam-east",
-    "adyar-south"
+    "iit-madras"
   ],
   "2028-02-21": [
     "maduravoyal-central",
@@ -5812,7 +5812,7 @@ export const CANONICAL_CHENNAI_DAILY_CHALLENGES: Record<string, [string, string]
     "shenoy-nagar"
   ],
   "2028-12-23": [
-    "adyar-south",
+    "iit-madras",
     "karapakkam"
   ],
   "2028-12-24": [

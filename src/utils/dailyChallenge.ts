@@ -213,7 +213,8 @@ export interface DailyResultData {
  */
 export function generateDailyShareText(
   result: DailyResultData,
-  mapModel: CityMapModel
+  mapModel: CityMapModel,
+  isDaily: boolean = true
 ): string {
   const startName = mapModel.suburbMap.get(result.startSuburbId)?.name || 'Start';
   const targetName = mapModel.suburbMap.get(result.targetSuburbId)?.name || 'Target';
@@ -222,26 +223,26 @@ export function generateDailyShareText(
 
   const isWon = result.status === 'won';
   const optimalSteps = Math.max(1, result.bestPath.length - 2);
-  const pathLength = result.path.length;
+  // Do not count the start suburb in navigated suburb count
+  const suburbsCount = Math.max(0, result.path.length - 1);
+  const suburbWord = suburbsCount === 1 ? 'suburb' : 'suburbs';
+  const turnWord = result.turnsUsed === 1 ? 'turn' : 'turns';
 
-  // Turn accuracy badge
+  // Turn accuracy tier badge
   const turnDiff = result.turnsUsed - optimalSteps;
   let ratingEmoji = '🎯';
-  let ratingText = '';
+  let tierBadge = '';
   if (isWon) {
     if (turnDiff === 0) {
       ratingEmoji = '🏆';
-      ratingText = 'Perfect Route! (Gold)';
+      tierBadge = ' [Gold]';
     } else if (turnDiff <= 2) {
       ratingEmoji = '🥈';
-      ratingText = 'Near-Optimal! (Silver)';
+      tierBadge = ' [Silver]';
     } else {
       ratingEmoji = '🥉';
-      ratingText = 'Completed! (Bronze)';
+      tierBadge = ' [Bronze]';
     }
-  } else {
-    ratingEmoji = '🛑';
-    ratingText = 'Turn Limit Exceeded';
   }
 
   // Visual emoji trail representing the path
@@ -252,14 +253,27 @@ export function generateDailyShareText(
   }
   trail += isWon ? '🏁' : '❌';
 
-  const shareText = `Suburbia 🗺️ (${cityName})
-Daily Challenge (${displayDate})
-📍 ${startName} ➔ ${targetName}
-${ratingEmoji} ${isWon ? `Solved in ${result.turnsUsed} turns!` : 'Turn limit reached'} [${ratingText}]
-🛣️ Route: ${pathLength} suburbs (${result.turnsUsed} turns)
-${trail}
+  const modeLine = isDaily
+    ? `Daily (${displayDate})`
+    : `Practice`;
 
-Play today's daily: ${window.location.origin}${window.location.pathname}`;
+  const playLabel = isDaily ? "Play today's daily" : 'Play Suburbia';
+  const playUrl = `${window.location.origin}${window.location.pathname}`;
 
-  return shareText;
+  // Compact summary without "Turn limit reached [Turn Limit Exceeded]"
+  const lines: string[] = [
+    `Suburbia 🗺️ ${cityName} • ${modeLine}`,
+    `📍 ${startName} ➔ ${targetName}`,
+  ];
+
+  if (isWon) {
+    lines.push(`${ratingEmoji} Solved in ${result.turnsUsed} ${turnWord} (${suburbsCount} ${suburbWord})${tierBadge}`);
+  } else {
+    lines.push(`🛣️ ${suburbsCount} ${suburbWord} (${result.turnsUsed} ${turnWord})`);
+  }
+
+  lines.push(trail);
+  lines.push(`${playLabel}: ${playUrl}`);
+
+  return lines.join('\n');
 }

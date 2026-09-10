@@ -17,6 +17,7 @@ import { Header } from './components/Header';
 import { GameResultModal } from './components/GameResultModal';
 import { HowToPlayModal } from './components/HowToPlayModal';
 import { FirstTimeVisitorModal } from './components/FirstTimeVisitorModal';
+import { MobileLandscapeBlocker } from './components/MobileLandscapeBlocker';
 import {
   generateDailyChallenge,
   getTodayDateString,
@@ -570,7 +571,7 @@ export default function App() {
       />
 
       {/* Main Container with Sidebar and Map Viewport */}
-      <main className="flex-1 flex flex-col md:flex-row overflow-hidden relative min-h-0">
+      <main id="main-app-content" className="flex-1 flex flex-col md:flex-row overflow-hidden relative min-h-0">
         {/* Sidebar Tactical Game Controls & Suburb Naming Panel */}
         <GameControls
           gameState={gameState}
@@ -597,6 +598,9 @@ export default function App() {
           />
         </section>
       </main>
+
+      {/* Mobile Landscape Orientation Blocker (Restricts mobile to portrait mode only) */}
+      <MobileLandscapeBlocker />
 
       {/* Victory / Game Over Modal with Path Comparison */}
       <GameResultModal

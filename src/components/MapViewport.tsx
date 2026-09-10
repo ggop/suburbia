@@ -573,7 +573,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
   const targetSuburb = mapModel.suburbMap.get(gameState.targetSuburbId);
   const startSuburb = mapModel.suburbMap.get(gameState.startSuburbId);
 
-  // Compute non-overlapping callout labels with leader lines pointing to suburbs
+  // Compute non-overlapping callout labels with leader lines pointing to suburbs,
+  // strictly guaranteeing they never block suburbs or available neighbours in between current location and target.
   const calloutLabels = useMemo(() => {
     const isGameOver = gameState.status !== 'playing';
 
@@ -592,8 +593,40 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const candidates: LabelCandidate[] = [];
     const addedIds = new Set<string>();
 
-    // 1. Start Suburb Anchor
-    if (startSuburb) {
+    // 1. Target Suburb Anchor (Placed FIRST with maximum outward priority)
+    if (targetSuburb) {
+      candidates.push({
+        id: targetSuburb.id,
+        suburb: targetSuburb,
+        role: 'target',
+        badgeText: `TARGET • ${targetSuburb.name}`,
+        lineColor: '#3b82f6',
+        bgColor: '#2563eb',
+        borderColor: '#1d4ed8',
+        textColor: '#ffffff',
+      });
+      addedIds.add(targetSuburb.id);
+    }
+
+    // 2. Current Suburb (Placed SECOND with maximum outward priority)
+    if (currentSuburb && !addedIds.has(currentSuburb.id)) {
+      const isStart = currentSuburb.id === gameState.startSuburbId;
+      candidates.push({
+        id: currentSuburb.id,
+        suburb: currentSuburb,
+        role: isStart ? 'start' : 'current',
+        stepIndex: gameState.path.length - 1,
+        badgeText: isStart ? `START • ${currentSuburb.name}` : `#${gameState.path.length - 1} • ${currentSuburb.name}`,
+        lineColor: isStart ? '#ef4444' : '#10b981',
+        bgColor: isStart ? '#ef4444' : '#047857',
+        borderColor: isStart ? '#dc2626' : '#10b981',
+        textColor: '#ffffff',
+      });
+      addedIds.add(currentSuburb.id);
+    }
+
+    // 3. Start Suburb Anchor (if player has moved past start)
+    if (startSuburb && !addedIds.has(startSuburb.id)) {
       candidates.push({
         id: startSuburb.id,
         suburb: startSuburb,
@@ -608,22 +641,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       addedIds.add(startSuburb.id);
     }
 
-    // 2. Target Suburb Anchor
-    if (targetSuburb && !addedIds.has(targetSuburb.id)) {
-      candidates.push({
-        id: targetSuburb.id,
-        suburb: targetSuburb,
-        role: 'target',
-        badgeText: `TARGET • ${targetSuburb.name}`,
-        lineColor: '#3b82f6',
-        bgColor: '#2563eb',
-        borderColor: '#1d4ed8',
-        textColor: '#ffffff',
-      });
-      addedIds.add(targetSuburb.id);
-    }
-
-    // 3. Chosen Suburbs along player's path (active during gameplay & final path)
+    // 4. Chosen Suburbs along player's path (active during gameplay & final path)
     gameState.path.forEach((id, idx) => {
       if (addedIds.has(id)) return;
       const s = mapModel.suburbMap.get(id);
@@ -658,7 +676,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       addedIds.add(id);
     });
 
-    // 4. In game-over mode: optimal route and friend route labels
+    // 5. In game-over mode: optimal route and friend route labels
     if (isGameOver) {
       if (showBestPathOverlay && gameState.bestPath) {
         gameState.bestPath.forEach((id) => {
@@ -699,7 +717,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       }
     }
 
-    // 5. Hovered suburb label (if user is hovering a suburb not yet labeled)
+    // 6. Hovered suburb label (if user is hovering a suburb not yet labeled)
     if (hoveredSuburbId && !addedIds.has(hoveredSuburbId)) {
       const s = mapModel.suburbMap.get(hoveredSuburbId);
       if (s) {
@@ -717,26 +735,27 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       }
     }
 
-    // Reduced text size to ensure compact, crisp display and avoid obscuring the map
-    const fontSize = Math.max(6.8, 8.2 / Math.sqrt(transform.scale));
-    const padX = 6 / Math.sqrt(transform.scale);
-    const padY = 3.2 / Math.sqrt(transform.scale);
+    // Scaled sizing to ensure compact, crisp display
+    const safeScale = Number.isFinite(transform.scale) && transform.scale > 0 ? transform.scale : 1.0;
+    const sqrtScale = Math.sqrt(safeScale);
+    const fontSize = Math.max(6.8, 8.0 / sqrtScale);
+    const padX = 5.5 / sqrtScale;
+    const padY = 3.0 / sqrtScale;
     const pillHeight = fontSize + padY * 2;
-    const margin = 3.5 / Math.sqrt(transform.scale);
-    const baseRadius = Math.max(22, 28 / Math.sqrt(transform.scale));
+    const margin = 3.5 / sqrtScale;
+    const baseRadius = Math.max(22, 28 / sqrtScale);
     const radii = [
       baseRadius,
-      baseRadius * 1.5,
-      baseRadius * 2.2,
-      baseRadius * 3.0,
-      baseRadius * 4.0,
+      baseRadius * 1.35,
+      baseRadius * 1.8,
+      baseRadius * 2.4,
+      baseRadius * 3.2,
     ];
 
+    // 24 directional angles spaced every 15 degrees for fine-grained outward placement
     const baseAnglesDeg = [
-      -45, 45, -135, 135,
-      -90, 90, 0, 180,
-      -22.5, 22.5, -67.5, 67.5,
-      -112.5, 112.5, -157.5, 157.5,
+      0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165,
+      180, -165, -150, -135, -120, -105, -90, -75, -60, -45, -30, -15,
     ];
 
     interface PlacedBox {
@@ -778,38 +797,111 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       return !(b1.x2 < b2.x1 || b1.x1 > b2.x2 || b1.y2 < b2.y1 || b1.y1 > b2.y2);
     };
 
+    // Helper: Distance from a point to a 2D line segment, and parametric projection t
+    const distToSegment = (
+      px: number,
+      py: number,
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number
+    ): { dist: number; t: number } => {
+      const segDx = x2 - x1;
+      const segDy = y2 - y1;
+      const lenSq = segDx * segDx + segDy * segDy;
+      if (lenSq === 0) {
+        return { dist: Math.hypot(px - x1, py - y1), t: 0 };
+      }
+      const t = ((px - x1) * segDx + (py - y1) * segDy) / lenSq;
+      const tClamped = Math.max(0, Math.min(1, t));
+      const nearestX = x1 + tClamped * segDx;
+      const nearestY = y1 + tClamped * segDy;
+      return {
+        dist: Math.hypot(px - nearestX, py - nearestY),
+        t,
+      };
+    };
+
+    // Helper: Check if two line segments cross each other
+    const segmentsIntersect = (
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      x3: number,
+      y3: number,
+      x4: number,
+      y4: number
+    ): boolean => {
+      const ccw = (ax: number, ay: number, bx: number, by: number, cx: number, cy: number) =>
+        (cy - ay) * (bx - ax) > (by - ay) * (cx - ax);
+      return (
+        ccw(x1, y1, x3, y3, x4, y4) !== ccw(x2, y2, x3, y3, x4, y4) &&
+        ccw(x1, y1, x2, y2, x3, y3) !== ccw(x1, y1, x2, y2, x4, y4)
+      );
+    };
+
+    // Vector from Current Suburb to Target Suburb
+    const cPos = currentSuburb ? { x: currentSuburb.x, y: currentSuburb.y } : null;
+    const tPos = targetSuburb ? { x: targetSuburb.x, y: targetSuburb.y } : null;
+    const hasActiveRoute = cPos !== null && tPos !== null;
+    const routeDist = hasActiveRoute ? Math.hypot(tPos.x - cPos.x, tPos.y - cPos.y) : 0;
+    const routeAngle = hasActiveRoute ? Math.atan2(tPos.y - cPos.y, tPos.x - cPos.x) : 0;
+
+    // Identify all intermediate suburbs and available neighbours between current location and target
+    const intermediateSuburbs: SuburbProjected[] = [];
+    const availableNeighbours = new Set(mapModel.adjacency?.get(currentSuburbId) || currentSuburb?.neighbors || []);
+
+    if (hasActiveRoute && routeDist > 5) {
+      const corridorRadius = Math.max(65, 85 / sqrtScale);
+      for (const sub of mapModel.suburbs) {
+        if (sub.id === currentSuburbId || sub.id === gameState.targetSuburbId) continue;
+        // All active neighbouring suburbs must be preserved from occlusion
+        if (availableNeighbours.has(sub.id)) {
+          intermediateSuburbs.push(sub);
+          continue;
+        }
+        // Suburbs inside the corridor bounding zone
+        const { dist, t } = distToSegment(sub.x, sub.y, cPos.x, cPos.y, tPos.x, tPos.y);
+        if (t >= -0.05 && t <= 1.05 && dist <= corridorRadius) {
+          intermediateSuburbs.push(sub);
+        }
+      }
+    }
+
     candidates.forEach((cand) => {
       const s = cand.suburb;
       const textWidth = cand.badgeText.length * (fontSize * 0.54);
       const pillWidth = textWidth + padX * 2;
 
-      // Determine preferred angle away from path or center
+      // Determine preferred angle away from the route corridor:
       let preferredAngle = -Math.PI / 4;
-      const pathIdx = gameState.path.indexOf(cand.id);
 
-      if (pathIdx >= 0) {
-        if (pathIdx > 0 && pathIdx < gameState.path.length - 1) {
-          const prev = mapModel.suburbMap.get(gameState.path[pathIdx - 1]);
-          const next = mapModel.suburbMap.get(gameState.path[pathIdx + 1]);
-          if (prev && next) {
-            const tx = next.x - prev.x;
-            const ty = next.y - prev.y;
-            const side = pathIdx % 2 === 0 ? 1 : -1;
-            preferredAngle = Math.atan2(side * tx, -side * ty);
-          }
-        } else if (pathIdx === 0 && gameState.path.length > 1) {
-          const next = mapModel.suburbMap.get(gameState.path[1]);
-          if (next) {
-            preferredAngle = Math.atan2(s.y - next.y, s.x - next.x);
-          }
-        } else if (pathIdx === gameState.path.length - 1 && gameState.path.length > 1) {
-          const prev = mapModel.suburbMap.get(gameState.path[pathIdx - 1]);
-          if (prev) {
-            preferredAngle = Math.atan2(s.y - prev.y, s.x - prev.x);
-          }
+      if (cand.id === gameState.targetSuburbId) {
+        // Target Suburb label MUST point OUTWARD, strictly away from current location and the corridor
+        if (hasActiveRoute) {
+          preferredAngle = Math.atan2(tPos.y - cPos.y, tPos.x - cPos.x);
+        } else {
+          preferredAngle = Math.atan2(s.y - 550, s.x - 650);
         }
-      } else if (cand.id === gameState.targetSuburbId) {
-        preferredAngle = Math.atan2(s.y - 550, s.x - 650);
+      } else if (cand.role === 'current' || cand.id === currentSuburbId) {
+        // Current Suburb label MUST point BACKWARDS, strictly away from target and the corridor
+        if (hasActiveRoute) {
+          preferredAngle = Math.atan2(cPos.y - tPos.y, cPos.x - tPos.x);
+        }
+      } else if (cand.role === 'start') {
+        // Start Suburb label points away from target and current
+        if (tPos) {
+          preferredAngle = Math.atan2(s.y - tPos.y, s.x - tPos.x);
+        }
+      } else if (hasActiveRoute) {
+        // Other labels (visited, hovered) point perpendicular to route axis away from the center
+        const perp1 = routeAngle + Math.PI / 2;
+        const perp2 = routeAngle - Math.PI / 2;
+        const testY1 = s.y + Math.sin(perp1) * 30;
+        const testY2 = s.y + Math.sin(perp2) * 30;
+        // Prefer placing towards the exterior rather than congested inner core
+        preferredAngle = Math.abs(testY1 - 550) > Math.abs(testY2 - 550) ? perp1 : perp2;
       }
 
       const sortedAngles = [...baseAnglesDeg].sort((a, b) => {
@@ -837,27 +929,85 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
           let cost = 0;
 
+          // 1. Boundary of SVG map
           if (box.x1 < 10 || box.x2 > SVG_WIDTH - 10 || box.y1 < 10 || box.y2 > SVG_HEIGHT - 10) {
-            cost += 5000;
+            cost += 8000;
           }
 
+          // 2. Overlap with previously placed labels
           for (const pb of placedBoxes) {
             if (boxesOverlap(box, pb)) {
-              cost += 10000;
+              cost += 20000;
               break;
             }
           }
 
+          // 3. Proximity to other candidate anchors
           for (const other of candidates) {
             if (other.id === cand.id) continue;
             const dx = cx - other.suburb.x;
             const dy = cy - other.suburb.y;
             const dist = Math.hypot(dx, dy);
-            if (dist < Math.max(pillWidth, pillHeight) / 2 + 6) {
-              cost += 4000;
+            if (dist < Math.max(pillWidth, pillHeight) / 2 + 8) {
+              cost += 6000;
             }
           }
 
+          // 4. CRITICAL: STRICTLY PREVENT BLOCKING CORRIDOR BETWEEN CURRENT AND TARGET
+          if (hasActiveRoute && routeDist > 5) {
+            const { dist: distToCorridor, t: projT } = distToSegment(
+              cx,
+              cy,
+              cPos.x,
+              cPos.y,
+              tPos.x,
+              tPos.y
+            );
+            // If label is physically along the route corridor segment:
+            if (projT >= -0.05 && projT <= 1.05) {
+              const corridorBuffer = Math.max(pillWidth, pillHeight) * 0.7 + 36 / sqrtScale;
+              if (distToCorridor < corridorBuffer) {
+                // Heavy exponential penalty ensures labels are never placed in the corridor between current and target
+                cost += 35000 + Math.round(25000 * (1 - distToCorridor / corridorBuffer));
+              }
+            }
+
+            // Directional constraint: Target label must NOT point back towards Current location
+            if (cand.id === gameState.targetSuburbId) {
+              const dotWithCurrent = (cx - tPos.x) * (cPos.x - tPos.x) + (cy - tPos.y) * (cPos.y - tPos.y);
+              if (dotWithCurrent > 0) {
+                cost += 40000;
+              }
+            }
+
+            // Directional constraint: Current label must NOT point towards Target location
+            if (cand.role === 'current' || cand.id === currentSuburbId) {
+              const dotWithTarget = (cx - cPos.x) * (tPos.x - cPos.x) + (cy - cPos.y) * (tPos.y - cPos.y);
+              if (dotWithTarget > 0) {
+                cost += 40000;
+              }
+            }
+
+            // Leader line must NOT cross through the corridor line
+            if (cand.id !== currentSuburbId && cand.id !== gameState.targetSuburbId) {
+              if (segmentsIntersect(s.x, s.y, cx, cy, cPos.x, cPos.y, tPos.x, tPos.y)) {
+                cost += 25000;
+              }
+            }
+          }
+
+          // 5. CRITICAL: PREVENT BLOCKING INTERMEDIATE SUBURBS AND AVAILABLE NEIGHBOURS
+          for (const inter of intermediateSuburbs) {
+            const dx = cx - inter.x;
+            const dy = cy - inter.y;
+            const dist = Math.hypot(dx, dy);
+            const minClearDist = Math.max(pillWidth, pillHeight) * 0.55 + 16 / sqrtScale;
+            if (dist < minClearDist) {
+              cost += 30000 + Math.round(15000 * (1 - dist / minClearDist));
+            }
+          }
+
+          // 6. Distance preference (prefer tighter, closer callouts if unblocked)
           cost += (r / baseRadius) * 20;
 
           if (cost === 0) {
@@ -884,7 +1034,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       });
 
       const lineDist = Math.hypot(finalPos.x - s.x, finalPos.y - s.y);
-      const rStart = Math.min(lineDist * 0.4, 7 / Math.sqrt(transform.scale));
+      const rStart = Math.min(lineDist * 0.4, 7 / sqrtScale);
       const lineStartX = lineDist > 0.1 ? s.x + ((finalPos.x - s.x) / lineDist) * rStart : s.x;
       const lineStartY = lineDist > 0.1 ? s.y + ((finalPos.y - s.y) / lineDist) * rStart : s.y;
 
@@ -913,7 +1063,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     gameState.path,
     gameState.bestPath,
     gameState.friendPath,
+    gameState.targetSuburbId,
+    gameState.startSuburbId,
     currentSuburbId,
+    currentSuburb,
     startSuburb,
     targetSuburb,
     mapModel,
@@ -1368,6 +1521,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                     height={lbl.pillHeight}
                     rx={lbl.pillHeight / 2}
                     fill={lbl.bgColor}
+                    fillOpacity={0.93}
                     stroke={lbl.borderColor}
                     strokeWidth={1.2 / Math.sqrt(transform.scale)}
                     filter="url(#clean-shadow)"

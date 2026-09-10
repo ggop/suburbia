@@ -14,6 +14,7 @@ import {
   Flag,
   Share2,
   Calendar,
+  X,
 } from 'lucide-react';
 import {
   formatDisplayDate,
@@ -73,6 +74,22 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
     }
   }, [isWon, isOpen]);
 
+  // Allow the Escape key to close the results popup on desktop
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   // Compute historical facts discovered along the journey
   const historicalFacts = useMemo(() => {
     const suburbsToCheck = (gameState.routeHistory && gameState.routeHistory.length > 0)
@@ -112,6 +129,9 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   const optimalTurns = Math.max(1, gameState.bestPath.length - 2);
   const isOptimal = turnsUsed === optimalTurns;
   const isDaily = gameState.gameMode === 'daily';
+  // Exclude start suburb from navigated suburb count
+  const optimalSuburbsCount = Math.max(0, gameState.bestPath.length - 1);
+  const navigatedSuburbsCount = Math.max(0, gameState.path.length - 1);
 
   const visitedSet = new Set(gameState.path);
 
@@ -129,7 +149,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
       targetSuburbId: gameState.targetSuburbId,
     };
 
-    const text = generateDailyShareText(dailyResult, mapModel);
+    const text = generateDailyShareText(dailyResult, mapModel, isDaily);
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
@@ -139,12 +159,37 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
   return (
     <div
       id="game-result-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-xs animate-fade-in text-neutral-900 select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-900/60 backdrop-blur-xs animate-fade-in text-neutral-900 select-none cursor-pointer"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+      onTouchEnd={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
     >
-      <div className="bg-white border border-neutral-200 rounded-2xl shadow-xl max-w-md w-full p-5 text-neutral-900 flex flex-col gap-3.5 max-h-[90vh] overflow-y-auto">
+      <div
+        className="bg-white border border-neutral-200 rounded-2xl shadow-xl max-w-md w-full p-5 text-neutral-900 flex flex-col gap-3.5 max-h-[90vh] overflow-y-auto cursor-default relative"
+        onClick={(e) => e.stopPropagation()}
+        onTouchEnd={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          type="button"
+          id="close-result-modal-btn"
+          onClick={onClose}
+          className="absolute top-3.5 right-3.5 p-1.5 rounded-lg text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+          aria-label="Close modal"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
         {/* Daily Challenge Banner */}
         {isDaily && (
-          <div className="flex items-center justify-between text-[11px] font-semibold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/80">
+          <div className="flex items-center justify-between text-[11px] font-semibold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/80 mr-6">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-amber-600" />
               <span>Daily Challenge • {formatDisplayDate(gameState.dailyDate || getTodayDateString())}</span>
@@ -185,10 +230,42 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
           </p>
         </div>
 
-        {/* Concise Stats Bar */}
-        <div className="bg-neutral-50 p-2.5 rounded-xl border border-neutral-200 text-center">
-          <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">Turns Used</div>
-          <div className="text-lg font-bold font-mono text-neutral-900">{turnsUsed}</div>
+        {/* Action Buttons: Review on Map, New Puzzle & Share (Moved higher up) */}
+        <div className="flex flex-col gap-2 pt-0.5">
+          <div className="flex items-center gap-2">
+            <button
+              id="review-map-btn"
+              onClick={() => {
+                onToggleBestPathReview();
+                onClose();
+              }}
+              className="flex-1 py-2 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer active:scale-98"
+            >
+              <Map className="w-3.5 h-3.5 text-neutral-600" />
+              <span>Review on Map</span>
+            </button>
+
+            {!isDaily && (
+              <button
+                id="new-round-btn"
+                onClick={onNewRound}
+                className="flex-1 py-2 px-3 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-xs cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>New Puzzle</span>
+              </button>
+            )}
+          </div>
+
+          {/* Share Result Button */}
+          <button
+            id="share-result-btn"
+            onClick={handleShare}
+            className="w-full py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors active:scale-98 cursor-pointer shadow-xs"
+          >
+            {copied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
+            <span>{copied ? 'Copied to Clipboard!' : 'Share Result'}</span>
+          </button>
         </div>
 
         {/* Route Comparison */}
@@ -200,7 +277,9 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
                 <Sparkles className="w-3 h-3 text-violet-600" />
                 <span>Optimal Route</span>
               </span>
-              <span className="text-[10px] font-mono text-violet-600">{gameState.bestPath.length} suburbs</span>
+              <span className="text-[10px] font-mono text-violet-600">
+                {optimalSuburbsCount} {optimalSuburbsCount === 1 ? 'suburb' : 'suburbs'}
+              </span>
             </div>
             <div className="flex flex-wrap items-center gap-1 text-[11px]">
               {gameState.bestPath.map((id, index) => {
@@ -219,12 +298,19 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
             </div>
           </div>
 
-          {/* Your Route */}
+          {/* Your Route with Turns Used included */}
           <div className="bg-neutral-50 p-2.5 rounded-xl border border-neutral-200 space-y-1.5">
             <div className="flex items-center justify-between text-[11px] font-bold text-neutral-700">
-              <span>Your Route</span>
+              <span className="flex items-center gap-1.5">
+                <span>Your Route</span>
+                <span className="text-[10.5px] font-normal text-neutral-500 font-mono">
+                  ({navigatedSuburbsCount} {navigatedSuburbsCount === 1 ? 'suburb' : 'suburbs'}, {turnsUsed} {turnsUsed === 1 ? 'turn' : 'turns'})
+                </span>
+              </span>
               {backtrackedCount > 0 && (
-                <span className="text-[10px] text-amber-700 font-normal">Backtracked items marked</span>
+                <span className="text-[10px] text-amber-700 font-normal bg-amber-100/70 px-1.5 py-0.5 rounded">
+                  {backtrackedCount} backtracked
+                </span>
               )}
             </div>
             <div className="flex flex-wrap items-center gap-1 text-[11px]">
@@ -274,41 +360,6 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
                 ))}
               </div>
             </div>
-          )}
-        </div>
-
-        {/* Share Result Button */}
-        <button
-          onClick={handleShare}
-          className="w-full py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors active:scale-95 cursor-pointer shadow-xs"
-        >
-          {copied ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
-          <span>{copied ? 'Copied to Clipboard!' : 'Share Result'}</span>
-        </button>
-
-        {/* Action Buttons: Review on Map & Start New Round (Practice only) */}
-        <div className="flex items-center gap-2 pt-1 border-t border-neutral-100">
-          <button
-            id="review-map-btn"
-            onClick={() => {
-              onToggleBestPathReview();
-              onClose();
-            }}
-            className="flex-1 py-2 px-3 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold flex items-center justify-center gap-1.5 border border-neutral-200 transition-colors cursor-pointer"
-          >
-            <Map className="w-3.5 h-3.5 text-neutral-600" />
-            <span>Review on Map</span>
-          </button>
-
-          {!isDaily && (
-            <button
-              id="new-round-btn"
-              onClick={onNewRound}
-              className="flex-1 py-2 px-3 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-xs cursor-pointer"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>New Puzzle</span>
-            </button>
           )}
         </div>
       </div>

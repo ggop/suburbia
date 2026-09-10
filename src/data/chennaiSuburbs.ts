@@ -434,13 +434,14 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   {
     "id": "besant-nagar",
     "name": "Besant Nagar",
-    "lat": 12.99833,
-    "lng": 80.22685,
+    "lat": 13.00411,
+    "lng": 80.26555,
     "postcode": "600090",
-    "region": "South",
-    "population": 36000,
-    "areaKm2": 8.4,
-    "description": "Corporation Ward 174 (ADYAR)"
+    "region": "South Chennai",
+    "population": 35000,
+    "areaKm2": 3.01,
+    "description": "Corporation Ward 176 (ADYAR)",
+    "historicalFact": "Famous for the iconic Edward Elliot’s Beach, Ashtalakshmi Temple, Velankanni Church, and vibrant coastal promenade."
   },
   {
     "id": "ashok-nagar",
@@ -2061,25 +2062,27 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "thiruvanmiyur-east",
-    "name": "Valmiki Nagar",
+    "name": "Vijayanagar (Velachery)",
     "lat": 12.97792,
     "lng": 80.22608,
-    "postcode": "600041",
-    "region": "South",
-    "population": 51100,
+    "postcode": "600042",
+    "region": "South Chennai",
+    "population": 41000,
     "areaKm2": 2.38,
-    "description": "Corporation Ward 179 (ADYAR)"
+    "description": "Corporation Ward 179 (ADYAR)",
+    "historicalFact": "Thriving southern hub of Velachery linking residential sectors with the IT expressway."
   },
   {
     "id": "taramani",
     "name": "Taramani",
-    "lat": 12.98023,
-    "lng": 80.26063,
+    "lat": 12.98639,
+    "lng": 80.24591,
     "postcode": "600113",
-    "region": "South",
-    "population": 46800,
-    "areaKm2": 1.81,
-    "description": "Corporation Ward 182 (ADYAR)"
+    "region": "South Chennai",
+    "population": 38000,
+    "areaKm2": 2.65,
+    "description": "Corporation Ward 180 (ADYAR)",
+    "historicalFact": "High-tech IT and premier research corridor hosting Ascendas IT Park, Tidel Park, and CSIR campus."
   },
   {
     "id": "thiruvanmiyur",
@@ -2091,17 +2094,6 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
     "population": 36000,
     "areaKm2": 1.85,
     "description": "Corporation Ward 181 (ADYAR)"
-  },
-  {
-    "id": "adyar-south",
-    "name": "Shastri Nagar",
-    "lat": 13.00411,
-    "lng": 80.26555,
-    "postcode": "600020",
-    "region": "South",
-    "population": 51100,
-    "areaKm2": 3.01,
-    "description": "Corporation Ward 176 (ADYAR)"
   },
   {
     "id": "raja-annamalaipuram",
@@ -2149,14 +2141,15 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   },
   {
     "id": "thiruvanmiyur-south",
-    "name": "Kamaraj Nagar",
-    "lat": 12.98639,
-    "lng": 80.24591,
-    "postcode": "600041",
-    "region": "South",
-    "population": 38000,
-    "areaKm2": 2.65,
-    "description": "Corporation Ward 180 (ADYAR)"
+    "name": "Ram Nagar (Velachery)",
+    "lat": 12.98663,
+    "lng": 80.21105,
+    "postcode": "600042",
+    "region": "South Chennai",
+    "population": 39000,
+    "areaKm2": 2.46,
+    "description": "Corporation Ward 177 (ADYAR)",
+    "historicalFact": "Key northern Velachery neighborhood connecting with Adambakkam and suburban transport hubs."
   },
   {
     "id": "kotturpuram",
@@ -2172,13 +2165,14 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
   {
     "id": "kalakshetra-colony",
     "name": "Kalakshetra Colony",
-    "lat": 12.98663,
-    "lng": 80.21105,
+    "lat": 12.98023,
+    "lng": 80.26063,
     "postcode": "600041",
-    "region": "South",
-    "population": 63200,
-    "areaKm2": 2.46,
-    "description": "Corporation Ward 177 (ADYAR)"
+    "region": "South Chennai",
+    "population": 32000,
+    "areaKm2": 1.81,
+    "description": "Corporation Ward 182 (ADYAR)",
+    "historicalFact": "Prestigious cultural arts enclave founded by Rukmini Devi Arundale along the scenic Bay of Bengal coastline."
   },
   {
     "id": "velachery",
@@ -2608,5 +2602,17 @@ export const CHENNAI_SUBURBS: SuburbData[] = [
     "population": 36000,
     "areaKm2": 1.18,
     "description": "Corporation Ward 130 (KODAMBAKKAM)"
+  },
+  {
+    "id": "iit-madras",
+    "name": "IIT Madras",
+    "lat": 12.99833,
+    "lng": 80.22685,
+    "postcode": "600036",
+    "region": "South Chennai",
+    "population": 36000,
+    "areaKm2": 8.4,
+    "description": "Corporation Ward 174 (ADYAR)",
+    "historicalFact": "Expansive 630-acre verdant campus of the Indian Institute of Technology Madras, Guindy National Park, and Raj Bhavan."
   }
 ];

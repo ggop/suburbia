@@ -235,6 +235,10 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
 
   const suburbMap = new Map<string, SuburbProjected>();
   suburbs.forEach((s) => suburbMap.set(s.id, s));
+  if (isChennai) {
+    const iit = suburbMap.get('iit-madras');
+    if (iit) suburbMap.set('adyar-south', iit);
+  }
 
   // --- Project High-Resolution GIS Waterways ---
   const projectedCoastline: [number, number][] = shorelineCoords.map(([lng, lat]) =>
