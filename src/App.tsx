@@ -244,7 +244,7 @@ export default function App() {
         };
       });
 
-      setErrorMessage(`Destination reached! Automatically connected into ${targetName}.`);
+      setErrorMessage(null);
     }, 400);
 
     return () => clearTimeout(timer);
@@ -377,9 +377,9 @@ export default function App() {
         return;
       }
 
-      // Check if this turn directly touches the target suburb
-      const touchesTarget = nextSuburb.neighbors.includes(gameState.targetSuburbId);
-      if (touchesTarget) {
+      // Check if this turn borders the target suburb
+      const bordersTarget = nextSuburb.neighbors.includes(gameState.targetSuburbId);
+      if (bordersTarget) {
         // Target is reached! Connect target to complete route without counting target as an extra turn.
         const newPathWithTarget = [...newPath, gameState.targetSuburbId];
         const newRouteWithTarget = [
@@ -399,7 +399,7 @@ export default function App() {
           status: 'won',
           turnHistory: newTurnHistoryWithTarget,
         }));
-        setErrorMessage(`Destination reached! Your turn directly touched ${targetSuburb?.name || 'Target'}.`);
+        setErrorMessage(null);
         return;
       }
 
