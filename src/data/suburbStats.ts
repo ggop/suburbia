@@ -255,10 +255,13 @@ export function getApproximateAge(suburb: SuburbData): string {
     }
   }
 
-  // 3. Fallback based on distance to Melbourne CBD (-37.8136, 144.9631)
-  const distCbd = Math.hypot(suburb.lat - -37.8136, suburb.lng - 144.9631) * 111;
+  // 3. Fallback based on distance to nearest CBD (Sydney, Adelaide, Melbourne)
+  const distMelb = Math.hypot(suburb.lat - -37.8136, suburb.lng - 144.9631) * 111;
+  const distSyd = Math.hypot(suburb.lat - -33.8688, suburb.lng - 151.2093) * 111;
+  const distAde = Math.hypot(suburb.lat - -34.9285, suburb.lng - 138.6007) * 111;
+  const distCbd = Math.min(distMelb, distSyd, distAde);
   if (distCbd < 6) {
-    return '1850s';
+    return distSyd < 40 ? '1790s–1850s' : '1840s–1860s';
   } else if (distCbd < 15) {
     return '1880s–1910s';
   } else if (distCbd < 25) {

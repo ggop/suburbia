@@ -111,6 +111,8 @@ export const Header: React.FC<HeaderProps> = ({
             className={`w-2 h-2 rounded-full shrink-0 ${
               selectedCity === 'melbourne'
                 ? 'bg-emerald-500'
+                : selectedCity === 'sydney'
+                ? 'bg-indigo-500'
                 : selectedCity === 'adelaide'
                 ? 'bg-sky-500'
                 : 'bg-amber-500'
@@ -171,6 +173,8 @@ export const Header: React.FC<HeaderProps> = ({
                           className={`w-2 h-2 rounded-full shrink-0 ${
                             city.id === 'melbourne'
                               ? 'bg-emerald-500'
+                              : city.id === 'sydney'
+                              ? 'bg-indigo-500'
                               : city.id === 'adelaide'
                               ? 'bg-sky-500'
                               : 'bg-amber-500'

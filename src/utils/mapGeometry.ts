@@ -21,6 +21,17 @@ import {
   ADELAIDE_SUBURB_ADJACENCY,
 } from '../data/adelaideGeoData';
 import {
+  SYDNEY_SUBURBS,
+  PACIFIC_OCEAN_SHORELINE,
+  PARRAMATTA_RIVER_GIS,
+  GEORGES_RIVER_GIS,
+} from '../data/sydneySuburbs';
+import {
+  SYDNEY_SUBURB_BOUNDARIES,
+  SYDNEY_SUBURB_CENTERS,
+  SYDNEY_SUBURB_ADJACENCY,
+} from '../data/sydneyGeoData';
+import {
   CHENNAI_SUBURBS,
   BAY_OF_BENGAL_SHORELINE,
   COOUM_RIVER_GIS,
@@ -51,6 +62,14 @@ export const CITIES: Record<CityId, CityOption> = {
     badge: 'VIC',
     suburbCount: MELBOURNE_SUBURBS.length,
     waterBodyName: 'Port Phillip Bay',
+  },
+  sydney: {
+    id: 'sydney',
+    name: 'Sydney',
+    state: 'New South Wales',
+    badge: 'NSW',
+    suburbCount: SYDNEY_SUBURBS.length,
+    waterBodyName: 'Pacific Ocean',
   },
   adelaide: {
     id: 'adelaide',
@@ -119,40 +138,55 @@ function pointsToSvgPath(points: [number, number][], close = false): string {
  */
 export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   const isAdelaide = cityId === 'adelaide';
+  const isSydney = cityId === 'sydney';
   const isChennai = cityId === 'chennai';
 
-  const rawSuburbs: SuburbData[] = isChennai
+  const rawSuburbs: SuburbData[] = isSydney
+    ? SYDNEY_SUBURBS
+    : isChennai
     ? CHENNAI_SUBURBS
     : isAdelaide
     ? ADELAIDE_SUBURBS
     : MELBOURNE_SUBURBS;
-  const rawBoundaries: Record<string, [number, number][]> = isChennai
+  const rawBoundaries: Record<string, [number, number][]> = isSydney
+    ? SYDNEY_SUBURB_BOUNDARIES
+    : isChennai
     ? CHENNAI_SUBURB_BOUNDARIES
     : isAdelaide
     ? ADELAIDE_SUBURB_BOUNDARIES
     : MELBOURNE_BOUNDARIES;
-  const rawCenters: Record<string, [number, number]> = isChennai
+  const rawCenters: Record<string, [number, number]> = isSydney
+    ? SYDNEY_SUBURB_CENTERS
+    : isChennai
     ? CHENNAI_SUBURB_CENTERS
     : isAdelaide
     ? ADELAIDE_SUBURB_CENTERS
     : MELBOURNE_CENTERS;
-  const rawAdjacency: Record<string, string[]> = isChennai
+  const rawAdjacency: Record<string, string[]> = isSydney
+    ? SYDNEY_SUBURB_ADJACENCY
+    : isChennai
     ? CHENNAI_SUBURB_ADJACENCY
     : isAdelaide
     ? ADELAIDE_SUBURB_ADJACENCY
     : MELBOURNE_ADJACENCY;
 
-  const shorelineCoords: [number, number][] = isChennai
+  const shorelineCoords: [number, number][] = isSydney
+    ? PACIFIC_OCEAN_SHORELINE
+    : isChennai
     ? BAY_OF_BENGAL_SHORELINE
     : isAdelaide
     ? GULF_ST_VINCENT_SHORELINE
     : PORT_PHILLIP_BAY_SHORELINE;
-  const primaryRiverCoords: [number, number][] = isChennai
+  const primaryRiverCoords: [number, number][] = isSydney
+    ? PARRAMATTA_RIVER_GIS
+    : isChennai
     ? COOUM_RIVER_GIS
     : isAdelaide
     ? RIVER_TORRENS_GIS
     : YARRA_RIVER_GIS;
-  const secondaryRiverCoords: [number, number][] = isChennai
+  const secondaryRiverCoords: [number, number][] = isSydney
+    ? GEORGES_RIVER_GIS
+    : isChennai
     ? ADYAR_RIVER_GIS
     : isAdelaide
     ? PORT_RIVER_GIS
@@ -253,8 +287,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     const firstCoastPoint = projectedCoastline[0];
     const lastCoastPoint = projectedCoastline[projectedCoastline.length - 1];
 
-    if (isChennai) {
-      // For Chennai, Bay of Bengal is to the EAST of the coastline
+    if (isChennai || isSydney) {
+      // For Sydney (Pacific Ocean) and Chennai (Bay of Bengal), water is to the EAST of the coastline
       waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
       for (let i = 1; i < projectedCoastline.length; i++) {
         waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
@@ -286,8 +320,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
 
   // Water depth contour (subtle bathymetry contour offset slightly deeper into the bay/gulf)
   const depthContourPoints: [number, number][] = projectedCoastline.map(([x, y]) => [
-    Math.round((isChennai ? x + 18 : isAdelaide ? x - 18 : x - 14) * 10) / 10,
-    Math.round((isChennai ? y : isAdelaide ? y : y + 12) * 10) / 10,
+    Math.round((isChennai || isSydney ? x + 18 : isAdelaide ? x - 18 : x - 14) * 10) / 10,
+    Math.round((isChennai || isSydney ? y : isAdelaide ? y : y + 12) * 10) / 10,
   ]);
   const waterDepthContourPath = pointsToSvgPath(depthContourPoints);
 
@@ -302,13 +336,13 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   );
   const secondaryRiverPath = pointsToSvgPath(projectedSecondaryRiver);
 
-  const cityName = isChennai ? 'Chennai' : isAdelaide ? 'Adelaide' : 'Melbourne';
-  const stateName = isChennai ? 'Tamil Nadu' : isAdelaide ? 'South Australia' : 'Victoria';
-  const waterBodyName = isChennai ? 'Bay of Bengal' : isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
-  const primaryRiverName = isChennai ? 'Cooum River (Koovam)' : isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
-  const secondaryRiverName = isChennai ? 'Adyar River' : isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
-  const waterLabelX = isChennai ? 1280 : isAdelaide ? 60 : 260;
-  const waterLabelY = isChennai ? 520 : isAdelaide ? 540 : 930;
+  const cityName = isSydney ? 'Sydney' : isChennai ? 'Chennai' : isAdelaide ? 'Adelaide' : 'Melbourne';
+  const stateName = isSydney ? 'New South Wales' : isChennai ? 'Tamil Nadu' : isAdelaide ? 'South Australia' : 'Victoria';
+  const waterBodyName = isSydney ? 'Pacific Ocean' : isChennai ? 'Bay of Bengal' : isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
+  const primaryRiverName = isSydney ? 'Sydney Harbour & Parramatta River' : isChennai ? 'Cooum River (Koovam)' : isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
+  const secondaryRiverName = isSydney ? 'Georges River (Tucoerah)' : isChennai ? 'Adyar River' : isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
+  const waterLabelX = isSydney ? 1320 : isChennai ? 1280 : isAdelaide ? 60 : 260;
+  const waterLabelY = isSydney ? 560 : isChennai ? 520 : isAdelaide ? 540 : 930;
 
   return {
     cityId,
@@ -451,8 +485,22 @@ export function generateRandomGame(
   }
 
   // Guaranteed fallback
-  const startId = cityId === 'chennai' ? 't-nagar' : cityId === 'adelaide' ? 'adelaide-cbd' : 'melbourne-cbd';
-  const targetId = cityId === 'chennai' ? 'besant-nagar' : cityId === 'adelaide' ? 'glenelg' : 'box-hill';
+  const startId =
+    cityId === 'sydney'
+      ? 'sydney'
+      : cityId === 'chennai'
+      ? 't-nagar'
+      : cityId === 'adelaide'
+      ? 'adelaide-cbd'
+      : 'melbourne-cbd';
+  const targetId =
+    cityId === 'sydney'
+      ? 'bondi-beach'
+      : cityId === 'chennai'
+      ? 'besant-nagar'
+      : cityId === 'adelaide'
+      ? 'glenelg'
+      : 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
   return {
     startSuburbId: startId,

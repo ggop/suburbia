@@ -1,6 +1,7 @@
 import { SuburbData, CityId } from '../types';
 import { findShortestPath, getDistancesFrom, CityMapModel } from './mapGeometry';
 import { CANONICAL_DAILY_CHALLENGES } from '../data/canonicalDailyChallenges';
+import { CANONICAL_SYDNEY_DAILY_CHALLENGES } from '../data/canonicalSydneyDailyChallenges';
 import { CANONICAL_ADELAIDE_DAILY_CHALLENGES } from '../data/canonicalAdelaideDailyChallenges';
 import { CANONICAL_CHENNAI_DAILY_CHALLENGES } from '../data/canonicalChennaiDailyChallenges';
 
@@ -111,7 +112,9 @@ export function generateDailyChallenge(
   const challengeNumber = getDailyChallengeNumber(dateStr);
 
   const canonicalMap =
-    cityId === 'adelaide'
+    cityId === 'sydney'
+      ? CANONICAL_SYDNEY_DAILY_CHALLENGES
+      : cityId === 'adelaide'
       ? CANONICAL_ADELAIDE_DAILY_CHALLENGES
       : cityId === 'chennai'
       ? CANONICAL_CHENNAI_DAILY_CHALLENGES
@@ -179,9 +182,21 @@ export function generateDailyChallenge(
 
   // Deterministic fallback (5 steps)
   const startId =
-    cityId === 'chennai' ? 't-nagar' : cityId === 'adelaide' ? 'adelaide-cbd' : 'melbourne-cbd';
+    cityId === 'sydney'
+      ? 'sydney'
+      : cityId === 'chennai'
+      ? 't-nagar'
+      : cityId === 'adelaide'
+      ? 'adelaide-cbd'
+      : 'melbourne-cbd';
   const targetId =
-    cityId === 'chennai' ? 'besant-nagar' : cityId === 'adelaide' ? 'glenelg' : 'box-hill';
+    cityId === 'sydney'
+      ? 'bondi-beach'
+      : cityId === 'chennai'
+      ? 'besant-nagar'
+      : cityId === 'adelaide'
+      ? 'glenelg'
+      : 'box-hill';
   const bestPath = findShortestPath(startId, targetId, adjacency);
 
   return {
