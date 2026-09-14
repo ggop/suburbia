@@ -22,11 +22,11 @@ export function getCityFromUrl(): CityId | null {
   if (typeof window === 'undefined') return null;
 
   try {
-    // 1. Check pathname segments (e.g., "/singapore" or "/suburbia/singapore")
+    // 1. Check pathname segments (e.g., "/singapore", "/suburbia/sydney", "/singapore/")
     const pathSegments = window.location.pathname
       .toLowerCase()
       .split('/')
-      .map((s) => s.trim())
+      .map((s) => s.replace(/\.html?$/i, '').trim())
       .filter(Boolean);
 
     for (const segment of pathSegments) {
@@ -35,17 +35,32 @@ export function getCityFromUrl(): CityId | null {
       }
     }
 
-    // 2. Check query parameters (?city=singapore or ?c=singapore)
-    const searchParams = new URLSearchParams(window.location.search);
-    const cityParam = searchParams.get('city') || searchParams.get('c');
-    if (cityParam && isValidPlayableCity(cityParam)) {
-      return cityParam.toLowerCase() as CityId;
+    // 2. Check query parameters (?city=singapore, ?c=singapore, or query flag like ?singapore)
+    if (window.location.search) {
+      const searchParams = new URLSearchParams(window.location.search);
+      const cityParam = searchParams.get('city') || searchParams.get('c');
+      if (cityParam && isValidPlayableCity(cityParam)) {
+        return cityParam.toLowerCase() as CityId;
+      }
+      for (const [key, value] of searchParams.entries()) {
+        if (isValidPlayableCity(key)) {
+          return key.toLowerCase() as CityId;
+        }
+        if (isValidPlayableCity(value)) {
+          return value.toLowerCase() as CityId;
+        }
+      }
     }
 
-    // 3. Check hash fragment (#singapore or #/singapore)
-    const hash = window.location.hash.toLowerCase().replace(/^#\/?/, '').split('?')[0].split('/')[0];
-    if (hash && isValidPlayableCity(hash)) {
-      return hash as CityId;
+    // 3. Check hash fragment (#singapore, #/singapore, #city=singapore, or #?city=singapore)
+    if (window.location.hash) {
+      const rawHash = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+      const hashParts = rawHash.split(/[\/?&=]/).filter(Boolean);
+      for (const part of hashParts) {
+        if (isValidPlayableCity(part)) {
+          return part as CityId;
+        }
+      }
     }
   } catch (err) {
     console.warn('Failed to parse city from URL:', err);
