@@ -143,7 +143,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
         </div>
 
         {/* Error message alert on mobile */}
-        {errorMessage && (
+        {errorMessage && gameState.status === 'playing' && (
           <div className="mx-3 my-1 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-[11px] flex items-center gap-2">
             <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
             <span className="font-medium leading-tight">{errorMessage}</span>
@@ -412,7 +412,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           </div>
 
           {/* Error message alert banner */}
-          {errorMessage && (
+          {errorMessage && gameState.status === 'playing' && (
             <div className="flex items-center gap-2 p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs animate-fadeIn">
               <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
               <span className="font-medium leading-tight">{errorMessage}</span>

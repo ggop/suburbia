@@ -187,8 +187,12 @@ export default function App() {
   const isInitialMountRef = useRef<boolean>(true);
   const prevStatusRef = useRef<GameState['status']>(gameState.status);
 
-  // When game completes (won or lost) during active play, open results
+  // When game completes (won or lost) during active play, open results and clear any error/warning messages
   useEffect(() => {
+    if (gameState.status === 'won' || gameState.status === 'lost') {
+      setErrorMessage(null);
+    }
+
     if (isInitialMountRef.current) {
       isInitialMountRef.current = false;
       // On initial page load / new browser tab: do NOT load the results popup!
@@ -495,6 +499,7 @@ export default function App() {
   // Give up on puzzle
   const handleGiveUp = useCallback(() => {
     if (gameState.status !== 'playing') return;
+    setErrorMessage(null);
     setGameState((prev) => ({
       ...prev,
       status: 'lost',

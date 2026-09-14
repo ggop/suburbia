@@ -101,21 +101,17 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header
       id="game-header"
-      className="h-14 sm:h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-2.5 sm:px-4 md:px-5 z-30 shadow-xs shrink-0 select-none text-neutral-900 gap-2"
+      className="h-13 sm:h-16 border-b border-neutral-200 bg-white flex items-center justify-between px-2 sm:px-4 md:px-5 z-30 shadow-xs shrink-0 select-none text-neutral-900 gap-1 sm:gap-2"
     >
       {/* Brand & Suburb Route Info */}
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
-        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center text-white font-black text-sm tracking-wider shrink-0 shadow-xs">
+      <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center text-white font-black text-xs sm:text-sm tracking-wider shrink-0 shadow-xs">
           S
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 hidden md:block">
           <h1 className="font-extrabold text-sm sm:text-base tracking-tight text-neutral-900 flex items-center gap-1.5">
             <span>SUBURBIA</span>
           </h1>
-          <p className="text-[10px] sm:text-[11px] text-neutral-500 truncate max-w-[110px] xs:max-w-[170px] sm:max-w-md lg:hidden leading-tight">
-            <span className="text-red-600 font-semibold">{startSuburb?.name || 'Start'}</span> ➔{' '}
-            <span className="text-blue-600 font-semibold">{targetSuburb?.name || 'Target'}</span>
-          </p>
         </div>
       </div>
 
@@ -127,23 +123,23 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => setIsCityDropdownOpen((prev) => !prev)}
           aria-haspopup="listbox"
           aria-expanded={isCityDropdownOpen}
-          className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-neutral-100 hover:bg-neutral-200/90 border border-neutral-200 rounded-lg text-xs font-semibold text-neutral-900 transition-all cursor-pointer shadow-xs select-none"
+          className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1 sm:py-1.5 bg-neutral-100 hover:bg-neutral-200/90 border border-neutral-200 rounded-lg text-xs font-semibold text-neutral-900 transition-all cursor-pointer shadow-xs select-none"
           title="Select city map"
         >
           <span
             className={`w-2 h-2 rounded-full shrink-0 ${getCityDotColor(selectedCity)}`}
           />
           <span className="font-bold">{CITIES[selectedCity]?.name || 'City'}</span>
-          <span className="text-[10px] text-neutral-500 font-mono hidden xs:inline">
+          <span className="text-[10px] text-neutral-500 font-mono hidden sm:inline">
             ({CITIES[selectedCity]?.badge})
           </span>
           {CITIES[selectedCity]?.isBeta && (
-            <span className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wide">
+            <span className="hidden sm:inline px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase tracking-wide">
               Beta
             </span>
           )}
           <ChevronDown
-            className={`w-3.5 h-3.5 text-neutral-500 transition-transform duration-200 ${
+            className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-500 transition-transform duration-200 ${
               isCityDropdownOpen ? 'rotate-180 text-neutral-900' : ''
             }`}
           />
@@ -222,7 +218,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           id="mode-daily-btn"
           onClick={() => onSelectMode('daily')}
-          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
+          className={`px-1.5 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             isDaily
               ? 'bg-white text-neutral-900 shadow-xs font-bold'
               : 'text-neutral-500 hover:text-neutral-900'
@@ -230,13 +226,13 @@ export const Header: React.FC<HeaderProps> = ({
           title="Play today's universal daily challenge"
         >
           <Calendar className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isDaily ? 'text-amber-500' : 'text-neutral-400'}`} />
-          <span>Daily</span>
+          <span className="hidden min-[380px]:inline">Daily</span>
         </button>
 
         <button
           id="mode-practice-btn"
           onClick={() => onSelectMode('practice')}
-          className={`px-2 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
+          className={`px-1.5 sm:px-2.5 py-1 rounded-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer text-[11px] sm:text-xs ${
             !isDaily
               ? 'bg-white text-neutral-900 shadow-xs font-bold'
               : 'text-neutral-500 hover:text-neutral-900'
@@ -245,7 +241,7 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Dices className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${!isDaily ? 'text-indigo-500' : 'text-neutral-400'}`} />
           <span className="hidden sm:inline">Practice</span>
-          <span className="sm:hidden">Free</span>
+          <span className="hidden min-[380px]:inline sm:hidden">Free</span>
         </button>
       </div>
 
@@ -273,10 +269,10 @@ export const Header: React.FC<HeaderProps> = ({
             id="header-give-up-btn"
             onClick={onGiveUp}
             title="Give up and reveal shortest path"
-            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center gap-1 sm:gap-1.5 transition-colors cursor-pointer"
           >
             <Flag className="w-3.5 h-3.5 text-rose-500" />
-            <span className="hidden sm:inline">Give Up</span>
+            <span className="hidden md:inline">Give Up</span>
           </button>
         )}
 
@@ -286,7 +282,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="toggle-best-path-header-btn"
             onClick={onToggleBestPath}
             title="Toggle optimal path overlay on map"
-            className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border ${
+            className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-colors border ${
               showBestPath
                 ? 'bg-violet-50 text-violet-800 border-violet-300 shadow-xs'
                 : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
@@ -302,10 +298,10 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="view-results-btn"
             onClick={onOpenResultModal}
-            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200 flex items-center gap-1 sm:gap-1.5 transition-colors cursor-pointer"
           >
             <Trophy className="w-3.5 h-3.5 text-neutral-700" />
-            <span className="hidden sm:inline">Scorecard</span>
+            <span className="hidden md:inline">Scorecard</span>
           </button>
         )}
 
@@ -327,7 +323,7 @@ export const Header: React.FC<HeaderProps> = ({
           id="how-to-play-btn"
           onClick={onOpenHowToPlay}
           title="How to Play"
-          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center gap-1 cursor-pointer"
+          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 border border-neutral-200 transition-colors flex items-center justify-center gap-1 cursor-pointer shrink-0"
         >
           <HelpCircle className="w-3.5 h-3.5 text-neutral-500" />
           <span className="hidden sm:inline">Help</span>
@@ -339,22 +335,20 @@ export const Header: React.FC<HeaderProps> = ({
             id="header-new-round-btn"
             onClick={onNewGame}
             title="Start a new practice puzzle with random suburbs"
-            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95 cursor-pointer shrink-0"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">New Round</span>
-            <span className="sm:hidden">New</span>
           </button>
         ) : isGameOver ? (
           <button
             id="header-practice-mode-btn"
             onClick={() => onSelectMode('practice')}
             title="Today's Daily is finished. Play unlimited Practice puzzles!"
-            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-black hover:bg-neutral-800 text-white transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95 cursor-pointer shrink-0"
           >
             <Dices className="w-3.5 h-3.5 text-indigo-400" />
             <span className="hidden sm:inline">Play Practice</span>
-            <span className="sm:hidden">Practice</span>
           </button>
         ) : null}
       </div>
