@@ -123,13 +123,15 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => setIsCityDropdownOpen((prev) => !prev)}
           aria-haspopup="listbox"
           aria-expanded={isCityDropdownOpen}
-          className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1 sm:py-1.5 bg-neutral-100 hover:bg-neutral-200/90 border border-neutral-200 rounded-lg text-xs font-semibold text-neutral-900 transition-all cursor-pointer shadow-xs select-none"
+          className="w-[82px] sm:w-auto flex items-center justify-between sm:justify-start gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1 sm:py-1.5 bg-neutral-100 hover:bg-neutral-200/90 border border-neutral-200 rounded-lg text-xs font-semibold text-neutral-900 transition-all cursor-pointer shadow-xs select-none"
           title="Select city map"
         >
-          <span
-            className={`w-2 h-2 rounded-full shrink-0 ${getCityDotColor(selectedCity)}`}
-          />
-          <span className="font-bold">{CITIES[selectedCity]?.name || 'City'}</span>
+          <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+            <span
+              className={`w-2 h-2 rounded-full shrink-0 ${getCityDotColor(selectedCity)}`}
+            />
+            <span className="font-bold truncate text-[11px] sm:text-xs">{CITIES[selectedCity]?.name || 'City'}</span>
+          </div>
           <span className="text-[10px] text-neutral-500 font-mono hidden sm:inline">
             ({CITIES[selectedCity]?.badge})
           </span>
@@ -139,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           )}
           <ChevronDown
-            className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-500 transition-transform duration-200 ${
+            className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-500 transition-transform duration-200 shrink-0 ${
               isCityDropdownOpen ? 'rotate-180 text-neutral-900' : ''
             }`}
           />
