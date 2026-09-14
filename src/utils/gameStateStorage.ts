@@ -14,6 +14,7 @@ export const VALID_CITIES: CityId[] = [
   'hobart',
   'melbourne',
   'perth',
+  'singapore',
   'sydney',
 ];
 

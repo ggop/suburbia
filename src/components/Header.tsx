@@ -44,6 +44,8 @@ function getCityDotColor(cityId: CityId): string {
       return 'bg-amber-500';
     case 'sydney':
       return 'bg-indigo-500';
+    case 'singapore':
+      return 'bg-rose-600';
     case 'chennai':
       return 'bg-orange-500';
     default:

@@ -53,6 +53,8 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     lastCenter: { x: number; y: number };
   } | null>(null);
   const touchMovedRef = useRef(false);
+  const lastTapTimeRef = useRef<number>(0);
+  const lastTapPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   // Track active puzzle so selecting next suburb does NOT reset the user's zoom/pan
   const puzzleIdRef = useRef<string>('');
@@ -204,7 +206,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       }
       if (includeCalloutMargin) {
         // Generous margin in SVG space ensuring callout leader lines, pin badges, and label pill text fit completely
-        const labelMargin = 95;
+        const labelMargin = 135;
         includePoint(sub.x - labelMargin, sub.y - labelMargin);
         includePoint(sub.x + labelMargin, sub.y + labelMargin);
       }
@@ -227,10 +229,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
     // Viewport padding in screen pixels tailored to floating UI overlays
     // (Right: zoom buttons; Top: controls / touch hint; Bottom: status bar / legend)
-    const paddingLeft = Math.min(80, Math.max(48, clientWidth * 0.08));
-    const paddingRight = Math.min(95, Math.max(68, clientWidth * 0.10)); // Extra space for zoom controls
-    const paddingTop = Math.min(85, Math.max(56, clientHeight * 0.09));
-    const paddingBottom = Math.min(95, Math.max(64, clientHeight * 0.10)); // Extra space for status pill / legend
+    const paddingLeft = Math.min(100, Math.max(56, clientWidth * 0.10));
+    const paddingRight = Math.min(115, Math.max(80, clientWidth * 0.12)); // Extra space for zoom controls
+    const paddingTop = Math.min(100, Math.max(68, clientHeight * 0.11));
+    const paddingBottom = Math.min(115, Math.max(76, clientHeight * 0.12)); // Extra space for status pill / legend
 
     const availableWidth = Math.max(clientWidth - (paddingLeft + paddingRight), 40);
     const availableHeight = Math.max(clientHeight - (paddingTop + paddingBottom), 40);
@@ -497,10 +499,47 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     if (e.touches.length === 1) {
       touchPinchRef.current = null;
       isDraggingRef.current = true;
+      const t = e.touches[0];
       dragStartRef.current = {
-        x: e.touches[0].clientX - transform.x,
-        y: e.touches[0].clientY - transform.y,
+        x: t.clientX - transform.x,
+        y: t.clientY - transform.y,
       };
+
+      const now = Date.now();
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect) {
+        const touchX = t.clientX - rect.left;
+        const touchY = t.clientY - rect.top;
+        const distFromLastTap = Math.hypot(
+          touchX - lastTapPosRef.current.x,
+          touchY - lastTapPosRef.current.y
+        );
+
+        if (now - lastTapTimeRef.current < 350 && distFromLastTap < 35) {
+          // Double-tap zoom on touch screens
+          lastTapTimeRef.current = 0;
+          const zoomFactor = 1.35;
+          setTransform((prev) => {
+            const validScale = Number.isFinite(prev.scale) && prev.scale > 0 ? prev.scale : 1.0;
+            const validX = Number.isFinite(prev.x) ? prev.x : 0;
+            const validY = Number.isFinite(prev.y) ? prev.y : 0;
+            const newScale = Math.min(validScale * zoomFactor, 5.0);
+            if (newScale <= validScale) return prev;
+
+            const ratio = newScale / validScale;
+            const newX = touchX - (touchX - validX) * ratio;
+            const newY = touchY - (touchY - validY) * ratio;
+
+            if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(newScale)) {
+              return prev;
+            }
+            return { x: newX, y: newY, scale: newScale };
+          });
+        } else {
+          lastTapTimeRef.current = now;
+          lastTapPosRef.current = { x: touchX, y: touchY };
+        }
+      }
     } else if (e.touches.length === 2) {
       isDraggingRef.current = false;
       const t1 = e.touches[0];
@@ -1021,7 +1060,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
     candidates.forEach((cand) => {
       const s = cand.suburb;
-      const textWidth = cand.badgeText.length * (fontSize * 0.54);
+      const textWidth = cand.badgeText.length * (fontSize * 0.62);
       const pillWidth = textWidth + padX * 2;
 
       // Determine preferred angle away from the route corridor:

@@ -30,6 +30,10 @@ const { CANBERRA_SUBURBS } = require('../src/data/canberraSuburbs');
 const { CANBERRA_SUBURB_BOUNDARIES, CANBERRA_SUBURB_CENTERS, CANBERRA_SUBURB_ADJACENCY } = require('../src/data/canberraGeoData');
 const { CANONICAL_CANBERRA_DAILY_CHALLENGES } = require('../src/data/canonicalCanberraDailyChallenges');
 
+const { SINGAPORE_SUBURBS } = require('../src/data/singaporeSuburbs');
+const { SINGAPORE_SUBURB_BOUNDARIES, SINGAPORE_SUBURB_CENTERS, SINGAPORE_SUBURB_ADJACENCY } = require('../src/data/singaporeGeoData');
+const { CANONICAL_SINGAPORE_DAILY_CHALLENGES } = require('../src/data/canonicalSingaporeDailyChallenges');
+
 const datasets = [
   {
     name: 'Melbourne',
@@ -93,6 +97,15 @@ const datasets = [
     centers: CANBERRA_SUBURB_CENTERS,
     adjacency: CANBERRA_SUBURB_ADJACENCY,
     challenges: CANONICAL_CANBERRA_DAILY_CHALLENGES
+  },
+  {
+    name: 'Singapore',
+    cbd: 'downtown-core',
+    suburbs: SINGAPORE_SUBURBS,
+    boundaries: SINGAPORE_SUBURB_BOUNDARIES,
+    centers: SINGAPORE_SUBURB_CENTERS,
+    adjacency: SINGAPORE_SUBURB_ADJACENCY,
+    challenges: CANONICAL_SINGAPORE_DAILY_CHALLENGES
   }
 ];
 

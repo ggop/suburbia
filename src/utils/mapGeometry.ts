@@ -87,6 +87,18 @@ import {
   CANBERRA_SUBURB_ADJACENCY,
 } from '../data/canberraGeoData';
 import {
+  SINGAPORE_SUBURBS,
+  SINGAPORE_STRAIT_SHORELINE,
+  JOHOR_STRAIT_SHORELINE,
+  SINGAPORE_RIVER_GIS,
+  KALLANG_RIVER_GIS,
+} from '../data/singaporeSuburbs';
+import {
+  SINGAPORE_SUBURB_BOUNDARIES,
+  SINGAPORE_SUBURB_CENTERS,
+  SINGAPORE_SUBURB_ADJACENCY,
+} from '../data/singaporeGeoData';
+import {
   computePolygonAreaKm2,
   getEstimatedPopulation,
   getApproximateAge,
@@ -146,6 +158,14 @@ export const CITIES: Record<CityId, CityOption> = {
     badge: 'WA',
     suburbCount: PERTH_SUBURBS.length,
     waterBodyName: 'Indian Ocean',
+  },
+  singapore: {
+    id: 'singapore',
+    name: 'Singapore',
+    state: 'Singapore',
+    badge: 'SG',
+    suburbCount: SINGAPORE_SUBURBS.length,
+    waterBodyName: 'Singapore Strait & Marina Bay',
   },
   sydney: {
     id: 'sydney',
@@ -215,6 +235,7 @@ function pointsToSvgPath(points: [number, number][], close = false): string {
 export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   const isAdelaide = cityId === 'adelaide';
   const isSydney = cityId === 'sydney';
+  const isSingapore = cityId === 'singapore';
   const isChennai = cityId === 'chennai';
   const isPerth = cityId === 'perth';
   const isBrisbane = cityId === 'brisbane';
@@ -223,6 +244,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
 
   const rawSuburbs: SuburbData[] = isSydney
     ? SYDNEY_SUBURBS
+    : isSingapore
+    ? SINGAPORE_SUBURBS
     : isPerth
     ? PERTH_SUBURBS
     : isBrisbane
@@ -238,6 +261,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_SUBURBS;
   const rawBoundaries: Record<string, [number, number][]> = isSydney
     ? SYDNEY_SUBURB_BOUNDARIES
+    : isSingapore
+    ? SINGAPORE_SUBURB_BOUNDARIES
     : isPerth
     ? PERTH_SUBURB_BOUNDARIES
     : isBrisbane
@@ -253,6 +278,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_BOUNDARIES;
   const rawCenters: Record<string, [number, number]> = isSydney
     ? SYDNEY_SUBURB_CENTERS
+    : isSingapore
+    ? SINGAPORE_SUBURB_CENTERS
     : isPerth
     ? PERTH_SUBURB_CENTERS
     : isBrisbane
@@ -268,6 +295,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_CENTERS;
   const rawAdjacency: Record<string, string[]> = isSydney
     ? SYDNEY_SUBURB_ADJACENCY
+    : isSingapore
+    ? SINGAPORE_SUBURB_ADJACENCY
     : isPerth
     ? PERTH_SUBURB_ADJACENCY
     : isBrisbane
@@ -284,6 +313,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
 
   const shorelineCoords: [number, number][] = isSydney
     ? PACIFIC_OCEAN_SHORELINE
+    : isSingapore
+    ? SINGAPORE_STRAIT_SHORELINE
     : isPerth
     ? INDIAN_OCEAN_SHORELINE
     : isBrisbane
@@ -299,6 +330,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : PORT_PHILLIP_BAY_SHORELINE;
   const primaryRiverCoords: [number, number][] = isSydney
     ? PARRAMATTA_RIVER_GIS
+    : isSingapore
+    ? SINGAPORE_RIVER_GIS
     : isPerth
     ? SWAN_RIVER_GIS
     : isBrisbane
@@ -314,6 +347,8 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : YARRA_RIVER_GIS;
   const secondaryRiverCoords: [number, number][] = isSydney
     ? GEORGES_RIVER_GIS
+    : isSingapore
+    ? KALLANG_RIVER_GIS
     : isPerth
     ? CANNING_RIVER_GIS
     : isBrisbane
@@ -495,13 +530,93 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   );
   const secondaryRiverPath = pointsToSvgPath(projectedSecondaryRiver);
 
-  const cityName = isSydney ? 'Sydney' : isPerth ? 'Perth' : isBrisbane ? 'Brisbane' : isHobart ? 'Hobart' : isCanberra ? 'Canberra' : isChennai ? 'Chennai' : isAdelaide ? 'Adelaide' : 'Melbourne';
-  const stateName = isSydney ? 'New South Wales' : isPerth ? 'Western Australia' : isBrisbane ? 'Queensland' : isHobart ? 'Tasmania' : isCanberra ? 'Australian Capital Territory' : isChennai ? 'Tamil Nadu' : isAdelaide ? 'South Australia' : 'Victoria';
-  const waterBodyName = isSydney ? 'Pacific Ocean' : isPerth ? 'Indian Ocean' : isBrisbane ? 'Moreton Bay' : isHobart ? 'River Derwent & Storm Bay' : isCanberra ? 'Lake Burley Griffin' : isChennai ? 'Bay of Bengal' : isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
-  const primaryRiverName = isSydney ? 'Sydney Harbour & Parramatta River' : isPerth ? 'Swan River (Derbarl Yerrigan)' : isBrisbane ? 'Brisbane River (Maiwar)' : isHobart ? 'River Derwent (Timtumili Minanya)' : isCanberra ? 'Molonglo River & Lake Burley Griffin' : isChennai ? 'Cooum River (Koovam)' : isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
-  const secondaryRiverName = isSydney ? 'Georges River (Tucoerah)' : isPerth ? 'Canning River (Djarlgarro Beelier)' : isBrisbane ? 'Pine River' : isHobart ? 'Hobart Rivulet' : isCanberra ? 'Murrumbidgee River' : isChennai ? 'Adyar River' : isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
-  const waterLabelX = isCanberra ? 752 : isSydney ? 1320 : isBrisbane ? 1310 : isHobart ? 850 : isChennai ? 1280 : isAdelaide || isPerth ? 60 : 260;
-  const waterLabelY = isCanberra ? 528 : isSydney ? 560 : isBrisbane ? 530 : isHobart ? 1020 : isChennai ? 520 : isAdelaide || isPerth ? 540 : 930;
+  const cityName = isSydney
+    ? 'Sydney'
+    : isSingapore
+    ? 'Singapore'
+    : isPerth
+    ? 'Perth'
+    : isBrisbane
+    ? 'Brisbane'
+    : isHobart
+    ? 'Hobart'
+    : isCanberra
+    ? 'Canberra'
+    : isChennai
+    ? 'Chennai'
+    : isAdelaide
+    ? 'Adelaide'
+    : 'Melbourne';
+  const stateName = isSydney
+    ? 'New South Wales'
+    : isSingapore
+    ? 'Singapore'
+    : isPerth
+    ? 'Western Australia'
+    : isBrisbane
+    ? 'Queensland'
+    : isHobart
+    ? 'Tasmania'
+    : isCanberra
+    ? 'Australian Capital Territory'
+    : isChennai
+    ? 'Tamil Nadu'
+    : isAdelaide
+    ? 'South Australia'
+    : 'Victoria';
+  const waterBodyName = isSydney
+    ? 'Pacific Ocean'
+    : isSingapore
+    ? 'Singapore Strait & Marina Bay'
+    : isPerth
+    ? 'Indian Ocean'
+    : isBrisbane
+    ? 'Moreton Bay'
+    : isHobart
+    ? 'River Derwent & Storm Bay'
+    : isCanberra
+    ? 'Lake Burley Griffin'
+    : isChennai
+    ? 'Bay of Bengal'
+    : isAdelaide
+    ? 'Gulf St Vincent'
+    : 'Port Phillip Bay';
+  const primaryRiverName = isSydney
+    ? 'Sydney Harbour & Parramatta River'
+    : isSingapore
+    ? 'Singapore River & Marina Bay'
+    : isPerth
+    ? 'Swan River (Derbarl Yerrigan)'
+    : isBrisbane
+    ? 'Brisbane River (Maiwar)'
+    : isHobart
+    ? 'River Derwent (Timtumili Minanya)'
+    : isCanberra
+    ? 'Molonglo River & Lake Burley Griffin'
+    : isChennai
+    ? 'Cooum River (Koovam)'
+    : isAdelaide
+    ? 'River Torrens (Karrawirra Parri)'
+    : 'Yarra River (Birrarung)';
+  const secondaryRiverName = isSydney
+    ? 'Georges River (Tucoerah)'
+    : isSingapore
+    ? 'Kallang River'
+    : isPerth
+    ? 'Canning River (Djarlgarro Beelier)'
+    : isBrisbane
+    ? 'Pine River'
+    : isHobart
+    ? 'Hobart Rivulet'
+    : isCanberra
+    ? 'Murrumbidgee River'
+    : isChennai
+    ? 'Adyar River'
+    : isAdelaide
+    ? 'Port River (Yertabulti)'
+    : 'Maribyrnong River';
+  const waterLabelX = isCanberra ? 752 : isSydney ? 1320 : isSingapore ? 750 : isBrisbane ? 1310 : isHobart ? 850 : isChennai ? 1280 : isAdelaide || isPerth ? 60 : 260;
+  const waterLabelY = isCanberra ? 528 : isSydney ? 560 : isSingapore ? 1040 : isBrisbane ? 530 : isHobart ? 1020 : isChennai ? 520 : isAdelaide || isPerth ? 540 : 930;
 
   return {
     cityId,
@@ -652,6 +767,8 @@ export function generateRandomGame(
   const startId =
     cityId === 'sydney'
       ? 'sydney'
+      : cityId === 'singapore'
+      ? 'downtown-core'
       : cityId === 'perth'
       ? 'perth'
       : cityId === 'brisbane'
@@ -668,6 +785,8 @@ export function generateRandomGame(
   const targetId =
     cityId === 'sydney'
       ? 'burwood'
+      : cityId === 'singapore'
+      ? 'woodlands'
       : cityId === 'perth'
       ? 'fremantle'
       : cityId === 'brisbane'

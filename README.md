@@ -1,12 +1,12 @@
 # Suburbia 🗺️
 
-An interactive Australian metropolitan geography traversal puzzle game featuring **Melbourne**, **Sydney**, **Adelaide**, **Perth**, **Brisbane**, **Hobart**, and **Canberra**. Navigate between bordering suburbs across genuine cadastral boundaries to reach the destination suburb!
+An interactive metropolitan geography traversal puzzle game featuring **Melbourne**, **Sydney**, **Adelaide**, **Perth**, **Brisbane**, **Hobart**, **Canberra**, and **Singapore**. Navigate between bordering suburbs and planning areas across genuine cadastral boundaries to reach the destination!
 
 ---
 
 ## Features
 
-- **Multi-City Support**: Seamlessly toggle between 7 major Australian capital city maps:
+- **Multi-City Support**: Seamlessly toggle between 8 major city maps:
   - **Melbourne** (423 suburbs, Victoria)
   - **Sydney** (497 suburbs, New South Wales)
   - **Adelaide** (401 suburbs, South Australia)
@@ -14,6 +14,7 @@ An interactive Australian metropolitan geography traversal puzzle game featuring
   - **Brisbane** (306 suburbs, Queensland)
   - **Hobart** (122 suburbs, Tasmania)
   - **Canberra** (116 suburbs, Australian Capital Territory)
+  - **Singapore** (55 planning areas, Singapore)
 - **Daily Challenge Mode**: Every player worldwide receives the exact same start and target suburbs based on today's date!
   - 100% immutable canonical schedule across all days and deployments (2025–2030, 2,191 consecutive days).
   - Shortest path distance is guaranteed to be strictly 5 steps.
@@ -72,11 +73,17 @@ All datasets in Suburbia are compiled from authoritative cadastral and geographi
 - **Demographics & Heritage**: ABS 2021 Census statistics, National Capital Authority (NCA) archives, and ACT Heritage Library historical records.
 - **Key Bridges & Crossings**: Commonwealth Avenue Bridge, Kings Avenue Bridge, Scrivener Dam / Lady Denman Drive crossing, and Tharwa Bridge.
 
+### 8. Singapore (Singapore) — 55 Planning Areas
+- **Cadastral Source**: **Urban Redevelopment Authority (URA) & Singapore Land Authority (SLA / Data.gov.sg)**: Official URA Master Plan Planning Area Boundaries (SVY21 / WGS84) under the Singapore Open Data Licence, defining 55 official planning areas across the Central, East, North, North-East, and West Regions.
+- **Hydrography & Coastline**: Singapore Strait southern coastline and Straits of Johor northern coastline; GIS coordinates for Singapore River & Marina Bay, and the Kallang River basin.
+- **Demographics & Heritage**: Singapore Department of Statistics (SingStat) population metrics, National Heritage Board (NHB) archives, and National Parks Board (NParks) conservation records.
+- **Key Bridges & Crossings**: Sentosa Gateway / Causeway, Jurong Island Highway, Benjamin Sheares Bridge, Marina Barrage, Jubilee Bridge / Esplanade Bridge, and Anderson Bridge.
+
 ---
 
 ## Dataset Integrity Verification
 
-All 7 city datasets are continuously audited by an automated topological verification suite (`scripts/verifyAllDatasets.cjs`) checking:
+All 8 city datasets are continuously audited by an automated topological verification suite (`scripts/verifyAllDatasets.cjs`) checking:
 1. **Suburb ID Uniqueness**: No duplicate suburb identifiers within or across datasets.
 2. **Boundary Validity**: Non-degenerate polygon coordinates, valid winding, and within metropolitan coordinate bounding boxes.
 3. **Adjacency Symmetry**: 100% symmetric edge contacts (`if A touches B, then B touches A`), no self-loops, and zero dangling edge references.

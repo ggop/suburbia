@@ -7,6 +7,7 @@ import { CANONICAL_PERTH_DAILY_CHALLENGES } from '../data/canonicalPerthDailyCha
 import { CANONICAL_BRISBANE_DAILY_CHALLENGES } from '../data/canonicalBrisbaneDailyChallenges';
 import { CANONICAL_HOBART_DAILY_CHALLENGES } from '../data/canonicalHobartDailyChallenges';
 import { CANONICAL_CANBERRA_DAILY_CHALLENGES } from '../data/canonicalCanberraDailyChallenges';
+import { CANONICAL_SINGAPORE_DAILY_CHALLENGES } from '../data/canonicalSingaporeDailyChallenges';
 import { CANONICAL_CHENNAI_DAILY_CHALLENGES } from '../data/canonicalChennaiDailyChallenges';
 
 /**
@@ -118,6 +119,8 @@ export function generateDailyChallenge(
   const canonicalMap =
     cityId === 'sydney'
       ? CANONICAL_SYDNEY_DAILY_CHALLENGES
+      : cityId === 'singapore'
+      ? CANONICAL_SINGAPORE_DAILY_CHALLENGES
       : cityId === 'adelaide'
       ? CANONICAL_ADELAIDE_DAILY_CHALLENGES
       : cityId === 'perth'
@@ -198,6 +201,8 @@ export function generateDailyChallenge(
   const startId =
     cityId === 'sydney'
       ? 'sydney'
+      : cityId === 'singapore'
+      ? 'downtown-core'
       : cityId === 'perth'
       ? 'perth'
       : cityId === 'brisbane'
@@ -214,6 +219,8 @@ export function generateDailyChallenge(
   const targetId =
     cityId === 'sydney'
       ? 'burwood'
+      : cityId === 'singapore'
+      ? 'woodlands'
       : cityId === 'perth'
       ? 'fremantle'
       : cityId === 'brisbane'
@@ -303,7 +310,7 @@ export function generateDailyShareText(
     : `Practice`;
 
   const playLabel = isDaily ? "Play today's daily" : 'Play Suburbia';
-  const playUrl = `${window.location.origin}${window.location.pathname}`;
+  const playUrl = `${window.location.origin}/${(mapModel.cityId || 'melbourne').toLowerCase()}`;
 
   // Compact summary without "Turn limit reached [Turn Limit Exceeded]"
   const lines: string[] = [
