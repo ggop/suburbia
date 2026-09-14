@@ -309,18 +309,17 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         )}
 
-        {/* Buy Me a Coffee Badge */}
+        {/* Buy Me a Coffee Button */}
         <a
           id="header-buy-me-coffee-btn"
           href="https://buymeacoffee.com/suburbia"
           target="_blank"
           rel="noopener noreferrer"
           title="Buy me a coffee"
-          className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-bold bg-[#FFDD00] hover:bg-[#F2D200] text-neutral-900 border border-amber-400/70 shadow-xs flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer shrink-0"
+          aria-label="Buy me a coffee"
+          className="p-1.5 sm:p-2 rounded-lg bg-[#FFDD00] hover:bg-[#F2D200] text-neutral-900 border border-amber-400/80 shadow-xs flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0"
         >
           <Coffee className="w-3.5 h-3.5 text-neutral-900 shrink-0" />
-          <span className="hidden md:inline whitespace-nowrap">Buy me a coffee</span>
-          <span className="hidden sm:inline md:hidden whitespace-nowrap">Coffee</span>
         </a>
 
         {/* How to Play button */}
