@@ -1,6 +1,6 @@
 export type GameMode = 'daily' | 'practice';
 
-export type CityId = 'melbourne' | 'adelaide' | 'sydney' | 'chennai';
+export type CityId = 'melbourne' | 'adelaide' | 'sydney' | 'chennai' | 'perth' | 'brisbane' | 'hobart' | 'canberra';
 
 export interface CityOption {
   id: CityId;

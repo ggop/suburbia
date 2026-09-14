@@ -3,6 +3,10 @@ import { findShortestPath, getDistancesFrom, CityMapModel } from './mapGeometry'
 import { CANONICAL_DAILY_CHALLENGES } from '../data/canonicalDailyChallenges';
 import { CANONICAL_SYDNEY_DAILY_CHALLENGES } from '../data/canonicalSydneyDailyChallenges';
 import { CANONICAL_ADELAIDE_DAILY_CHALLENGES } from '../data/canonicalAdelaideDailyChallenges';
+import { CANONICAL_PERTH_DAILY_CHALLENGES } from '../data/canonicalPerthDailyChallenges';
+import { CANONICAL_BRISBANE_DAILY_CHALLENGES } from '../data/canonicalBrisbaneDailyChallenges';
+import { CANONICAL_HOBART_DAILY_CHALLENGES } from '../data/canonicalHobartDailyChallenges';
+import { CANONICAL_CANBERRA_DAILY_CHALLENGES } from '../data/canonicalCanberraDailyChallenges';
 import { CANONICAL_CHENNAI_DAILY_CHALLENGES } from '../data/canonicalChennaiDailyChallenges';
 
 /**
@@ -116,6 +120,14 @@ export function generateDailyChallenge(
       ? CANONICAL_SYDNEY_DAILY_CHALLENGES
       : cityId === 'adelaide'
       ? CANONICAL_ADELAIDE_DAILY_CHALLENGES
+      : cityId === 'perth'
+      ? CANONICAL_PERTH_DAILY_CHALLENGES
+      : cityId === 'brisbane'
+      ? CANONICAL_BRISBANE_DAILY_CHALLENGES
+      : cityId === 'hobart'
+      ? CANONICAL_HOBART_DAILY_CHALLENGES
+      : cityId === 'canberra'
+      ? CANONICAL_CANBERRA_DAILY_CHALLENGES
       : cityId === 'chennai'
       ? CANONICAL_CHENNAI_DAILY_CHALLENGES
       : CANONICAL_DAILY_CHALLENGES;
@@ -144,18 +156,18 @@ export function generateDailyChallenge(
   const sortedSuburbs = [...suburbs].sort((a, b) => a.id.localeCompare(b.id));
   const allIds = sortedSuburbs.map((s) => s.id);
 
-  // Sample candidate starts using our PRNG to find a pair strictly 5 steps away
+  // Sample candidate starts using our PRNG to find a pair strictly 5 or 6 steps away (excluding target)
   for (let attempt = 0; attempt < 500; attempt++) {
     const startIndex = Math.floor(rng() * allIds.length);
     const startId = allIds[startIndex];
     const distances = getDistancesFrom(startId, adjacency);
 
-    // Collect valid candidate targets strictly 5 steps away
+    // Collect valid candidate targets strictly 5 or 6 steps away (dist 6 or 7)
     const validTargets: { id: string; dist: number }[] = [];
     allIds.forEach((targetId) => {
       if (targetId !== startId) {
         const dist = distances.get(targetId);
-        if (dist === 5) {
+        if (dist === 6 || dist === 7) {
           validTargets.push({ id: targetId, dist });
         }
       }
@@ -167,36 +179,54 @@ export function generateDailyChallenge(
       const targetIndex = Math.floor(rng() * validTargets.length);
       const chosen = validTargets[targetIndex];
       const bestPath = findShortestPath(startId, chosen.id, adjacency);
-
-      return {
-        dateStr,
-        challengeNumber,
-        startSuburbId: startId,
-        targetSuburbId: chosen.id,
-        bestPath,
-        bestPathDistance: Math.max(1, bestPath.length - 2),
-        maxTurns: 10,
-      };
+      const steps = bestPath.length - 2;
+      if (steps === 5 || steps === 6) {
+        return {
+          dateStr,
+          challengeNumber,
+          startSuburbId: startId,
+          targetSuburbId: chosen.id,
+          bestPath,
+          bestPathDistance: steps,
+          maxTurns: 10,
+        };
+      }
     }
   }
 
-  // Deterministic fallback (5 steps)
+  // Deterministic fallback (strictly 5 or 6 steps excluding target)
   const startId =
     cityId === 'sydney'
       ? 'sydney'
+      : cityId === 'perth'
+      ? 'perth'
+      : cityId === 'brisbane'
+      ? 'brisbane-city'
+      : cityId === 'hobart'
+      ? 'hobart'
       : cityId === 'chennai'
       ? 't-nagar'
       : cityId === 'adelaide'
       ? 'adelaide-cbd'
+      : cityId === 'canberra'
+      ? 'city'
       : 'melbourne-cbd';
   const targetId =
     cityId === 'sydney'
-      ? 'bondi-beach'
+      ? 'burwood'
+      : cityId === 'perth'
+      ? 'fremantle'
+      : cityId === 'brisbane'
+      ? 'sunnybank'
+      : cityId === 'hobart'
+      ? 'lower-snug'
       : cityId === 'chennai'
-      ? 'besant-nagar'
+      ? 'anna-nagar-east'
       : cityId === 'adelaide'
       ? 'glenelg'
-      : 'box-hill';
+      : cityId === 'canberra'
+      ? 'melba'
+      : 'kealba';
   const bestPath = findShortestPath(startId, targetId, adjacency);
 
   return {

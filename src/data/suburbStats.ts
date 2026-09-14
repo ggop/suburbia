@@ -255,13 +255,16 @@ export function getApproximateAge(suburb: SuburbData): string {
     }
   }
 
-  // 3. Fallback based on distance to nearest CBD (Sydney, Adelaide, Melbourne)
+  // 3. Fallback based on distance to nearest CBD
   const distMelb = Math.hypot(suburb.lat - -37.8136, suburb.lng - 144.9631) * 111;
   const distSyd = Math.hypot(suburb.lat - -33.8688, suburb.lng - 151.2093) * 111;
   const distAde = Math.hypot(suburb.lat - -34.9285, suburb.lng - 138.6007) * 111;
-  const distCbd = Math.min(distMelb, distSyd, distAde);
+  const distPer = Math.hypot(suburb.lat - -31.9505, suburb.lng - 115.8605) * 111;
+  const distBne = Math.hypot(suburb.lat - -27.4698, suburb.lng - 153.0251) * 111;
+  const distHba = Math.hypot(suburb.lat - -42.8821, suburb.lng - 147.3272) * 111;
+  const distCbd = Math.min(distMelb, distSyd, distAde, distPer, distBne, distHba);
   if (distCbd < 6) {
-    return distSyd < 40 ? '1790s–1850s' : '1840s–1860s';
+    return (distSyd < 40 || distHba < 40) ? '1800s–1850s' : '1840s–1860s';
   } else if (distCbd < 15) {
     return '1880s–1910s';
   } else if (distCbd < 25) {
@@ -283,9 +286,11 @@ export function getNotableHistoricalFact(suburb: SuburbData): string | undefined
   const genericPatterns = [
     'vibrant residential and community hub',
     'noted for local parklands and historic character',
-    'greater melbourne metropolitan area, noted for',
+    'greater melbourne metropolitan area',
     'scenic residential area',
     'established residential suburb',
+    'established in the greater',
+    'metropolitan region, postcode',
   ];
 
   const lower = trimmed.toLowerCase();

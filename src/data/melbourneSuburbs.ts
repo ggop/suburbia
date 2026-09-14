@@ -524,7 +524,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.28332,
     "postcode": "3136",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "coburg-north",
@@ -569,7 +568,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.16799,
     "postcode": "3197",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "burnley",
@@ -641,7 +639,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34785,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "lalor",
@@ -659,7 +656,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.20857,
     "postcode": "3197",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "junction-village",
@@ -668,7 +664,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.29102,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "caulfield",
@@ -686,7 +681,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.24879,
     "postcode": "3177",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "woodstock",
@@ -695,7 +689,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.06392,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "airport-west",
@@ -722,7 +715,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.19741,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "dandenong-south",
@@ -731,7 +723,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.22308,
     "postcode": "3175",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "dandenong",
@@ -749,7 +740,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.22969,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "lynbrook",
@@ -758,7 +748,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.25609,
     "postcode": "3803",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "clarinda",
@@ -767,7 +756,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.10561,
     "postcode": "3168",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "ferny-creek",
@@ -776,7 +764,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.33532,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cairnlea",
@@ -794,7 +781,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.89213,
     "postcode": "3043",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "ashwood",
@@ -839,7 +825,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.23336,
     "postcode": "3134",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "highett",
@@ -884,7 +869,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18676,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mont-albert",
@@ -911,7 +895,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18963,
     "postcode": "3174",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "caulfield-south",
@@ -947,7 +930,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.24667,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "notting-hill",
@@ -983,7 +965,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.39822,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "braybrook",
@@ -1001,7 +982,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.24305,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "st-kilda-east",
@@ -1037,7 +1017,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35714,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "caulfield-north",
@@ -1100,7 +1079,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.11377,
     "postcode": "3168",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "essendon-fields",
@@ -1109,7 +1087,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.90053,
     "postcode": "3041",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "edithvale",
@@ -1145,7 +1122,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.24292,
     "postcode": "3134",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "seaholme",
@@ -1154,7 +1130,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.84584,
     "postcode": "3018",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hughesdale",
@@ -1172,7 +1147,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.90925,
     "postcode": "3047",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "north-melbourne",
@@ -1190,7 +1164,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.80535,
     "postcode": "3020",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "footscray",
@@ -1208,7 +1181,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.09335,
     "postcode": "3194",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hampton-east",
@@ -1235,7 +1207,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.89974,
     "postcode": "3043",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "collingwood",
@@ -1271,7 +1242,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.03281,
     "postcode": "3073",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "caulfield-east",
@@ -1280,7 +1250,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.04147,
     "postcode": "3163",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "west-footscray",
@@ -1298,7 +1267,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.77244,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mckinnon",
@@ -1316,7 +1284,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.85472,
     "postcode": "3019",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "oakleigh",
@@ -1379,7 +1346,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.13261,
     "postcode": "3196",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "bend-of-islands",
@@ -1388,7 +1354,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.28321,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "upwey",
@@ -1397,7 +1362,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.32747,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "vermont-south",
@@ -1406,7 +1370,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18594,
     "postcode": "3131",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "blackburn-south",
@@ -1415,7 +1378,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.14371,
     "postcode": "3151",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "box-hill-south",
@@ -1433,7 +1395,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.41741,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "abbotsford",
@@ -1451,7 +1412,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.93078,
     "postcode": "3047",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "aspendale",
@@ -1487,7 +1447,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34148,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "glen-huntly",
@@ -1505,7 +1464,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26157,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "williamstown-north",
@@ -1523,7 +1481,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.25118,
     "postcode": "3136",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "werribee-south",
@@ -1586,7 +1543,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.16739,
     "postcode": "3198",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "nunawading",
@@ -1613,7 +1569,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.81623,
     "postcode": "3020",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "belgrave-heights",
@@ -1622,7 +1577,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34009,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "croydon-hills",
@@ -1631,7 +1585,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26592,
     "postcode": "3136",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "meadow-heights",
@@ -1640,7 +1593,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.92083,
     "postcode": "3047",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "attwood",
@@ -1649,7 +1601,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.87624,
     "postcode": "3043",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "middle-park",
@@ -1667,7 +1618,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.10773,
     "postcode": "3166",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "balaclava",
@@ -1685,7 +1635,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.87005,
     "postcode": "3015",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "albert-park",
@@ -1703,7 +1652,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.09674,
     "postcode": "3088",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "alphington",
@@ -1766,7 +1714,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34921,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "moorabbin",
@@ -1784,7 +1731,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.3858,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "springvale-south",
@@ -1793,7 +1739,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.14653,
     "postcode": "3171",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "brooklyn",
@@ -1820,7 +1765,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31856,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "menzies-creek",
@@ -1829,7 +1773,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.39987,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mount-waverley",
@@ -1847,7 +1790,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.95067,
     "postcode": "3008",
     "region": "Inner",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "carrum",
@@ -1901,7 +1843,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.21345,
     "postcode": "3134",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "wheelers-hill",
@@ -1955,7 +1896,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.36256,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hurstbridge",
@@ -1964,7 +1904,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.19352,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "frankston-south",
@@ -1982,7 +1921,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.28697,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "brighton-east",
@@ -2009,7 +1947,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.40334,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "endeavour-hills",
@@ -2036,7 +1973,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.94577,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "oakleigh-south",
@@ -2045,7 +1981,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.09831,
     "postcode": "3166",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "sherbrooke",
@@ -2054,7 +1989,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35925,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "strathmore-heights",
@@ -2063,7 +1997,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.8955,
     "postcode": "3042",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "beaconsfield-upper",
@@ -2072,7 +2005,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.41972,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cranbourne-west",
@@ -2081,7 +2013,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.25546,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "clayton-south",
@@ -2090,7 +2021,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12436,
     "postcode": "3168",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hallam",
@@ -2108,7 +2038,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.73725,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "olinda",
@@ -2117,7 +2046,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.38165,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "blackburn",
@@ -2135,7 +2063,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.37902,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "bulleen",
@@ -2162,7 +2089,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.44202,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "viewbank",
@@ -2171,7 +2097,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.09426,
     "postcode": "3084",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "narre-warren-east",
@@ -2180,7 +2105,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35834,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "dalmore",
@@ -2189,7 +2113,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.42514,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "the-basin",
@@ -2198,7 +2121,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31908,
     "postcode": "3155",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "burnside",
@@ -2207,7 +2129,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.75274,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "warrandyte",
@@ -2225,7 +2146,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.11109,
     "postcode": "3088",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "wandin-north",
@@ -2234,7 +2154,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.42871,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mount-dandenong",
@@ -2243,7 +2162,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35009,
     "postcode": "3138",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "dingley-village",
@@ -2252,7 +2170,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12886,
     "postcode": "3171",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "north-warrandyte",
@@ -2261,7 +2178,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.21886,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mickleham",
@@ -2270,7 +2186,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.88175,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "altona-north",
@@ -2297,7 +2212,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.38352,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "east-melbourne",
@@ -2315,7 +2229,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35887,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "altona",
@@ -2333,7 +2246,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.17263,
     "postcode": "3197",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "langwarrin-south",
@@ -2342,7 +2254,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18737,
     "postcode": "3199",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "skye",
@@ -2351,7 +2262,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.21229,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "manor-lakes",
@@ -2360,7 +2270,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.5904,
     "postcode": "3024",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "mooroolbark",
@@ -2378,7 +2287,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.56443,
     "postcode": "3024",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "silvan",
@@ -2387,7 +2295,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.43591,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cottles-bridge",
@@ -2396,7 +2303,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.22453,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "yarrambat",
@@ -2405,7 +2311,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.13304,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "langwarrin",
@@ -2414,7 +2319,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.19095,
     "postcode": "3199",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "lilydale",
@@ -2432,7 +2336,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26803,
     "postcode": "3803",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "berwick",
@@ -2450,7 +2353,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.38777,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "thornbury",
@@ -2477,7 +2379,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.3844,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "research",
@@ -2486,7 +2387,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18986,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cardinia",
@@ -2495,7 +2395,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.41807,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "roxburgh-park",
@@ -2504,7 +2403,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.92427,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kalkallo",
@@ -2513,7 +2411,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.96333,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "frankston",
@@ -2549,7 +2446,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.08907,
     "postcode": "3199",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "monbulk",
@@ -2558,7 +2454,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.42525,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "parkville",
@@ -2594,7 +2489,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.19484,
     "postcode": "3132",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "rowville",
@@ -2621,7 +2515,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.0838,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "doreen",
@@ -2630,7 +2523,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.14325,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "yan-yean",
@@ -2639,7 +2531,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.13559,
     "postcode": "3752",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kangaroo-ground",
@@ -2648,7 +2539,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.23221,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "craigieburn",
@@ -2666,7 +2556,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.40623,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cranbourne-south",
@@ -2675,7 +2564,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.24703,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "port-melbourne",
@@ -2693,7 +2581,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.43344,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "essendon-north",
@@ -2720,7 +2607,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.20075,
     "postcode": "3132",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "pascoe-vale-south",
@@ -2756,7 +2642,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.2054,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "yarra-glen",
@@ -2765,7 +2650,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.38434,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "wildwood",
@@ -2774,7 +2658,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.80019,
     "postcode": "3429",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kilsyth-south",
@@ -2783,7 +2666,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31283,
     "postcode": "3155",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "steels-creek",
@@ -2792,7 +2674,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.38567,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "yuroke",
@@ -2801,7 +2682,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.8677,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "diggers-rest",
@@ -2810,7 +2690,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.69877,
     "postcode": "3429",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "christmas-hills",
@@ -2819,7 +2698,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31111,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "dixons-creek",
@@ -2828,7 +2706,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.4224,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "ferntree-gully",
@@ -2846,7 +2723,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31109,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "lysterfield",
@@ -2855,7 +2731,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.30906,
     "postcode": "3156",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cocoroc",
@@ -2864,7 +2739,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.63277,
     "postcode": "3030",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "st-helena",
@@ -2873,7 +2747,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.13239,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "heidelberg",
@@ -2927,7 +2800,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.11483,
     "postcode": "3106",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "eltham-north",
@@ -2936,7 +2808,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.1419,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "botanic-ridge",
@@ -2945,7 +2816,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.27232,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "carlton-north",
@@ -3008,7 +2878,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.21554,
     "postcode": "3175",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "carlton",
@@ -3026,7 +2895,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.08327,
     "postcode": "3085",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "montmorency",
@@ -3035,7 +2903,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12119,
     "postcode": "3088",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "briar-hill",
@@ -3044,7 +2911,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12327,
     "postcode": "3088",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "montrose",
@@ -3053,7 +2919,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34411,
     "postcode": "3138",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "bellfield",
@@ -3062,7 +2927,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.03777,
     "postcode": "3081",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "croydon-north",
@@ -3071,7 +2935,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.282,
     "postcode": "3136",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hoppers-crossing",
@@ -3098,7 +2961,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26701,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "coldstream",
@@ -3107,7 +2969,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.42533,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "toorak",
@@ -3134,7 +2995,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31438,
     "postcode": "3805",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "wollert",
@@ -3143,7 +3003,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.01195,
     "postcode": "3076",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "st-andrews",
@@ -3152,7 +3011,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.28832,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "strathmore",
@@ -3161,7 +3019,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.91283,
     "postcode": "3041",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "seabrook",
@@ -3170,7 +3027,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.76073,
     "postcode": "3028",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "watsonia-north",
@@ -3179,7 +3035,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.08511,
     "postcode": "3088",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "aspendale-gardens",
@@ -3188,7 +3043,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12117,
     "postcode": "3196",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "greenvale",
@@ -3197,7 +3051,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.87082,
     "postcode": "3043",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "south-melbourne",
@@ -3215,7 +3068,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.93478,
     "postcode": "3047",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kings-park",
@@ -3224,7 +3076,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.77211,
     "postcode": "3021",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "chirnside-park",
@@ -3233,7 +3084,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.30707,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kealba",
@@ -3242,7 +3092,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.82674,
     "postcode": "3036",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "keilor-east",
@@ -3269,7 +3118,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.75908,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "keilor-north",
@@ -3278,7 +3126,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.79299,
     "postcode": "3036",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "niddrie",
@@ -3296,7 +3143,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26373,
     "postcode": "3113",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kew",
@@ -3314,7 +3160,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.27884,
     "postcode": "3153",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "burnside-heights",
@@ -3323,7 +3168,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.75855,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "keilor-lodge",
@@ -3332,7 +3176,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.80106,
     "postcode": "3036",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cranbourne-north",
@@ -3341,7 +3184,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.29111,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "sunbury",
@@ -3359,7 +3201,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.34898,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "lysterfield-south",
@@ -3368,7 +3209,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.26355,
     "postcode": "3802",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "castella",
@@ -3377,7 +3217,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.41757,
     "postcode": "3140",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "keilor-park",
@@ -3386,7 +3225,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.85269,
     "postcode": "3033",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "heidelberg-heights",
@@ -3395,7 +3233,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.05506,
     "postcode": "3081",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "ivanhoe",
@@ -3422,7 +3259,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.83872,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "southbank",
@@ -3494,7 +3330,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.75481,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "delahey",
@@ -3503,7 +3338,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.77453,
     "postcode": "3021",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hadfield",
@@ -3512,7 +3346,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.94767,
     "postcode": "3044",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "moorabbin-airport",
@@ -3521,7 +3354,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.09782,
     "postcode": "3195",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "broadmeadows",
@@ -3539,7 +3371,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.12756,
     "postcode": "3196",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "braeside",
@@ -3548,7 +3379,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.1256,
     "postcode": "3195",
     "region": "Bayside",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "brunswick-east",
@@ -3584,7 +3414,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.60428,
     "postcode": "3029",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "toolern-vale",
@@ -3593,7 +3422,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.58453,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "truganina",
@@ -3611,7 +3439,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.68043,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "strathtulloh",
@@ -3620,7 +3447,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.59404,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "thornhill-park",
@@ -3629,7 +3455,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.62588,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "sandringham",
@@ -3674,7 +3499,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.22236,
     "postcode": "3152",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "preston",
@@ -3719,7 +3543,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.1578,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cremorne",
@@ -3737,7 +3560,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.18792,
     "postcode": "3095",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "south-morang",
@@ -3755,7 +3577,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31239,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "derrimut",
@@ -3764,7 +3585,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.77776,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "brunswick-west",
@@ -3791,7 +3611,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.56896,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "weir-views",
@@ -3800,7 +3619,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.56711,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "cobblebank",
@@ -3809,7 +3627,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.59758,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "kurunjang",
@@ -3818,7 +3635,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.59516,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "fieldstone",
@@ -3827,7 +3643,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.64492,
     "postcode": "3029",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "rockbank",
@@ -3836,7 +3651,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.65454,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "aintree",
@@ -3845,7 +3659,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.66929,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "keilor-downs",
@@ -3854,7 +3667,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.8014,
     "postcode": "3021",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hillside",
@@ -3863,7 +3675,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.74535,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "springvale",
@@ -3881,7 +3692,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.79402,
     "postcode": "3036",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "coburg",
@@ -3917,7 +3727,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.21856,
     "postcode": "3150",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "hawthorn-east",
@@ -3962,7 +3771,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.91428,
     "postcode": "3046",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "noble-park",
@@ -3989,7 +3797,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31233,
     "postcode": "3977",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "clyde-north",
@@ -3998,7 +3805,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.35047,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "donnybrook",
@@ -4007,7 +3813,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.99269,
     "postcode": "3064",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "seddon",
@@ -4025,7 +3830,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31675,
     "postcode": "3138",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "croydon",
@@ -4043,7 +3847,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.36092,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "greensborough",
@@ -4061,7 +3864,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.39035,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "prahran",
@@ -4079,7 +3881,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.10974,
     "postcode": "3127",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "balwyn-north",
@@ -4124,7 +3925,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.31061,
     "postcode": "3805",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "narre-warren",
@@ -4142,7 +3942,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.42813,
     "postcode": "3806",
     "region": "South Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "ringwood",
@@ -4187,7 +3986,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 145.25539,
     "postcode": "3134",
     "region": "Eastern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "deanside",
@@ -4196,7 +3994,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.70567,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "grangefields",
@@ -4205,7 +4002,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.64215,
     "postcode": "3337",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "melton",
@@ -4223,7 +4019,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.66412,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "sydenham",
@@ -4232,7 +4027,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.76338,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "gisborne-south",
@@ -4241,7 +4035,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.62291,
     "postcode": "3429",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "fraser-rise",
@@ -4250,7 +4043,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.71754,
     "postcode": "3023",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "caroline-springs",
@@ -4277,7 +4069,6 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.84128,
     "postcode": "3036",
     "region": "Western",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   },
   {
     "id": "bulla",
@@ -4286,6 +4077,5 @@ export const MELBOURNE_SUBURBS: SuburbData[] = [
     "lng": 144.79139,
     "postcode": "3429",
     "region": "Northern",
-    "historicalFact": "Vibrant residential and community hub within the Greater Melbourne metropolitan area, noted for local parklands and historic character."
   }
 ];

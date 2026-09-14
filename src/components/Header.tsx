@@ -28,6 +28,29 @@ interface HeaderProps {
   onSelectMode: (mode: GameMode) => void;
 }
 
+function getCityDotColor(cityId: CityId): string {
+  switch (cityId) {
+    case 'adelaide':
+      return 'bg-sky-500';
+    case 'brisbane':
+      return 'bg-rose-500';
+    case 'canberra':
+      return 'bg-violet-500';
+    case 'hobart':
+      return 'bg-teal-500';
+    case 'melbourne':
+      return 'bg-emerald-500';
+    case 'perth':
+      return 'bg-amber-500';
+    case 'sydney':
+      return 'bg-indigo-500';
+    case 'chennai':
+      return 'bg-orange-500';
+    default:
+      return 'bg-neutral-500';
+  }
+}
+
 export const Header: React.FC<HeaderProps> = ({
   gameState,
   mapModel,
@@ -108,15 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
           title="Select city map"
         >
           <span
-            className={`w-2 h-2 rounded-full shrink-0 ${
-              selectedCity === 'melbourne'
-                ? 'bg-emerald-500'
-                : selectedCity === 'sydney'
-                ? 'bg-indigo-500'
-                : selectedCity === 'adelaide'
-                ? 'bg-sky-500'
-                : 'bg-amber-500'
-            }`}
+            className={`w-2 h-2 rounded-full shrink-0 ${getCityDotColor(selectedCity)}`}
           />
           <span className="font-bold">{CITIES[selectedCity]?.name || 'City'}</span>
           <span className="text-[10px] text-neutral-500 font-mono hidden xs:inline">
@@ -136,7 +151,9 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Dropdown Menu Popover */}
         {isCityDropdownOpen && (() => {
-          const visibleCities = Object.values(CITIES).filter((city) => !city.hidden);
+          const visibleCities = Object.values(CITIES)
+            .filter((city) => !city.hidden)
+            .sort((a, b) => a.name.localeCompare(b.name));
           return (
             <div
               id="city-dropdown-menu"
@@ -170,15 +187,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
                         <span
-                          className={`w-2 h-2 rounded-full shrink-0 ${
-                            city.id === 'melbourne'
-                              ? 'bg-emerald-500'
-                              : city.id === 'sydney'
-                              ? 'bg-indigo-500'
-                              : city.id === 'adelaide'
-                              ? 'bg-sky-500'
-                              : 'bg-amber-500'
-                          }`}
+                          className={`w-2 h-2 rounded-full shrink-0 ${getCityDotColor(city.id)}`}
                         />
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">

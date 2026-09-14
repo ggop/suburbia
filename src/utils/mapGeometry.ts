@@ -43,6 +43,50 @@ import {
   CHENNAI_SUBURB_ADJACENCY,
 } from '../data/chennaiGeoData';
 import {
+  PERTH_SUBURBS,
+  INDIAN_OCEAN_SHORELINE,
+  SWAN_RIVER_GIS,
+  CANNING_RIVER_GIS,
+} from '../data/perthSuburbs';
+import {
+  PERTH_SUBURB_BOUNDARIES,
+  PERTH_SUBURB_CENTERS,
+  PERTH_SUBURB_ADJACENCY,
+} from '../data/perthGeoData';
+import {
+  BRISBANE_SUBURBS,
+  MORETON_BAY_SHORELINE,
+  BRISBANE_RIVER_GIS,
+  PINE_RIVER_GIS,
+} from '../data/brisbaneSuburbs';
+import {
+  BRISBANE_SUBURB_BOUNDARIES,
+  BRISBANE_SUBURB_CENTERS,
+  BRISBANE_SUBURB_ADJACENCY,
+} from '../data/brisbaneGeoData';
+import {
+  HOBART_SUBURBS,
+  DERWENT_ESTUARY_SHORELINE,
+  RIVER_DERWENT_GIS,
+  HOBART_RIVULET_GIS,
+} from '../data/hobartSuburbs';
+import {
+  HOBART_SUBURB_BOUNDARIES,
+  HOBART_SUBURB_CENTERS,
+  HOBART_SUBURB_ADJACENCY,
+} from '../data/hobartGeoData';
+import {
+  CANBERRA_SUBURBS,
+  LAKE_BURLEY_GRIFFIN_SHORELINE,
+  MOLONGLO_RIVER_GIS,
+  MURRUMBIDGEE_RIVER_GIS,
+} from '../data/canberraSuburbs';
+import {
+  CANBERRA_SUBURB_BOUNDARIES,
+  CANBERRA_SUBURB_CENTERS,
+  CANBERRA_SUBURB_ADJACENCY,
+} from '../data/canberraGeoData';
+import {
   computePolygonAreaKm2,
   getEstimatedPopulation,
   getApproximateAge,
@@ -55,6 +99,38 @@ export const SVG_HEIGHT = 1100;
 const PADDING = 60;
 
 export const CITIES: Record<CityId, CityOption> = {
+  adelaide: {
+    id: 'adelaide',
+    name: 'Adelaide',
+    state: 'South Australia',
+    badge: 'SA',
+    suburbCount: ADELAIDE_SUBURBS.length,
+    waterBodyName: 'Gulf St Vincent',
+  },
+  brisbane: {
+    id: 'brisbane',
+    name: 'Brisbane',
+    state: 'Queensland',
+    badge: 'QLD',
+    suburbCount: BRISBANE_SUBURBS.length,
+    waterBodyName: 'Moreton Bay',
+  },
+  canberra: {
+    id: 'canberra',
+    name: 'Canberra',
+    state: 'Australian Capital Territory',
+    badge: 'ACT',
+    suburbCount: CANBERRA_SUBURBS.length,
+    waterBodyName: 'Lake Burley Griffin',
+  },
+  hobart: {
+    id: 'hobart',
+    name: 'Hobart',
+    state: 'Tasmania',
+    badge: 'TAS',
+    suburbCount: HOBART_SUBURBS.length,
+    waterBodyName: 'River Derwent & Storm Bay',
+  },
   melbourne: {
     id: 'melbourne',
     name: 'Melbourne',
@@ -63,6 +139,14 @@ export const CITIES: Record<CityId, CityOption> = {
     suburbCount: MELBOURNE_SUBURBS.length,
     waterBodyName: 'Port Phillip Bay',
   },
+  perth: {
+    id: 'perth',
+    name: 'Perth',
+    state: 'Western Australia',
+    badge: 'WA',
+    suburbCount: PERTH_SUBURBS.length,
+    waterBodyName: 'Indian Ocean',
+  },
   sydney: {
     id: 'sydney',
     name: 'Sydney',
@@ -70,14 +154,6 @@ export const CITIES: Record<CityId, CityOption> = {
     badge: 'NSW',
     suburbCount: SYDNEY_SUBURBS.length,
     waterBodyName: 'Pacific Ocean',
-  },
-  adelaide: {
-    id: 'adelaide',
-    name: 'Adelaide',
-    state: 'South Australia',
-    badge: 'SA',
-    suburbCount: ADELAIDE_SUBURBS.length,
-    waterBodyName: 'Gulf St Vincent',
   },
   chennai: {
     id: 'chennai',
@@ -140,9 +216,21 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   const isAdelaide = cityId === 'adelaide';
   const isSydney = cityId === 'sydney';
   const isChennai = cityId === 'chennai';
+  const isPerth = cityId === 'perth';
+  const isBrisbane = cityId === 'brisbane';
+  const isHobart = cityId === 'hobart';
+  const isCanberra = cityId === 'canberra';
 
   const rawSuburbs: SuburbData[] = isSydney
     ? SYDNEY_SUBURBS
+    : isPerth
+    ? PERTH_SUBURBS
+    : isBrisbane
+    ? BRISBANE_SUBURBS
+    : isHobart
+    ? HOBART_SUBURBS
+    : isCanberra
+    ? CANBERRA_SUBURBS
     : isChennai
     ? CHENNAI_SUBURBS
     : isAdelaide
@@ -150,6 +238,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_SUBURBS;
   const rawBoundaries: Record<string, [number, number][]> = isSydney
     ? SYDNEY_SUBURB_BOUNDARIES
+    : isPerth
+    ? PERTH_SUBURB_BOUNDARIES
+    : isBrisbane
+    ? BRISBANE_SUBURB_BOUNDARIES
+    : isHobart
+    ? HOBART_SUBURB_BOUNDARIES
+    : isCanberra
+    ? CANBERRA_SUBURB_BOUNDARIES
     : isChennai
     ? CHENNAI_SUBURB_BOUNDARIES
     : isAdelaide
@@ -157,6 +253,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_BOUNDARIES;
   const rawCenters: Record<string, [number, number]> = isSydney
     ? SYDNEY_SUBURB_CENTERS
+    : isPerth
+    ? PERTH_SUBURB_CENTERS
+    : isBrisbane
+    ? BRISBANE_SUBURB_CENTERS
+    : isHobart
+    ? HOBART_SUBURB_CENTERS
+    : isCanberra
+    ? CANBERRA_SUBURB_CENTERS
     : isChennai
     ? CHENNAI_SUBURB_CENTERS
     : isAdelaide
@@ -164,6 +268,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : MELBOURNE_CENTERS;
   const rawAdjacency: Record<string, string[]> = isSydney
     ? SYDNEY_SUBURB_ADJACENCY
+    : isPerth
+    ? PERTH_SUBURB_ADJACENCY
+    : isBrisbane
+    ? BRISBANE_SUBURB_ADJACENCY
+    : isHobart
+    ? HOBART_SUBURB_ADJACENCY
+    : isCanberra
+    ? CANBERRA_SUBURB_ADJACENCY
     : isChennai
     ? CHENNAI_SUBURB_ADJACENCY
     : isAdelaide
@@ -172,6 +284,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
 
   const shorelineCoords: [number, number][] = isSydney
     ? PACIFIC_OCEAN_SHORELINE
+    : isPerth
+    ? INDIAN_OCEAN_SHORELINE
+    : isBrisbane
+    ? MORETON_BAY_SHORELINE
+    : isHobart
+    ? DERWENT_ESTUARY_SHORELINE
+    : isCanberra
+    ? LAKE_BURLEY_GRIFFIN_SHORELINE
     : isChennai
     ? BAY_OF_BENGAL_SHORELINE
     : isAdelaide
@@ -179,6 +299,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : PORT_PHILLIP_BAY_SHORELINE;
   const primaryRiverCoords: [number, number][] = isSydney
     ? PARRAMATTA_RIVER_GIS
+    : isPerth
+    ? SWAN_RIVER_GIS
+    : isBrisbane
+    ? BRISBANE_RIVER_GIS
+    : isHobart
+    ? RIVER_DERWENT_GIS
+    : isCanberra
+    ? MOLONGLO_RIVER_GIS
     : isChennai
     ? COOUM_RIVER_GIS
     : isAdelaide
@@ -186,6 +314,14 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     : YARRA_RIVER_GIS;
   const secondaryRiverCoords: [number, number][] = isSydney
     ? GEORGES_RIVER_GIS
+    : isPerth
+    ? CANNING_RIVER_GIS
+    : isBrisbane
+    ? PINE_RIVER_GIS
+    : isHobart
+    ? HOBART_RIVULET_GIS
+    : isCanberra
+    ? MURRUMBIDGEE_RIVER_GIS
     : isChennai
     ? ADYAR_RIVER_GIS
     : isAdelaide
@@ -287,23 +423,45 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
     const firstCoastPoint = projectedCoastline[0];
     const lastCoastPoint = projectedCoastline[projectedCoastline.length - 1];
 
-    if (isChennai || isSydney) {
-      // For Sydney (Pacific Ocean) and Chennai (Bay of Bengal), water is to the EAST of the coastline
+    if (isCanberra) {
+      // Lake Burley Griffin is an enclosed artificial lake in central Canberra
       waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
       for (let i = 1; i < projectedCoastline.length; i++) {
         waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
       }
-      waterPolygonPath += ` L ${SVG_WIDTH + 300},${lastCoastPoint[1]}`;
-      waterPolygonPath += ` L ${SVG_WIDTH + 300},${firstCoastPoint[1]}`;
       waterPolygonPath += ' Z';
-    } else if (isAdelaide) {
-      // For Adelaide, Gulf St Vincent is to the WEST of the coastline
+    } else if (isChennai || isSydney || isBrisbane) {
+      // For Sydney (Pacific Ocean), Brisbane (Moreton Bay), and Chennai (Bay of Bengal), water is to the EAST of the coastline
       waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
       for (let i = 1; i < projectedCoastline.length; i++) {
         waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
       }
-      waterPolygonPath += ` L -200,${lastCoastPoint[1]}`;
-      waterPolygonPath += ` L -200,${firstCoastPoint[1]}`;
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},${lastCoastPoint[1]}`;
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},-4000`;
+      waterPolygonPath += ` L ${firstCoastPoint[0]},-4000`;
+      waterPolygonPath += ' Z';
+    } else if (isAdelaide || isPerth) {
+      // For Adelaide (Gulf St Vincent) and Perth (Indian Ocean), water is to the WEST of the coastline
+      waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
+      for (let i = 1; i < projectedCoastline.length; i++) {
+        waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
+      }
+      waterPolygonPath += ` L -4000,${lastCoastPoint[1]}`;
+      waterPolygonPath += ` L -4000,${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L -4000,-4000`;
+      waterPolygonPath += ` L ${firstCoastPoint[0]},-4000`;
+      waterPolygonPath += ' Z';
+    } else if (isHobart) {
+      // For Hobart, River Derwent estuary flows south-east into Storm Bay
+      waterPolygonPath = `M ${firstCoastPoint[0]},${firstCoastPoint[1]}`;
+      for (let i = 1; i < projectedCoastline.length; i++) {
+        waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
+      }
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},${lastCoastPoint[1]}`;
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L -4000,${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L -4000,${firstCoastPoint[1]}`;
       waterPolygonPath += ' Z';
     } else {
       // For Melbourne, Port Phillip Bay is to the SOUTH of the coastline
@@ -311,19 +469,20 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
       for (let i = 1; i < projectedCoastline.length; i++) {
         waterPolygonPath += ` L ${projectedCoastline[i][0]},${projectedCoastline[i][1]}`;
       }
-      waterPolygonPath += ` L ${lastCoastPoint[0]},${SVG_HEIGHT + 300}`;
-      waterPolygonPath += ` L -200,${SVG_HEIGHT + 300}`;
-      waterPolygonPath += ` L -200,${firstCoastPoint[1]}`;
+      waterPolygonPath += ` L ${lastCoastPoint[0]},${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L ${SVG_WIDTH + 4000},${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L -4000,${SVG_HEIGHT + 4000}`;
+      waterPolygonPath += ` L -4000,${firstCoastPoint[1]}`;
       waterPolygonPath += ' Z';
     }
   }
 
   // Water depth contour (subtle bathymetry contour offset slightly deeper into the bay/gulf)
   const depthContourPoints: [number, number][] = projectedCoastline.map(([x, y]) => [
-    Math.round((isChennai || isSydney ? x + 18 : isAdelaide ? x - 18 : x - 14) * 10) / 10,
-    Math.round((isChennai || isSydney ? y : isAdelaide ? y : y + 12) * 10) / 10,
+    Math.round((isChennai || isSydney || isBrisbane ? x + 18 : isAdelaide || isPerth ? x - 18 : x - 14) * 10) / 10,
+    Math.round((isChennai || isSydney || isBrisbane ? y : isAdelaide || isPerth ? y : y + 12) * 10) / 10,
   ]);
-  const waterDepthContourPath = pointsToSvgPath(depthContourPoints);
+  const waterDepthContourPath = isCanberra ? '' : pointsToSvgPath(depthContourPoints);
 
   // Rivers
   const projectedPrimaryRiver: [number, number][] = primaryRiverCoords.map(([lng, lat]) =>
@@ -336,13 +495,13 @@ export function buildCityMapModel(cityId: CityId = 'melbourne'): CityMapModel {
   );
   const secondaryRiverPath = pointsToSvgPath(projectedSecondaryRiver);
 
-  const cityName = isSydney ? 'Sydney' : isChennai ? 'Chennai' : isAdelaide ? 'Adelaide' : 'Melbourne';
-  const stateName = isSydney ? 'New South Wales' : isChennai ? 'Tamil Nadu' : isAdelaide ? 'South Australia' : 'Victoria';
-  const waterBodyName = isSydney ? 'Pacific Ocean' : isChennai ? 'Bay of Bengal' : isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
-  const primaryRiverName = isSydney ? 'Sydney Harbour & Parramatta River' : isChennai ? 'Cooum River (Koovam)' : isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
-  const secondaryRiverName = isSydney ? 'Georges River (Tucoerah)' : isChennai ? 'Adyar River' : isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
-  const waterLabelX = isSydney ? 1320 : isChennai ? 1280 : isAdelaide ? 60 : 260;
-  const waterLabelY = isSydney ? 560 : isChennai ? 520 : isAdelaide ? 540 : 930;
+  const cityName = isSydney ? 'Sydney' : isPerth ? 'Perth' : isBrisbane ? 'Brisbane' : isHobart ? 'Hobart' : isCanberra ? 'Canberra' : isChennai ? 'Chennai' : isAdelaide ? 'Adelaide' : 'Melbourne';
+  const stateName = isSydney ? 'New South Wales' : isPerth ? 'Western Australia' : isBrisbane ? 'Queensland' : isHobart ? 'Tasmania' : isCanberra ? 'Australian Capital Territory' : isChennai ? 'Tamil Nadu' : isAdelaide ? 'South Australia' : 'Victoria';
+  const waterBodyName = isSydney ? 'Pacific Ocean' : isPerth ? 'Indian Ocean' : isBrisbane ? 'Moreton Bay' : isHobart ? 'River Derwent & Storm Bay' : isCanberra ? 'Lake Burley Griffin' : isChennai ? 'Bay of Bengal' : isAdelaide ? 'Gulf St Vincent' : 'Port Phillip Bay';
+  const primaryRiverName = isSydney ? 'Sydney Harbour & Parramatta River' : isPerth ? 'Swan River (Derbarl Yerrigan)' : isBrisbane ? 'Brisbane River (Maiwar)' : isHobart ? 'River Derwent (Timtumili Minanya)' : isCanberra ? 'Molonglo River & Lake Burley Griffin' : isChennai ? 'Cooum River (Koovam)' : isAdelaide ? 'River Torrens (Karrawirra Parri)' : 'Yarra River (Birrarung)';
+  const secondaryRiverName = isSydney ? 'Georges River (Tucoerah)' : isPerth ? 'Canning River (Djarlgarro Beelier)' : isBrisbane ? 'Pine River' : isHobart ? 'Hobart Rivulet' : isCanberra ? 'Murrumbidgee River' : isChennai ? 'Adyar River' : isAdelaide ? 'Port River (Yertabulti)' : 'Maribyrnong River';
+  const waterLabelX = isCanberra ? 752 : isSydney ? 1320 : isBrisbane ? 1310 : isHobart ? 850 : isChennai ? 1280 : isAdelaide || isPerth ? 60 : 260;
+  const waterLabelY = isCanberra ? 528 : isSydney ? 560 : isBrisbane ? 530 : isHobart ? 1020 : isChennai ? 520 : isAdelaide || isPerth ? 540 : 930;
 
   return {
     cityId,
@@ -449,7 +608,7 @@ export interface GeneratedGame {
 }
 
 /**
- * Generate a new random game where shortest path is strictly 5 steps, and allowed turns is strictly 10.
+ * Generate a new random game where shortest path is strictly 5 or 6 steps (not including the target as a step), and allowed turns is strictly 10.
  */
 export function generateRandomGame(
   suburbs: SuburbData[],
@@ -458,15 +617,17 @@ export function generateRandomGame(
 ): GeneratedGame {
   const allIds = suburbs.map((s) => s.id);
 
-  // Try multiple times to find a pairing strictly 5 steps away
+  // Try multiple times to find a pairing strictly 5 or 6 steps away (excluding target)
+  // Distance of 6 edges in graph = 5 steps excluding target (path has 7 nodes)
+  // Distance of 7 edges in graph = 6 steps excluding target (path has 8 nodes)
   for (let attempt = 0; attempt < 800; attempt++) {
     const randomStart = allIds[Math.floor(Math.random() * allIds.length)];
     const distances = getDistancesFrom(randomStart, adjacency);
 
-    // Candidates strictly 5 steps away
+    // Candidates strictly 5 or 6 steps away (excluding target)
     const validCandidates: { id: string; dist: number }[] = [];
     distances.forEach((dist, id) => {
-      if (dist === 5) {
+      if (dist === 6 || dist === 7) {
         validCandidates.push({ id, dist });
       }
     });
@@ -474,33 +635,52 @@ export function generateRandomGame(
     if (validCandidates.length > 0) {
       const chosen = validCandidates[Math.floor(Math.random() * validCandidates.length)];
       const bestPath = findShortestPath(randomStart, chosen.id, adjacency);
-      return {
-        startSuburbId: randomStart,
-        targetSuburbId: chosen.id,
-        bestPath,
-        bestPathDistance: Math.max(1, bestPath.length - 2),
-        maxTurns: 10,
-      };
+      const steps = bestPath.length - 2;
+      if (steps === 5 || steps === 6) {
+        return {
+          startSuburbId: randomStart,
+          targetSuburbId: chosen.id,
+          bestPath,
+          bestPathDistance: steps,
+          maxTurns: 10,
+        };
+      }
     }
   }
 
-  // Guaranteed fallback
+  // Guaranteed fallback (strictly 5 or 6 steps excluding target)
   const startId =
     cityId === 'sydney'
       ? 'sydney'
+      : cityId === 'perth'
+      ? 'perth'
+      : cityId === 'brisbane'
+      ? 'brisbane-city'
+      : cityId === 'hobart'
+      ? 'hobart'
       : cityId === 'chennai'
       ? 't-nagar'
       : cityId === 'adelaide'
       ? 'adelaide-cbd'
+      : cityId === 'canberra'
+      ? 'city'
       : 'melbourne-cbd';
   const targetId =
     cityId === 'sydney'
-      ? 'bondi-beach'
+      ? 'burwood'
+      : cityId === 'perth'
+      ? 'fremantle'
+      : cityId === 'brisbane'
+      ? 'sunnybank'
+      : cityId === 'hobart'
+      ? 'lower-snug'
       : cityId === 'chennai'
-      ? 'besant-nagar'
+      ? 'anna-nagar-east'
       : cityId === 'adelaide'
       ? 'glenelg'
-      : 'box-hill';
+      : cityId === 'canberra'
+      ? 'melba'
+      : 'kealba';
   const bestPath = findShortestPath(startId, targetId, adjacency);
   return {
     startSuburbId: startId,

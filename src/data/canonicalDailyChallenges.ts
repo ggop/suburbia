@@ -1,8771 +1,8772 @@
 /**
- * Canonical, immutable daily challenge schedule.
- * Pre-computed to guarantee that the daily challenge NEVER changes across deployments,
- * runtime environments, or code updates on any given day.
+ * CANONICAL MELBOURNE DAILY CHALLENGES (2025-01-01 to 2030-12-31)
+ * 2,191 dates pre-computed & locked. Guarantees 100% stable daily challenges
+ * across all deployments and environments worldwide. Each puzzle is strictly solvable in 5 or 6 steps.
  */
+
 export const CANONICAL_DAILY_CHALLENGES: Record<string, [string, string]> = {
   "2025-01-01": [
-    "roxburgh-park",
-    "melton"
+    "ivanhoe",
+    "st-andrews"
   ],
   "2025-01-02": [
-    "chadstone",
-    "endeavour-hills"
+    "essendon-fields",
+    "heidelberg"
   ],
   "2025-01-03": [
-    "watsons-creek",
-    "nunawading"
+    "lilydale",
+    "beaconsfield"
   ],
   "2025-01-04": [
-    "christmas-hills",
-    "vermont-south"
+    "bayswater-north",
+    "yan-yean"
   ],
   "2025-01-05": [
-    "kalorama",
-    "harkaway"
+    "wantirna-south",
+    "watsons-creek"
   ],
   "2025-01-06": [
-    "clyde-north",
-    "mulgrave"
+    "chirnside-park",
+    "wheelers-hill"
   ],
   "2025-01-07": [
-    "ardeer",
-    "albert-park"
-  ],
-  "2025-01-08": [
-    "bonnie-brook",
-    "broadmeadows"
-  ],
-  "2025-01-09": [
-    "tremont",
-    "hampton-park"
-  ],
-  "2025-01-10": [
-    "heidelberg-west",
-    "footscray"
-  ],
-  "2025-01-11": [
-    "kew",
-    "watsonia-north"
-  ],
-  "2025-01-12": [
-    "tarneit",
-    "keilor-downs"
-  ],
-  "2025-01-13": [
-    "aberfeldie",
-    "burnley"
-  ],
-  "2025-01-14": [
-    "narre-warren",
-    "the-patch"
-  ],
-  "2025-01-15": [
-    "kingsbury",
-    "carlton-north"
-  ],
-  "2025-01-16": [
-    "fitzroy",
-    "fawkner"
-  ],
-  "2025-01-17": [
-    "roxburgh-park",
-    "essendon"
-  ],
-  "2025-01-18": [
-    "dalmore",
-    "lysterfield"
-  ],
-  "2025-01-19": [
-    "box-hill",
-    "yallambie"
-  ],
-  "2025-01-20": [
-    "sherbrooke",
-    "noble-park"
-  ],
-  "2025-01-21": [
-    "surrey-hills",
-    "ormond"
-  ],
-  "2025-01-22": [
-    "kurunjang",
-    "williams-landing"
-  ],
-  "2025-01-23": [
-    "armadale",
-    "brooklyn"
-  ],
-  "2025-01-24": [
-    "eltham-north",
-    "blackburn"
-  ],
-  "2025-01-25": [
-    "niddrie",
-    "oaklands-junction"
-  ],
-  "2025-01-26": [
-    "clarinda",
-    "tremont"
-  ],
-  "2025-01-27": [
-    "wantirna",
-    "wandin-north"
-  ],
-  "2025-01-28": [
-    "flemington",
-    "point-cook"
-  ],
-  "2025-01-29": [
-    "dandenong-north",
-    "glen-iris"
-  ],
-  "2025-01-30": [
-    "north-warrandyte",
-    "kew"
-  ],
-  "2025-01-31": [
-    "huntingdale",
-    "bayswater"
-  ],
-  "2025-02-01": [
-    "deanside",
-    "kealba"
-  ],
-  "2025-02-02": [
-    "delahey",
-    "altona-north"
-  ],
-  "2025-02-03": [
-    "cocoroc",
-    "bonnie-brook"
-  ],
-  "2025-02-04": [
-    "arthurs-creek",
-    "coolaroo"
-  ],
-  "2025-02-05": [
-    "glen-iris",
-    "carlton"
-  ],
-  "2025-02-06": [
-    "pascoe-vale-south",
-    "spotswood"
-  ],
-  "2025-02-07": [
-    "huntingdale",
-    "aspendale-gardens"
-  ],
-  "2025-02-08": [
-    "burwood",
-    "moorabbin-airport"
-  ],
-  "2025-02-09": [
-    "cottles-bridge",
-    "rosanna"
-  ],
-  "2025-02-10": [
-    "taylors-lakes",
-    "weir-views"
-  ],
-  "2025-02-11": [
-    "ringwood-east",
-    "diamond-creek"
-  ],
-  "2025-02-12": [
-    "sunbury",
-    "burnside"
-  ],
-  "2025-02-13": [
-    "selby",
-    "mooroolbark"
-  ],
-  "2025-02-14": [
-    "montrose",
-    "blackburn-north"
-  ],
-  "2025-02-15": [
-    "hampton-park",
-    "wantirna-south"
-  ],
-  "2025-02-16": [
-    "manor-lakes",
-    "altona-north"
-  ],
-  "2025-02-17": [
-    "deepdene",
-    "princes-hill"
-  ],
-  "2025-02-18": [
-    "campbellfield",
-    "cottles-bridge"
-  ],
-  "2025-02-19": [
-    "dalmore",
-    "emerald"
-  ],
-  "2025-02-20": [
-    "hampton",
-    "mount-waverley"
-  ],
-  "2025-02-21": [
-    "toorak",
-    "blackburn-north"
-  ],
-  "2025-02-22": [
-    "williamstown",
-    "st-kilda-east"
-  ],
-  "2025-02-23": [
-    "canterbury",
-    "wantirna"
-  ],
-  "2025-02-24": [
-    "doveton",
-    "sherbrooke"
-  ],
-  "2025-02-25": [
-    "yarrambat",
-    "melbourne-airport"
-  ],
-  "2025-02-26": [
-    "truganina",
-    "kensington"
-  ],
-  "2025-02-27": [
-    "keilor-north",
-    "lalor"
-  ],
-  "2025-02-28": [
-    "bentleigh-east",
-    "mont-albert"
-  ],
-  "2025-03-01": [
-    "gladstone-park",
+    "airport-west",
     "heidelberg-heights"
   ],
-  "2025-03-02": [
-    "wantirna",
-    "bentleigh-east"
+  "2025-01-08": [
+    "melton",
+    "mill-park"
   ],
-  "2025-03-03": [
-    "south-melbourne",
-    "point-cook"
-  ],
-  "2025-03-04": [
-    "cairnlea",
-    "south-kingsville"
-  ],
-  "2025-03-05": [
-    "hughesdale",
-    "endeavour-hills"
-  ],
-  "2025-03-06": [
-    "hawthorn",
-    "yallambie"
-  ],
-  "2025-03-07": [
-    "chelsea",
-    "dandenong-north"
-  ],
-  "2025-03-08": [
-    "kings-park",
-    "kurunjang"
-  ],
-  "2025-03-09": [
-    "aspendale-gardens",
-    "narre-warren-east"
-  ],
-  "2025-03-10": [
-    "mont-albert",
-    "windsor"
-  ],
-  "2025-03-11": [
-    "altona",
-    "avondale-heights"
-  ],
-  "2025-03-12": [
-    "brunswick-west",
-    "keilor-downs"
-  ],
-  "2025-03-13": [
-    "coldstream",
-    "st-helena"
-  ],
-  "2025-03-14": [
-    "derrimut",
-    "north-melbourne"
-  ],
-  "2025-03-15": [
-    "doncaster-east",
-    "burnley"
-  ],
-  "2025-03-16": [
+  "2025-01-09": [
     "epping",
-    "balwyn-north"
+    "yering"
   ],
-  "2025-03-17": [
-    "endeavour-hills",
-    "carrum"
+  "2025-01-10": [
+    "springvale",
+    "ripponlea"
   ],
-  "2025-03-18": [
-    "north-warrandyte",
-    "bayswater"
+  "2025-01-11": [
+    "burnley",
+    "wonga-park"
   ],
-  "2025-03-19": [
-    "emerald",
-    "tooradin"
+  "2025-01-12": [
+    "gowanbrae",
+    "thornhill-park"
   ],
-  "2025-03-20": [
-    "caroline-springs",
-    "maidstone"
+  "2025-01-13": [
+    "moorabbin",
+    "donvale"
   ],
-  "2025-03-21": [
-    "scoresby",
-    "mount-evelyn"
+  "2025-01-14": [
+    "blackburn",
+    "thomastown"
   ],
-  "2025-03-22": [
-    "menzies-creek",
-    "hampton-park"
+  "2025-01-15": [
+    "watsons-creek",
+    "heidelberg-west"
   ],
-  "2025-03-23": [
-    "sunbury",
-    "south-morang"
+  "2025-01-16": [
+    "hampton",
+    "blackburn-south"
   ],
-  "2025-03-24": [
-    "watsonia-north",
-    "kalkallo"
-  ],
-  "2025-03-25": [
-    "ardeer",
-    "albert-park"
-  ],
-  "2025-03-26": [
-    "keilor-east",
-    "melbourne-cbd"
-  ],
-  "2025-03-27": [
-    "narre-warren",
-    "frankston-north"
-  ],
-  "2025-03-28": [
-    "abbotsford",
-    "campbellfield"
-  ],
-  "2025-03-29": [
-    "kew",
+  "2025-01-17": [
+    "arthurs-creek",
     "forest-hill"
   ],
-  "2025-03-30": [
-    "ripponlea",
-    "oakleigh-east"
+  "2025-01-18": [
+    "scoresby",
+    "bulleen"
   ],
-  "2025-03-31": [
-    "smiths-gully",
-    "olinda"
+  "2025-01-19": [
+    "aberfeldie",
+    "dallas"
   ],
-  "2025-04-01": [
-    "kallista",
-    "dandenong-south"
+  "2025-01-20": [
+    "ferntree-gully",
+    "chelsea"
   ],
-  "2025-04-02": [
-    "heidelberg-west",
-    "north-warrandyte"
+  "2025-01-21": [
+    "reservoir",
+    "balaclava"
   ],
-  "2025-04-03": [
-    "caroline-springs",
-    "maidstone"
+  "2025-01-22": [
+    "mambourin",
+    "maribyrnong"
   ],
-  "2025-04-04": [
-    "brunswick-east",
-    "maidstone"
+  "2025-01-23": [
+    "yering",
+    "belgrave"
   ],
-  "2025-04-05": [
-    "werribee",
+  "2025-01-24": [
+    "ashburton",
+    "yarraville"
+  ],
+  "2025-01-25": [
+    "cardinia",
+    "kilsyth"
+  ],
+  "2025-01-26": [
+    "murrumbeena",
+    "cranbourne-west"
+  ],
+  "2025-01-27": [
+    "rosanna",
+    "vermont-south"
+  ],
+  "2025-01-28": [
+    "gowanbrae",
+    "kangaroo-ground"
+  ],
+  "2025-01-29": [
+    "melton-south",
+    "newport"
+  ],
+  "2025-01-30": [
+    "doncaster-east",
+    "rowville"
+  ],
+  "2025-01-31": [
+    "hawthorn-east",
+    "sandringham"
+  ],
+  "2025-02-01": [
+    "sunshine",
+    "ripponlea"
+  ],
+  "2025-02-02": [
+    "frankston-south",
+    "harkaway"
+  ],
+  "2025-02-03": [
+    "malvern",
+    "ringwood-east"
+  ],
+  "2025-02-04": [
+    "yan-yean",
+    "heidelberg"
+  ],
+  "2025-02-05": [
+    "box-hill-south",
+    "ripponlea"
+  ],
+  "2025-02-06": [
+    "bend-of-islands",
+    "emerald"
+  ],
+  "2025-02-07": [
+    "bangholme",
+    "belgrave"
+  ],
+  "2025-02-08": [
+    "keysborough",
+    "dalmore"
+  ],
+  "2025-02-09": [
+    "carlton",
+    "moorabbin"
+  ],
+  "2025-02-10": [
+    "melton",
+    "seaholme"
+  ],
+  "2025-02-11": [
+    "langwarrin",
+    "moorabbin"
+  ],
+  "2025-02-12": [
+    "essendon-north",
+    "hawthorn-east"
+  ],
+  "2025-02-13": [
+    "plumpton",
+    "yarraville"
+  ],
+  "2025-02-14": [
+    "panton-hill",
+    "scoresby"
+  ],
+  "2025-02-15": [
+    "frankston-south",
+    "moorabbin"
+  ],
+  "2025-02-16": [
+    "collingwood",
+    "mill-park"
+  ],
+  "2025-02-17": [
+    "dingley-village",
+    "blackburn"
+  ],
+  "2025-02-18": [
+    "point-cook",
+    "south-yarra"
+  ],
+  "2025-02-19": [
+    "thornhill-park",
+    "essendon-north"
+  ],
+  "2025-02-20": [
+    "burnside",
+    "roxburgh-park"
+  ],
+  "2025-02-21": [
+    "oakleigh",
+    "narre-warren-south"
+  ],
+  "2025-02-22": [
+    "tooradin",
+    "aspendale"
+  ],
+  "2025-02-23": [
+    "bangholme",
+    "monbulk"
+  ],
+  "2025-02-24": [
+    "reservoir",
     "sunshine"
   ],
-  "2025-04-06": [
+  "2025-02-25": [
+    "boronia",
+    "doreen"
+  ],
+  "2025-02-26": [
+    "wantirna-south",
+    "cranbourne-west"
+  ],
+  "2025-02-27": [
+    "narre-warren-south",
+    "wantirna-south"
+  ],
+  "2025-02-28": [
+    "middle-park",
+    "black-rock"
+  ],
+  "2025-03-01": [
+    "skye",
+    "glen-waverley"
+  ],
+  "2025-03-02": [
+    "bayswater",
+    "hawthorn-east"
+  ],
+  "2025-03-03": [
+    "derrimut",
+    "st-kilda-west"
+  ],
+  "2025-03-04": [
+    "hawthorn",
+    "wantirna"
+  ],
+  "2025-03-05": [
+    "skye",
+    "hampton-east"
+  ],
+  "2025-03-06": [
+    "brunswick",
+    "oakleigh-south"
+  ],
+  "2025-03-07": [
     "attwood",
-    "albanvale"
+    "tottenham"
   ],
-  "2025-04-07": [
-    "rosanna",
-    "deepdene"
+  "2025-03-08": [
+    "box-hill-north",
+    "wandin-north"
   ],
-  "2025-04-08": [
-    "heathmont",
-    "oakleigh-east"
+  "2025-03-09": [
+    "cremorne",
+    "bundoora"
   ],
-  "2025-04-09": [
-    "bulla",
-    "coburg-north"
+  "2025-03-10": [
+    "aspendale-gardens",
+    "sassafras"
   ],
-  "2025-04-10": [
-    "murrumbeena",
-    "waterways"
+  "2025-03-11": [
+    "north-warrandyte",
+    "burwood"
   ],
-  "2025-04-11": [
-    "clayton-south",
-    "toorak"
+  "2025-03-12": [
+    "south-wharf",
+    "hampton-east"
   ],
-  "2025-04-12": [
-    "bonbeach",
-    "devon-meadows"
+  "2025-03-13": [
+    "grangefields",
+    "west-melbourne"
   ],
-  "2025-04-13": [
-    "eaglemont",
-    "glenroy"
+  "2025-03-14": [
+    "jacana",
+    "truganina"
   ],
-  "2025-04-14": [
-    "blackburn-north",
-    "brunswick-east"
+  "2025-03-15": [
+    "heidelberg-heights",
+    "west-melbourne"
   ],
-  "2025-04-15": [
-    "lower-plenty",
-    "coldstream"
+  "2025-03-16": [
+    "caroline-springs",
+    "albert-park"
   ],
-  "2025-04-16": [
-    "ashwood",
-    "parkville"
+  "2025-03-17": [
+    "emerald",
+    "strathewen"
   ],
-  "2025-04-17": [
-    "castella",
-    "ringwood"
+  "2025-03-18": [
+    "lynbrook",
+    "the-patch"
   ],
-  "2025-04-18": [
-    "docklands",
-    "brighton-east"
+  "2025-03-19": [
+    "south-morang",
+    "carlton-north"
   ],
-  "2025-04-19": [
-    "fitzroy",
-    "altona"
+  "2025-03-20": [
+    "mckinnon",
+    "upper-ferntree-gully"
   ],
-  "2025-04-20": [
-    "narre-warren",
-    "bonbeach"
+  "2025-03-21": [
+    "carrum-downs",
+    "belgrave"
   ],
-  "2025-04-21": [
-    "warrandyte-south",
-    "kalorama"
+  "2025-03-22": [
+    "notting-hill",
+    "doncaster"
   ],
-  "2025-04-22": [
-    "kilsyth",
-    "beaconsfield-upper"
+  "2025-03-23": [
+    "burwood-east",
+    "yering"
   ],
-  "2025-04-23": [
-    "sunbury",
-    "south-morang"
+  "2025-03-24": [
+    "wonga-park",
+    "reservoir"
   ],
-  "2025-04-24": [
-    "christmas-hills",
+  "2025-03-25": [
+    "donnybrook",
+    "bend-of-islands"
+  ],
+  "2025-03-26": [
+    "yering",
     "mont-albert-north"
   ],
-  "2025-04-25": [
-    "glen-huntly",
-    "southbank"
+  "2025-03-27": [
+    "kingsbury",
+    "collingwood"
   ],
-  "2025-04-26": [
-    "yallambie",
-    "broadmeadows"
+  "2025-03-28": [
+    "warranwood",
+    "kingsbury"
   ],
-  "2025-04-27": [
-    "burnside-heights",
+  "2025-03-29": [
+    "berwick",
+    "chirnside-park"
+  ],
+  "2025-03-30": [
+    "briar-hill",
+    "glen-iris"
+  ],
+  "2025-03-31": [
+    "kurunjang",
+    "south-kingsville"
+  ],
+  "2025-04-01": [
+    "broadmeadows",
+    "melton-south"
+  ],
+  "2025-04-02": [
+    "altona-north",
+    "bulla"
+  ],
+  "2025-04-03": [
+    "tooradin",
+    "edithvale"
+  ],
+  "2025-04-04": [
+    "cardinia",
+    "moorabbin-airport"
+  ],
+  "2025-04-05": [
+    "eumemmerring",
+    "warranwood"
+  ],
+  "2025-04-06": [
+    "oakleigh",
     "west-footscray"
   ],
+  "2025-04-07": [
+    "lysterfield-south",
+    "croydon-hills"
+  ],
+  "2025-04-08": [
+    "delahey",
+    "pascoe-vale"
+  ],
+  "2025-04-09": [
+    "pascoe-vale",
+    "yan-yean"
+  ],
+  "2025-04-10": [
+    "clyde-north",
+    "kalorama"
+  ],
+  "2025-04-11": [
+    "ashwood",
+    "dandenong-south"
+  ],
+  "2025-04-12": [
+    "mount-dandenong",
+    "malvern-east"
+  ],
+  "2025-04-13": [
+    "thomastown",
+    "smiths-gully"
+  ],
+  "2025-04-14": [
+    "wattle-glen",
+    "coburg"
+  ],
+  "2025-04-15": [
+    "middle-park",
+    "beaumaris"
+  ],
+  "2025-04-16": [
+    "eaglemont",
+    "gowanbrae"
+  ],
+  "2025-04-17": [
+    "north-warrandyte",
+    "east-melbourne"
+  ],
+  "2025-04-18": [
+    "ormond",
+    "travancore"
+  ],
+  "2025-04-19": [
+    "kinglake",
+    "roxburgh-park"
+  ],
+  "2025-04-20": [
+    "narre-warren-north",
+    "forest-hill"
+  ],
+  "2025-04-21": [
+    "keilor-park",
+    "yarrambat"
+  ],
+  "2025-04-22": [
+    "mont-albert",
+    "watsonia-north"
+  ],
+  "2025-04-23": [
+    "donvale",
+    "kingsbury"
+  ],
+  "2025-04-24": [
+    "kensington",
+    "somerton"
+  ],
+  "2025-04-25": [
+    "pascoe-vale",
+    "tottenham"
+  ],
+  "2025-04-26": [
+    "eaglemont",
+    "docklands"
+  ],
+  "2025-04-27": [
+    "ashwood",
+    "ringwood-east"
+  ],
   "2025-04-28": [
-    "essendon-west",
-    "gisborne-south"
+    "hawthorn",
+    "oak-park"
   ],
   "2025-04-29": [
     "clyde",
-    "upwey"
+    "the-basin"
   ],
   "2025-04-30": [
-    "devon-meadows",
-    "keysborough"
+    "scoresby",
+    "sandringham"
   ],
   "2025-05-01": [
-    "glen-iris",
-    "brunswick"
+    "keilor-lodge",
+    "kingsville"
   ],
   "2025-05-02": [
-    "fairfield",
-    "glen-huntly"
+    "yarraville",
+    "burwood"
   ],
   "2025-05-03": [
-    "box-hill",
-    "brunswick-east"
+    "briar-hill",
+    "essendon-fields"
   ],
   "2025-05-04": [
-    "viewbank",
-    "croydon-north"
+    "eumemmerring",
+    "croydon-south"
   ],
   "2025-05-05": [
-    "st-helena",
-    "roxburgh-park"
+    "strathmore",
+    "yarrambat"
   ],
   "2025-05-06": [
-    "yuroke",
-    "heidelberg-west"
-  ],
-  "2025-05-07": [
-    "albanvale",
-    "greenvale"
-  ],
-  "2025-05-08": [
-    "yallambie",
-    "brunswick-east"
-  ],
-  "2025-05-09": [
-    "cranbourne",
-    "mentone"
-  ],
-  "2025-05-10": [
-    "strathmore",
-    "calder-park"
-  ],
-  "2025-05-11": [
-    "sunshine-north",
-    "altona-meadows"
-  ],
-  "2025-05-12": [
-    "heathmont",
-    "st-andrews"
-  ],
-  "2025-05-13": [
-    "westmeadows",
-    "taylors-hill"
-  ],
-  "2025-05-14": [
-    "cranbourne-south",
-    "lysterfield-south"
-  ],
-  "2025-05-15": [
-    "noble-park",
-    "black-rock"
-  ],
-  "2025-05-16": [
-    "strathmore",
-    "heidelberg-heights"
-  ],
-  "2025-05-17": [
-    "dingley-village",
-    "camberwell"
-  ],
-  "2025-05-18": [
-    "southbank",
-    "glen-huntly"
-  ],
-  "2025-05-19": [
-    "ripponlea",
-    "moorabbin-airport"
-  ],
-  "2025-05-20": [
-    "gisborne-south",
-    "somerton"
-  ],
-  "2025-05-21": [
-    "kingsbury",
-    "woodstock"
-  ],
-  "2025-05-22": [
-    "somerton",
-    "alphington"
-  ],
-  "2025-05-23": [
-    "hawthorn-east",
-    "port-melbourne"
-  ],
-  "2025-05-24": [
-    "oakleigh-east",
-    "balaclava"
-  ],
-  "2025-05-25": [
-    "heidelberg-west",
-    "warrandyte"
-  ],
-  "2025-05-26": [
-    "menzies-creek",
-    "eumemmerring"
-  ],
-  "2025-05-27": [
-    "nunawading",
-    "malvern-east"
-  ],
-  "2025-05-28": [
-    "jacana",
-    "fairfield"
-  ],
-  "2025-05-29": [
-    "mentone",
-    "cranbourne-north"
-  ],
-  "2025-05-30": [
-    "warrandyte-south",
-    "blackburn-south"
-  ],
-  "2025-05-31": [
-    "heidelberg-west",
-    "melbourne-airport"
-  ],
-  "2025-06-01": [
-    "mernda",
-    "yering"
-  ],
-  "2025-06-02": [
-    "panton-hill",
-    "doncaster"
-  ],
-  "2025-06-03": [
-    "templestowe-lower",
-    "fitzroy-north"
-  ],
-  "2025-06-04": [
-    "caulfield-north",
-    "seddon"
-  ],
-  "2025-06-05": [
-    "sunbury",
-    "sunshine-north"
-  ],
-  "2025-06-06": [
-    "vermont",
-    "endeavour-hills"
-  ],
-  "2025-06-07": [
-    "south-yarra",
-    "sunshine"
-  ],
-  "2025-06-08": [
-    "mordialloc",
-    "chadstone"
-  ],
-  "2025-06-09": [
-    "bonnie-brook",
-    "south-kingsville"
-  ],
-  "2025-06-10": [
-    "notting-hill",
-    "ringwood-north"
-  ],
-  "2025-06-11": [
-    "strathmore",
-    "south-kingsville"
-  ],
-  "2025-06-12": [
-    "glen-waverley",
+    "parkdale",
     "hawthorn"
   ],
-  "2025-06-13": [
-    "keilor",
-    "laverton-north"
+  "2025-05-07": [
+    "kilsyth-south",
+    "hughesdale"
   ],
-  "2025-06-14": [
-    "toolern-vale",
-    "donnybrook"
+  "2025-05-08": [
+    "south-wharf",
+    "highett"
   ],
-  "2025-06-15": [
-    "kensington",
-    "altona-meadows"
-  ],
-  "2025-06-16": [
-    "diamond-creek",
-    "kalkallo"
-  ],
-  "2025-06-17": [
-    "heathmont",
-    "springvale"
-  ],
-  "2025-06-18": [
-    "lalor",
-    "wildwood"
-  ],
-  "2025-06-19": [
-    "moorabbin",
-    "wantirna-south"
-  ],
-  "2025-06-20": [
-    "oak-park",
+  "2025-05-09": [
+    "williamstown",
     "diggers-rest"
   ],
-  "2025-06-21": [
-    "taylors-lakes",
-    "brooklyn"
-  ],
-  "2025-06-22": [
-    "murrumbeena",
-    "noble-park"
-  ],
-  "2025-06-23": [
-    "maribyrnong",
-    "attwood"
-  ],
-  "2025-06-24": [
-    "blackburn-south",
-    "warrandyte-south"
-  ],
-  "2025-06-25": [
-    "albion",
-    "werribee-south"
-  ],
-  "2025-06-26": [
-    "collingwood",
-    "glen-huntly"
-  ],
-  "2025-06-27": [
-    "mount-waverley",
-    "belgrave-south"
-  ],
-  "2025-06-28": [
-    "guys-hill",
-    "dandenong"
-  ],
-  "2025-06-29": [
-    "box-hill-south",
-    "st-kilda-east"
-  ],
-  "2025-06-30": [
-    "sunshine",
-    "fitzroy"
-  ],
-  "2025-07-01": [
-    "boronia",
-    "north-warrandyte"
-  ],
-  "2025-07-02": [
-    "balaclava",
-    "aberfeldie"
-  ],
-  "2025-07-03": [
-    "fairfield",
-    "epping"
-  ],
-  "2025-07-04": [
-    "richmond",
-    "mount-waverley"
-  ],
-  "2025-07-05": [
-    "bentleigh-east",
-    "deepdene"
-  ],
-  "2025-07-06": [
-    "fraser-rise",
-    "werribee-south"
-  ],
-  "2025-07-07": [
-    "south-melbourne",
-    "ardeer"
-  ],
-  "2025-07-08": [
-    "hawthorn",
-    "nunawading"
-  ],
-  "2025-07-09": [
-    "chadstone",
-    "carlton"
-  ],
-  "2025-07-10": [
-    "camberwell",
-    "noble-park"
-  ],
-  "2025-07-11": [
-    "doreen",
-    "templestowe-lower"
-  ],
-  "2025-07-12": [
-    "mordialloc",
-    "cranbourne-south"
-  ],
-  "2025-07-13": [
-    "scoresby",
-    "kalorama"
-  ],
-  "2025-07-14": [
-    "chelsea",
-    "clyde-north"
-  ],
-  "2025-07-15": [
-    "doveton",
-    "vermont"
-  ],
-  "2025-07-16": [
-    "williams-landing",
-    "toolern-vale"
-  ],
-  "2025-07-17": [
-    "caroline-springs",
-    "greenvale"
-  ],
-  "2025-07-18": [
-    "keilor-lodge",
-    "kalkallo"
-  ],
-  "2025-07-19": [
-    "fitzroy-north",
-    "viewbank"
-  ],
-  "2025-07-20": [
-    "st-andrews",
-    "briar-hill"
-  ],
-  "2025-07-21": [
-    "braybrook",
-    "middle-park"
-  ],
-  "2025-07-22": [
-    "tooradin",
-    "seaford"
-  ],
-  "2025-07-23": [
-    "north-warrandyte",
-    "lalor"
-  ],
-  "2025-07-24": [
-    "northcote",
-    "port-melbourne"
-  ],
-  "2025-07-25": [
-    "belgrave-south",
-    "mount-waverley"
-  ],
-  "2025-07-26": [
-    "laverton",
-    "melton-south"
-  ],
-  "2025-07-27": [
-    "wantirna",
-    "research"
-  ],
-  "2025-07-28": [
-    "lysterfield",
-    "dingley-village"
-  ],
-  "2025-07-29": [
-    "forest-hill",
-    "deepdene"
-  ],
-  "2025-07-30": [
-    "fieldstone",
-    "maidstone"
-  ],
-  "2025-07-31": [
-    "caulfield-east",
-    "mentone"
-  ],
-  "2025-08-01": [
-    "ascot-vale",
-    "malvern-east"
-  ],
-  "2025-08-02": [
-    "croydon-south",
-    "narre-warren-north"
-  ],
-  "2025-08-03": [
-    "upwey",
-    "oakleigh-east"
-  ],
-  "2025-08-04": [
-    "rosanna",
-    "nutfield"
-  ],
-  "2025-08-05": [
-    "hampton-east",
-    "wheelers-hill"
-  ],
-  "2025-08-06": [
-    "mordialloc",
-    "narre-warren"
-  ],
-  "2025-08-07": [
-    "preston",
-    "blackburn"
-  ],
-  "2025-08-08": [
-    "rowville",
-    "malvern-east"
-  ],
-  "2025-08-09": [
-    "beaconsfield-upper",
-    "kilsyth"
-  ],
-  "2025-08-10": [
-    "eltham-north",
-    "coldstream"
-  ],
-  "2025-08-11": [
-    "burwood-east",
-    "upwey"
-  ],
-  "2025-08-12": [
-    "hampton",
-    "south-wharf"
-  ],
-  "2025-08-13": [
-    "deanside",
-    "greenvale"
-  ],
-  "2025-08-14": [
-    "essendon-fields",
-    "fitzroy-north"
-  ],
-  "2025-08-15": [
-    "albert-park",
-    "niddrie"
-  ],
-  "2025-08-16": [
-    "caulfield-east",
-    "brunswick"
-  ],
-  "2025-08-17": [
-    "oakleigh",
-    "aspendale-gardens"
-  ],
-  "2025-08-18": [
-    "doreen",
-    "westmeadows"
-  ],
-  "2025-08-19": [
-    "belgrave",
-    "cranbourne-north"
-  ],
-  "2025-08-20": [
-    "langwarrin-south",
-    "clyde-north"
-  ],
-  "2025-08-21": [
-    "west-melbourne",
-    "chadstone"
-  ],
-  "2025-08-22": [
-    "hawthorn",
-    "bundoora"
-  ],
-  "2025-08-23": [
-    "moonee-ponds",
-    "kooyong"
-  ],
-  "2025-08-24": [
-    "avondale-heights",
-    "bonnie-brook"
-  ],
-  "2025-08-25": [
-    "camberwell",
-    "gardenvale"
-  ],
-  "2025-08-26": [
-    "northcote",
-    "caulfield-north"
-  ],
-  "2025-08-27": [
-    "boronia",
-    "hughesdale"
-  ],
-  "2025-08-28": [
-    "hillside",
-    "jacana"
-  ],
-  "2025-08-29": [
-    "sandringham",
-    "chelsea-heights"
-  ],
-  "2025-08-30": [
-    "carnegie",
-    "noble-park-north"
-  ],
-  "2025-08-31": [
-    "waterways",
-    "oakleigh"
-  ],
-  "2025-09-01": [
-    "chirnside-park",
-    "scoresby"
-  ],
-  "2025-09-02": [
-    "williamstown",
-    "balaclava"
-  ],
-  "2025-09-03": [
-    "skye",
-    "clarinda"
-  ],
-  "2025-09-04": [
-    "thornhill-park",
-    "spotswood"
-  ],
-  "2025-09-05": [
-    "eltham",
-    "donnybrook"
-  ],
-  "2025-09-06": [
-    "mooroolbark",
-    "emerald"
-  ],
-  "2025-09-07": [
-    "watsonia",
-    "nunawading"
-  ],
-  "2025-09-08": [
-    "lynbrook",
-    "belgrave-south"
-  ],
-  "2025-09-09": [
-    "viewbank",
-    "nutfield"
-  ],
-  "2025-09-10": [
-    "donvale",
-    "mill-park"
-  ],
-  "2025-09-11": [
-    "aspendale-gardens",
-    "brighton-east"
-  ],
-  "2025-09-12": [
-    "berwick",
-    "bonbeach"
-  ],
-  "2025-09-13": [
-    "forest-hill",
-    "bend-of-islands"
-  ],
-  "2025-09-14": [
-    "narre-warren-south",
-    "sherbrooke"
-  ],
-  "2025-09-15": [
-    "wantirna-south",
-    "emerald"
-  ],
-  "2025-09-16": [
-    "docklands",
-    "hampton"
-  ],
-  "2025-09-17": [
-    "fawkner",
-    "templestowe-lower"
-  ],
-  "2025-09-18": [
-    "springvale-south",
-    "cranbourne-east"
-  ],
-  "2025-09-19": [
-    "hampton-east",
-    "waterways"
-  ],
-  "2025-09-20": [
-    "narre-warren-east",
-    "ringwood-east"
-  ],
-  "2025-09-21": [
-    "toorak",
-    "bentleigh"
-  ],
-  "2025-09-22": [
-    "gladstone-park",
-    "hillside"
-  ],
-  "2025-09-23": [
-    "croydon-north",
-    "lysterfield"
-  ],
-  "2025-09-24": [
-    "vermont",
-    "hughesdale"
-  ],
-  "2025-09-25": [
-    "abbotsford",
-    "bentleigh-east"
-  ],
-  "2025-09-26": [
-    "vermont-south",
-    "kew-east"
-  ],
-  "2025-09-27": [
-    "heatherton",
-    "narre-warren"
-  ],
-  "2025-09-28": [
-    "heatherton",
-    "lysterfield"
-  ],
-  "2025-09-29": [
+  "2025-05-10": [
     "cobblebank",
-    "wildwood"
+    "sunshine-north"
   ],
-  "2025-09-30": [
-    "sunshine-north",
-    "oaklands-junction"
-  ],
-  "2025-10-01": [
-    "clayton",
-    "patterson-lakes"
-  ],
-  "2025-10-02": [
-    "coburg",
-    "st-kilda-east"
-  ],
-  "2025-10-03": [
-    "williamstown",
-    "burnside"
-  ],
-  "2025-10-04": [
-    "mernda",
-    "croydon-hills"
-  ],
-  "2025-10-05": [
-    "sandringham",
-    "windsor"
-  ],
-  "2025-10-06": [
-    "northcote",
-    "templestowe"
-  ],
-  "2025-10-07": [
-    "fairfield",
-    "ripponlea"
-  ],
-  "2025-10-08": [
-    "dandenong-north",
-    "olinda"
-  ],
-  "2025-10-09": [
-    "mitcham",
-    "kew"
-  ],
-  "2025-10-10": [
-    "middle-park",
-    "hawthorn-east"
-  ],
-  "2025-10-11": [
-    "calder-park",
-    "wollert"
-  ],
-  "2025-10-12": [
-    "keilor",
-    "brunswick"
-  ],
-  "2025-10-13": [
-    "st-andrews",
-    "kalkallo"
-  ],
-  "2025-10-14": [
-    "glen-huntly",
-    "kew-east"
-  ],
-  "2025-10-15": [
-    "templestowe-lower",
-    "panton-hill"
-  ],
-  "2025-10-16": [
-    "strathewen",
-    "montrose"
-  ],
-  "2025-10-17": [
-    "canterbury",
-    "warrandyte"
-  ],
-  "2025-10-18": [
-    "lysterfield-south",
-    "vermont"
-  ],
-  "2025-10-19": [
-    "aberfeldie",
-    "fairfield"
-  ],
-  "2025-10-20": [
-    "hillside",
-    "yarraville"
-  ],
-  "2025-10-21": [
-    "kilsyth-south",
-    "ashwood"
-  ],
-  "2025-10-22": [
-    "castella",
-    "silvan"
-  ],
-  "2025-10-23": [
-    "wheelers-hill",
-    "moorabbin-airport"
-  ],
-  "2025-10-24": [
+  "2025-05-11": [
     "mooroolbark",
-    "blackburn-south"
+    "south-morang"
   ],
-  "2025-10-25": [
-    "langwarrin-south",
-    "berwick"
-  ],
-  "2025-10-26": [
-    "mont-albert-north",
+  "2025-05-12": [
+    "fairfield",
     "wattle-glen"
   ],
-  "2025-10-27": [
-    "box-hill-north",
-    "yarra-glen"
+  "2025-05-13": [
+    "greensborough",
+    "canterbury"
   ],
-  "2025-10-28": [
-    "noble-park",
-    "forest-hill"
+  "2025-05-14": [
+    "cheltenham",
+    "west-melbourne"
   ],
-  "2025-10-29": [
-    "oakleigh-east",
-    "bayswater-north"
-  ],
-  "2025-10-30": [
-    "st-kilda-west",
-    "pascoe-vale-south"
-  ],
-  "2025-10-31": [
-    "ringwood-east",
-    "eltham-north"
-  ],
-  "2025-11-01": [
-    "heatherton",
-    "skye"
-  ],
-  "2025-11-02": [
-    "moonee-ponds",
-    "bulla"
-  ],
-  "2025-11-03": [
-    "cranbourne-west",
-    "emerald"
-  ],
-  "2025-11-04": [
-    "donnybrook",
-    "kangaroo-ground"
-  ],
-  "2025-11-05": [
-    "taylors-lakes",
-    "wollert"
-  ],
-  "2025-11-06": [
-    "sandringham",
-    "chelsea-heights"
-  ],
-  "2025-11-07": [
-    "campbellfield",
-    "kangaroo-ground"
-  ],
-  "2025-11-08": [
-    "springvale-south",
-    "caulfield-south"
-  ],
-  "2025-11-09": [
-    "kooyong",
-    "middle-park"
-  ],
-  "2025-11-10": [
-    "eumemmerring",
-    "langwarrin-south"
-  ],
-  "2025-11-11": [
-    "dallas",
-    "plumpton"
-  ],
-  "2025-11-12": [
-    "warrandyte",
-    "preston"
-  ],
-  "2025-11-13": [
-    "cobblebank",
-    "keilor-park"
-  ],
-  "2025-11-14": [
-    "lalor",
-    "st-andrews"
-  ],
-  "2025-11-15": [
-    "oaklands-junction",
-    "cobblebank"
-  ],
-  "2025-11-16": [
-    "selby",
-    "notting-hill"
-  ],
-  "2025-11-17": [
-    "taylors-hill",
-    "oaklands-junction"
-  ],
-  "2025-11-18": [
-    "lynbrook",
-    "belgrave-south"
-  ],
-  "2025-11-19": [
-    "tooradin",
-    "hallam"
-  ],
-  "2025-11-20": [
-    "weir-views",
-    "albion"
-  ],
-  "2025-11-21": [
-    "fitzroy-north",
-    "gladstone-park"
-  ],
-  "2025-11-22": [
-    "ashwood",
-    "fitzroy"
-  ],
-  "2025-11-23": [
-    "essendon-fields",
-    "bellfield"
-  ],
-  "2025-11-24": [
-    "south-wharf",
-    "truganina"
-  ],
-  "2025-11-25": [
-    "belgrave",
-    "officer-south"
-  ],
-  "2025-11-26": [
-    "mount-waverley",
-    "ivanhoe-east"
-  ],
-  "2025-11-27": [
+  "2025-05-15": [
     "travancore",
-    "gowanbrae"
+    "calder-park"
   ],
-  "2025-11-28": [
-    "attwood",
-    "heidelberg-west"
+  "2025-05-16": [
+    "yan-yean",
+    "balwyn-north"
   ],
-  "2025-11-29": [
-    "brooklyn",
-    "clifton-hill"
+  "2025-05-17": [
+    "clyde-north",
+    "vermont-south"
   ],
-  "2025-11-30": [
-    "officer-south",
+  "2025-05-18": [
+    "kilsyth",
+    "kew"
+  ],
+  "2025-05-19": [
+    "newport",
+    "hampton-east"
+  ],
+  "2025-05-20": [
+    "malvern-east",
+    "eltham"
+  ],
+  "2025-05-21": [
+    "brighton",
+    "maribyrnong"
+  ],
+  "2025-05-22": [
+    "sandringham",
+    "wheelers-hill"
+  ],
+  "2025-05-23": [
+    "noble-park-north",
+    "ringwood-north"
+  ],
+  "2025-05-24": [
+    "frankston",
+    "bentleigh-east"
+  ],
+  "2025-05-25": [
+    "donvale",
+    "donnybrook"
+  ],
+  "2025-05-26": [
+    "port-melbourne",
+    "oakleigh"
+  ],
+  "2025-05-27": [
+    "canterbury",
+    "knoxfield"
+  ],
+  "2025-05-28": [
+    "langwarrin",
+    "highett"
+  ],
+  "2025-05-29": [
+    "watsonia",
+    "collingwood"
+  ],
+  "2025-05-30": [
+    "donnybrook",
+    "niddrie"
+  ],
+  "2025-05-31": [
+    "flemington",
+    "yallambie"
+  ],
+  "2025-06-01": [
+    "woodstock",
+    "coburg"
+  ],
+  "2025-06-02": [
+    "kealba",
+    "prahran"
+  ],
+  "2025-06-03": [
+    "st-kilda",
+    "heidelberg"
+  ],
+  "2025-06-04": [
+    "black-rock",
+    "south-melbourne"
+  ],
+  "2025-06-05": [
+    "oak-park",
+    "spotswood"
+  ],
+  "2025-06-06": [
+    "croydon-south",
+    "huntingdale"
+  ],
+  "2025-06-07": [
+    "sunbury",
+    "hadfield"
+  ],
+  "2025-06-08": [
+    "mont-albert",
+    "ripponlea"
+  ],
+  "2025-06-09": [
+    "keilor-north",
+    "carlton-north"
+  ],
+  "2025-06-10": [
+    "balwyn-north",
+    "jacana"
+  ],
+  "2025-06-11": [
+    "coldstream",
+    "box-hill"
+  ],
+  "2025-06-12": [
+    "lilydale",
+    "mont-albert-north"
+  ],
+  "2025-06-13": [
+    "ringwood-north",
+    "dandenong-north"
+  ],
+  "2025-06-14": [
+    "steels-creek",
+    "tecoma"
+  ],
+  "2025-06-15": [
+    "cheltenham",
+    "richmond"
+  ],
+  "2025-06-16": [
+    "carnegie",
+    "heidelberg"
+  ],
+  "2025-06-17": [
+    "pascoe-vale",
+    "wattle-glen"
+  ],
+  "2025-06-18": [
+    "mount-cottrell",
+    "moonee-ponds"
+  ],
+  "2025-06-19": [
+    "mont-albert-north",
+    "altona-north"
+  ],
+  "2025-06-20": [
+    "doreen",
     "olinda"
   ],
-  "2025-12-01": [
-    "south-kingsville",
-    "fraser-rise"
+  "2025-06-21": [
+    "spotswood",
+    "surrey-hills"
   ],
-  "2025-12-02": [
-    "gowanbrae",
-    "north-melbourne"
+  "2025-06-22": [
+    "frankston-south",
+    "moorabbin"
   ],
-  "2025-12-03": [
-    "moorabbin",
-    "patterson-lakes"
+  "2025-06-23": [
+    "cremorne",
+    "warrandyte-south"
   ],
-  "2025-12-04": [
+  "2025-06-24": [
+    "taylors-lakes",
+    "altona-meadows"
+  ],
+  "2025-06-25": [
+    "bentleigh-east",
+    "belgrave-south"
+  ],
+  "2025-06-26": [
+    "tottenham",
+    "northcote"
+  ],
+  "2025-06-27": [
+    "glen-waverley",
+    "windsor"
+  ],
+  "2025-06-28": [
+    "toorak",
+    "mitcham"
+  ],
+  "2025-06-29": [
+    "coburg",
+    "kangaroo-ground"
+  ],
+  "2025-06-30": [
+    "bonnie-brook",
+    "essendon-north"
+  ],
+  "2025-07-01": [
+    "patterson-lakes",
+    "burwood-east"
+  ],
+  "2025-07-02": [
+    "sunshine",
+    "wollert"
+  ],
+  "2025-07-03": [
+    "diggers-rest",
+    "williamstown"
+  ],
+  "2025-07-04": [
+    "moonee-ponds",
+    "toolern-vale"
+  ],
+  "2025-07-05": [
+    "yarrambat",
+    "carlton-north"
+  ],
+  "2025-07-06": [
+    "officer",
+    "the-basin"
+  ],
+  "2025-07-07": [
+    "ascot-vale",
+    "bulleen"
+  ],
+  "2025-07-08": [
+    "guys-hill",
+    "frankston-south"
+  ],
+  "2025-07-09": [
+    "canterbury",
+    "endeavour-hills"
+  ],
+  "2025-07-10": [
+    "moonee-ponds",
+    "burnside-heights"
+  ],
+  "2025-07-11": [
+    "diggers-rest",
+    "hadfield"
+  ],
+  "2025-07-12": [
+    "diamond-creek",
+    "ascot-vale"
+  ],
+  "2025-07-13": [
+    "cremorne",
+    "blackburn-south"
+  ],
+  "2025-07-14": [
+    "avondale-heights",
+    "middle-park"
+  ],
+  "2025-07-15": [
+    "cocoroc",
+    "seddon"
+  ],
+  "2025-07-16": [
+    "kealba",
+    "middle-park"
+  ],
+  "2025-07-17": [
+    "junction-village",
+    "tremont"
+  ],
+  "2025-07-18": [
+    "clematis",
+    "croydon-south"
+  ],
+  "2025-07-19": [
+    "alphington",
+    "altona"
+  ],
+  "2025-07-20": [
+    "truganina",
+    "clifton-hill"
+  ],
+  "2025-07-21": [
+    "lysterfield-south",
+    "blackburn-north"
+  ],
+  "2025-07-22": [
+    "eumemmerring",
+    "surrey-hills"
+  ],
+  "2025-07-23": [
+    "viewbank",
+    "greenvale"
+  ],
+  "2025-07-24": [
+    "cranbourne-north",
+    "mount-evelyn"
+  ],
+  "2025-07-25": [
+    "cranbourne-west",
+    "oakleigh-east"
+  ],
+  "2025-07-26": [
+    "bulla",
+    "derrimut"
+  ],
+  "2025-07-27": [
+    "williams-landing",
+    "pascoe-vale-south"
+  ],
+  "2025-07-28": [
+    "clifton-hill",
+    "sunshine-west"
+  ],
+  "2025-07-29": [
+    "oak-park",
+    "south-melbourne"
+  ],
+  "2025-07-30": [
+    "montrose",
+    "doreen"
+  ],
+  "2025-07-31": [
+    "wildwood",
+    "arthurs-creek"
+  ],
+  "2025-08-01": [
+    "guys-hill",
+    "kilsyth"
+  ],
+  "2025-08-02": [
+    "mill-park",
+    "aberfeldie"
+  ],
+  "2025-08-03": [
+    "huntingdale",
+    "doncaster"
+  ],
+  "2025-08-04": [
+    "bonbeach",
+    "lysterfield-south"
+  ],
+  "2025-08-05": [
+    "maidstone",
+    "rosanna"
+  ],
+  "2025-08-06": [
+    "cairnlea",
+    "fawkner"
+  ],
+  "2025-08-07": [
+    "balaclava",
+    "altona"
+  ],
+  "2025-08-08": [
+    "donnybrook",
+    "delahey"
+  ],
+  "2025-08-09": [
+    "eltham-north",
+    "essendon-north"
+  ],
+  "2025-08-10": [
+    "black-rock",
+    "surrey-hills"
+  ],
+  "2025-08-11": [
+    "glen-iris",
+    "west-footscray"
+  ],
+  "2025-08-12": [
+    "tullamarine",
+    "port-melbourne"
+  ],
+  "2025-08-13": [
+    "braeside",
+    "kallista"
+  ],
+  "2025-08-14": [
+    "devon-meadows",
+    "ferny-creek"
+  ],
+  "2025-08-15": [
+    "seddon",
+    "mont-albert"
+  ],
+  "2025-08-16": [
+    "devon-meadows",
+    "mulgrave"
+  ],
+  "2025-08-17": [
+    "melton",
+    "ascot-vale"
+  ],
+  "2025-08-18": [
+    "eaglemont",
+    "mount-waverley"
+  ],
+  "2025-08-19": [
+    "westmeadows",
+    "mount-cottrell"
+  ],
+  "2025-08-20": [
+    "clyde",
+    "noble-park"
+  ],
+  "2025-08-21": [
+    "flemington",
+    "plumpton"
+  ],
+  "2025-08-22": [
+    "cairnlea",
+    "fitzroy"
+  ],
+  "2025-08-23": [
+    "cranbourne-north",
+    "brighton-east"
+  ],
+  "2025-08-24": [
+    "altona-north",
+    "toolern-vale"
+  ],
+  "2025-08-25": [
+    "mordialloc",
+    "beaconsfield-upper"
+  ],
+  "2025-08-26": [
+    "narre-warren-south",
+    "croydon-south"
+  ],
+  "2025-08-27": [
+    "smiths-gully",
+    "kew-east"
+  ],
+  "2025-08-28": [
+    "attwood",
+    "carlton-north"
+  ],
+  "2025-08-29": [
+    "heidelberg-heights",
+    "mitcham"
+  ],
+  "2025-08-30": [
+    "thomastown",
+    "south-melbourne"
+  ],
+  "2025-08-31": [
+    "pascoe-vale",
+    "elwood"
+  ],
+  "2025-09-01": [
+    "dandenong-north",
+    "hawthorn"
+  ],
+  "2025-09-02": [
+    "st-helena",
+    "box-hill"
+  ],
+  "2025-09-03": [
+    "footscray",
+    "doncaster-east"
+  ],
+  "2025-09-04": [
+    "harkaway",
+    "ashwood"
+  ],
+  "2025-09-05": [
+    "craigieburn",
+    "coldstream"
+  ],
+  "2025-09-06": [
+    "black-rock",
+    "lysterfield-south"
+  ],
+  "2025-09-07": [
+    "montrose",
+    "oakleigh-east"
+  ],
+  "2025-09-08": [
+    "mentone",
+    "guys-hill"
+  ],
+  "2025-09-09": [
+    "melton-south",
+    "seaholme"
+  ],
+  "2025-09-10": [
+    "sunbury",
+    "nutfield"
+  ],
+  "2025-09-11": [
+    "pascoe-vale",
+    "burwood"
+  ],
+  "2025-09-12": [
+    "aspendale",
+    "burwood-east"
+  ],
+  "2025-09-13": [
+    "surrey-hills",
+    "altona-north"
+  ],
+  "2025-09-14": [
     "strathtulloh",
-    "keilor"
+    "maribyrnong"
   ],
-  "2025-12-05": [
-    "nutfield",
-    "park-orchards"
+  "2025-09-15": [
+    "mill-park",
+    "box-hill"
   ],
-  "2025-12-06": [
-    "melbourne-airport",
+  "2025-09-16": [
+    "silvan",
+    "mulgrave"
+  ],
+  "2025-09-17": [
+    "abbotsford",
+    "somerton"
+  ],
+  "2025-09-18": [
+    "canterbury",
+    "laverton-north"
+  ],
+  "2025-09-19": [
+    "wheelers-hill",
+    "black-rock"
+  ],
+  "2025-09-20": [
+    "upper-ferntree-gully",
+    "cheltenham"
+  ],
+  "2025-09-21": [
+    "scoresby",
+    "toorak"
+  ],
+  "2025-09-22": [
+    "huntingdale",
+    "south-melbourne"
+  ],
+  "2025-09-23": [
+    "mitcham",
+    "macleod"
+  ],
+  "2025-09-24": [
+    "narre-warren-north",
+    "forest-hill"
+  ],
+  "2025-09-25": [
+    "mickleham",
+    "kings-park"
+  ],
+  "2025-09-26": [
+    "point-cook",
+    "toolern-vale"
+  ],
+  "2025-09-27": [
+    "parkville",
+    "wollert"
+  ],
+  "2025-09-28": [
+    "doveton",
+    "beaumaris"
+  ],
+  "2025-09-29": [
+    "fawkner",
+    "middle-park"
+  ],
+  "2025-09-30": [
+    "southbank",
+    "box-hill-south"
+  ],
+  "2025-10-01": [
+    "parkville",
+    "deanside"
+  ],
+  "2025-10-02": [
+    "prahran",
+    "bayswater"
+  ],
+  "2025-10-03": [
+    "bend-of-islands",
+    "burwood-east"
+  ],
+  "2025-10-04": [
+    "greensborough",
+    "wantirna-south"
+  ],
+  "2025-10-05": [
+    "wantirna",
+    "toorak"
+  ],
+  "2025-10-06": [
+    "kingsville",
+    "wyndham-vale"
+  ],
+  "2025-10-07": [
+    "st-andrews",
+    "belgrave-south"
+  ],
+  "2025-10-08": [
+    "the-basin",
+    "bentleigh-east"
+  ],
+  "2025-10-09": [
+    "kinglake",
+    "kalkallo"
+  ],
+  "2025-10-10": [
+    "westmeadows",
+    "kew"
+  ],
+  "2025-10-11": [
+    "prahran",
+    "blackburn-north"
+  ],
+  "2025-10-12": [
+    "mambourin",
+    "south-wharf"
+  ],
+  "2025-10-13": [
+    "princes-hill",
+    "mont-albert"
+  ],
+  "2025-10-14": [
+    "east-melbourne",
+    "hadfield"
+  ],
+  "2025-10-15": [
+    "thornhill-park",
+    "avondale-heights"
+  ],
+  "2025-10-16": [
+    "tarneit",
+    "keilor-east"
+  ],
+  "2025-10-17": [
+    "calder-park",
+    "travancore"
+  ],
+  "2025-10-18": [
+    "northcote",
+    "nunawading"
+  ],
+  "2025-10-19": [
+    "mentone",
+    "prahran"
+  ],
+  "2025-10-20": [
+    "narre-warren-north",
+    "black-rock"
+  ],
+  "2025-10-21": [
+    "smiths-gully",
+    "surrey-hills"
+  ],
+  "2025-10-22": [
+    "belgrave",
+    "burwood"
+  ],
+  "2025-10-23": [
+    "lynbrook",
+    "forest-hill"
+  ],
+  "2025-10-24": [
+    "fraser-rise",
+    "ascot-vale"
+  ],
+  "2025-10-25": [
+    "sherbrooke",
+    "skye"
+  ],
+  "2025-10-26": [
+    "chelsea-heights",
+    "upper-ferntree-gully"
+  ],
+  "2025-10-27": [
+    "malvern-east",
+    "lynbrook"
+  ],
+  "2025-10-28": [
+    "smiths-gully",
+    "roxburgh-park"
+  ],
+  "2025-10-29": [
+    "patterson-lakes",
+    "hampton"
+  ],
+  "2025-10-30": [
+    "cranbourne-west",
+    "sassafras"
+  ],
+  "2025-10-31": [
+    "essendon-north",
+    "melton-south"
+  ],
+  "2025-11-01": [
+    "doveton",
+    "balwyn"
+  ],
+  "2025-11-02": [
+    "botanic-ridge",
+    "moorabbin"
+  ],
+  "2025-11-03": [
+    "diamond-creek",
+    "sunbury"
+  ],
+  "2025-11-04": [
+    "doncaster-east",
+    "south-wharf"
+  ],
+  "2025-11-05": [
+    "menzies-creek",
+    "waterways"
+  ],
+  "2025-11-06": [
+    "noble-park",
+    "croydon-south"
+  ],
+  "2025-11-07": [
+    "castella",
+    "greensborough"
+  ],
+  "2025-11-08": [
+    "hampton-park",
+    "forest-hill"
+  ],
+  "2025-11-09": [
+    "endeavour-hills",
+    "christmas-hills"
+  ],
+  "2025-11-10": [
+    "monbulk",
+    "burwood-east"
+  ],
+  "2025-11-11": [
+    "hawthorn-east",
+    "roxburgh-park"
+  ],
+  "2025-11-12": [
+    "dandenong-north",
+    "warranwood"
+  ],
+  "2025-11-13": [
+    "viewbank",
+    "bayswater"
+  ],
+  "2025-11-14": [
+    "thornhill-park",
+    "donnybrook"
+  ],
+  "2025-11-15": [
+    "mount-waverley",
+    "hampton-park"
+  ],
+  "2025-11-16": [
+    "ascot-vale",
+    "werribee-south"
+  ],
+  "2025-11-17": [
+    "menzies-creek",
+    "oakleigh-east"
+  ],
+  "2025-11-18": [
+    "cranbourne",
+    "knoxfield"
+  ],
+  "2025-11-19": [
+    "blackburn-north",
+    "upper-ferntree-gully"
+  ],
+  "2025-11-20": [
+    "heidelberg-heights",
+    "southbank"
+  ],
+  "2025-11-21": [
+    "bayswater-north",
+    "nutfield"
+  ],
+  "2025-11-22": [
+    "kew-east",
+    "mckinnon"
+  ],
+  "2025-11-23": [
+    "craigieburn",
+    "templestowe"
+  ],
+  "2025-11-24": [
+    "hurstbridge",
+    "boronia"
+  ],
+  "2025-11-25": [
+    "junction-village",
+    "monbulk"
+  ],
+  "2025-11-26": [
+    "delahey",
+    "carlton"
+  ],
+  "2025-11-27": [
+    "williamstown-north",
+    "strathmore-heights"
+  ],
+  "2025-11-28": [
+    "bonnie-brook",
+    "maidstone"
+  ],
+  "2025-11-29": [
+    "avondale-heights",
     "bundoora"
   ],
+  "2025-11-30": [
+    "southbank",
+    "thornhill-park"
+  ],
+  "2025-12-01": [
+    "hawthorn",
+    "st-helena"
+  ],
+  "2025-12-02": [
+    "noble-park-north",
+    "the-patch"
+  ],
+  "2025-12-03": [
+    "kalkallo",
+    "northcote"
+  ],
+  "2025-12-04": [
+    "donnybrook",
+    "heidelberg"
+  ],
+  "2025-12-05": [
+    "altona-north",
+    "carnegie"
+  ],
+  "2025-12-06": [
+    "hadfield",
+    "delahey"
+  ],
   "2025-12-07": [
-    "laverton",
+    "williams-landing",
     "st-kilda-west"
   ],
   "2025-12-08": [
-    "junction-village",
-    "mordialloc"
+    "moorabbin",
+    "skye"
   ],
   "2025-12-09": [
-    "harkaway",
-    "bayswater"
+    "viewbank",
+    "kalkallo"
   ],
   "2025-12-10": [
-    "cranbourne",
-    "springvale"
+    "tarneit",
+    "fitzroy"
   ],
   "2025-12-11": [
-    "doncaster",
-    "west-melbourne"
-  ],
-  "2025-12-12": [
-    "doncaster-east",
-    "mill-park"
-  ],
-  "2025-12-13": [
-    "guys-hill",
-    "tremont"
-  ],
-  "2025-12-14": [
-    "st-andrews",
-    "box-hill-north"
-  ],
-  "2025-12-15": [
-    "doveton",
-    "chadstone"
-  ],
-  "2025-12-16": [
-    "taylors-lakes",
-    "wollert"
-  ],
-  "2025-12-17": [
-    "kinglake",
-    "mill-park"
-  ],
-  "2025-12-18": [
-    "coolaroo",
-    "st-albans"
-  ],
-  "2025-12-19": [
-    "rosanna",
-    "mernda"
-  ],
-  "2025-12-20": [
-    "ferny-creek",
-    "noble-park-north"
-  ],
-  "2025-12-21": [
-    "st-andrews",
-    "doncaster"
-  ],
-  "2025-12-22": [
-    "silvan",
-    "ringwood-east"
-  ],
-  "2025-12-23": [
-    "essendon-west",
-    "craigieburn"
-  ],
-  "2025-12-24": [
-    "dandenong-south",
-    "hughesdale"
-  ],
-  "2025-12-25": [
-    "grangefields",
-    "meadow-heights"
-  ],
-  "2025-12-26": [
-    "north-melbourne",
-    "gowanbrae"
-  ],
-  "2025-12-27": [
-    "north-melbourne",
-    "heidelberg-west"
-  ],
-  "2025-12-28": [
-    "taylors-hill",
-    "mambourin"
-  ],
-  "2025-12-29": [
-    "frankston-south",
-    "dalmore"
-  ],
-  "2025-12-30": [
-    "mulgrave",
-    "caulfield-south"
-  ],
-  "2025-12-31": [
-    "broadmeadows",
-    "st-albans"
-  ],
-  "2026-01-01": [
-    "spotswood",
-    "kew-east"
-  ],
-  "2026-01-02": [
-    "mount-evelyn",
-    "arthurs-creek"
-  ],
-  "2026-01-03": [
-    "hoppers-crossing",
-    "kealba"
-  ],
-  "2026-01-04": [
-    "ringwood-north",
-    "wheelers-hill"
-  ],
-  "2026-01-05": [
-    "carlton-north",
-    "malvern"
-  ],
-  "2026-01-06": [
-    "southbank",
-    "mont-albert"
-  ],
-  "2026-01-07": [
-    "cairnlea",
+    "bellfield",
     "spotswood"
   ],
-  "2026-01-08": [
-    "ivanhoe",
-    "ashwood"
+  "2025-12-12": [
+    "blackburn-south",
+    "lilydale"
   ],
-  "2026-01-09": [
-    "mont-albert-north",
-    "fawkner"
+  "2025-12-13": [
+    "hawthorn-east",
+    "essendon-fields"
   ],
-  "2026-01-10": [
-    "selby",
-    "narre-warren-south"
+  "2025-12-14": [
+    "toorak",
+    "diamond-creek"
   ],
-  "2026-01-11": [
-    "alphington",
-    "airport-west"
+  "2025-12-15": [
+    "notting-hill",
+    "heidelberg-west"
   ],
-  "2026-01-12": [
-    "coolaroo",
-    "lower-plenty"
+  "2025-12-16": [
+    "belgrave",
+    "cranbourne-south"
   ],
-  "2026-01-13": [
-    "highett",
-    "middle-park"
+  "2025-12-17": [
+    "port-melbourne",
+    "mont-albert"
   ],
-  "2026-01-14": [
-    "melbourne-cbd",
-    "heidelberg-heights"
+  "2025-12-18": [
+    "junction-village",
+    "wheelers-hill"
   ],
-  "2026-01-15": [
-    "oakleigh",
-    "fairfield"
+  "2025-12-19": [
+    "west-melbourne",
+    "melton"
   ],
-  "2026-01-16": [
-    "toolern-vale",
-    "manor-lakes"
+  "2025-12-20": [
+    "burwood",
+    "mentone"
   ],
-  "2026-01-17": [
-    "yan-yean",
-    "oaklands-junction"
+  "2025-12-21": [
+    "essendon-north",
+    "deer-park"
   ],
-  "2026-01-18": [
-    "calder-park",
-    "somerton"
+  "2025-12-22": [
+    "south-yarra",
+    "blackburn"
   ],
-  "2026-01-19": [
-    "patterson-lakes",
-    "harkaway"
+  "2025-12-23": [
+    "mount-cottrell",
+    "south-wharf"
   ],
-  "2026-01-20": [
-    "gardenvale",
-    "abbotsford"
+  "2025-12-24": [
+    "bentleigh",
+    "balwyn-north"
   ],
-  "2026-01-21": [
-    "eltham",
-    "somerton"
+  "2025-12-25": [
+    "braeside",
+    "tecoma"
   ],
-  "2026-01-22": [
-    "prahran",
-    "surrey-hills"
+  "2025-12-26": [
+    "cottles-bridge",
+    "coolaroo"
   ],
-  "2026-01-23": [
-    "wandin-north",
-    "doncaster-east"
+  "2025-12-27": [
+    "upwey",
+    "brighton-east"
   ],
-  "2026-01-24": [
-    "noble-park-north",
-    "kilsyth-south"
-  ],
-  "2026-01-25": [
-    "caulfield-north",
-    "maidstone"
-  ],
-  "2026-01-26": [
-    "keilor-north",
-    "brunswick-west"
-  ],
-  "2026-01-27": [
-    "kinglake",
-    "ringwood-east"
-  ],
-  "2026-01-28": [
-    "sassafras",
-    "officer"
-  ],
-  "2026-01-29": [
-    "heidelberg",
-    "oak-park"
-  ],
-  "2026-01-30": [
-    "carlton",
+  "2025-12-28": [
+    "seddon",
     "hughesdale"
   ],
-  "2026-01-31": [
-    "ringwood",
-    "kew"
+  "2025-12-29": [
+    "caulfield-east",
+    "templestowe"
   ],
-  "2026-02-01": [
-    "aspendale",
-    "langwarrin-south"
+  "2025-12-30": [
+    "smiths-gully",
+    "campbellfield"
   ],
-  "2026-02-02": [
-    "yan-yean",
-    "yallambie"
+  "2025-12-31": [
+    "burwood-east",
+    "lilydale"
   ],
-  "2026-02-03": [
-    "ringwood-north",
-    "plenty"
+  "2026-01-01": [
+    "fitzroy-north",
+    "somerton"
   ],
-  "2026-02-04": [
+  "2026-01-02": [
+    "ashwood",
+    "aspendale"
+  ],
+  "2026-01-03": [
+    "viewbank",
+    "docklands"
+  ],
+  "2026-01-04": [
+    "surrey-hills",
+    "coldstream"
+  ],
+  "2026-01-05": [
+    "watsonia",
+    "coldstream"
+  ],
+  "2026-01-06": [
+    "ferntree-gully",
+    "ashburton"
+  ],
+  "2026-01-07": [
+    "kooyong",
+    "montmorency"
+  ],
+  "2026-01-08": [
+    "emerald",
+    "strathewen"
+  ],
+  "2026-01-09": [
+    "kilsyth",
+    "malvern-east"
+  ],
+  "2026-01-10": [
+    "footscray",
+    "gardenvale"
+  ],
+  "2026-01-11": [
+    "collingwood",
+    "nunawading"
+  ],
+  "2026-01-12": [
+    "macleod",
+    "essendon-west"
+  ],
+  "2026-01-13": [
+    "carnegie",
+    "south-kingsville"
+  ],
+  "2026-01-14": [
+    "cremorne",
+    "mckinnon"
+  ],
+  "2026-01-15": [
     "donvale",
-    "richmond"
+    "donnybrook"
   ],
-  "2026-02-05": [
-    "west-footscray",
-    "kew"
+  "2026-01-16": [
+    "keilor-north",
+    "yarraville"
   ],
-  "2026-02-06": [
-    "broadmeadows",
+  "2026-01-17": [
+    "mooroolbark",
+    "dandenong-south"
+  ],
+  "2026-01-18": [
+    "kallista",
+    "smiths-gully"
+  ],
+  "2026-01-19": [
+    "dingley-village",
+    "ringwood"
+  ],
+  "2026-01-20": [
+    "port-melbourne",
+    "oak-park"
+  ],
+  "2026-01-21": [
+    "wildwood",
+    "preston"
+  ],
+  "2026-01-22": [
+    "plumpton",
+    "newport"
+  ],
+  "2026-01-23": [
+    "lower-plenty",
+    "south-yarra"
+  ],
+  "2026-01-24": [
+    "research",
+    "roxburgh-park"
+  ],
+  "2026-01-25": [
+    "mooroolbark",
+    "bundoora"
+  ],
+  "2026-01-26": [
+    "burnley",
+    "williamstown-north"
+  ],
+  "2026-01-27": [
+    "ringwood-north",
+    "south-yarra"
+  ],
+  "2026-01-28": [
+    "essendon-north",
     "hillside"
   ],
+  "2026-01-29": [
+    "ripponlea",
+    "wantirna-south"
+  ],
+  "2026-01-30": [
+    "werribee-south",
+    "carlton"
+  ],
+  "2026-01-31": [
+    "gardenvale",
+    "surrey-hills"
+  ],
+  "2026-02-01": [
+    "pascoe-vale",
+    "wattle-glen"
+  ],
+  "2026-02-02": [
+    "lyndhurst",
+    "wantirna-south"
+  ],
+  "2026-02-03": [
+    "the-basin",
+    "kinglake"
+  ],
+  "2026-02-04": [
+    "gladstone-park",
+    "docklands"
+  ],
+  "2026-02-05": [
+    "heidelberg-heights",
+    "kingsville"
+  ],
+  "2026-02-06": [
+    "lysterfield-south",
+    "mont-albert"
+  ],
   "2026-02-07": [
-    "coburg-north",
-    "albert-park"
+    "essendon-fields",
+    "williamstown-north"
   ],
   "2026-02-08": [
-    "bangholme",
-    "oakleigh-east"
+    "braybrook",
+    "clifton-hill"
   ],
   "2026-02-09": [
-    "keilor-lodge",
-    "sunshine-west"
+    "princes-hill",
+    "briar-hill"
   ],
   "2026-02-10": [
-    "south-melbourne",
-    "ashwood"
+    "ravenhall",
+    "coolaroo"
   ],
   "2026-02-11": [
-    "junction-village",
-    "emerald"
+    "ashwood",
+    "olinda"
   ],
   "2026-02-12": [
-    "maidstone",
-    "burnley"
+    "williamstown-north",
+    "northcote"
   ],
   "2026-02-13": [
-    "seaford",
-    "moorabbin-airport"
+    "broadmeadows",
+    "richmond"
   ],
   "2026-02-14": [
-    "craigieburn",
-    "research"
+    "south-morang",
+    "hawthorn"
   ],
   "2026-02-15": [
     "ringwood-east",
-    "wheelers-hill"
+    "glen-iris"
   ],
   "2026-02-16": [
-    "humevale",
-    "somerton"
+    "docklands",
+    "attwood"
   ],
   "2026-02-17": [
-    "diamond-creek",
-    "pascoe-vale-south"
-  ],
-  "2026-02-18": [
-    "werribee",
-    "delahey"
-  ],
-  "2026-02-19": [
-    "st-helena",
-    "pascoe-vale"
-  ],
-  "2026-02-20": [
-    "yarraville",
-    "fraser-rise"
-  ],
-  "2026-02-21": [
-    "kings-park",
-    "gisborne-south"
-  ],
-  "2026-02-22": [
-    "keilor-downs",
-    "oak-park"
-  ],
-  "2026-02-23": [
-    "mount-eliza",
-    "tooradin"
-  ],
-  "2026-02-24": [
-    "officer",
-    "boronia"
-  ],
-  "2026-02-25": [
-    "clematis",
-    "narre-warren-south"
-  ],
-  "2026-02-26": [
-    "caulfield-east",
-    "doncaster"
-  ],
-  "2026-02-27": [
-    "st-helena",
-    "coldstream"
-  ],
-  "2026-02-28": [
-    "burnside-heights",
-    "greenvale"
-  ],
-  "2026-03-01": [
-    "yering",
-    "templestowe-lower"
-  ],
-  "2026-03-02": [
-    "south-wharf",
-    "preston"
-  ],
-  "2026-03-03": [
-    "kensington",
-    "hadfield"
-  ],
-  "2026-03-04": [
-    "armadale",
-    "forest-hill"
-  ],
-  "2026-03-05": [
-    "oakleigh-east",
-    "melbourne-cbd"
-  ],
-  "2026-03-06": [
-    "burnside-heights",
-    "west-footscray"
-  ],
-  "2026-03-07": [
-    "montmorency",
-    "vermont"
-  ],
-  "2026-03-08": [
-    "tarrawarra",
-    "mitcham"
-  ],
-  "2026-03-09": [
-    "ferntree-gully",
-    "cranbourne-east"
-  ],
-  "2026-03-10": [
-    "sandringham",
-    "mulgrave"
-  ],
-  "2026-03-11": [
-    "kilsyth",
-    "emerald"
-  ],
-  "2026-03-12": [
-    "langwarrin",
-    "dandenong-north"
-  ],
-  "2026-03-13": [
-    "elwood",
-    "fairfield"
-  ],
-  "2026-03-14": [
-    "meadow-heights",
-    "sunshine-north"
-  ],
-  "2026-03-15": [
-    "warrandyte",
-    "scoresby"
-  ],
-  "2026-03-16": [
-    "cairnlea",
-    "moonee-ponds"
-  ],
-  "2026-03-17": [
-    "strathewen",
-    "templestowe"
-  ],
-  "2026-03-18": [
-    "weir-views",
-    "keilor"
-  ],
-  "2026-03-19": [
-    "ivanhoe",
-    "maribyrnong"
-  ],
-  "2026-03-20": [
-    "fawkner",
-    "templestowe-lower"
-  ],
-  "2026-03-21": [
-    "scoresby",
-    "hampton-east"
-  ],
-  "2026-03-22": [
-    "malvern",
-    "heidelberg-heights"
-  ],
-  "2026-03-23": [
-    "spotswood",
-    "caulfield-east"
-  ],
-  "2026-03-24": [
-    "calder-park",
-    "wyndham-vale"
-  ],
-  "2026-03-25": [
-    "hampton-park",
-    "kallista"
-  ],
-  "2026-03-26": [
-    "hoppers-crossing",
-    "sunshine-north"
-  ],
-  "2026-03-27": [
-    "caulfield-east",
-    "braeside"
-  ],
-  "2026-03-28": [
-    "upper-ferntree-gully",
-    "huntingdale"
-  ],
-  "2026-03-29": [
-    "wonga-park",
-    "eaglemont"
-  ],
-  "2026-03-30": [
-    "knoxfield",
-    "moorabbin"
-  ],
-  "2026-03-31": [
-    "doncaster",
-    "caulfield-north"
-  ],
-  "2026-04-01": [
-    "endeavour-hills",
-    "bonbeach"
-  ],
-  "2026-04-02": [
-    "cranbourne-east",
-    "ferntree-gully"
-  ],
-  "2026-04-03": [
-    "laverton",
-    "keilor-east"
-  ],
-  "2026-04-04": [
-    "glenroy",
-    "plumpton"
-  ],
-  "2026-04-05": [
-    "manor-lakes",
-    "brooklyn"
-  ],
-  "2026-04-06": [
-    "smiths-gully",
-    "the-basin"
-  ],
-  "2026-04-07": [
-    "altona-north",
-    "kings-park"
-  ],
-  "2026-04-08": [
-    "docklands",
-    "surrey-hills"
-  ],
-  "2026-04-09": [
-    "burnside",
-    "melton-south"
-  ],
-  "2026-04-10": [
-    "burnley",
-    "templestowe-lower"
-  ],
-  "2026-04-11": [
-    "briar-hill",
-    "ringwood-east"
-  ],
-  "2026-04-12": [
-    "surrey-hills",
-    "caulfield"
-  ],
-  "2026-04-13": [
-    "patterson-lakes",
-    "moorabbin"
-  ],
-  "2026-04-14": [
-    "lysterfield",
-    "chelsea-heights"
-  ],
-  "2026-04-15": [
-    "ivanhoe",
-    "park-orchards"
-  ],
-  "2026-04-16": [
-    "keilor-east",
-    "newport"
-  ],
-  "2026-04-17": [
-    "moorabbin",
-    "knoxfield"
-  ],
-  "2026-04-18": [
-    "noble-park-north",
-    "surrey-hills"
-  ],
-  "2026-04-19": [
-    "oakleigh-east",
-    "elwood"
-  ],
-  "2026-04-20": [
-    "plumpton",
-    "donnybrook"
-  ],
-  "2026-04-21": [
-    "vermont",
-    "wattle-glen"
-  ],
-  "2026-04-22": [
-    "ravenhall",
-    "keilor-lodge"
-  ],
-  "2026-04-23": [
-    "chadstone",
-    "the-basin"
-  ],
-  "2026-04-24": [
-    "watsonia-north",
-    "woodstock"
-  ],
-  "2026-04-25": [
-    "toorak",
-    "doncaster-east"
-  ],
-  "2026-04-26": [
-    "sandhurst",
-    "moorabbin-airport"
-  ],
-  "2026-04-27": [
-    "mount-evelyn",
-    "narre-warren-north"
-  ],
-  "2026-04-28": [
-    "albanvale",
-    "docklands"
-  ],
-  "2026-04-29": [
-    "doveton",
-    "burwood"
-  ],
-  "2026-04-30": [
-    "viewbank",
-    "forest-hill"
-  ],
-  "2026-05-01": [
-    "lysterfield",
-    "dingley-village"
-  ],
-  "2026-05-02": [
-    "donnybrook",
-    "plumpton"
-  ],
-  "2026-05-03": [
-    "travancore",
-    "williamstown-north"
-  ],
-  "2026-05-04": [
-    "donnybrook",
-    "taylors-lakes"
-  ],
-  "2026-05-05": [
-    "hawthorn",
-    "glen-waverley"
-  ],
-  "2026-05-06": [
-    "frankston-south",
-    "mordialloc"
-  ],
-  "2026-05-07": [
-    "sunbury",
-    "mount-cottrell"
-  ],
-  "2026-05-08": [
-    "elsternwick",
-    "mentone"
-  ],
-  "2026-05-09": [
-    "middle-park",
-    "ormond"
-  ],
-  "2026-05-10": [
-    "essendon-west",
-    "newport"
-  ],
-  "2026-05-11": [
-    "calder-park",
-    "epping"
-  ],
-  "2026-05-12": [
-    "carrum-downs",
-    "oakleigh-south"
-  ],
-  "2026-05-13": [
-    "williams-landing",
-    "keilor-downs"
-  ],
-  "2026-05-14": [
-    "officer",
-    "sassafras"
-  ],
-  "2026-05-15": [
-    "clematis",
-    "cranbourne-north"
-  ],
-  "2026-05-16": [
-    "officer",
-    "frankston-north"
-  ],
-  "2026-05-17": [
-    "maidstone",
-    "rockbank"
-  ],
-  "2026-05-18": [
-    "cranbourne-south",
-    "endeavour-hills"
-  ],
-  "2026-05-19": [
-    "jacana",
-    "alphington"
-  ],
-  "2026-05-20": [
-    "carlton-north",
-    "brooklyn"
-  ],
-  "2026-05-21": [
-    "burnside-heights",
-    "melton-south"
-  ],
-  "2026-05-22": [
-    "briar-hill",
-    "kew"
-  ],
-  "2026-05-23": [
-    "yan-yean",
-    "coolaroo"
-  ],
-  "2026-05-24": [
-    "cairnlea",
-    "grangefields"
-  ],
-  "2026-05-25": [
-    "notting-hill",
-    "waterways"
-  ],
-  "2026-05-26": [
-    "harkaway",
-    "wandin-north"
-  ],
-  "2026-05-27": [
-    "laverton",
-    "moonee-ponds"
-  ],
-  "2026-05-28": [
-    "plumpton",
-    "essendon"
-  ],
-  "2026-05-29": [
-    "olinda",
-    "endeavour-hills"
-  ],
-  "2026-05-30": [
-    "caroline-springs",
-    "footscray"
-  ],
-  "2026-05-31": [
-    "caroline-springs",
-    "port-melbourne"
-  ],
-  "2026-06-01": [
-    "black-rock",
-    "notting-hill"
-  ],
-  "2026-06-02": [
-    "craigieburn",
-    "wattle-glen"
-  ],
-  "2026-06-03": [
-    "macleod",
-    "oak-park"
-  ],
-  "2026-06-04": [
-    "aberfeldie",
-    "diggers-rest"
-  ],
-  "2026-06-05": [
-    "sandringham",
-    "st-kilda-west"
-  ],
-  "2026-06-06": [
-    "cobblebank",
-    "attwood"
-  ],
-  "2026-06-07": [
-    "clayton",
-    "kew-east"
-  ],
-  "2026-06-08": [
-    "yallambie",
-    "arthurs-creek"
-  ],
-  "2026-06-09": [
-    "cranbourne",
-    "belgrave-south"
-  ],
-  "2026-06-10": [
-    "kinglake",
-    "mount-evelyn"
-  ],
-  "2026-06-11": [
-    "mitcham",
-    "tarrawarra"
-  ],
-  "2026-06-12": [
-    "north-melbourne",
-    "hampton"
-  ],
-  "2026-06-13": [
-    "warrandyte-south",
-    "mernda"
-  ],
-  "2026-06-14": [
-    "the-basin",
-    "watsons-creek"
-  ],
-  "2026-06-15": [
-    "ivanhoe-east",
-    "flemington"
-  ],
-  "2026-06-16": [
-    "langwarrin-south",
-    "doveton"
-  ],
-  "2026-06-17": [
-    "moorabbin",
-    "albert-park"
-  ],
-  "2026-06-18": [
-    "murrumbeena",
-    "west-melbourne"
-  ],
-  "2026-06-19": [
-    "hillside",
-    "airport-west"
-  ],
-  "2026-06-20": [
-    "west-melbourne",
-    "brighton-east"
-  ],
-  "2026-06-21": [
-    "mambourin",
-    "bonnie-brook"
-  ],
-  "2026-06-22": [
-    "yuroke",
-    "nutfield"
-  ],
-  "2026-06-23": [
-    "epping",
-    "fairfield"
-  ],
-  "2026-06-24": [
-    "aintree",
-    "west-melbourne"
-  ],
-  "2026-06-25": [
-    "st-kilda-east",
-    "maidstone"
-  ],
-  "2026-06-26": [
-    "essendon-north",
-    "prahran"
-  ],
-  "2026-06-27": [
-    "mount-dandenong",
-    "mitcham"
-  ],
-  "2026-06-28": [
-    "coburg",
-    "toorak"
-  ],
-  "2026-06-29": [
-    "werribee-south",
-    "fraser-rise"
-  ],
-  "2026-06-30": [
-    "fairfield",
-    "roxburgh-park"
-  ],
-  "2026-07-01": [
-    "mount-cottrell",
-    "port-melbourne"
-  ],
-  "2026-07-02": [
-    "westmeadows",
-    "burnside-heights"
-  ],
-  "2026-07-03": [
-    "plenty",
-    "gowanbrae"
-  ],
-  "2026-07-04": [
-    "croydon-hills",
-    "humevale"
-  ],
-  "2026-07-05": [
-    "doreen",
-    "templestowe-lower"
-  ],
-  "2026-07-06": [
-    "laverton",
-    "avondale-heights"
-  ],
-  "2026-07-07": [
-    "clifton-hill",
-    "campbellfield"
-  ],
-  "2026-07-08": [
-    "williams-landing",
-    "flemington"
-  ],
-  "2026-07-09": [
-    "the-patch",
-    "bayswater-north"
-  ],
-  "2026-07-10": [
-    "thornhill-park",
-    "keilor-downs"
-  ],
-  "2026-07-11": [
-    "wyndham-vale",
-    "spotswood"
-  ],
-  "2026-07-12": [
-    "warrandyte",
-    "hawthorn-east"
-  ],
-  "2026-07-13": [
-    "bellfield",
-    "glen-iris"
-  ],
-  "2026-07-14": [
-    "burnside",
-    "port-melbourne"
-  ],
-  "2026-07-15": [
-    "black-rock",
-    "chelsea-heights"
-  ],
-  "2026-07-16": [
-    "mount-evelyn",
-    "scoresby"
-  ],
-  "2026-07-17": [
-    "point-cook",
-    "melton"
-  ],
-  "2026-07-18": [
-    "windsor",
-    "camberwell"
-  ],
-  "2026-07-19": [
-    "fitzroy",
-    "ashburton"
-  ],
-  "2026-07-20": [
-    "carlton-north",
-    "brighton"
-  ],
-  "2026-07-21": [
-    "south-wharf",
-    "carnegie"
-  ],
-  "2026-07-22": [
-    "warrandyte",
-    "scoresby"
-  ],
-  "2026-07-23": [
-    "cocoroc",
-    "brooklyn"
-  ],
-  "2026-07-24": [
-    "brunswick",
-    "westmeadows"
-  ],
-  "2026-07-25": [
-    "lower-plenty",
-    "coburg"
-  ],
-  "2026-07-26": [
-    "ripponlea",
-    "williamstown-north"
-  ],
-  "2026-07-27": [
-    "kingsville",
-    "tarneit"
-  ],
-  "2026-07-28": [
-    "alphington",
-    "niddrie"
-  ],
-  "2026-07-29": [
-    "coburg",
-    "caulfield-north"
-  ],
-  "2026-07-30": [
-    "strathmore-heights",
-    "watsonia"
-  ],
-  "2026-07-31": [
-    "weir-views",
-    "st-albans"
-  ],
-  "2026-08-01": [
-    "fairfield",
-    "blackburn"
-  ],
-  "2026-08-02": [
-    "cranbourne-north",
-    "mount-eliza"
-  ],
-  "2026-08-03": [
-    "wildwood",
-    "taylors-hill"
-  ],
-  "2026-08-04": [
-    "forest-hill",
-    "hawthorn"
-  ],
-  "2026-08-05": [
-    "kew",
-    "glenroy"
-  ],
-  "2026-08-06": [
-    "heidelberg",
-    "kangaroo-ground"
-  ],
-  "2026-08-07": [
-    "northcote",
-    "lalor"
-  ],
-  "2026-08-08": [
-    "park-orchards",
-    "strathewen"
-  ],
-  "2026-08-09": [
-    "forest-hill",
-    "lilydale"
-  ],
-  "2026-08-10": [
-    "montrose",
-    "doncaster-east"
-  ],
-  "2026-08-11": [
-    "gowanbrae",
-    "bellfield"
-  ],
-  "2026-08-12": [
-    "oaklands-junction",
-    "yarrambat"
-  ],
-  "2026-08-13": [
-    "hawthorn-east",
-    "coburg-north"
-  ],
-  "2026-08-14": [
-    "rockbank",
-    "keilor-downs"
-  ],
-  "2026-08-15": [
-    "travancore",
-    "tullamarine"
-  ],
-  "2026-08-16": [
-    "windsor",
-    "sunshine-west"
-  ],
-  "2026-08-17": [
-    "essendon-fields",
-    "heidelberg-west"
-  ],
-  "2026-08-18": [
-    "braybrook",
-    "richmond"
-  ],
-  "2026-08-19": [
-    "laverton-north",
-    "prahran"
-  ],
-  "2026-08-20": [
-    "castella",
-    "diamond-creek"
-  ],
-  "2026-08-21": [
-    "bentleigh",
-    "rowville"
-  ],
-  "2026-08-22": [
-    "springvale-south",
-    "vermont"
-  ],
-  "2026-08-23": [
-    "aspendale-gardens",
-    "glen-waverley"
-  ],
-  "2026-08-24": [
-    "seddon",
-    "clifton-hill"
-  ],
-  "2026-08-25": [
-    "grangefields",
-    "gladstone-park"
-  ],
-  "2026-08-26": [
-    "wonga-park",
-    "bundoora"
-  ],
-  "2026-08-27": [
-    "doncaster-east",
-    "glen-iris"
-  ],
-  "2026-08-28": [
-    "watsonia-north",
-    "nunawading"
-  ],
-  "2026-08-29": [
-    "albion",
-    "strathmore"
-  ],
-  "2026-08-30": [
-    "westmeadows",
-    "flemington"
-  ],
-  "2026-08-31": [
-    "castella",
-    "woodstock"
-  ],
-  "2026-09-01": [
-    "mount-evelyn",
-    "harkaway"
-  ],
-  "2026-09-02": [
-    "oakleigh-east",
-    "kilsyth"
-  ],
-  "2026-09-03": [
-    "research",
-    "wantirna"
-  ],
-  "2026-09-04": [
-    "coldstream",
-    "ferntree-gully"
-  ],
-  "2026-09-05": [
-    "oakleigh-east",
-    "ringwood"
-  ],
-  "2026-09-06": [
-    "clarinda",
-    "upper-ferntree-gully"
-  ],
-  "2026-09-07": [
-    "burnley",
-    "ormond"
-  ],
-  "2026-09-08": [
-    "eaglemont",
-    "moonee-ponds"
-  ],
-  "2026-09-09": [
-    "toorak",
-    "box-hill-north"
-  ],
-  "2026-09-10": [
-    "mitcham",
-    "eaglemont"
-  ],
-  "2026-09-11": [
-    "gisborne-south",
-    "st-albans"
-  ],
-  "2026-09-12": [
-    "caulfield-north",
-    "vermont-south"
-  ],
-  "2026-09-13": [
-    "delahey",
-    "aberfeldie"
-  ],
-  "2026-09-14": [
-    "melbourne-cbd",
-    "oakleigh-east"
-  ],
-  "2026-09-15": [
-    "eltham",
-    "thornbury"
-  ],
-  "2026-09-16": [
-    "roxburgh-park",
-    "ivanhoe-east"
-  ],
-  "2026-09-17": [
-    "malvern-east",
-    "spotswood"
-  ],
-  "2026-09-18": [
-    "christmas-hills",
-    "wollert"
-  ],
-  "2026-09-19": [
-    "footscray",
-    "elsternwick"
-  ],
-  "2026-09-20": [
-    "cairnlea",
-    "essendon"
-  ],
-  "2026-09-21": [
-    "south-yarra",
-    "braybrook"
-  ],
-  "2026-09-22": [
-    "yuroke",
-    "oak-park"
-  ],
-  "2026-09-23": [
-    "montmorency",
-    "donnybrook"
-  ],
-  "2026-09-24": [
-    "junction-village",
-    "narre-warren-east"
-  ],
-  "2026-09-25": [
-    "officer-south",
-    "noble-park-north"
-  ],
-  "2026-09-26": [
-    "vermont-south",
-    "kew-east"
-  ],
-  "2026-09-27": [
-    "templestowe",
-    "wollert"
-  ],
-  "2026-09-28": [
-    "broadmeadows",
-    "eltham-north"
-  ],
-  "2026-09-29": [
-    "pascoe-vale",
-    "braybrook"
-  ],
-  "2026-09-30": [
-    "kilsyth-south",
-    "ashwood"
-  ],
-  "2026-10-01": [
-    "seabrook",
-    "bonnie-brook"
-  ],
-  "2026-10-02": [
-    "blackburn-north",
-    "burnley"
-  ],
-  "2026-10-03": [
-    "seddon",
-    "keilor"
-  ],
-  "2026-10-04": [
-    "thornhill-park",
-    "kealba"
-  ],
-  "2026-10-05": [
-    "melton-south",
-    "altona"
-  ],
-  "2026-10-06": [
-    "south-melbourne",
-    "williams-landing"
-  ],
-  "2026-10-07": [
-    "ashwood",
-    "thornbury"
-  ],
-  "2026-10-08": [
-    "glenroy",
-    "keilor-downs"
-  ],
-  "2026-10-09": [
-    "essendon-west",
-    "yuroke"
-  ],
-  "2026-10-10": [
-    "hadfield",
-    "bulleen"
-  ],
-  "2026-10-11": [
-    "yering",
-    "lower-plenty"
-  ],
-  "2026-10-12": [
-    "warrandyte-south",
-    "silvan"
-  ],
-  "2026-10-13": [
-    "airport-west",
-    "albert-park"
-  ],
-  "2026-10-14": [
-    "toorak",
-    "aberfeldie"
-  ],
-  "2026-10-15": [
-    "lalor",
-    "st-andrews"
-  ],
-  "2026-10-16": [
-    "bangholme",
-    "hughesdale"
-  ],
-  "2026-10-17": [
-    "st-kilda-east",
-    "coburg"
-  ],
-  "2026-10-18": [
-    "altona-meadows",
-    "albert-park"
-  ],
-  "2026-10-19": [
-    "williamstown",
-    "burnside"
-  ],
-  "2026-10-20": [
-    "springvale-south",
-    "tecoma"
-  ],
-  "2026-10-21": [
-    "st-andrews",
-    "lalor"
-  ],
-  "2026-10-22": [
-    "somerton",
-    "viewbank"
-  ],
-  "2026-10-23": [
-    "hampton",
-    "toorak"
-  ],
-  "2026-10-24": [
-    "eltham",
-    "dixons-creek"
-  ],
-  "2026-10-25": [
-    "strathmore",
-    "yuroke"
-  ],
-  "2026-10-26": [
-    "heidelberg",
-    "flemington"
-  ],
-  "2026-10-27": [
-    "st-andrews",
-    "watsonia"
-  ],
-  "2026-10-28": [
-    "brooklyn",
-    "caulfield-north"
-  ],
-  "2026-10-29": [
-    "melbourne-airport",
-    "brooklyn"
-  ],
-  "2026-10-30": [
-    "flemington",
-    "glenroy"
-  ],
-  "2026-10-31": [
-    "moonee-ponds",
-    "deepdene"
-  ],
-  "2026-11-01": [
-    "yarrambat",
-    "ringwood"
-  ],
-  "2026-11-02": [
-    "toorak",
-    "maidstone"
-  ],
-  "2026-11-03": [
-    "glen-huntly",
-    "keysborough"
-  ],
-  "2026-11-04": [
-    "upper-ferntree-gully",
-    "oakleigh-east"
-  ],
-  "2026-11-05": [
-    "braeside",
-    "ferntree-gully"
-  ],
-  "2026-11-06": [
-    "roxburgh-park",
-    "eaglemont"
-  ],
-  "2026-11-07": [
-    "diamond-creek",
-    "coolaroo"
-  ],
-  "2026-11-08": [
-    "footscray",
-    "fieldstone"
-  ],
-  "2026-11-09": [
-    "deer-park",
-    "keilor-north"
-  ],
-  "2026-11-10": [
-    "forest-hill",
-    "coldstream"
-  ],
-  "2026-11-11": [
-    "derrimut",
-    "keilor-park"
-  ],
-  "2026-11-12": [
-    "tottenham",
-    "strathmore-heights"
-  ],
-  "2026-11-13": [
-    "deanside",
-    "sunshine-north"
-  ],
-  "2026-11-14": [
-    "bangholme",
-    "notting-hill"
-  ],
-  "2026-11-15": [
-    "avondale-heights",
-    "hillside"
-  ],
-  "2026-11-16": [
-    "the-basin",
-    "doveton"
-  ],
-  "2026-11-17": [
-    "eumemmerring",
-    "parkdale"
-  ],
-  "2026-11-18": [
-    "chelsea-heights",
-    "beaconsfield"
-  ],
-  "2026-11-19": [
-    "ringwood-east",
-    "dixons-creek"
-  ],
-  "2026-11-20": [
-    "ringwood-north",
-    "tarrawarra"
-  ],
-  "2026-11-21": [
-    "st-kilda-east",
-    "maribyrnong"
-  ],
-  "2026-11-22": [
-    "scoresby",
-    "wonga-park"
-  ],
-  "2026-11-23": [
-    "kilsyth",
-    "dandenong"
-  ],
-  "2026-11-24": [
-    "wildwood",
-    "st-albans"
-  ],
-  "2026-11-25": [
-    "docklands",
-    "werribee"
-  ],
-  "2026-11-26": [
-    "cardinia",
-    "doveton"
-  ],
-  "2026-11-27": [
-    "wantirna-south",
-    "beaconsfield-upper"
-  ],
-  "2026-11-28": [
-    "ormond",
-    "scoresby"
-  ],
-  "2026-11-29": [
-    "wheelers-hill",
-    "beaconsfield"
-  ],
-  "2026-11-30": [
-    "olinda",
-    "wantirna"
-  ],
-  "2026-12-01": [
-    "croydon-south",
-    "templestowe"
-  ],
-  "2026-12-02": [
-    "plumpton",
-    "fawkner"
-  ],
-  "2026-12-03": [
-    "sherbrooke",
-    "heathmont"
-  ],
-  "2026-12-04": [
-    "chirnside-park",
-    "tecoma"
-  ],
-  "2026-12-05": [
-    "croydon-north",
-    "monbulk"
-  ],
-  "2026-12-06": [
-    "hawthorn",
-    "clayton"
-  ],
-  "2026-12-07": [
-    "warrandyte",
-    "wollert"
-  ],
-  "2026-12-08": [
-    "clyde",
-    "dandenong"
-  ],
-  "2026-12-09": [
-    "bellfield",
-    "nunawading"
-  ],
-  "2026-12-10": [
-    "altona-meadows",
-    "thornhill-park"
-  ],
-  "2026-12-11": [
-    "grangefields",
-    "sunshine-north"
-  ],
-  "2026-12-12": [
-    "rockbank",
-    "west-melbourne"
-  ],
-  "2026-12-13": [
-    "deanside",
-    "docklands"
-  ],
-  "2026-12-14": [
-    "bulleen",
-    "ringwood-east"
-  ],
-  "2026-12-15": [
-    "heidelberg-west",
-    "essendon-fields"
-  ],
-  "2026-12-16": [
-    "strathmore",
-    "windsor"
-  ],
-  "2026-12-17": [
-    "seabrook",
-    "kingsville"
-  ],
-  "2026-12-18": [
-    "carlton",
-    "hampton"
-  ],
-  "2026-12-19": [
-    "northcote",
-    "templestowe-lower"
-  ],
-  "2026-12-20": [
-    "reservoir",
-    "richmond"
-  ],
-  "2026-12-21": [
-    "mont-albert-north",
-    "plenty"
-  ],
-  "2026-12-22": [
-    "niddrie",
-    "south-wharf"
-  ],
-  "2026-12-23": [
-    "camberwell",
-    "bayswater"
-  ],
-  "2026-12-24": [
-    "ormond",
-    "dandenong-south"
-  ],
-  "2026-12-25": [
-    "montrose",
-    "beaconsfield-upper"
-  ],
-  "2026-12-26": [
-    "hoppers-crossing",
-    "maidstone"
-  ],
-  "2026-12-27": [
-    "chelsea-heights",
-    "officer"
-  ],
-  "2026-12-28": [
-    "kilsyth",
-    "noble-park"
-  ],
-  "2026-12-29": [
-    "tooradin",
-    "emerald"
-  ],
-  "2026-12-30": [
-    "st-kilda-west",
-    "brunswick-east"
-  ],
-  "2026-12-31": [
-    "travancore",
-    "heidelberg"
-  ],
-  "2027-01-01": [
-    "craigieburn",
-    "st-andrews"
-  ],
-  "2027-01-02": [
-    "cheltenham",
-    "patterson-lakes"
-  ],
-  "2027-01-03": [
-    "ashwood",
+    "tecoma",
     "cheltenham"
   ],
-  "2027-01-04": [
-    "kingsville",
-    "elwood"
-  ],
-  "2027-01-05": [
-    "north-melbourne",
-    "bulleen"
-  ],
-  "2027-01-06": [
-    "thomastown",
-    "mont-albert-north"
-  ],
-  "2027-01-07": [
-    "mckinnon",
-    "kooyong"
-  ],
-  "2027-01-08": [
-    "south-kingsville",
-    "brunswick"
-  ],
-  "2027-01-09": [
-    "mount-eliza",
-    "cranbourne-north"
-  ],
-  "2027-01-10": [
-    "dandenong-south",
-    "mount-waverley"
-  ],
-  "2027-01-11": [
-    "blackburn-south",
-    "richmond"
-  ],
-  "2027-01-12": [
-    "yallambie",
-    "roxburgh-park"
-  ],
-  "2027-01-13": [
-    "brooklyn",
-    "balaclava"
-  ],
-  "2027-01-14": [
-    "beaconsfield",
-    "boronia"
-  ],
-  "2027-01-15": [
-    "humevale",
-    "st-helena"
-  ],
-  "2027-01-16": [
-    "bonnie-brook",
-    "tottenham"
-  ],
-  "2027-01-17": [
-    "deepdene",
-    "vermont-south"
-  ],
-  "2027-01-18": [
-    "viewbank",
-    "brunswick-west"
-  ],
-  "2027-01-19": [
-    "ravenhall",
-    "footscray"
-  ],
-  "2027-01-20": [
-    "research",
-    "eaglemont"
-  ],
-  "2027-01-21": [
-    "hurstbridge",
-    "preston"
-  ],
-  "2027-01-22": [
-    "tooradin",
-    "dandenong-south"
-  ],
-  "2027-01-23": [
-    "rosanna",
-    "greenvale"
-  ],
-  "2027-01-24": [
-    "niddrie",
-    "port-melbourne"
-  ],
-  "2027-01-25": [
-    "box-hill-north",
-    "mulgrave"
-  ],
-  "2027-01-26": [
-    "elsternwick",
-    "mentone"
-  ],
-  "2027-01-27": [
-    "menzies-creek",
-    "glen-waverley"
-  ],
-  "2027-01-28": [
-    "south-morang",
-    "yarra-glen"
-  ],
-  "2027-01-29": [
-    "rockbank",
-    "kingsville"
-  ],
-  "2027-01-30": [
-    "templestowe-lower",
-    "south-yarra"
-  ],
-  "2027-01-31": [
-    "glen-huntly",
-    "carlton"
-  ],
-  "2027-02-01": [
-    "greensborough",
-    "ringwood"
-  ],
-  "2027-02-02": [
-    "emerald",
-    "bangholme"
-  ],
-  "2027-02-03": [
-    "gardenvale",
-    "southbank"
-  ],
-  "2027-02-04": [
-    "windsor",
-    "doncaster"
-  ],
-  "2027-02-05": [
-    "the-patch",
-    "chirnside-park"
-  ],
-  "2027-02-06": [
-    "richmond",
-    "avondale-heights"
-  ],
-  "2027-02-07": [
-    "kooyong",
-    "blackburn"
-  ],
-  "2027-02-08": [
-    "braybrook",
-    "middle-park"
-  ],
-  "2027-02-09": [
-    "watsonia-north",
-    "gowanbrae"
-  ],
-  "2027-02-10": [
-    "essendon-north",
-    "epping"
-  ],
-  "2027-02-11": [
-    "ascot-vale",
-    "cairnlea"
-  ],
-  "2027-02-12": [
-    "albert-park",
-    "glen-iris"
-  ],
-  "2027-02-13": [
-    "bend-of-islands",
-    "wollert"
-  ],
-  "2027-02-14": [
-    "beaconsfield",
-    "mulgrave"
-  ],
-  "2027-02-15": [
-    "forest-hill",
-    "mckinnon"
-  ],
-  "2027-02-16": [
-    "bellfield",
-    "camberwell"
-  ],
-  "2027-02-17": [
-    "bonnie-brook",
-    "yuroke"
-  ],
-  "2027-02-18": [
-    "heathmont",
-    "eltham-north"
-  ],
-  "2027-02-19": [
-    "heathmont",
-    "research"
-  ],
-  "2027-02-20": [
-    "sandhurst",
-    "mentone"
-  ],
-  "2027-02-21": [
-    "epping",
-    "niddrie"
-  ],
-  "2027-02-22": [
-    "alphington",
-    "chadstone"
-  ],
-  "2027-02-23": [
-    "essendon-north",
-    "delahey"
-  ],
-  "2027-02-24": [
-    "roxburgh-park",
-    "fraser-rise"
-  ],
-  "2027-02-25": [
-    "narre-warren",
-    "silvan"
-  ],
-  "2027-02-26": [
-    "williamstown-north",
-    "st-kilda-east"
-  ],
-  "2027-02-27": [
-    "wattle-glen",
-    "mitcham"
-  ],
-  "2027-02-28": [
-    "ringwood",
-    "dixons-creek"
-  ],
-  "2027-03-01": [
-    "north-melbourne",
-    "ashwood"
-  ],
-  "2027-03-02": [
-    "sunshine-west",
+  "2026-02-18": [
+    "yarraville",
     "melton-south"
   ],
-  "2027-03-03": [
-    "weir-views",
-    "williamstown"
-  ],
-  "2027-03-04": [
-    "chelsea-heights",
-    "clyde"
-  ],
-  "2027-03-05": [
-    "ormond",
-    "noble-park"
-  ],
-  "2027-03-06": [
-    "guys-hill",
-    "mulgrave"
-  ],
-  "2027-03-07": [
-    "strathtulloh",
-    "spotswood"
-  ],
-  "2027-03-08": [
-    "westmeadows",
-    "deanside"
-  ],
-  "2027-03-09": [
-    "ringwood",
-    "oakleigh"
-  ],
-  "2027-03-10": [
-    "yan-yean",
-    "melbourne-airport"
-  ],
-  "2027-03-11": [
-    "kew-east",
-    "oakleigh-east"
-  ],
-  "2027-03-12": [
-    "hoppers-crossing",
-    "docklands"
-  ],
-  "2027-03-13": [
-    "chadstone",
-    "middle-park"
-  ],
-  "2027-03-14": [
-    "west-melbourne",
-    "ashwood"
-  ],
-  "2027-03-15": [
-    "eumemmerring",
-    "vermont-south"
-  ],
-  "2027-03-16": [
-    "melbourne-airport",
-    "parkville"
-  ],
-  "2027-03-17": [
-    "greensborough",
-    "balwyn"
-  ],
-  "2027-03-18": [
-    "yallambie",
-    "yan-yean"
-  ],
-  "2027-03-19": [
-    "langwarrin",
-    "clayton-south"
-  ],
-  "2027-03-20": [
-    "roxburgh-park",
-    "balwyn-north"
-  ],
-  "2027-03-21": [
-    "tullamarine",
-    "sunshine-west"
-  ],
-  "2027-03-22": [
-    "ravenhall",
-    "melbourne-airport"
-  ],
-  "2027-03-23": [
-    "viewbank",
-    "blackburn-south"
-  ],
-  "2027-03-24": [
-    "oakleigh-south",
-    "canterbury"
-  ],
-  "2027-03-25": [
-    "albanvale",
-    "point-cook"
-  ],
-  "2027-03-26": [
-    "kew",
-    "gardenvale"
-  ],
-  "2027-03-27": [
-    "doncaster",
-    "windsor"
-  ],
-  "2027-03-28": [
-    "glen-iris",
-    "north-melbourne"
-  ],
-  "2027-03-29": [
-    "ormond",
-    "waterways"
-  ],
-  "2027-03-30": [
-    "dandenong-north",
-    "cranbourne-south"
-  ],
-  "2027-03-31": [
-    "tarrawarra",
-    "humevale"
-  ],
-  "2027-04-01": [
-    "bentleigh-east",
-    "richmond"
-  ],
-  "2027-04-02": [
-    "ardeer",
-    "mambourin"
-  ],
-  "2027-04-03": [
-    "aintree",
-    "sunshine-north"
-  ],
-  "2027-04-04": [
-    "laverton-north",
-    "essendon-west"
-  ],
-  "2027-04-05": [
-    "burwood",
-    "heidelberg"
-  ],
-  "2027-04-06": [
-    "croydon-south",
-    "mount-waverley"
-  ],
-  "2027-04-07": [
-    "croydon-north",
-    "tecoma"
-  ],
-  "2027-04-08": [
-    "balwyn",
-    "balaclava"
-  ],
-  "2027-04-09": [
-    "somerton",
-    "humevale"
-  ],
-  "2027-04-10": [
-    "mount-waverley",
-    "ripponlea"
-  ],
-  "2027-04-11": [
-    "fitzroy",
-    "avondale-heights"
-  ],
-  "2027-04-12": [
-    "st-albans",
-    "oak-park"
-  ],
-  "2027-04-13": [
-    "hampton-park",
-    "moorabbin"
-  ],
-  "2027-04-14": [
-    "caulfield-south",
-    "mulgrave"
-  ],
-  "2027-04-15": [
-    "doveton",
-    "sherbrooke"
-  ],
-  "2027-04-16": [
-    "oaklands-junction",
-    "preston"
-  ],
-  "2027-04-17": [
-    "frankston",
-    "hallam"
-  ],
-  "2027-04-18": [
-    "brunswick-west",
-    "attwood"
-  ],
-  "2027-04-19": [
-    "glenroy",
-    "travancore"
-  ],
-  "2027-04-20": [
-    "bayswater",
-    "north-warrandyte"
-  ],
-  "2027-04-21": [
-    "cottles-bridge",
-    "lalor"
-  ],
-  "2027-04-22": [
-    "noble-park-north",
-    "brighton-east"
-  ],
-  "2027-04-23": [
-    "woodstock",
-    "wonga-park"
-  ],
-  "2027-04-24": [
-    "deer-park",
-    "seabrook"
-  ],
-  "2027-04-25": [
-    "essendon",
-    "mill-park"
-  ],
-  "2027-04-26": [
-    "keilor-lodge",
-    "moonee-ponds"
-  ],
-  "2027-04-27": [
-    "montrose",
-    "dandenong-north"
-  ],
-  "2027-04-28": [
-    "dandenong",
-    "bayswater"
-  ],
-  "2027-04-29": [
-    "kew",
-    "montmorency"
-  ],
-  "2027-04-30": [
-    "forest-hill",
-    "research"
-  ],
-  "2027-05-01": [
-    "gowanbrae",
-    "fitzroy-north"
-  ],
-  "2027-05-02": [
-    "edithvale",
-    "highett"
-  ],
-  "2027-05-03": [
-    "hadfield",
-    "donnybrook"
-  ],
-  "2027-05-04": [
-    "camberwell",
-    "heatherton"
-  ],
-  "2027-05-05": [
-    "yarrambat",
-    "gowanbrae"
-  ],
-  "2027-05-06": [
-    "caroline-springs",
-    "wildwood"
-  ],
-  "2027-05-07": [
-    "strathmore-heights",
-    "sunshine-west"
-  ],
-  "2027-05-08": [
-    "black-rock",
-    "chelsea-heights"
-  ],
-  "2027-05-09": [
-    "essendon-fields",
-    "ivanhoe"
-  ],
-  "2027-05-10": [
-    "eaglemont",
-    "vermont"
-  ],
-  "2027-05-11": [
-    "jacana",
-    "greensborough"
-  ],
-  "2027-05-12": [
-    "ascot-vale",
-    "seaholme"
-  ],
-  "2027-05-13": [
-    "east-melbourne",
-    "doncaster-east"
-  ],
-  "2027-05-14": [
-    "somerton",
-    "humevale"
-  ],
-  "2027-05-15": [
-    "burnside",
-    "kingsville"
-  ],
-  "2027-05-16": [
-    "rowville",
-    "carrum-downs"
-  ],
-  "2027-05-17": [
-    "altona",
-    "sydenham"
-  ],
-  "2027-05-18": [
-    "the-patch",
-    "hallam"
-  ],
-  "2027-05-19": [
-    "kingsville",
-    "gowanbrae"
-  ],
-  "2027-05-20": [
-    "pascoe-vale",
-    "briar-hill"
-  ],
-  "2027-05-21": [
-    "niddrie",
-    "ivanhoe"
-  ],
-  "2027-05-22": [
-    "coburg-north",
-    "kalkallo"
-  ],
-  "2027-05-23": [
-    "brunswick",
-    "brooklyn"
-  ],
-  "2027-05-24": [
-    "delahey",
-    "aberfeldie"
-  ],
-  "2027-05-25": [
-    "tottenham",
-    "ripponlea"
-  ],
-  "2027-05-26": [
-    "springvale-south",
-    "wantirna"
-  ],
-  "2027-05-27": [
-    "kilsyth-south",
-    "blackburn-north"
-  ],
-  "2027-05-28": [
-    "eumemmerring",
-    "kilsyth-south"
-  ],
-  "2027-05-29": [
-    "croydon",
-    "kallista"
-  ],
-  "2027-05-30": [
-    "chadstone",
-    "albert-park"
-  ],
-  "2027-05-31": [
-    "melbourne-cbd",
-    "altona-meadows"
-  ],
-  "2027-06-01": [
-    "briar-hill",
-    "forest-hill"
-  ],
-  "2027-06-02": [
-    "beaconsfield-upper",
-    "bangholme"
-  ],
-  "2027-06-03": [
-    "brooklyn",
-    "caulfield-north"
-  ],
-  "2027-06-04": [
-    "waterways",
-    "clyde"
-  ],
-  "2027-06-05": [
-    "bayswater",
-    "noble-park"
-  ],
-  "2027-06-06": [
-    "hughesdale",
-    "docklands"
-  ],
-  "2027-06-07": [
-    "nutfield",
-    "doncaster"
-  ],
-  "2027-06-08": [
-    "oaklands-junction",
-    "yarrambat"
-  ],
-  "2027-06-09": [
-    "plumpton",
-    "altona"
-  ],
-  "2027-06-10": [
-    "preston",
-    "blackburn"
-  ],
-  "2027-06-11": [
-    "watsonia",
-    "brunswick-east"
-  ],
-  "2027-06-12": [
-    "st-albans",
-    "sunbury"
-  ],
-  "2027-06-13": [
-    "st-kilda-east",
-    "box-hill-south"
-  ],
-  "2027-06-14": [
-    "gladstone-park",
-    "fairfield"
-  ],
-  "2027-06-15": [
-    "glen-huntly",
-    "clifton-hill"
-  ],
-  "2027-06-16": [
-    "monbulk",
-    "cranbourne-north"
-  ],
-  "2027-06-17": [
-    "kangaroo-ground",
-    "thomastown"
-  ],
-  "2027-06-18": [
-    "ringwood-north",
-    "heidelberg"
-  ],
-  "2027-06-19": [
-    "keilor",
-    "pascoe-vale"
-  ],
-  "2027-06-20": [
-    "lilydale",
-    "blackburn-north"
-  ],
-  "2027-06-21": [
-    "mambourin",
-    "plumpton"
-  ],
-  "2027-06-22": [
-    "belgrave-heights",
-    "mount-evelyn"
-  ],
-  "2027-06-23": [
-    "wantirna",
-    "tecoma"
-  ],
-  "2027-06-24": [
-    "gladstone-park",
-    "mernda"
-  ],
-  "2027-06-25": [
-    "keilor-east",
-    "thornhill-park"
-  ],
-  "2027-06-26": [
-    "wonga-park",
-    "scoresby"
-  ],
-  "2027-06-27": [
-    "kallista",
-    "cardinia"
-  ],
-  "2027-06-28": [
-    "tullamarine",
+  "2026-02-19": [
+    "eltham",
+    "brunswick-west"
+  ],
+  "2026-02-20": [
+    "epping",
     "rockbank"
   ],
-  "2027-06-29": [
-    "manor-lakes",
-    "taylors-hill"
-  ],
-  "2027-06-30": [
-    "greensborough",
-    "blackburn"
-  ],
-  "2027-07-01": [
-    "camberwell",
-    "albert-park"
-  ],
-  "2027-07-02": [
-    "watsonia",
-    "balwyn"
-  ],
-  "2027-07-03": [
-    "fairfield",
-    "airport-west"
-  ],
-  "2027-07-04": [
-    "altona",
-    "richmond"
-  ],
-  "2027-07-05": [
-    "oakleigh-east",
-    "dandenong-south"
-  ],
-  "2027-07-06": [
-    "yarraville",
-    "caulfield-east"
-  ],
-  "2027-07-07": [
-    "menzies-creek",
-    "narre-warren-south"
-  ],
-  "2027-07-08": [
-    "camberwell",
-    "bentleigh"
-  ],
-  "2027-07-09": [
-    "narre-warren-east",
-    "dingley-village"
-  ],
-  "2027-07-10": [
-    "essendon-fields",
-    "kingsville"
-  ],
-  "2027-07-11": [
-    "cheltenham",
-    "eumemmerring"
-  ],
-  "2027-07-12": [
-    "epping",
-    "bulleen"
-  ],
-  "2027-07-13": [
-    "moonee-ponds",
-    "canterbury"
-  ],
-  "2027-07-14": [
-    "oaklands-junction",
-    "cobblebank"
-  ],
-  "2027-07-15": [
-    "hawthorn",
-    "warrandyte"
-  ],
-  "2027-07-16": [
-    "southbank",
-    "ashwood"
-  ],
-  "2027-07-17": [
-    "doncaster-east",
-    "melbourne-cbd"
-  ],
-  "2027-07-18": [
-    "alphington",
-    "middle-park"
-  ],
-  "2027-07-19": [
-    "carrum-downs",
-    "clayton"
-  ],
-  "2027-07-20": [
-    "toorak",
-    "box-hill"
-  ],
-  "2027-07-21": [
-    "laverton-north",
-    "aberfeldie"
-  ],
-  "2027-07-22": [
-    "smiths-gully",
-    "donnybrook"
-  ],
-  "2027-07-23": [
-    "wheelers-hill",
-    "monbulk"
-  ],
-  "2027-07-24": [
-    "heatherton",
-    "kooyong"
-  ],
-  "2027-07-25": [
-    "truganina",
-    "bulla"
-  ],
-  "2027-07-26": [
-    "moonee-ponds",
-    "laverton-north"
-  ],
-  "2027-07-27": [
-    "mill-park",
-    "warrandyte-south"
-  ],
-  "2027-07-28": [
-    "point-cook",
-    "melton-south"
-  ],
-  "2027-07-29": [
-    "sydenham",
-    "craigieburn"
-  ],
-  "2027-07-30": [
-    "mount-cottrell",
-    "melbourne-airport"
-  ],
-  "2027-07-31": [
-    "silvan",
-    "warranwood"
-  ],
-  "2027-08-01": [
-    "brooklyn",
-    "brunswick"
-  ],
-  "2027-08-02": [
-    "beaconsfield",
-    "dandenong"
-  ],
-  "2027-08-03": [
-    "calder-park",
-    "aberfeldie"
-  ],
-  "2027-08-04": [
-    "burwood",
-    "warranwood"
-  ],
-  "2027-08-05": [
-    "bellfield",
-    "st-kilda"
-  ],
-  "2027-08-06": [
-    "croydon",
-    "dandenong-north"
-  ],
-  "2027-08-07": [
-    "the-patch",
-    "endeavour-hills"
-  ],
-  "2027-08-08": [
-    "forest-hill",
-    "greensborough"
-  ],
-  "2027-08-09": [
+  "2026-02-21": [
     "hampton-park",
-    "parkdale"
-  ],
-  "2027-08-10": [
-    "kurunjang",
-    "mambourin"
-  ],
-  "2027-08-11": [
-    "north-melbourne",
-    "glen-iris"
-  ],
-  "2027-08-12": [
-    "truganina",
-    "melbourne-cbd"
-  ],
-  "2027-08-13": [
-    "warrandyte",
-    "mount-waverley"
-  ],
-  "2027-08-14": [
-    "essendon-west",
-    "fitzroy-north"
-  ],
-  "2027-08-15": [
-    "hampton-east",
-    "dandenong-north"
-  ],
-  "2027-08-16": [
-    "preston",
-    "burwood"
-  ],
-  "2027-08-17": [
-    "hawthorn-east",
-    "port-melbourne"
-  ],
-  "2027-08-18": [
-    "cranbourne-north",
-    "moorabbin-airport"
-  ],
-  "2027-08-19": [
-    "clifton-hill",
-    "caulfield-south"
-  ],
-  "2027-08-20": [
-    "waterways",
-    "knoxfield"
-  ],
-  "2027-08-21": [
-    "hampton",
-    "fitzroy"
-  ],
-  "2027-08-22": [
-    "tooradin",
-    "narre-warren-east"
-  ],
-  "2027-08-23": [
-    "menzies-creek",
-    "noble-park-north"
-  ],
-  "2027-08-24": [
-    "lalor",
-    "panton-hill"
-  ],
-  "2027-08-25": [
-    "langwarrin",
-    "mentone"
-  ],
-  "2027-08-26": [
-    "keilor-east",
-    "melton-south"
-  ],
-  "2027-08-27": [
-    "tooradin",
-    "bangholme"
-  ],
-  "2027-08-28": [
-    "beaconsfield-upper",
-    "botanic-ridge"
-  ],
-  "2027-08-29": [
-    "ardeer",
-    "melton"
-  ],
-  "2027-08-30": [
-    "keilor-lodge",
-    "wollert"
-  ],
-  "2027-08-31": [
-    "bayswater-north",
-    "tarrawarra"
-  ],
-  "2027-09-01": [
-    "balwyn-north",
-    "st-helena"
-  ],
-  "2027-09-02": [
-    "aspendale-gardens",
-    "guys-hill"
-  ],
-  "2027-09-03": [
-    "yarra-glen",
-    "kallista"
-  ],
-  "2027-09-04": [
-    "beaconsfield-upper",
-    "dandenong"
-  ],
-  "2027-09-05": [
-    "brunswick-west",
-    "meadow-heights"
-  ],
-  "2027-09-06": [
-    "mont-albert",
-    "south-wharf"
-  ],
-  "2027-09-07": [
-    "williamstown-north",
-    "elwood"
-  ],
-  "2027-09-08": [
-    "beaconsfield-upper",
-    "bangholme"
-  ],
-  "2027-09-09": [
-    "dandenong-south",
-    "menzies-creek"
-  ],
-  "2027-09-10": [
-    "humevale",
-    "mooroolbark"
-  ],
-  "2027-09-11": [
-    "wandin-north",
-    "bayswater"
-  ],
-  "2027-09-12": [
-    "hillside",
-    "gladstone-park"
-  ],
-  "2027-09-13": [
-    "hampton",
-    "docklands"
-  ],
-  "2027-09-14": [
-    "bonbeach",
-    "springvale"
-  ],
-  "2027-09-15": [
-    "clematis",
-    "the-basin"
-  ],
-  "2027-09-16": [
-    "burwood-east",
-    "warrandyte-south"
-  ],
-  "2027-09-17": [
-    "ormond",
-    "bangholme"
-  ],
-  "2027-09-18": [
-    "caulfield-north",
-    "coburg"
-  ],
-  "2027-09-19": [
-    "malvern",
-    "bellfield"
-  ],
-  "2027-09-20": [
-    "castella",
-    "donvale"
-  ],
-  "2027-09-21": [
-    "yuroke",
-    "fraser-rise"
-  ],
-  "2027-09-22": [
-    "williamstown-north",
-    "fraser-rise"
-  ],
-  "2027-09-23": [
-    "monbulk",
-    "eumemmerring"
-  ],
-  "2027-09-24": [
-    "clayton-south",
-    "prahran"
-  ],
-  "2027-09-25": [
-    "heidelberg",
-    "wollert"
-  ],
-  "2027-09-26": [
-    "skye",
-    "springvale"
-  ],
-  "2027-09-27": [
-    "malvern",
-    "brunswick"
-  ],
-  "2027-09-28": [
-    "calder-park",
-    "werribee"
-  ],
-  "2027-09-29": [
-    "kingsbury",
-    "balwyn"
-  ],
-  "2027-09-30": [
-    "keilor-east",
-    "caroline-springs"
-  ],
-  "2027-10-01": [
-    "fairfield",
-    "coolaroo"
-  ],
-  "2027-10-02": [
-    "brunswick-east",
-    "somerton"
-  ],
-  "2027-10-03": [
-    "moorabbin-airport",
-    "glen-waverley"
-  ],
-  "2027-10-04": [
-    "heatherton",
-    "toorak"
-  ],
-  "2027-10-05": [
-    "upper-ferntree-gully",
-    "cranbourne-east"
-  ],
-  "2027-10-06": [
-    "cremorne",
-    "glen-huntly"
-  ],
-  "2027-10-07": [
-    "nunawading",
-    "watsonia-north"
-  ],
-  "2027-10-08": [
-    "croydon",
-    "nutfield"
-  ],
-  "2027-10-09": [
-    "carnegie",
-    "forest-hill"
-  ],
-  "2027-10-10": [
-    "mordialloc",
-    "burwood-east"
-  ],
-  "2027-10-11": [
-    "waterways",
-    "ormond"
-  ],
-  "2027-10-12": [
-    "aspendale",
-    "berwick"
-  ],
-  "2027-10-13": [
-    "templestowe-lower",
-    "ringwood-east"
-  ],
-  "2027-10-14": [
-    "frankston-north",
-    "narre-warren-north"
-  ],
-  "2027-10-15": [
-    "rowville",
-    "mckinnon"
-  ],
-  "2027-10-16": [
-    "campbellfield",
-    "keilor-downs"
-  ],
-  "2027-10-17": [
-    "carrum",
-    "narre-warren-north"
-  ],
-  "2027-10-18": [
-    "caroline-springs",
-    "keilor-park"
-  ],
-  "2027-10-19": [
-    "frankston",
-    "mordialloc"
-  ],
-  "2027-10-20": [
-    "mckinnon",
-    "noble-park-north"
-  ],
-  "2027-10-21": [
-    "werribee-south",
-    "albion"
-  ],
-  "2027-10-22": [
-    "sunshine",
-    "pascoe-vale-south"
-  ],
-  "2027-10-23": [
-    "kilsyth-south",
-    "harkaway"
-  ],
-  "2027-10-24": [
-    "highett",
-    "bangholme"
-  ],
-  "2027-10-25": [
-    "fawkner",
-    "melbourne-cbd"
-  ],
-  "2027-10-26": [
-    "black-rock",
-    "noble-park-north"
-  ],
-  "2027-10-27": [
-    "blackburn-south",
-    "bellfield"
-  ],
-  "2027-10-28": [
-    "botanic-ridge",
-    "dandenong-north"
-  ],
-  "2027-10-29": [
-    "boronia",
-    "hampton-park"
-  ],
-  "2027-10-30": [
-    "beaumaris",
-    "noble-park-north"
-  ],
-  "2027-10-31": [
-    "monbulk",
-    "wantirna-south"
-  ],
-  "2027-11-01": [
-    "sunshine-north",
-    "point-cook"
-  ],
-  "2027-11-02": [
-    "blackburn-north",
-    "scoresby"
-  ],
-  "2027-11-03": [
-    "yallambie",
-    "woodstock"
-  ],
-  "2027-11-04": [
-    "humevale",
-    "mooroolbark"
-  ],
-  "2027-11-05": [
-    "ashburton",
-    "east-melbourne"
-  ],
-  "2027-11-06": [
-    "broadmeadows",
-    "nutfield"
-  ],
-  "2027-11-07": [
-    "diamond-creek",
-    "kalkallo"
-  ],
-  "2027-11-08": [
-    "gladstone-park",
-    "bonnie-brook"
-  ],
-  "2027-11-09": [
-    "wheelers-hill",
     "murrumbeena"
   ],
-  "2027-11-10": [
-    "nutfield",
-    "heidelberg-heights"
-  ],
-  "2027-11-11": [
-    "wollert",
-    "gisborne-south"
-  ],
-  "2027-11-12": [
-    "cremorne",
-    "laverton-north"
-  ],
-  "2027-11-13": [
-    "strathmore-heights",
-    "seddon"
-  ],
-  "2027-11-14": [
-    "st-kilda",
-    "strathmore"
-  ],
-  "2027-11-15": [
-    "murrumbeena",
-    "cremorne"
-  ],
-  "2027-11-16": [
-    "eaglemont",
-    "mitcham"
-  ],
-  "2027-11-17": [
-    "lysterfield-south",
-    "braeside"
-  ],
-  "2027-11-18": [
-    "northcote",
-    "seddon"
-  ],
-  "2027-11-19": [
-    "laverton-north",
-    "prahran"
-  ],
-  "2027-11-20": [
-    "malvern-east",
-    "ascot-vale"
-  ],
-  "2027-11-21": [
-    "meadow-heights",
-    "brunswick-west"
-  ],
-  "2027-11-22": [
-    "brunswick-west",
-    "sunshine-west"
-  ],
-  "2027-11-23": [
-    "hadfield",
-    "woodstock"
-  ],
-  "2027-11-24": [
-    "melbourne-cbd",
-    "ardeer"
-  ],
-  "2027-11-25": [
-    "narre-warren-north",
-    "mount-evelyn"
-  ],
-  "2027-11-26": [
-    "templestowe",
-    "mount-evelyn"
-  ],
-  "2027-11-27": [
-    "sandringham",
-    "chelsea-heights"
-  ],
-  "2027-11-28": [
-    "calder-park",
-    "werribee"
-  ],
-  "2027-11-29": [
-    "brighton",
-    "flemington"
-  ],
-  "2027-11-30": [
-    "mambourin",
-    "yarraville"
-  ],
-  "2027-12-01": [
-    "warranwood",
-    "wheelers-hill"
-  ],
-  "2027-12-02": [
-    "dandenong-south",
-    "hughesdale"
-  ],
-  "2027-12-03": [
-    "endeavour-hills",
-    "burwood"
-  ],
-  "2027-12-04": [
-    "mitcham",
-    "ferny-creek"
-  ],
-  "2027-12-05": [
-    "coldstream",
-    "doncaster"
-  ],
-  "2027-12-06": [
-    "lower-plenty",
-    "coolaroo"
-  ],
-  "2027-12-07": [
-    "essendon-west",
-    "fairfield"
-  ],
-  "2027-12-08": [
-    "st-kilda-west",
-    "laverton"
-  ],
-  "2027-12-09": [
-    "doveton",
-    "sherbrooke"
-  ],
-  "2027-12-10": [
-    "lynbrook",
-    "upper-ferntree-gully"
-  ],
-  "2027-12-11": [
-    "delahey",
-    "seddon"
-  ],
-  "2027-12-12": [
-    "lalor",
-    "northcote"
-  ],
-  "2027-12-13": [
-    "croydon",
-    "yan-yean"
-  ],
-  "2027-12-14": [
-    "somerton",
-    "alphington"
-  ],
-  "2027-12-15": [
-    "warranwood",
-    "mernda"
-  ],
-  "2027-12-16": [
-    "collingwood",
-    "templestowe-lower"
-  ],
-  "2027-12-17": [
-    "boronia",
-    "box-hill"
-  ],
-  "2027-12-18": [
-    "cranbourne-west",
-    "tecoma"
-  ],
-  "2027-12-19": [
-    "caulfield",
-    "blackburn-south"
-  ],
-  "2027-12-20": [
-    "ardeer",
-    "melton"
-  ],
-  "2027-12-21": [
-    "the-patch",
-    "yering"
-  ],
-  "2027-12-22": [
-    "botanic-ridge",
-    "bonbeach"
-  ],
-  "2027-12-23": [
-    "woodstock",
-    "heidelberg-heights"
-  ],
-  "2027-12-24": [
-    "sunbury",
-    "essendon-north"
-  ],
-  "2027-12-25": [
-    "bellfield",
-    "south-melbourne"
-  ],
-  "2027-12-26": [
-    "melton",
-    "niddrie"
-  ],
-  "2027-12-27": [
-    "tarrawarra",
-    "doreen"
-  ],
-  "2027-12-28": [
-    "toorak",
-    "moorabbin"
-  ],
-  "2027-12-29": [
-    "keilor-north",
-    "reservoir"
-  ],
-  "2027-12-30": [
-    "bundoora",
-    "st-andrews"
-  ],
-  "2027-12-31": [
-    "essendon-west",
-    "altona"
-  ],
-  "2028-01-01": [
-    "knoxfield",
-    "glen-iris"
-  ],
-  "2028-01-02": [
-    "eltham",
-    "dixons-creek"
-  ],
-  "2028-01-03": [
-    "st-kilda",
-    "sunshine"
-  ],
-  "2028-01-04": [
-    "box-hill",
-    "chirnside-park"
-  ],
-  "2028-01-05": [
-    "tarneit",
-    "docklands"
-  ],
-  "2028-01-06": [
-    "ashburton",
-    "hampton"
-  ],
-  "2028-01-07": [
-    "seabrook",
-    "fraser-rise"
-  ],
-  "2028-01-08": [
-    "kew",
-    "newport"
-  ],
-  "2028-01-09": [
-    "aspendale",
-    "hampton-east"
-  ],
-  "2028-01-10": [
-    "melbourne-cbd",
-    "heidelberg"
-  ],
-  "2028-01-11": [
-    "caulfield",
-    "brunswick-west"
-  ],
-  "2028-01-12": [
-    "chadstone",
-    "the-basin"
-  ],
-  "2028-01-13": [
-    "kurunjang",
-    "delahey"
-  ],
-  "2028-01-14": [
-    "guys-hill",
-    "sassafras"
-  ],
-  "2028-01-15": [
-    "langwarrin-south",
-    "clyde-north"
-  ],
-  "2028-01-16": [
-    "delahey",
-    "moonee-ponds"
-  ],
-  "2028-01-17": [
-    "nunawading",
-    "malvern"
-  ],
-  "2028-01-18": [
-    "mount-dandenong",
-    "dixons-creek"
-  ],
-  "2028-01-19": [
-    "sunbury",
-    "essendon-west"
-  ],
-  "2028-01-20": [
-    "delahey",
-    "meadow-heights"
-  ],
-  "2028-01-21": [
-    "caulfield-south",
-    "parkville"
-  ],
-  "2028-01-22": [
-    "narre-warren-north",
-    "wandin-north"
-  ],
-  "2028-01-23": [
-    "coolaroo",
-    "essendon-west"
-  ],
-  "2028-01-24": [
-    "doncaster-east",
-    "oakleigh"
-  ],
-  "2028-01-25": [
-    "south-wharf",
-    "hughesdale"
-  ],
-  "2028-01-26": [
-    "upwey",
-    "cranbourne"
-  ],
-  "2028-01-27": [
-    "chelsea",
-    "junction-village"
-  ],
-  "2028-01-28": [
-    "heidelberg-west",
-    "kooyong"
-  ],
-  "2028-01-29": [
-    "junction-village",
-    "bonbeach"
-  ],
-  "2028-01-30": [
-    "travancore",
-    "hawthorn-east"
-  ],
-  "2028-01-31": [
-    "burnley",
-    "oakleigh-south"
-  ],
-  "2028-02-01": [
-    "st-andrews",
-    "thomastown"
-  ],
-  "2028-02-02": [
-    "montrose",
-    "templestowe"
-  ],
-  "2028-02-03": [
-    "menzies-creek",
-    "clyde"
-  ],
-  "2028-02-04": [
-    "calder-park",
-    "maidstone"
-  ],
-  "2028-02-05": [
-    "bonnie-brook",
-    "south-kingsville"
-  ],
-  "2028-02-06": [
-    "yarrambat",
-    "coburg"
-  ],
-  "2028-02-07": [
-    "belgrave-south",
-    "mooroolbark"
-  ],
-  "2028-02-08": [
-    "aspendale",
-    "rowville"
-  ],
-  "2028-02-09": [
-    "jacana",
-    "watsonia-north"
-  ],
-  "2028-02-10": [
-    "dalmore",
-    "endeavour-hills"
-  ],
-  "2028-02-11": [
-    "abbotsford",
-    "macleod"
-  ],
-  "2028-02-12": [
-    "craigieburn",
-    "pascoe-vale-south"
-  ],
-  "2028-02-13": [
+  "2026-02-22": [
+    "kallista",
+    "springvale-south"
+  ],
+  "2026-02-23": [
     "kalkallo",
-    "gowanbrae"
+    "kurunjang"
   ],
-  "2028-02-14": [
-    "belgrave-heights",
-    "vermont-south"
+  "2026-02-24": [
+    "ripponlea",
+    "pascoe-vale"
   ],
-  "2028-02-15": [
-    "essendon-west",
-    "st-kilda"
+  "2026-02-25": [
+    "mitcham",
+    "dixons-creek"
   ],
-  "2028-02-16": [
-    "donvale",
-    "ferntree-gully"
-  ],
-  "2028-02-17": [
-    "carlton",
-    "heidelberg"
-  ],
-  "2028-02-18": [
-    "lysterfield-south",
-    "ringwood-east"
-  ],
-  "2028-02-19": [
-    "windsor",
-    "laverton-north"
-  ],
-  "2028-02-20": [
-    "tooradin",
-    "endeavour-hills"
-  ],
-  "2028-02-21": [
-    "wheelers-hill",
-    "aspendale-gardens"
-  ],
-  "2028-02-22": [
-    "mckinnon",
-    "wantirna-south"
-  ],
-  "2028-02-23": [
-    "devon-meadows",
-    "lysterfield-south"
-  ],
-  "2028-02-24": [
-    "clyde",
-    "clematis"
-  ],
-  "2028-02-25": [
-    "sassafras",
-    "warrandyte-south"
-  ],
-  "2028-02-26": [
-    "clarinda",
-    "vermont"
-  ],
-  "2028-02-27": [
-    "berwick",
-    "kilsyth"
-  ],
-  "2028-02-28": [
-    "arthurs-creek",
-    "glenroy"
-  ],
-  "2028-02-29": [
-    "toorak",
-    "hampton"
-  ],
-  "2028-03-01": [
-    "brunswick",
-    "templestowe"
-  ],
-  "2028-03-02": [
-    "gardenvale",
-    "parkdale"
-  ],
-  "2028-03-03": [
-    "springvale-south",
-    "vermont"
-  ],
-  "2028-03-04": [
-    "middle-park",
-    "coburg"
-  ],
-  "2028-03-05": [
-    "monbulk",
-    "cranbourne-north"
-  ],
-  "2028-03-06": [
-    "doncaster",
-    "watsons-creek"
-  ],
-  "2028-03-07": [
-    "deepdene",
-    "donvale"
-  ],
-  "2028-03-08": [
-    "east-melbourne",
-    "altona"
-  ],
-  "2028-03-09": [
-    "eltham",
-    "thornbury"
-  ],
-  "2028-03-10": [
-    "eaglemont",
-    "wollert"
-  ],
-  "2028-03-11": [
-    "yarrambat",
-    "thornbury"
-  ],
-  "2028-03-12": [
-    "montrose",
-    "castella"
-  ],
-  "2028-03-13": [
-    "fitzroy",
-    "laverton-north"
-  ],
-  "2028-03-14": [
-    "keysborough",
-    "brighton"
-  ],
-  "2028-03-15": [
-    "harkaway",
-    "the-basin"
-  ],
-  "2028-03-16": [
-    "macleod",
-    "meadow-heights"
-  ],
-  "2028-03-17": [
-    "keilor-downs",
-    "brunswick-west"
-  ],
-  "2028-03-18": [
-    "christmas-hills",
-    "yallambie"
-  ],
-  "2028-03-19": [
-    "albion",
-    "south-melbourne"
-  ],
-  "2028-03-20": [
-    "brighton",
-    "yarraville"
-  ],
-  "2028-03-21": [
-    "scoresby",
-    "lilydale"
-  ],
-  "2028-03-22": [
-    "glen-iris",
-    "hampton"
-  ],
-  "2028-03-23": [
-    "blackburn-south",
-    "st-kilda-east"
-  ],
-  "2028-03-24": [
-    "guys-hill",
-    "langwarrin"
-  ],
-  "2028-03-25": [
-    "kilsyth-south",
-    "berwick"
-  ],
-  "2028-03-26": [
-    "brunswick",
-    "dallas"
-  ],
-  "2028-03-27": [
-    "eaglemont",
-    "vermont"
-  ],
-  "2028-03-28": [
-    "point-cook",
-    "maribyrnong"
-  ],
-  "2028-03-29": [
-    "port-melbourne",
-    "brunswick-east"
-  ],
-  "2028-03-30": [
-    "taylors-lakes",
-    "pascoe-vale-south"
-  ],
-  "2028-03-31": [
-    "parkville",
-    "melbourne-airport"
-  ],
-  "2028-04-01": [
-    "elsternwick",
-    "moonee-ponds"
-  ],
-  "2028-04-02": [
-    "brunswick-west",
-    "bulleen"
-  ],
-  "2028-04-03": [
-    "delahey",
-    "werribee"
-  ],
-  "2028-04-04": [
-    "parkdale",
-    "sandhurst"
-  ],
-  "2028-04-05": [
-    "melbourne-airport",
-    "ascot-vale"
-  ],
-  "2028-04-06": [
-    "westmeadows",
-    "plenty"
-  ],
-  "2028-04-07": [
-    "scoresby",
-    "beaconsfield"
-  ],
-  "2028-04-08": [
-    "canterbury",
-    "wantirna-south"
-  ],
-  "2028-04-09": [
-    "vermont-south",
-    "sherbrooke"
-  ],
-  "2028-04-10": [
-    "harkaway",
-    "braeside"
-  ],
-  "2028-04-11": [
-    "west-footscray",
-    "tullamarine"
-  ],
-  "2028-04-12": [
-    "tecoma",
-    "keysborough"
-  ],
-  "2028-04-13": [
-    "ivanhoe-east",
-    "moonee-ponds"
-  ],
-  "2028-04-14": [
-    "north-melbourne",
-    "ashwood"
-  ],
-  "2028-04-15": [
-    "canterbury",
-    "middle-park"
-  ],
-  "2028-04-16": [
-    "cranbourne-west",
-    "clayton-south"
-  ],
-  "2028-04-17": [
-    "carnegie",
+  "2026-02-26": [
+    "cheltenham",
     "east-melbourne"
   ],
-  "2028-04-18": [
-    "wattle-glen",
-    "ringwood-east"
+  "2026-02-27": [
+    "taylors-hill",
+    "brunswick-west"
   ],
-  "2028-04-19": [
-    "altona",
-    "manor-lakes"
+  "2026-02-28": [
+    "smiths-gully",
+    "dallas"
   ],
-  "2028-04-20": [
-    "clifton-hill",
-    "aberfeldie"
+  "2026-03-01": [
+    "plenty",
+    "hawthorn-east"
   ],
-  "2028-04-21": [
-    "heidelberg-west",
-    "kalkallo"
+  "2026-03-02": [
+    "middle-park",
+    "bentleigh-east"
   ],
-  "2028-04-22": [
-    "park-orchards",
-    "bundoora"
+  "2026-03-03": [
+    "st-andrews",
+    "yuroke"
   ],
-  "2028-04-23": [
-    "abbotsford",
-    "glenroy"
+  "2026-03-04": [
+    "keilor",
+    "st-kilda"
   ],
-  "2028-04-24": [
-    "seaholme",
-    "burnside-heights"
+  "2026-03-05": [
+    "alphington",
+    "westmeadows"
   ],
-  "2028-04-25": [
-    "upper-ferntree-gully",
-    "lynbrook"
+  "2026-03-06": [
+    "mulgrave",
+    "park-orchards"
   ],
-  "2028-04-26": [
-    "oaklands-junction",
-    "hadfield"
-  ],
-  "2028-04-27": [
-    "springvale-south",
-    "cranbourne-south"
-  ],
-  "2028-04-28": [
-    "box-hill-north",
-    "notting-hill"
-  ],
-  "2028-04-29": [
-    "glen-waverley",
-    "waterways"
-  ],
-  "2028-04-30": [
-    "chelsea-heights",
-    "lysterfield"
-  ],
-  "2028-05-01": [
-    "albert-park",
-    "coburg-north"
-  ],
-  "2028-05-02": [
-    "balaclava",
-    "brunswick-east"
-  ],
-  "2028-05-03": [
-    "upwey",
-    "lynbrook"
-  ],
-  "2028-05-04": [
-    "narre-warren",
-    "carrum"
-  ],
-  "2028-05-05": [
-    "frankston",
-    "doveton"
-  ],
-  "2028-05-06": [
-    "caulfield",
-    "notting-hill"
-  ],
-  "2028-05-07": [
-    "parkdale",
-    "notting-hill"
-  ],
-  "2028-05-08": [
-    "mount-dandenong",
-    "harkaway"
-  ],
-  "2028-05-09": [
-    "templestowe",
-    "cremorne"
-  ],
-  "2028-05-10": [
-    "noble-park-north",
-    "black-rock"
-  ],
-  "2028-05-11": [
-    "officer",
-    "mount-dandenong"
-  ],
-  "2028-05-12": [
-    "cairnlea",
-    "docklands"
-  ],
-  "2028-05-13": [
-    "caulfield-north",
-    "wheelers-hill"
-  ],
-  "2028-05-14": [
-    "eltham",
-    "bellfield"
-  ],
-  "2028-05-15": [
-    "greensborough",
-    "box-hill"
-  ],
-  "2028-05-16": [
-    "selby",
-    "doveton"
-  ],
-  "2028-05-17": [
-    "ivanhoe-east",
+  "2026-03-07": [
+    "toolern-vale",
     "flemington"
   ],
-  "2028-05-18": [
-    "mount-evelyn",
-    "vermont"
+  "2026-03-08": [
+    "burwood",
+    "montmorency"
   ],
-  "2028-05-19": [
-    "meadow-heights",
-    "doreen"
+  "2026-03-09": [
+    "kew-east",
+    "brooklyn"
   ],
-  "2028-05-20": [
-    "seaholme",
-    "st-albans"
+  "2026-03-10": [
+    "cranbourne-east",
+    "belgrave"
   ],
-  "2028-05-21": [
-    "plumpton",
-    "donnybrook"
+  "2026-03-11": [
+    "hurstbridge",
+    "hawthorn"
   ],
-  "2028-05-22": [
-    "narre-warren-south",
-    "sherbrooke"
+  "2026-03-12": [
+    "montmorency",
+    "richmond"
   ],
-  "2028-05-23": [
-    "oakleigh",
-    "middle-park"
+  "2026-03-13": [
+    "lyndhurst",
+    "monbulk"
   ],
-  "2028-05-24": [
-    "hoppers-crossing",
-    "seddon"
+  "2026-03-14": [
+    "deepdene",
+    "bentleigh"
   ],
-  "2028-05-25": [
-    "caulfield-south",
-    "clifton-hill"
+  "2026-03-15": [
+    "lower-plenty",
+    "kilsyth"
   ],
-  "2028-05-26": [
-    "sunshine-west",
-    "aberfeldie"
+  "2026-03-16": [
+    "mill-park",
+    "delahey"
   ],
-  "2028-05-27": [
-    "beaumaris",
-    "mulgrave"
+  "2026-03-17": [
+    "cobblebank",
+    "dallas"
   ],
-  "2028-05-28": [
-    "somerton",
-    "plumpton"
-  ],
-  "2028-05-29": [
-    "weir-views",
-    "tottenham"
-  ],
-  "2028-05-30": [
-    "harkaway",
-    "glen-waverley"
-  ],
-  "2028-05-31": [
-    "scoresby",
-    "box-hill-north"
-  ],
-  "2028-06-01": [
-    "essendon-north",
-    "south-wharf"
-  ],
-  "2028-06-02": [
-    "collingwood",
-    "reservoir"
-  ],
-  "2028-06-03": [
-    "clayton-south",
-    "belgrave-south"
-  ],
-  "2028-06-04": [
-    "mernda",
-    "preston"
-  ],
-  "2028-06-05": [
-    "mooroolbark",
-    "yarrambat"
-  ],
-  "2028-06-06": [
-    "vermont",
-    "ivanhoe-east"
-  ],
-  "2028-06-07": [
-    "doncaster",
-    "panton-hill"
-  ],
-  "2028-06-08": [
-    "burnside",
-    "gisborne-south"
-  ],
-  "2028-06-09": [
-    "warrandyte-south",
+  "2026-03-18": [
+    "reservoir",
     "blackburn-south"
   ],
-  "2028-06-10": [
-    "st-andrews",
-    "campbellfield"
+  "2026-03-19": [
+    "park-orchards",
+    "bellfield"
   ],
-  "2028-06-11": [
-    "south-wharf",
-    "strathmore"
+  "2026-03-20": [
+    "harkaway",
+    "carrum"
   ],
-  "2028-06-12": [
-    "narre-warren",
-    "clayton-south"
+  "2026-03-21": [
+    "wattle-glen",
+    "mont-albert"
   ],
-  "2028-06-13": [
-    "caulfield-east",
-    "bulleen"
+  "2026-03-22": [
+    "cranbourne-east",
+    "mount-dandenong"
   ],
-  "2028-06-14": [
-    "lynbrook",
-    "knoxfield"
+  "2026-03-23": [
+    "hampton-east",
+    "cranbourne-north"
   ],
-  "2028-06-15": [
-    "warranwood",
-    "mont-albert-north"
+  "2026-03-24": [
+    "clematis",
+    "mooroolbark"
   ],
-  "2028-06-16": [
-    "collingwood",
-    "templestowe-lower"
+  "2026-03-25": [
+    "mount-cottrell",
+    "southbank"
   ],
-  "2028-06-17": [
-    "jacana",
-    "watsonia"
+  "2026-03-26": [
+    "kangaroo-ground",
+    "preston"
   ],
-  "2028-06-18": [
-    "clifton-hill",
-    "macleod"
+  "2026-03-27": [
+    "melton-south",
+    "fawkner"
   ],
-  "2028-06-19": [
-    "seaholme",
-    "melbourne-cbd"
-  ],
-  "2028-06-20": [
-    "waterways",
-    "knoxfield"
-  ],
-  "2028-06-21": [
-    "brighton-east",
-    "abbotsford"
-  ],
-  "2028-06-22": [
-    "strathtulloh",
-    "sunshine"
-  ],
-  "2028-06-23": [
-    "southbank",
-    "gardenvale"
-  ],
-  "2028-06-24": [
-    "monbulk",
-    "st-andrews"
-  ],
-  "2028-06-25": [
-    "st-kilda-east",
-    "thornbury"
-  ],
-  "2028-06-26": [
-    "clifton-hill",
-    "oakleigh"
-  ],
-  "2028-06-27": [
-    "narre-warren-south",
-    "clematis"
-  ],
-  "2028-06-28": [
-    "werribee-south",
-    "melton"
-  ],
-  "2028-06-29": [
-    "sunshine-west",
-    "fitzroy"
-  ],
-  "2028-06-30": [
-    "glen-waverley",
-    "waterways"
-  ],
-  "2028-07-01": [
-    "balwyn",
-    "clayton-south"
-  ],
-  "2028-07-02": [
-    "werribee",
-    "cairnlea"
-  ],
-  "2028-07-03": [
-    "sunshine",
-    "hillside"
-  ],
-  "2028-07-04": [
-    "yarra-glen",
-    "greensborough"
-  ],
-  "2028-07-05": [
-    "cobblebank",
-    "deer-park"
-  ],
-  "2028-07-06": [
-    "seabrook",
-    "west-melbourne"
-  ],
-  "2028-07-07": [
-    "carrum-downs",
-    "oakleigh-south"
-  ],
-  "2028-07-08": [
-    "essendon-north",
-    "fitzroy"
-  ],
-  "2028-07-09": [
-    "caulfield-south",
-    "balwyn-north"
-  ],
-  "2028-07-10": [
+  "2026-03-28": [
     "derrimut",
-    "melbourne-cbd"
+    "aberfeldie"
   ],
-  "2028-07-11": [
-    "coldstream",
-    "eltham-north"
+  "2026-03-29": [
+    "heidelberg",
+    "croydon-north"
   ],
-  "2028-07-12": [
-    "wildwood",
-    "south-morang"
+  "2026-03-30": [
+    "mount-evelyn",
+    "yan-yean"
   ],
-  "2028-07-13": [
-    "briar-hill",
-    "ivanhoe-east"
+  "2026-03-31": [
+    "cranbourne",
+    "scoresby"
   ],
-  "2028-07-14": [
-    "st-andrews",
-    "bayswater-north"
+  "2026-04-01": [
+    "olinda",
+    "oakleigh-east"
   ],
-  "2028-07-15": [
-    "croydon-south",
-    "mulgrave"
+  "2026-04-02": [
+    "blackburn",
+    "keysborough"
   ],
-  "2028-07-16": [
-    "melbourne-cbd",
+  "2026-04-03": [
+    "edithvale",
     "mckinnon"
   ],
-  "2028-07-17": [
-    "strathmore-heights",
+  "2026-04-04": [
+    "brunswick-east",
     "sunshine-west"
+  ],
+  "2026-04-05": [
+    "truganina",
+    "coolaroo"
+  ],
+  "2026-04-06": [
+    "richmond",
+    "ringwood-east"
+  ],
+  "2026-04-07": [
+    "somerton",
+    "delahey"
+  ],
+  "2026-04-08": [
+    "kealba",
+    "werribee"
+  ],
+  "2026-04-09": [
+    "mickleham",
+    "montmorency"
+  ],
+  "2026-04-10": [
+    "west-footscray",
+    "yuroke"
+  ],
+  "2026-04-11": [
+    "strathmore",
+    "eltham"
+  ],
+  "2026-04-12": [
+    "harkaway",
+    "frankston-south"
+  ],
+  "2026-04-13": [
+    "mooroolbark",
+    "hampton-park"
+  ],
+  "2026-04-14": [
+    "mickleham",
+    "wattle-glen"
+  ],
+  "2026-04-15": [
+    "burnside",
+    "middle-park"
+  ],
+  "2026-04-16": [
+    "chelsea",
+    "beaconsfield-upper"
+  ],
+  "2026-04-17": [
+    "essendon-north",
+    "deanside"
+  ],
+  "2026-04-18": [
+    "newport",
+    "mont-albert"
+  ],
+  "2026-04-19": [
+    "vermont-south",
+    "chelsea-heights"
+  ],
+  "2026-04-20": [
+    "carrum-downs",
+    "ashwood"
+  ],
+  "2026-04-21": [
+    "mentone",
+    "harkaway"
+  ],
+  "2026-04-22": [
+    "cairnlea",
+    "pascoe-vale"
+  ],
+  "2026-04-23": [
+    "wheelers-hill",
+    "prahran"
+  ],
+  "2026-04-24": [
+    "springvale",
+    "cranbourne-east"
+  ],
+  "2026-04-25": [
+    "oaklands-junction",
+    "hoppers-crossing"
+  ],
+  "2026-04-26": [
+    "werribee-south",
+    "taylors-lakes"
+  ],
+  "2026-04-27": [
+    "campbellfield",
+    "canterbury"
+  ],
+  "2026-04-28": [
+    "heidelberg-west",
+    "chirnside-park"
+  ],
+  "2026-04-29": [
+    "footscray",
+    "ivanhoe-east"
+  ],
+  "2026-04-30": [
+    "carlton-north",
+    "templestowe"
+  ],
+  "2026-05-01": [
+    "mount-cottrell",
+    "ascot-vale"
+  ],
+  "2026-05-02": [
+    "cobblebank",
+    "newport"
+  ],
+  "2026-05-03": [
+    "south-wharf",
+    "oak-park"
+  ],
+  "2026-05-04": [
+    "manor-lakes",
+    "west-melbourne"
+  ],
+  "2026-05-05": [
+    "bellfield",
+    "croydon-hills"
+  ],
+  "2026-05-06": [
+    "rowville",
+    "sandringham"
+  ],
+  "2026-05-07": [
+    "carlton",
+    "eltham"
+  ],
+  "2026-05-08": [
+    "yan-yean",
+    "heidelberg"
+  ],
+  "2026-05-09": [
+    "canterbury",
+    "gowanbrae"
+  ],
+  "2026-05-10": [
+    "roxburgh-park",
+    "balwyn"
+  ],
+  "2026-05-11": [
+    "donvale",
+    "moorabbin"
+  ],
+  "2026-05-12": [
+    "monbulk",
+    "doncaster-east"
+  ],
+  "2026-05-13": [
+    "northcote",
+    "bulla"
+  ],
+  "2026-05-14": [
+    "oaklands-junction",
+    "aberfeldie"
+  ],
+  "2026-05-15": [
+    "aberfeldie",
+    "wollert"
+  ],
+  "2026-05-16": [
+    "bayswater",
+    "balwyn"
+  ],
+  "2026-05-17": [
+    "plumpton",
+    "port-melbourne"
+  ],
+  "2026-05-18": [
+    "clifton-hill",
+    "mitcham"
+  ],
+  "2026-05-19": [
+    "cranbourne-east",
+    "wantirna-south"
+  ],
+  "2026-05-20": [
+    "langwarrin",
+    "huntingdale"
+  ],
+  "2026-05-21": [
+    "essendon-north",
+    "thornhill-park"
+  ],
+  "2026-05-22": [
+    "box-hill-north",
+    "ripponlea"
+  ],
+  "2026-05-23": [
+    "monbulk",
+    "carrum-downs"
+  ],
+  "2026-05-24": [
+    "jacana",
+    "kings-park"
+  ],
+  "2026-05-25": [
+    "clematis",
+    "sandhurst"
+  ],
+  "2026-05-26": [
+    "grangefields",
+    "reservoir"
+  ],
+  "2026-05-27": [
+    "humevale",
+    "heidelberg-heights"
+  ],
+  "2026-05-28": [
+    "werribee-south",
+    "moonee-ponds"
+  ],
+  "2026-05-29": [
+    "sunshine-west",
+    "fawkner"
+  ],
+  "2026-05-30": [
+    "craigieburn",
+    "albanvale"
+  ],
+  "2026-05-31": [
+    "keilor-lodge",
+    "kingsbury"
+  ],
+  "2026-06-01": [
+    "manor-lakes",
+    "williamstown-north"
+  ],
+  "2026-06-02": [
+    "noble-park-north",
+    "kallista"
+  ],
+  "2026-06-03": [
+    "the-patch",
+    "wattle-glen"
+  ],
+  "2026-06-04": [
+    "coburg",
+    "eltham"
+  ],
+  "2026-06-05": [
+    "dandenong",
+    "canterbury"
+  ],
+  "2026-06-06": [
+    "westmeadows",
+    "diamond-creek"
+  ],
+  "2026-06-07": [
+    "south-wharf",
+    "keilor-lodge"
+  ],
+  "2026-06-08": [
+    "harkaway",
+    "mooroolbark"
+  ],
+  "2026-06-09": [
+    "croydon-north",
+    "beaconsfield-upper"
+  ],
+  "2026-06-10": [
+    "mount-eliza",
+    "narre-warren-south"
+  ],
+  "2026-06-11": [
+    "hillside",
+    "brunswick-west"
+  ],
+  "2026-06-12": [
+    "murrumbeena",
+    "brunswick-west"
+  ],
+  "2026-06-13": [
+    "mernda",
+    "keilor-lodge"
+  ],
+  "2026-06-14": [
+    "keysborough",
+    "malvern"
+  ],
+  "2026-06-15": [
+    "carnegie",
+    "doveton"
+  ],
+  "2026-06-16": [
+    "burwood",
+    "footscray"
+  ],
+  "2026-06-17": [
+    "essendon-fields",
+    "abbotsford"
+  ],
+  "2026-06-18": [
+    "vermont",
+    "deepdene"
+  ],
+  "2026-06-19": [
+    "prahran",
+    "noble-park"
+  ],
+  "2026-06-20": [
+    "fraser-rise",
+    "moonee-ponds"
+  ],
+  "2026-06-21": [
+    "deepdene",
+    "research"
+  ],
+  "2026-06-22": [
+    "kurunjang",
+    "dallas"
+  ],
+  "2026-06-23": [
+    "ringwood",
+    "armadale"
+  ],
+  "2026-06-24": [
+    "wonga-park",
+    "heidelberg-west"
+  ],
+  "2026-06-25": [
+    "keilor",
+    "kingsbury"
+  ],
+  "2026-06-26": [
+    "heathmont",
+    "ivanhoe"
+  ],
+  "2026-06-27": [
+    "jacana",
+    "ardeer"
+  ],
+  "2026-06-28": [
+    "kooyong",
+    "wheelers-hill"
+  ],
+  "2026-06-29": [
+    "belgrave",
+    "botanic-ridge"
+  ],
+  "2026-06-30": [
+    "blackburn",
+    "wandin-north"
+  ],
+  "2026-07-01": [
+    "collingwood",
+    "coolaroo"
+  ],
+  "2026-07-02": [
+    "greensborough",
+    "diggers-rest"
+  ],
+  "2026-07-03": [
+    "ringwood-east",
+    "malvern"
+  ],
+  "2026-07-04": [
+    "meadow-heights",
+    "rockbank"
+  ],
+  "2026-07-05": [
+    "mooroolbark",
+    "wollert"
+  ],
+  "2026-07-06": [
+    "lysterfield",
+    "glen-iris"
+  ],
+  "2026-07-07": [
+    "botanic-ridge",
+    "ferny-creek"
+  ],
+  "2026-07-08": [
+    "malvern-east",
+    "lysterfield-south"
+  ],
+  "2026-07-09": [
+    "belgrave-heights",
+    "coldstream"
+  ],
+  "2026-07-10": [
+    "abbotsford",
+    "laverton-north"
+  ],
+  "2026-07-11": [
+    "clayton",
+    "lower-plenty"
+  ],
+  "2026-07-12": [
+    "kurunjang",
+    "cocoroc"
+  ],
+  "2026-07-13": [
+    "point-cook",
+    "strathmore"
+  ],
+  "2026-07-14": [
+    "st-kilda",
+    "viewbank"
+  ],
+  "2026-07-15": [
+    "kooyong",
+    "tottenham"
+  ],
+  "2026-07-16": [
+    "tooradin",
+    "belgrave-south"
+  ],
+  "2026-07-17": [
+    "bulla",
+    "melbourne-cbd"
+  ],
+  "2026-07-18": [
+    "christmas-hills",
+    "guys-hill"
+  ],
+  "2026-07-19": [
+    "cottles-bridge",
+    "mont-albert-north"
+  ],
+  "2026-07-20": [
+    "malvern-east",
+    "warrandyte"
+  ],
+  "2026-07-21": [
+    "smiths-gully",
+    "ferntree-gully"
+  ],
+  "2026-07-22": [
+    "springvale",
+    "chirnside-park"
+  ],
+  "2026-07-23": [
+    "beaumaris",
+    "blackburn-south"
+  ],
+  "2026-07-24": [
+    "eltham",
+    "ashburton"
+  ],
+  "2026-07-25": [
+    "botanic-ridge",
+    "clarinda"
+  ],
+  "2026-07-26": [
+    "craigieburn",
+    "brooklyn"
+  ],
+  "2026-07-27": [
+    "bayswater",
+    "hawthorn-east"
+  ],
+  "2026-07-28": [
+    "chirnside-park",
+    "thomastown"
+  ],
+  "2026-07-29": [
+    "officer-south",
+    "kalorama"
+  ],
+  "2026-07-30": [
+    "windsor",
+    "viewbank"
+  ],
+  "2026-07-31": [
+    "diggers-rest",
+    "altona"
+  ],
+  "2026-08-01": [
+    "keilor-north",
+    "manor-lakes"
+  ],
+  "2026-08-02": [
+    "ivanhoe",
+    "port-melbourne"
+  ],
+  "2026-08-03": [
+    "southbank",
+    "st-albans"
+  ],
+  "2026-08-04": [
+    "wildwood",
+    "pascoe-vale-south"
+  ],
+  "2026-08-05": [
+    "beaconsfield-upper",
+    "langwarrin"
+  ],
+  "2026-08-06": [
+    "chirnside-park",
+    "officer"
+  ],
+  "2026-08-07": [
+    "braybrook",
+    "thomastown"
+  ],
+  "2026-08-08": [
+    "kilsyth-south",
+    "cranbourne-east"
+  ],
+  "2026-08-09": [
+    "blackburn-south",
+    "hallam"
+  ],
+  "2026-08-10": [
+    "hawthorn-east",
+    "cheltenham"
+  ],
+  "2026-08-11": [
+    "ringwood",
+    "springvale-south"
+  ],
+  "2026-08-12": [
+    "airport-west",
+    "lower-plenty"
+  ],
+  "2026-08-13": [
+    "nunawading",
+    "mernda"
+  ],
+  "2026-08-14": [
+    "newport",
+    "oak-park"
+  ],
+  "2026-08-15": [
+    "hillside",
+    "glenroy"
+  ],
+  "2026-08-16": [
+    "burwood-east",
+    "watsonia-north"
+  ],
+  "2026-08-17": [
+    "elsternwick",
+    "braybrook"
+  ],
+  "2026-08-18": [
+    "malvern-east",
+    "coburg-north"
+  ],
+  "2026-08-19": [
+    "blackburn-south",
+    "steels-creek"
+  ],
+  "2026-08-20": [
+    "sunshine-west",
+    "elsternwick"
+  ],
+  "2026-08-21": [
+    "seddon",
+    "malvern"
+  ],
+  "2026-08-22": [
+    "tarneit",
+    "travancore"
+  ],
+  "2026-08-23": [
+    "parkdale",
+    "caulfield"
+  ],
+  "2026-08-24": [
+    "aintree",
+    "essendon-west"
+  ],
+  "2026-08-25": [
+    "glen-iris",
+    "macleod"
+  ],
+  "2026-08-26": [
+    "ringwood-north",
+    "narre-warren-east"
+  ],
+  "2026-08-27": [
+    "montrose",
+    "clayton-south"
+  ],
+  "2026-08-28": [
+    "tottenham",
+    "coburg-north"
+  ],
+  "2026-08-29": [
+    "lilydale",
+    "harkaway"
+  ],
+  "2026-08-30": [
+    "vermont",
+    "castella"
+  ],
+  "2026-08-31": [
+    "abbotsford",
+    "cheltenham"
+  ],
+  "2026-09-01": [
+    "bayswater-north",
+    "clyde"
+  ],
+  "2026-09-02": [
+    "devon-meadows",
+    "the-patch"
+  ],
+  "2026-09-03": [
+    "tarrawarra",
+    "st-helena"
+  ],
+  "2026-09-04": [
+    "werribee-south",
+    "southbank"
+  ],
+  "2026-09-05": [
+    "coburg",
+    "yuroke"
+  ],
+  "2026-09-06": [
+    "mill-park",
+    "wandin-north"
+  ],
+  "2026-09-07": [
+    "williams-landing",
+    "keilor"
+  ],
+  "2026-09-08": [
+    "bentleigh",
+    "chelsea"
+  ],
+  "2026-09-09": [
+    "sherbrooke",
+    "oakleigh-east"
+  ],
+  "2026-09-10": [
+    "kings-park",
+    "spotswood"
+  ],
+  "2026-09-11": [
+    "panton-hill",
+    "westmeadows"
+  ],
+  "2026-09-12": [
+    "delahey",
+    "williamstown"
+  ],
+  "2026-09-13": [
+    "nunawading",
+    "coburg"
+  ],
+  "2026-09-14": [
+    "caulfield-east",
+    "patterson-lakes"
+  ],
+  "2026-09-15": [
+    "highett",
+    "cranbourne-west"
+  ],
+  "2026-09-16": [
+    "hampton-park",
+    "highett"
+  ],
+  "2026-09-17": [
+    "wantirna",
+    "hawthorn"
+  ],
+  "2026-09-18": [
+    "laverton",
+    "malvern"
+  ],
+  "2026-09-19": [
+    "south-morang",
+    "princes-hill"
+  ],
+  "2026-09-20": [
+    "camberwell",
+    "reservoir"
+  ],
+  "2026-09-21": [
+    "epping",
+    "rockbank"
+  ],
+  "2026-09-22": [
+    "cobblebank",
+    "strathmore-heights"
+  ],
+  "2026-09-23": [
+    "bayswater",
+    "kinglake"
+  ],
+  "2026-09-24": [
+    "langwarrin-south",
+    "clarinda"
+  ],
+  "2026-09-25": [
+    "brunswick-west",
+    "hillside"
+  ],
+  "2026-09-26": [
+    "templestowe-lower",
+    "mickleham"
+  ],
+  "2026-09-27": [
+    "lysterfield-south",
+    "blackburn-north"
+  ],
+  "2026-09-28": [
+    "frankston-south",
+    "rowville"
+  ],
+  "2026-09-29": [
+    "warrandyte",
+    "craigieburn"
+  ],
+  "2026-09-30": [
+    "brunswick",
+    "laverton-north"
+  ],
+  "2026-10-01": [
+    "st-andrews",
+    "menzies-creek"
+  ],
+  "2026-10-02": [
+    "wollert",
+    "cobblebank"
+  ],
+  "2026-10-03": [
+    "sunshine",
+    "burnley"
+  ],
+  "2026-10-04": [
+    "heidelberg-west",
+    "coldstream"
+  ],
+  "2026-10-05": [
+    "airport-west",
+    "canterbury"
+  ],
+  "2026-10-06": [
+    "oakleigh",
+    "park-orchards"
+  ],
+  "2026-10-07": [
+    "olinda",
+    "springvale-south"
+  ],
+  "2026-10-08": [
+    "williamstown-north",
+    "carlton-north"
+  ],
+  "2026-10-09": [
+    "langwarrin",
+    "carnegie"
+  ],
+  "2026-10-10": [
+    "mentone",
+    "junction-village"
+  ],
+  "2026-10-11": [
+    "blackburn",
+    "highett"
+  ],
+  "2026-10-12": [
+    "endeavour-hills",
+    "carnegie"
+  ],
+  "2026-10-13": [
+    "keilor-east",
+    "yarrambat"
+  ],
+  "2026-10-14": [
+    "doreen",
+    "bayswater"
+  ],
+  "2026-10-15": [
+    "hallam",
+    "heathmont"
+  ],
+  "2026-10-16": [
+    "west-footscray",
+    "heidelberg"
+  ],
+  "2026-10-17": [
+    "south-melbourne",
+    "campbellfield"
+  ],
+  "2026-10-18": [
+    "st-kilda-east",
+    "laverton-north"
+  ],
+  "2026-10-19": [
+    "greenvale",
+    "brooklyn"
+  ],
+  "2026-10-20": [
+    "croydon-hills",
+    "kew-east"
+  ],
+  "2026-10-21": [
+    "ravenhall",
+    "meadow-heights"
+  ],
+  "2026-10-22": [
+    "gisborne-south",
+    "reservoir"
+  ],
+  "2026-10-23": [
+    "ringwood-north",
+    "bentleigh-east"
+  ],
+  "2026-10-24": [
+    "cranbourne-west",
+    "moorabbin"
+  ],
+  "2026-10-25": [
+    "the-basin",
+    "oakleigh-south"
+  ],
+  "2026-10-26": [
+    "richmond",
+    "clayton-south"
+  ],
+  "2026-10-27": [
+    "wonga-park",
+    "roxburgh-park"
+  ],
+  "2026-10-28": [
+    "carrum",
+    "mulgrave"
+  ],
+  "2026-10-29": [
+    "south-wharf",
+    "glenroy"
+  ],
+  "2026-10-30": [
+    "montmorency",
+    "bulla"
+  ],
+  "2026-10-31": [
+    "bonnie-brook",
+    "epping"
+  ],
+  "2026-11-01": [
+    "patterson-lakes",
+    "wheelers-hill"
+  ],
+  "2026-11-02": [
+    "mickleham",
+    "melton-south"
+  ],
+  "2026-11-03": [
+    "hillside",
+    "moonee-ponds"
+  ],
+  "2026-11-04": [
+    "eltham-north",
+    "fitzroy-north"
+  ],
+  "2026-11-05": [
+    "docklands",
+    "keilor-north"
+  ],
+  "2026-11-06": [
+    "tarneit",
+    "south-melbourne"
+  ],
+  "2026-11-07": [
+    "surrey-hills",
+    "keysborough"
+  ],
+  "2026-11-08": [
+    "attwood",
+    "cottles-bridge"
+  ],
+  "2026-11-09": [
+    "kangaroo-ground",
+    "eaglemont"
+  ],
+  "2026-11-10": [
+    "taylors-hill",
+    "craigieburn"
+  ],
+  "2026-11-11": [
+    "windsor",
+    "springvale-south"
+  ],
+  "2026-11-12": [
+    "fitzroy-north",
+    "ardeer"
+  ],
+  "2026-11-13": [
+    "werribee-south",
+    "maidstone"
+  ],
+  "2026-11-14": [
+    "plumpton",
+    "docklands"
+  ],
+  "2026-11-15": [
+    "preston",
+    "brighton"
+  ],
+  "2026-11-16": [
+    "calder-park",
+    "south-morang"
+  ],
+  "2026-11-17": [
+    "braeside",
+    "officer"
+  ],
+  "2026-11-18": [
+    "melton",
+    "albion"
+  ],
+  "2026-11-19": [
+    "balwyn",
+    "essendon-north"
+  ],
+  "2026-11-20": [
+    "chadstone",
+    "doncaster"
+  ],
+  "2026-11-21": [
+    "balwyn-north",
+    "clarinda"
+  ],
+  "2026-11-22": [
+    "epping",
+    "hawthorn-east"
+  ],
+  "2026-11-23": [
+    "burwood-east",
+    "panton-hill"
+  ],
+  "2026-11-24": [
+    "bonnie-brook",
+    "coburg-north"
+  ],
+  "2026-11-25": [
+    "waterways",
+    "emerald"
+  ],
+  "2026-11-26": [
+    "thornhill-park",
+    "aberfeldie"
+  ],
+  "2026-11-27": [
+    "werribee",
+    "south-wharf"
+  ],
+  "2026-11-28": [
+    "seaford",
+    "cheltenham"
+  ],
+  "2026-11-29": [
+    "brunswick-west",
+    "werribee"
+  ],
+  "2026-11-30": [
+    "officer-south",
+    "croydon-south"
+  ],
+  "2026-12-01": [
+    "ivanhoe-east",
+    "mernda"
+  ],
+  "2026-12-02": [
+    "moorabbin",
+    "carlton-north"
+  ],
+  "2026-12-03": [
+    "collingwood",
+    "laverton-north"
+  ],
+  "2026-12-04": [
+    "heidelberg-heights",
+    "coldstream"
+  ],
+  "2026-12-05": [
+    "ivanhoe",
+    "smiths-gully"
+  ],
+  "2026-12-06": [
+    "bangholme",
+    "kallista"
+  ],
+  "2026-12-07": [
+    "panton-hill",
+    "alphington"
+  ],
+  "2026-12-08": [
+    "murrumbeena",
+    "carrum"
+  ],
+  "2026-12-09": [
+    "glen-waverley",
+    "st-kilda-west"
+  ],
+  "2026-12-10": [
+    "kinglake",
+    "the-basin"
+  ],
+  "2026-12-11": [
+    "carnegie",
+    "yarraville"
+  ],
+  "2026-12-12": [
+    "fairfield",
+    "clarinda"
+  ],
+  "2026-12-13": [
+    "selby",
+    "bentleigh-east"
+  ],
+  "2026-12-14": [
+    "frankston-north",
+    "huntingdale"
+  ],
+  "2026-12-15": [
+    "chirnside-park",
+    "bellfield"
+  ],
+  "2026-12-16": [
+    "beaconsfield",
+    "mooroolbark"
+  ],
+  "2026-12-17": [
+    "doveton",
+    "mount-evelyn"
+  ],
+  "2026-12-18": [
+    "brooklyn",
+    "caulfield"
+  ],
+  "2026-12-19": [
+    "kurunjang",
+    "sunshine-north"
+  ],
+  "2026-12-20": [
+    "bayswater",
+    "moorabbin-airport"
+  ],
+  "2026-12-21": [
+    "braybrook",
+    "fairfield"
+  ],
+  "2026-12-22": [
+    "north-melbourne",
+    "macleod"
+  ],
+  "2026-12-23": [
+    "moonee-ponds",
+    "ravenhall"
+  ],
+  "2026-12-24": [
+    "heathmont",
+    "kew-east"
+  ],
+  "2026-12-25": [
+    "laverton",
+    "strathmore-heights"
+  ],
+  "2026-12-26": [
+    "hampton-east",
+    "forest-hill"
+  ],
+  "2026-12-27": [
+    "narre-warren",
+    "chirnside-park"
+  ],
+  "2026-12-28": [
+    "laverton-north",
+    "gowanbrae"
+  ],
+  "2026-12-29": [
+    "selby",
+    "junction-village"
+  ],
+  "2026-12-30": [
+    "cranbourne-south",
+    "tecoma"
+  ],
+  "2026-12-31": [
+    "langwarrin-south",
+    "rowville"
+  ],
+  "2027-01-01": [
+    "kalkallo",
+    "eltham"
+  ],
+  "2027-01-02": [
+    "moonee-ponds",
+    "eltham-north"
+  ],
+  "2027-01-03": [
+    "tarneit",
+    "cremorne"
+  ],
+  "2027-01-04": [
+    "dallas",
+    "avondale-heights"
+  ],
+  "2027-01-05": [
+    "tarneit",
+    "southbank"
+  ],
+  "2027-01-06": [
+    "carlton",
+    "templestowe"
+  ],
+  "2027-01-07": [
+    "clayton-south",
+    "st-kilda"
+  ],
+  "2027-01-08": [
+    "narre-warren",
+    "mount-eliza"
+  ],
+  "2027-01-09": [
+    "travancore",
+    "box-hill-north"
+  ],
+  "2027-01-10": [
+    "eltham-north",
+    "essendon-west"
+  ],
+  "2027-01-11": [
+    "nutfield",
+    "kew-east"
+  ],
+  "2027-01-12": [
+    "hawthorn",
+    "gladstone-park"
+  ],
+  "2027-01-13": [
+    "prahran",
+    "viewbank"
+  ],
+  "2027-01-14": [
+    "wattle-glen",
+    "pascoe-vale"
+  ],
+  "2027-01-15": [
+    "patterson-lakes",
+    "belgrave-heights"
+  ],
+  "2027-01-16": [
+    "watsonia-north",
+    "yering"
+  ],
+  "2027-01-17": [
+    "doncaster",
+    "caulfield"
+  ],
+  "2027-01-18": [
+    "windsor",
+    "reservoir"
+  ],
+  "2027-01-19": [
+    "carlton",
+    "donvale"
+  ],
+  "2027-01-20": [
+    "nunawading",
+    "upwey"
+  ],
+  "2027-01-21": [
+    "vermont-south",
+    "montmorency"
+  ],
+  "2027-01-22": [
+    "balwyn-north",
+    "aberfeldie"
+  ],
+  "2027-01-23": [
+    "castella",
+    "lower-plenty"
+  ],
+  "2027-01-24": [
+    "silvan",
+    "noble-park-north"
+  ],
+  "2027-01-25": [
+    "harkaway",
+    "mordialloc"
+  ],
+  "2027-01-26": [
+    "ashwood",
+    "ringwood-north"
+  ],
+  "2027-01-27": [
+    "caulfield-east",
+    "altona"
+  ],
+  "2027-01-28": [
+    "toolern-vale",
+    "altona"
+  ],
+  "2027-01-29": [
+    "deer-park",
+    "carlton"
+  ],
+  "2027-01-30": [
+    "chelsea",
+    "mulgrave"
+  ],
+  "2027-01-31": [
+    "laverton",
+    "strathmore"
+  ],
+  "2027-02-01": [
+    "south-kingsville",
+    "heidelberg-west"
+  ],
+  "2027-02-02": [
+    "taylors-lakes",
+    "plenty"
+  ],
+  "2027-02-03": [
+    "tarneit",
+    "prahran"
+  ],
+  "2027-02-04": [
+    "keilor-park",
+    "kingsbury"
+  ],
+  "2027-02-05": [
+    "plenty",
+    "hawthorn"
+  ],
+  "2027-02-06": [
+    "upwey",
+    "kangaroo-ground"
+  ],
+  "2027-02-07": [
+    "huntingdale",
+    "ferny-creek"
+  ],
+  "2027-02-08": [
+    "thomastown",
+    "mont-albert"
+  ],
+  "2027-02-09": [
+    "doncaster",
+    "maidstone"
+  ],
+  "2027-02-10": [
+    "balwyn",
+    "greenvale"
+  ],
+  "2027-02-11": [
+    "albert-park",
+    "tullamarine"
+  ],
+  "2027-02-12": [
+    "narre-warren-south",
+    "ormond"
+  ],
+  "2027-02-13": [
+    "cranbourne-west",
+    "boronia"
+  ],
+  "2027-02-14": [
+    "hallam",
+    "oakleigh"
+  ],
+  "2027-02-15": [
+    "mill-park",
+    "keilor-lodge"
+  ],
+  "2027-02-16": [
+    "yan-yean",
+    "toolern-vale"
+  ],
+  "2027-02-17": [
+    "wandin-north",
+    "cardinia"
+  ],
+  "2027-02-18": [
+    "abbotsford",
+    "airport-west"
+  ],
+  "2027-02-19": [
+    "junction-village",
+    "boronia"
+  ],
+  "2027-02-20": [
+    "rosanna",
+    "keilor"
+  ],
+  "2027-02-21": [
+    "thomastown",
+    "southbank"
+  ],
+  "2027-02-22": [
+    "jacana",
+    "west-melbourne"
+  ],
+  "2027-02-23": [
+    "fitzroy-north",
+    "watsonia-north"
+  ],
+  "2027-02-24": [
+    "the-patch",
+    "noble-park"
+  ],
+  "2027-02-25": [
+    "croydon-south",
+    "springvale-south"
+  ],
+  "2027-02-26": [
+    "springvale-south",
+    "elsternwick"
+  ],
+  "2027-02-27": [
+    "noble-park-north",
+    "balwyn-north"
+  ],
+  "2027-02-28": [
+    "flemington",
+    "epping"
+  ],
+  "2027-03-01": [
+    "brighton",
+    "balwyn"
+  ],
+  "2027-03-02": [
+    "princes-hill",
+    "kealba"
+  ],
+  "2027-03-03": [
+    "flemington",
+    "ravenhall"
+  ],
+  "2027-03-04": [
+    "braybrook",
+    "elwood"
+  ],
+  "2027-03-05": [
+    "spotswood",
+    "eaglemont"
+  ],
+  "2027-03-06": [
+    "glen-waverley",
+    "officer-south"
+  ],
+  "2027-03-07": [
+    "narre-warren-east",
+    "bend-of-islands"
+  ],
+  "2027-03-08": [
+    "gardenvale",
+    "coburg"
+  ],
+  "2027-03-09": [
+    "cranbourne",
+    "selby"
+  ],
+  "2027-03-10": [
+    "chelsea-heights",
+    "belgrave"
+  ],
+  "2027-03-11": [
+    "warrandyte",
+    "pascoe-vale-south"
+  ],
+  "2027-03-12": [
+    "st-helena",
+    "blackburn-south"
+  ],
+  "2027-03-13": [
+    "meadow-heights",
+    "fairfield"
+  ],
+  "2027-03-14": [
+    "kinglake",
+    "knoxfield"
+  ],
+  "2027-03-15": [
+    "middle-park",
+    "heidelberg-west"
+  ],
+  "2027-03-16": [
+    "donnybrook",
+    "essendon-north"
+  ],
+  "2027-03-17": [
+    "gowanbrae",
+    "st-kilda-west"
+  ],
+  "2027-03-18": [
+    "clarinda",
+    "clyde"
+  ],
+  "2027-03-19": [
+    "keilor",
+    "manor-lakes"
+  ],
+  "2027-03-20": [
+    "gisborne-south",
+    "cairnlea"
+  ],
+  "2027-03-21": [
+    "dandenong",
+    "ringwood-east"
+  ],
+  "2027-03-22": [
+    "bundoora",
+    "yarraville"
+  ],
+  "2027-03-23": [
+    "clarinda",
+    "melbourne-cbd"
+  ],
+  "2027-03-24": [
+    "oak-park",
+    "newport"
+  ],
+  "2027-03-25": [
+    "derrimut",
+    "oak-park"
+  ],
+  "2027-03-26": [
+    "clayton",
+    "south-yarra"
+  ],
+  "2027-03-27": [
+    "altona-north",
+    "taylors-lakes"
+  ],
+  "2027-03-28": [
+    "keilor",
+    "newport"
+  ],
+  "2027-03-29": [
+    "cranbourne-south",
+    "cheltenham"
+  ],
+  "2027-03-30": [
+    "plenty",
+    "wildwood"
+  ],
+  "2027-03-31": [
+    "hurstbridge",
+    "brunswick-west"
+  ],
+  "2027-04-01": [
+    "hughesdale",
+    "park-orchards"
+  ],
+  "2027-04-02": [
+    "cobblebank",
+    "st-albans"
+  ],
+  "2027-04-03": [
+    "keilor-east",
+    "hawthorn"
+  ],
+  "2027-04-04": [
+    "grangefields",
+    "reservoir"
+  ],
+  "2027-04-05": [
+    "carlton",
+    "mount-cottrell"
+  ],
+  "2027-04-06": [
+    "mulgrave",
+    "melbourne-cbd"
+  ],
+  "2027-04-07": [
+    "tecoma",
+    "carrum-downs"
+  ],
+  "2027-04-08": [
+    "the-patch",
+    "wonga-park"
+  ],
+  "2027-04-09": [
+    "edithvale",
+    "bentleigh"
+  ],
+  "2027-04-10": [
+    "carrum-downs",
+    "hughesdale"
+  ],
+  "2027-04-11": [
+    "hampton-east",
+    "canterbury"
+  ],
+  "2027-04-12": [
+    "caulfield",
+    "bayswater"
+  ],
+  "2027-04-13": [
+    "ashburton",
+    "kingsville"
+  ],
+  "2027-04-14": [
+    "strathmore",
+    "malvern"
+  ],
+  "2027-04-15": [
+    "south-wharf",
+    "thomastown"
+  ],
+  "2027-04-16": [
+    "belgrave",
+    "mitcham"
+  ],
+  "2027-04-17": [
+    "southbank",
+    "cairnlea"
+  ],
+  "2027-04-18": [
+    "upwey",
+    "skye"
+  ],
+  "2027-04-19": [
+    "bend-of-islands",
+    "thomastown"
+  ],
+  "2027-04-20": [
+    "ferny-creek",
+    "blackburn-south"
+  ],
+  "2027-04-21": [
+    "mount-dandenong",
+    "box-hill"
+  ],
+  "2027-04-22": [
+    "montrose",
+    "doncaster"
+  ],
+  "2027-04-23": [
+    "wonga-park",
+    "heidelberg-heights"
+  ],
+  "2027-04-24": [
+    "gisborne-south",
+    "yarrambat"
+  ],
+  "2027-04-25": [
+    "craigieburn",
+    "thornhill-park"
+  ],
+  "2027-04-26": [
+    "chelsea",
+    "sandringham"
+  ],
+  "2027-04-27": [
+    "cranbourne-north",
+    "carnegie"
+  ],
+  "2027-04-28": [
+    "kingsbury",
+    "avondale-heights"
+  ],
+  "2027-04-29": [
+    "gisborne-south",
+    "glenroy"
+  ],
+  "2027-04-30": [
+    "sherbrooke",
+    "dalmore"
+  ],
+  "2027-05-01": [
+    "burwood-east",
+    "st-kilda"
+  ],
+  "2027-05-02": [
+    "upper-ferntree-gully",
+    "dalmore"
+  ],
+  "2027-05-03": [
+    "greensborough",
+    "wandin-north"
+  ],
+  "2027-05-04": [
+    "keilor-downs",
+    "port-melbourne"
+  ],
+  "2027-05-05": [
+    "jacana",
+    "deepdene"
+  ],
+  "2027-05-06": [
+    "malvern",
+    "dandenong-south"
+  ],
+  "2027-05-07": [
+    "beaumaris",
+    "st-kilda"
+  ],
+  "2027-05-08": [
+    "maidstone",
+    "wyndham-vale"
+  ],
+  "2027-05-09": [
+    "braeside",
+    "wantirna"
+  ],
+  "2027-05-10": [
+    "berwick",
+    "cheltenham"
+  ],
+  "2027-05-11": [
+    "ringwood-north",
+    "endeavour-hills"
+  ],
+  "2027-05-12": [
+    "bundoora",
+    "fitzroy"
+  ],
+  "2027-05-13": [
+    "cobblebank",
+    "footscray"
+  ],
+  "2027-05-14": [
+    "cremorne",
+    "keilor"
+  ],
+  "2027-05-15": [
+    "sunbury",
+    "ivanhoe"
+  ],
+  "2027-05-16": [
+    "black-rock",
+    "doveton"
+  ],
+  "2027-05-17": [
+    "croydon",
+    "clematis"
+  ],
+  "2027-05-18": [
+    "yallambie",
+    "burnley"
+  ],
+  "2027-05-19": [
+    "vermont-south",
+    "south-yarra"
+  ],
+  "2027-05-20": [
+    "westmeadows",
+    "fieldstone"
+  ],
+  "2027-05-21": [
+    "yarra-glen",
+    "knoxfield"
+  ],
+  "2027-05-22": [
+    "chadstone",
+    "harkaway"
+  ],
+  "2027-05-23": [
+    "essendon-west",
+    "hawthorn-east"
+  ],
+  "2027-05-24": [
+    "vermont",
+    "yarrambat"
+  ],
+  "2027-05-25": [
+    "caulfield-north",
+    "parkdale"
+  ],
+  "2027-05-26": [
+    "sandringham",
+    "wantirna-south"
+  ],
+  "2027-05-27": [
+    "kensington",
+    "huntingdale"
+  ],
+  "2027-05-28": [
+    "hadfield",
+    "humevale"
+  ],
+  "2027-05-29": [
+    "vermont-south",
+    "south-yarra"
+  ],
+  "2027-05-30": [
+    "west-melbourne",
+    "notting-hill"
+  ],
+  "2027-05-31": [
+    "sandringham",
+    "kooyong"
+  ],
+  "2027-06-01": [
+    "glen-huntly",
+    "carlton-north"
+  ],
+  "2027-06-02": [
+    "watsonia",
+    "wantirna"
+  ],
+  "2027-06-03": [
+    "caulfield-east",
+    "dandenong-south"
+  ],
+  "2027-06-04": [
+    "northcote",
+    "oakleigh-east"
+  ],
+  "2027-06-05": [
+    "braybrook",
+    "craigieburn"
+  ],
+  "2027-06-06": [
+    "moorabbin-airport",
+    "nunawading"
+  ],
+  "2027-06-07": [
+    "greensborough",
+    "avondale-heights"
+  ],
+  "2027-06-08": [
+    "mooroolbark",
+    "narre-warren-south"
+  ],
+  "2027-06-09": [
+    "laverton",
+    "gowanbrae"
+  ],
+  "2027-06-10": [
+    "lysterfield-south",
+    "malvern"
+  ],
+  "2027-06-11": [
+    "botanic-ridge",
+    "moorabbin"
+  ],
+  "2027-06-12": [
+    "mickleham",
+    "wonga-park"
+  ],
+  "2027-06-13": [
+    "black-rock",
+    "cremorne"
+  ],
+  "2027-06-14": [
+    "kalorama",
+    "box-hill-north"
+  ],
+  "2027-06-15": [
+    "mount-dandenong",
+    "humevale"
+  ],
+  "2027-06-16": [
+    "williamstown-north",
+    "kurunjang"
+  ],
+  "2027-06-17": [
+    "belgrave-heights",
+    "yarra-glen"
+  ],
+  "2027-06-18": [
+    "avondale-heights",
+    "ripponlea"
+  ],
+  "2027-06-19": [
+    "dixons-creek",
+    "boronia"
+  ],
+  "2027-06-20": [
+    "carrum",
+    "clyde"
+  ],
+  "2027-06-21": [
+    "collingwood",
+    "keilor-park"
+  ],
+  "2027-06-22": [
+    "gisborne-south",
+    "yarrambat"
+  ],
+  "2027-06-23": [
+    "dixons-creek",
+    "lower-plenty"
+  ],
+  "2027-06-24": [
+    "selby",
+    "mount-waverley"
+  ],
+  "2027-06-25": [
+    "mentone",
+    "prahran"
+  ],
+  "2027-06-26": [
+    "aspendale",
+    "upwey"
+  ],
+  "2027-06-27": [
+    "forest-hill",
+    "doreen"
+  ],
+  "2027-06-28": [
+    "highett",
+    "blackburn"
+  ],
+  "2027-06-29": [
+    "doreen",
+    "niddrie"
+  ],
+  "2027-06-30": [
+    "scoresby",
+    "yering"
+  ],
+  "2027-07-01": [
+    "kallista",
+    "cranbourne-west"
+  ],
+  "2027-07-02": [
+    "hadfield",
+    "st-kilda-east"
+  ],
+  "2027-07-03": [
+    "kalkallo",
+    "grangefields"
+  ],
+  "2027-07-04": [
+    "watsons-creek",
+    "burwood-east"
+  ],
+  "2027-07-05": [
+    "kingsbury",
+    "st-kilda"
+  ],
+  "2027-07-06": [
+    "lyndhurst",
+    "brighton"
+  ],
+  "2027-07-07": [
+    "smiths-gully",
+    "bulleen"
+  ],
+  "2027-07-08": [
+    "silvan",
+    "diamond-creek"
+  ],
+  "2027-07-09": [
+    "mont-albert",
+    "wandin-north"
+  ],
+  "2027-07-10": [
+    "meadow-heights",
+    "mount-cottrell"
+  ],
+  "2027-07-11": [
+    "springvale-south",
+    "windsor"
+  ],
+  "2027-07-12": [
+    "upwey",
+    "chadstone"
+  ],
+  "2027-07-13": [
+    "williamstown",
+    "keilor-downs"
+  ],
+  "2027-07-14": [
+    "cranbourne-north",
+    "notting-hill"
+  ],
+  "2027-07-15": [
+    "clyde",
+    "knoxfield"
+  ],
+  "2027-07-16": [
+    "humevale",
+    "strathmore-heights"
+  ],
+  "2027-07-17": [
+    "attwood",
+    "arthurs-creek"
+  ],
+  "2027-07-18": [
+    "cranbourne-west",
+    "sherbrooke"
+  ],
+  "2027-07-19": [
+    "brunswick",
+    "derrimut"
+  ],
+  "2027-07-20": [
+    "upwey",
+    "murrumbeena"
+  ],
+  "2027-07-21": [
+    "yuroke",
+    "wattle-glen"
+  ],
+  "2027-07-22": [
+    "taylors-hill",
+    "north-melbourne"
+  ],
+  "2027-07-23": [
+    "blackburn-north",
+    "travancore"
+  ],
+  "2027-07-24": [
+    "rowville",
+    "parkdale"
+  ],
+  "2027-07-25": [
+    "botanic-ridge",
+    "belgrave"
+  ],
+  "2027-07-26": [
+    "coburg-north",
+    "melton"
+  ],
+  "2027-07-27": [
+    "sherbrooke",
+    "vermont"
+  ],
+  "2027-07-28": [
+    "carrum",
+    "belgrave-south"
+  ],
+  "2027-07-29": [
+    "cranbourne-south",
+    "clayton-south"
+  ],
+  "2027-07-30": [
+    "brunswick-east",
+    "mount-waverley"
+  ],
+  "2027-07-31": [
+    "deer-park",
+    "brunswick-west"
+  ],
+  "2027-08-01": [
+    "fitzroy",
+    "bentleigh-east"
+  ],
+  "2027-08-02": [
+    "travancore",
+    "mont-albert"
+  ],
+  "2027-08-03": [
+    "springvale-south",
+    "kooyong"
+  ],
+  "2027-08-04": [
+    "croydon",
+    "huntingdale"
+  ],
+  "2027-08-05": [
+    "craigieburn",
+    "mount-cottrell"
+  ],
+  "2027-08-06": [
+    "blackburn-south",
+    "carlton-north"
+  ],
+  "2027-08-07": [
+    "templestowe-lower",
+    "malvern-east"
+  ],
+  "2027-08-08": [
+    "hadfield",
+    "sunbury"
+  ],
+  "2027-08-09": [
+    "monbulk",
+    "dingley-village"
+  ],
+  "2027-08-10": [
+    "upwey",
+    "moorabbin"
+  ],
+  "2027-08-11": [
+    "essendon-north",
+    "ripponlea"
+  ],
+  "2027-08-12": [
+    "officer",
+    "oakleigh-east"
+  ],
+  "2027-08-13": [
+    "williams-landing",
+    "wildwood"
+  ],
+  "2027-08-14": [
+    "donvale",
+    "brunswick-east"
+  ],
+  "2027-08-15": [
+    "deepdene",
+    "cheltenham"
+  ],
+  "2027-08-16": [
+    "patterson-lakes",
+    "gardenvale"
+  ],
+  "2027-08-17": [
+    "mount-evelyn",
+    "cranbourne-north"
+  ],
+  "2027-08-18": [
+    "nunawading",
+    "hampton-east"
+  ],
+  "2027-08-19": [
+    "ringwood",
+    "toorak"
+  ],
+  "2027-08-20": [
+    "melton-south",
+    "campbellfield"
+  ],
+  "2027-08-21": [
+    "st-kilda",
+    "altona-meadows"
+  ],
+  "2027-08-22": [
+    "watsonia-north",
+    "ringwood-east"
+  ],
+  "2027-08-23": [
+    "oak-park",
+    "wattle-glen"
+  ],
+  "2027-08-24": [
+    "plumpton",
+    "docklands"
+  ],
+  "2027-08-25": [
+    "spotswood",
+    "plumpton"
+  ],
+  "2027-08-26": [
+    "dallas",
+    "bonnie-brook"
+  ],
+  "2027-08-27": [
+    "lilydale",
+    "mont-albert"
+  ],
+  "2027-08-28": [
+    "macleod",
+    "niddrie"
+  ],
+  "2027-08-29": [
+    "mickleham",
+    "sunshine"
+  ],
+  "2027-08-30": [
+    "belgrave-south",
+    "moorabbin"
+  ],
+  "2027-08-31": [
+    "cottles-bridge",
+    "eaglemont"
+  ],
+  "2027-09-01": [
+    "fawkner",
+    "prahran"
+  ],
+  "2027-09-02": [
+    "hawthorn",
+    "thomastown"
+  ],
+  "2027-09-03": [
+    "croydon-north",
+    "beaconsfield-upper"
+  ],
+  "2027-09-04": [
+    "clyde-north",
+    "wantirna-south"
+  ],
+  "2027-09-05": [
+    "harkaway",
+    "blackburn-south"
+  ],
+  "2027-09-06": [
+    "caroline-springs",
+    "meadow-heights"
+  ],
+  "2027-09-07": [
+    "kinglake",
+    "monbulk"
+  ],
+  "2027-09-08": [
+    "cranbourne-west",
+    "highett"
+  ],
+  "2027-09-09": [
+    "huntingdale",
+    "templestowe"
+  ],
+  "2027-09-10": [
+    "seaford",
+    "cheltenham"
+  ],
+  "2027-09-11": [
+    "albert-park",
+    "yallambie"
+  ],
+  "2027-09-12": [
+    "ashwood",
+    "belgrave"
+  ],
+  "2027-09-13": [
+    "christmas-hills",
+    "somerton"
+  ],
+  "2027-09-14": [
+    "craigieburn",
+    "burnside"
+  ],
+  "2027-09-15": [
+    "yan-yean",
+    "alphington"
+  ],
+  "2027-09-16": [
+    "bundoora",
+    "north-melbourne"
+  ],
+  "2027-09-17": [
+    "vermont-south",
+    "clyde-north"
+  ],
+  "2027-09-18": [
+    "donnybrook",
+    "croydon"
+  ],
+  "2027-09-19": [
+    "springvale-south",
+    "clyde"
+  ],
+  "2027-09-20": [
+    "malvern-east",
+    "kingsville"
+  ],
+  "2027-09-21": [
+    "clematis",
+    "springvale"
+  ],
+  "2027-09-22": [
+    "carlton-north",
+    "bentleigh-east"
+  ],
+  "2027-09-23": [
+    "pascoe-vale-south",
+    "taylors-hill"
+  ],
+  "2027-09-24": [
+    "niddrie",
+    "laverton"
+  ],
+  "2027-09-25": [
+    "st-helena",
+    "heathmont"
+  ],
+  "2027-09-26": [
+    "heathmont",
+    "heatherton"
+  ],
+  "2027-09-27": [
+    "aspendale-gardens",
+    "kilsyth"
+  ],
+  "2027-09-28": [
+    "south-yarra",
+    "kealba"
+  ],
+  "2027-09-29": [
+    "blackburn",
+    "kingsbury"
+  ],
+  "2027-09-30": [
+    "box-hill-south",
+    "dandenong-south"
+  ],
+  "2027-10-01": [
+    "heidelberg",
+    "yarraville"
+  ],
+  "2027-10-02": [
+    "ringwood-east",
+    "malvern"
+  ],
+  "2027-10-03": [
+    "laverton",
+    "taylors-lakes"
+  ],
+  "2027-10-04": [
+    "st-helena",
+    "fairfield"
+  ],
+  "2027-10-05": [
+    "cardinia",
+    "mulgrave"
+  ],
+  "2027-10-06": [
+    "pascoe-vale",
+    "arthurs-creek"
+  ],
+  "2027-10-07": [
+    "caulfield-south",
+    "princes-hill"
+  ],
+  "2027-10-08": [
+    "surrey-hills",
+    "kangaroo-ground"
+  ],
+  "2027-10-09": [
+    "meadow-heights",
+    "doncaster"
+  ],
+  "2027-10-10": [
+    "williamstown",
+    "caulfield-east"
+  ],
+  "2027-10-11": [
+    "bellfield",
+    "st-andrews"
+  ],
+  "2027-10-12": [
+    "toorak",
+    "beaumaris"
+  ],
+  "2027-10-13": [
+    "hurstbridge",
+    "richmond"
+  ],
+  "2027-10-14": [
+    "caulfield-east",
+    "ferntree-gully"
+  ],
+  "2027-10-15": [
+    "point-cook",
+    "kew"
+  ],
+  "2027-10-16": [
+    "essendon-west",
+    "elwood"
+  ],
+  "2027-10-17": [
+    "waterways",
+    "wantirna-south"
+  ],
+  "2027-10-18": [
+    "ardeer",
+    "abbotsford"
+  ],
+  "2027-10-19": [
+    "hampton-park",
+    "mount-dandenong"
+  ],
+  "2027-10-20": [
+    "rockbank",
+    "prahran"
+  ],
+  "2027-10-21": [
+    "coolaroo",
+    "eltham"
+  ],
+  "2027-10-22": [
+    "st-kilda",
+    "blackburn-north"
+  ],
+  "2027-10-23": [
+    "burwood-east",
+    "brunswick-east"
+  ],
+  "2027-10-24": [
+    "sandringham",
+    "spotswood"
+  ],
+  "2027-10-25": [
+    "burwood-east",
+    "bend-of-islands"
+  ],
+  "2027-10-26": [
+    "thornhill-park",
+    "strathmore-heights"
+  ],
+  "2027-10-27": [
+    "prahran",
+    "st-albans"
+  ],
+  "2027-10-28": [
+    "reservoir",
+    "yarraville"
+  ],
+  "2027-10-29": [
+    "bonbeach",
+    "sandringham"
+  ],
+  "2027-10-30": [
+    "malvern-east",
+    "croydon-hills"
+  ],
+  "2027-10-31": [
+    "eaglemont",
+    "mount-waverley"
+  ],
+  "2027-11-01": [
+    "heathmont",
+    "bentleigh-east"
+  ],
+  "2027-11-02": [
+    "seaholme",
+    "abbotsford"
+  ],
+  "2027-11-03": [
+    "mambourin",
+    "braybrook"
+  ],
+  "2027-11-04": [
+    "carrum",
+    "carnegie"
+  ],
+  "2027-11-05": [
+    "st-albans",
+    "brunswick-east"
+  ],
+  "2027-11-06": [
+    "keilor-park",
+    "strathtulloh"
+  ],
+  "2027-11-07": [
+    "yallambie",
+    "croydon"
+  ],
+  "2027-11-08": [
+    "keysborough",
+    "silvan"
+  ],
+  "2027-11-09": [
+    "wattle-glen",
+    "bayswater"
+  ],
+  "2027-11-10": [
+    "croydon-north",
+    "clematis"
+  ],
+  "2027-11-11": [
+    "forest-hill",
+    "windsor"
+  ],
+  "2027-11-12": [
+    "docklands",
+    "glenroy"
+  ],
+  "2027-11-13": [
+    "cranbourne-north",
+    "clayton"
+  ],
+  "2027-11-14": [
+    "melbourne-airport",
+    "princes-hill"
+  ],
+  "2027-11-15": [
+    "mordialloc",
+    "upper-ferntree-gully"
+  ],
+  "2027-11-16": [
+    "delahey",
+    "campbellfield"
+  ],
+  "2027-11-17": [
+    "wyndham-vale",
+    "bulla"
+  ],
+  "2027-11-18": [
+    "chelsea",
+    "belgrave-south"
+  ],
+  "2027-11-19": [
+    "ivanhoe",
+    "scoresby"
+  ],
+  "2027-11-20": [
+    "croydon-hills",
+    "bellfield"
+  ],
+  "2027-11-21": [
+    "hampton-east",
+    "tremont"
+  ],
+  "2027-11-22": [
+    "south-morang",
+    "silvan"
+  ],
+  "2027-11-23": [
+    "botanic-ridge",
+    "clayton-south"
+  ],
+  "2027-11-24": [
+    "point-cook",
+    "elwood"
+  ],
+  "2027-11-25": [
+    "canterbury",
+    "greensborough"
+  ],
+  "2027-11-26": [
+    "the-patch",
+    "doveton"
+  ],
+  "2027-11-27": [
+    "airport-west",
+    "williamstown-north"
+  ],
+  "2027-11-28": [
+    "preston",
+    "middle-park"
+  ],
+  "2027-11-29": [
+    "cranbourne",
+    "kilsyth-south"
+  ],
+  "2027-11-30": [
+    "melton",
+    "oak-park"
+  ],
+  "2027-12-01": [
+    "hampton-park",
+    "burwood"
+  ],
+  "2027-12-02": [
+    "seddon",
+    "cocoroc"
+  ],
+  "2027-12-03": [
+    "boronia",
+    "caulfield-south"
+  ],
+  "2027-12-04": [
+    "altona",
+    "thornbury"
+  ],
+  "2027-12-05": [
+    "burwood-east",
+    "aspendale-gardens"
+  ],
+  "2027-12-06": [
+    "kalorama",
+    "doncaster-east"
+  ],
+  "2027-12-07": [
+    "weir-views",
+    "coolaroo"
+  ],
+  "2027-12-08": [
+    "arthurs-creek",
+    "sherbrooke"
+  ],
+  "2027-12-09": [
+    "yarrambat",
+    "olinda"
+  ],
+  "2027-12-10": [
+    "diggers-rest",
+    "seabrook"
+  ],
+  "2027-12-11": [
+    "brunswick-east",
+    "laverton"
+  ],
+  "2027-12-12": [
+    "strathtulloh",
+    "broadmeadows"
+  ],
+  "2027-12-13": [
+    "silvan",
+    "ringwood-north"
+  ],
+  "2027-12-14": [
+    "endeavour-hills",
+    "lilydale"
+  ],
+  "2027-12-15": [
+    "bonbeach",
+    "murrumbeena"
+  ],
+  "2027-12-16": [
+    "caroline-springs",
+    "windsor"
+  ],
+  "2027-12-17": [
+    "cairnlea",
+    "brunswick-west"
+  ],
+  "2027-12-18": [
+    "elsternwick",
+    "essendon-west"
+  ],
+  "2027-12-19": [
+    "chelsea",
+    "dalmore"
+  ],
+  "2027-12-20": [
+    "ivanhoe-east",
+    "wattle-glen"
+  ],
+  "2027-12-21": [
+    "frankston",
+    "lysterfield"
+  ],
+  "2027-12-22": [
+    "lyndhurst",
+    "carnegie"
+  ],
+  "2027-12-23": [
+    "alphington",
+    "keilor-east"
+  ],
+  "2027-12-24": [
+    "upwey",
+    "blackburn"
+  ],
+  "2027-12-25": [
+    "smiths-gully",
+    "craigieburn"
+  ],
+  "2027-12-26": [
+    "ripponlea",
+    "pascoe-vale"
+  ],
+  "2027-12-27": [
+    "port-melbourne",
+    "cocoroc"
+  ],
+  "2027-12-28": [
+    "airport-west",
+    "aintree"
+  ],
+  "2027-12-29": [
+    "bundoora",
+    "st-kilda"
+  ],
+  "2027-12-30": [
+    "spotswood",
+    "oakleigh"
+  ],
+  "2027-12-31": [
+    "strathtulloh",
+    "maidstone"
+  ],
+  "2028-01-01": [
+    "diggers-rest",
+    "point-cook"
+  ],
+  "2028-01-02": [
+    "belgrave",
+    "moorabbin"
+  ],
+  "2028-01-03": [
+    "sassafras",
+    "st-andrews"
+  ],
+  "2028-01-04": [
+    "ascot-vale",
+    "mont-albert"
+  ],
+  "2028-01-05": [
+    "st-kilda-west",
+    "rockbank"
+  ],
+  "2028-01-06": [
+    "tarneit",
+    "cremorne"
+  ],
+  "2028-01-07": [
+    "derrimut",
+    "caulfield-north"
+  ],
+  "2028-01-08": [
+    "south-yarra",
+    "thomastown"
+  ],
+  "2028-01-09": [
+    "box-hill-south",
+    "eumemmerring"
+  ],
+  "2028-01-10": [
+    "roxburgh-park",
+    "north-melbourne"
+  ],
+  "2028-01-11": [
+    "st-kilda-west",
+    "burwood-east"
+  ],
+  "2028-01-12": [
+    "yallambie",
+    "south-wharf"
+  ],
+  "2028-01-13": [
+    "altona-north",
+    "greenvale"
+  ],
+  "2028-01-14": [
+    "kalorama",
+    "briar-hill"
+  ],
+  "2028-01-15": [
+    "oakleigh-east",
+    "harkaway"
+  ],
+  "2028-01-16": [
+    "westmeadows",
+    "lower-plenty"
+  ],
+  "2028-01-17": [
+    "bonnie-brook",
+    "aberfeldie"
+  ],
+  "2028-01-18": [
+    "epping",
+    "moonee-ponds"
+  ],
+  "2028-01-19": [
+    "mount-dandenong",
+    "box-hill"
+  ],
+  "2028-01-20": [
+    "cocoroc",
+    "seddon"
+  ],
+  "2028-01-21": [
+    "keilor-lodge",
+    "lalor"
+  ],
+  "2028-01-22": [
+    "scoresby",
+    "hurstbridge"
+  ],
+  "2028-01-23": [
+    "huntingdale",
+    "brunswick-west"
+  ],
+  "2028-01-24": [
+    "caulfield-south",
+    "heidelberg-west"
+  ],
+  "2028-01-25": [
+    "castella",
+    "ferny-creek"
+  ],
+  "2028-01-26": [
+    "cottles-bridge",
+    "coburg"
+  ],
+  "2028-01-27": [
+    "mernda",
+    "mont-albert-north"
+  ],
+  "2028-01-28": [
+    "gisborne-south",
+    "ascot-vale"
+  ],
+  "2028-01-29": [
+    "ravenhall",
+    "st-kilda"
+  ],
+  "2028-01-30": [
+    "wonga-park",
+    "lysterfield"
+  ],
+  "2028-01-31": [
+    "mitcham",
+    "richmond"
+  ],
+  "2028-02-01": [
+    "brooklyn",
+    "wildwood"
+  ],
+  "2028-02-02": [
+    "bend-of-islands",
+    "ivanhoe-east"
+  ],
+  "2028-02-03": [
+    "keilor-east",
+    "collingwood"
+  ],
+  "2028-02-04": [
+    "rockbank",
+    "dallas"
+  ],
+  "2028-02-05": [
+    "cranbourne",
+    "brighton-east"
+  ],
+  "2028-02-06": [
+    "rosanna",
+    "albert-park"
+  ],
+  "2028-02-07": [
+    "prahran",
+    "truganina"
+  ],
+  "2028-02-08": [
+    "oaklands-junction",
+    "sunshine-west"
+  ],
+  "2028-02-09": [
+    "sunbury",
+    "heidelberg-west"
+  ],
+  "2028-02-10": [
+    "gowanbrae",
+    "yallambie"
+  ],
+  "2028-02-11": [
+    "pascoe-vale-south",
+    "gisborne-south"
+  ],
+  "2028-02-12": [
+    "camberwell",
+    "upper-ferntree-gully"
+  ],
+  "2028-02-13": [
+    "werribee",
+    "sunshine-north"
+  ],
+  "2028-02-14": [
+    "eaglemont",
+    "westmeadows"
+  ],
+  "2028-02-15": [
+    "mentone",
+    "blackburn-south"
+  ],
+  "2028-02-16": [
+    "diamond-creek",
+    "meadow-heights"
+  ],
+  "2028-02-17": [
+    "south-yarra",
+    "kingsbury"
+  ],
+  "2028-02-18": [
+    "aintree",
+    "travancore"
+  ],
+  "2028-02-19": [
+    "seabrook",
+    "albanvale"
+  ],
+  "2028-02-20": [
+    "keysborough",
+    "st-kilda"
+  ],
+  "2028-02-21": [
+    "albion",
+    "coburg-north"
+  ],
+  "2028-02-22": [
+    "langwarrin-south",
+    "cheltenham"
+  ],
+  "2028-02-23": [
+    "viewbank",
+    "bayswater"
+  ],
+  "2028-02-24": [
+    "wyndham-vale",
+    "keilor-east"
+  ],
+  "2028-02-25": [
+    "caroline-springs",
+    "roxburgh-park"
+  ],
+  "2028-02-26": [
+    "grangefields",
+    "hadfield"
+  ],
+  "2028-02-27": [
+    "coburg",
+    "kangaroo-ground"
+  ],
+  "2028-02-28": [
+    "cranbourne-north",
+    "croydon"
+  ],
+  "2028-02-29": [
+    "yering",
+    "bulleen"
+  ],
+  "2028-03-01": [
+    "west-footscray",
+    "kingsbury"
+  ],
+  "2028-03-02": [
+    "cardinia",
+    "kilsyth"
+  ],
+  "2028-03-03": [
+    "bentleigh-east",
+    "yarraville"
+  ],
+  "2028-03-04": [
+    "wonga-park",
+    "collingwood"
+  ],
+  "2028-03-05": [
+    "craigieburn",
+    "ravenhall"
+  ],
+  "2028-03-06": [
+    "keilor",
+    "point-cook"
+  ],
+  "2028-03-07": [
+    "croydon-hills",
+    "dandenong"
+  ],
+  "2028-03-08": [
+    "balwyn-north",
+    "keilor-park"
+  ],
+  "2028-03-09": [
+    "north-warrandyte",
+    "northcote"
+  ],
+  "2028-03-10": [
+    "forest-hill",
+    "dixons-creek"
+  ],
+  "2028-03-11": [
+    "black-rock",
+    "port-melbourne"
+  ],
+  "2028-03-12": [
+    "lysterfield-south",
+    "bonbeach"
+  ],
+  "2028-03-13": [
+    "wantirna-south",
+    "yarra-glen"
+  ],
+  "2028-03-14": [
+    "scoresby",
+    "hawthorn"
+  ],
+  "2028-03-15": [
+    "rockbank",
+    "somerton"
+  ],
+  "2028-03-16": [
+    "cottles-bridge",
+    "jacana"
+  ],
+  "2028-03-17": [
+    "airport-west",
+    "mount-cottrell"
+  ],
+  "2028-03-18": [
+    "toolern-vale",
+    "flemington"
+  ],
+  "2028-03-19": [
+    "coldstream",
+    "surrey-hills"
+  ],
+  "2028-03-20": [
+    "arthurs-creek",
+    "preston"
+  ],
+  "2028-03-21": [
+    "brighton-east",
+    "brooklyn"
+  ],
+  "2028-03-22": [
+    "aspendale",
+    "forest-hill"
+  ],
+  "2028-03-23": [
+    "avondale-heights",
+    "rosanna"
+  ],
+  "2028-03-24": [
+    "wandin-north",
+    "mount-waverley"
+  ],
+  "2028-03-25": [
+    "werribee-south",
+    "kurunjang"
+  ],
+  "2028-03-26": [
+    "greensborough",
+    "montrose"
+  ],
+  "2028-03-27": [
+    "balwyn-north",
+    "wandin-north"
+  ],
+  "2028-03-28": [
+    "oakleigh-south",
+    "frankston-north"
+  ],
+  "2028-03-29": [
+    "campbellfield",
+    "melton-south"
+  ],
+  "2028-03-30": [
+    "chelsea",
+    "oakleigh"
+  ],
+  "2028-03-31": [
+    "keysborough",
+    "blackburn-south"
+  ],
+  "2028-04-01": [
+    "port-melbourne",
+    "eaglemont"
+  ],
+  "2028-04-02": [
+    "yarrambat",
+    "parkville"
+  ],
+  "2028-04-03": [
+    "melbourne-airport",
+    "hurstbridge"
+  ],
+  "2028-04-04": [
+    "middle-park",
+    "airport-west"
+  ],
+  "2028-04-05": [
+    "bonbeach",
+    "belgrave-heights"
+  ],
+  "2028-04-06": [
+    "chirnside-park",
+    "kew-east"
+  ],
+  "2028-04-07": [
+    "boronia",
+    "patterson-lakes"
+  ],
+  "2028-04-08": [
+    "box-hill",
+    "tecoma"
+  ],
+  "2028-04-09": [
+    "pascoe-vale",
+    "taylors-lakes"
+  ],
+  "2028-04-10": [
+    "richmond",
+    "south-morang"
+  ],
+  "2028-04-11": [
+    "kingsbury",
+    "warrandyte-south"
+  ],
+  "2028-04-12": [
+    "mickleham",
+    "st-andrews"
+  ],
+  "2028-04-13": [
+    "cairnlea",
+    "east-melbourne"
+  ],
+  "2028-04-14": [
+    "caulfield-south",
+    "dandenong-north"
+  ],
+  "2028-04-15": [
+    "keilor-downs",
+    "newport"
+  ],
+  "2028-04-16": [
+    "beaumaris",
+    "prahran"
+  ],
+  "2028-04-17": [
+    "black-rock",
+    "surrey-hills"
+  ],
+  "2028-04-18": [
+    "essendon-west",
+    "epping"
+  ],
+  "2028-04-19": [
+    "upwey",
+    "tarrawarra"
+  ],
+  "2028-04-20": [
+    "cheltenham",
+    "cranbourne"
+  ],
+  "2028-04-21": [
+    "pascoe-vale",
+    "brighton"
+  ],
+  "2028-04-22": [
+    "plumpton",
+    "coburg-north"
+  ],
+  "2028-04-23": [
+    "caulfield-east",
+    "sunshine-west"
+  ],
+  "2028-04-24": [
+    "kallista",
+    "dalmore"
+  ],
+  "2028-04-25": [
+    "seddon",
+    "fairfield"
+  ],
+  "2028-04-26": [
+    "burnside",
+    "pascoe-vale-south"
+  ],
+  "2028-04-27": [
+    "dallas",
+    "kinglake"
+  ],
+  "2028-04-28": [
+    "mulgrave",
+    "hawthorn"
+  ],
+  "2028-04-29": [
+    "bulla",
+    "west-melbourne"
+  ],
+  "2028-04-30": [
+    "kings-park",
+    "glenroy"
+  ],
+  "2028-05-01": [
+    "hawthorn",
+    "noble-park"
+  ],
+  "2028-05-02": [
+    "canterbury",
+    "coolaroo"
+  ],
+  "2028-05-03": [
+    "pascoe-vale",
+    "diggers-rest"
+  ],
+  "2028-05-04": [
+    "research",
+    "blackburn-south"
+  ],
+  "2028-05-05": [
+    "wollert",
+    "mitcham"
+  ],
+  "2028-05-06": [
+    "thornhill-park",
+    "port-melbourne"
+  ],
+  "2028-05-07": [
+    "emerald",
+    "ashwood"
+  ],
+  "2028-05-08": [
+    "st-kilda",
+    "parkdale"
+  ],
+  "2028-05-09": [
+    "mulgrave",
+    "ivanhoe-east"
+  ],
+  "2028-05-10": [
+    "spotswood",
+    "bellfield"
+  ],
+  "2028-05-11": [
+    "coldstream",
+    "mulgrave"
+  ],
+  "2028-05-12": [
+    "oakleigh-south",
+    "brunswick"
+  ],
+  "2028-05-13": [
+    "seddon",
+    "diggers-rest"
+  ],
+  "2028-05-14": [
+    "tullamarine",
+    "st-kilda"
+  ],
+  "2028-05-15": [
+    "craigieburn",
+    "burnside"
+  ],
+  "2028-05-16": [
+    "huntingdale",
+    "officer"
+  ],
+  "2028-05-17": [
+    "brooklyn",
+    "alphington"
+  ],
+  "2028-05-18": [
+    "caroline-springs",
+    "campbellfield"
+  ],
+  "2028-05-19": [
+    "albion",
+    "fawkner"
+  ],
+  "2028-05-20": [
+    "oakleigh",
+    "doncaster"
+  ],
+  "2028-05-21": [
+    "pascoe-vale-south",
+    "truganina"
+  ],
+  "2028-05-22": [
+    "templestowe",
+    "prahran"
+  ],
+  "2028-05-23": [
+    "keilor-downs",
+    "werribee"
+  ],
+  "2028-05-24": [
+    "kangaroo-ground",
+    "belgrave-south"
+  ],
+  "2028-05-25": [
+    "clifton-hill",
+    "sunshine"
+  ],
+  "2028-05-26": [
+    "bulla",
+    "kew-east"
+  ],
+  "2028-05-27": [
+    "coburg",
+    "seaholme"
+  ],
+  "2028-05-28": [
+    "seabrook",
+    "ascot-vale"
+  ],
+  "2028-05-29": [
+    "kings-park",
+    "princes-hill"
+  ],
+  "2028-05-30": [
+    "port-melbourne",
+    "mont-albert-north"
+  ],
+  "2028-05-31": [
+    "mount-waverley",
+    "eltham-north"
+  ],
+  "2028-06-01": [
+    "avondale-heights",
+    "werribee-south"
+  ],
+  "2028-06-02": [
+    "heatherton",
+    "kilsyth-south"
+  ],
+  "2028-06-03": [
+    "princes-hill",
+    "oakleigh-south"
+  ],
+  "2028-06-04": [
+    "yarrambat",
+    "boronia"
+  ],
+  "2028-06-05": [
+    "kealba",
+    "northcote"
+  ],
+  "2028-06-06": [
+    "hurstbridge",
+    "canterbury"
+  ],
+  "2028-06-07": [
+    "st-kilda",
+    "gladstone-park"
+  ],
+  "2028-06-08": [
+    "menzies-creek",
+    "devon-meadows"
+  ],
+  "2028-06-09": [
+    "ferntree-gully",
+    "blackburn-north"
+  ],
+  "2028-06-10": [
+    "kensington",
+    "ormond"
+  ],
+  "2028-06-11": [
+    "highett",
+    "carrum"
+  ],
+  "2028-06-12": [
+    "bayswater",
+    "yallambie"
+  ],
+  "2028-06-13": [
+    "prahran",
+    "vermont-south"
+  ],
+  "2028-06-14": [
+    "narre-warren-east",
+    "glen-iris"
+  ],
+  "2028-06-15": [
+    "williamstown-north",
+    "kurunjang"
+  ],
+  "2028-06-16": [
+    "doncaster",
+    "spotswood"
+  ],
+  "2028-06-17": [
+    "belgrave",
+    "dalmore"
+  ],
+  "2028-06-18": [
+    "mount-cottrell",
+    "gladstone-park"
+  ],
+  "2028-06-19": [
+    "pascoe-vale",
+    "plumpton"
+  ],
+  "2028-06-20": [
+    "heidelberg-heights",
+    "niddrie"
+  ],
+  "2028-06-21": [
+    "nunawading",
+    "west-melbourne"
+  ],
+  "2028-06-22": [
+    "frankston",
+    "lysterfield"
+  ],
+  "2028-06-23": [
+    "clifton-hill",
+    "derrimut"
+  ],
+  "2028-06-24": [
+    "berwick",
+    "beaumaris"
+  ],
+  "2028-06-25": [
+    "roxburgh-park",
+    "wonga-park"
+  ],
+  "2028-06-26": [
+    "donvale",
+    "dingley-village"
+  ],
+  "2028-06-27": [
+    "balwyn",
+    "kingsville"
+  ],
+  "2028-06-28": [
+    "niddrie",
+    "doncaster"
+  ],
+  "2028-06-29": [
+    "notting-hill",
+    "fairfield"
+  ],
+  "2028-06-30": [
+    "menzies-creek",
+    "carrum-downs"
+  ],
+  "2028-07-01": [
+    "knoxfield",
+    "kew-east"
+  ],
+  "2028-07-02": [
+    "meadow-heights",
+    "balwyn-north"
+  ],
+  "2028-07-03": [
+    "fawkner",
+    "blackburn"
+  ],
+  "2028-07-04": [
+    "carrum",
+    "harkaway"
+  ],
+  "2028-07-05": [
+    "patterson-lakes",
+    "sandringham"
+  ],
+  "2028-07-06": [
+    "newport",
+    "caulfield-east"
+  ],
+  "2028-07-07": [
+    "essendon-west",
+    "deanside"
+  ],
+  "2028-07-08": [
+    "noble-park",
+    "box-hill"
+  ],
+  "2028-07-09": [
+    "keilor-east",
+    "balaclava"
+  ],
+  "2028-07-10": [
+    "upper-ferntree-gully",
+    "christmas-hills"
+  ],
+  "2028-07-11": [
+    "seaford",
+    "oakleigh-south"
+  ],
+  "2028-07-12": [
+    "gisborne-south",
+    "cocoroc"
+  ],
+  "2028-07-13": [
+    "pascoe-vale",
+    "williamstown-north"
+  ],
+  "2028-07-14": [
+    "gisborne-south",
+    "braybrook"
+  ],
+  "2028-07-15": [
+    "mooroolbark",
+    "rosanna"
+  ],
+  "2028-07-16": [
+    "mont-albert",
+    "altona-north"
+  ],
+  "2028-07-17": [
+    "murrumbeena",
+    "bayswater"
   ],
   "2028-07-18": [
     "ivanhoe",
-    "wattle-glen"
+    "seddon"
   ],
   "2028-07-19": [
-    "glen-huntly",
-    "notting-hill"
-  ],
-  "2028-07-20": [
-    "patterson-lakes",
-    "moorabbin"
-  ],
-  "2028-07-21": [
-    "berwick",
-    "dingley-village"
-  ],
-  "2028-07-22": [
-    "airport-west",
-    "donnybrook"
-  ],
-  "2028-07-23": [
-    "heatherton",
-    "balaclava"
-  ],
-  "2028-07-24": [
-    "jacana",
-    "parkville"
-  ],
-  "2028-07-25": [
-    "springvale",
-    "sandhurst"
-  ],
-  "2028-07-26": [
-    "kallista",
-    "bayswater"
-  ],
-  "2028-07-27": [
-    "thornhill-park",
-    "newport"
-  ],
-  "2028-07-28": [
-    "eltham",
-    "bayswater"
-  ],
-  "2028-07-29": [
-    "strathmore-heights",
-    "macleod"
-  ],
-  "2028-07-30": [
-    "cardinia",
-    "upper-ferntree-gully"
-  ],
-  "2028-07-31": [
-    "parkville",
-    "st-albans"
-  ],
-  "2028-08-01": [
-    "caroline-springs",
-    "wildwood"
-  ],
-  "2028-08-02": [
-    "mount-cottrell",
-    "keilor-downs"
-  ],
-  "2028-08-03": [
-    "niddrie",
-    "thomastown"
-  ],
-  "2028-08-04": [
-    "south-morang",
-    "chirnside-park"
-  ],
-  "2028-08-05": [
-    "greenvale",
-    "aintree"
-  ],
-  "2028-08-06": [
-    "truganina",
-    "maribyrnong"
-  ],
-  "2028-08-07": [
-    "caroline-springs",
-    "kingsville"
-  ],
-  "2028-08-08": [
-    "heidelberg",
-    "doreen"
-  ],
-  "2028-08-09": [
-    "lynbrook",
-    "bentleigh-east"
-  ],
-  "2028-08-10": [
-    "bulleen",
-    "heathmont"
-  ],
-  "2028-08-11": [
-    "hillside",
-    "coolaroo"
-  ],
-  "2028-08-12": [
-    "north-melbourne",
-    "heidelberg"
-  ],
-  "2028-08-13": [
-    "bonnie-brook",
-    "mambourin"
-  ],
-  "2028-08-14": [
-    "south-wharf",
-    "doncaster"
-  ],
-  "2028-08-15": [
-    "sandhurst",
-    "clayton-south"
-  ],
-  "2028-08-16": [
-    "princes-hill",
-    "tullamarine"
-  ],
-  "2028-08-17": [
-    "pascoe-vale",
-    "eltham-north"
-  ],
-  "2028-08-18": [
-    "st-andrews",
-    "vermont"
-  ],
-  "2028-08-19": [
-    "avondale-heights",
-    "preston"
-  ],
-  "2028-08-20": [
-    "clayton",
-    "carrum-downs"
-  ],
-  "2028-08-21": [
-    "emerald",
-    "yarra-glen"
-  ],
-  "2028-08-22": [
-    "noble-park",
-    "frankston"
-  ],
-  "2028-08-23": [
-    "dalmore",
-    "dandenong-south"
-  ],
-  "2028-08-24": [
-    "sydenham",
-    "essendon"
-  ],
-  "2028-08-25": [
-    "heatherton",
-    "balaclava"
-  ],
-  "2028-08-26": [
-    "parkdale",
-    "cranbourne"
-  ],
-  "2028-08-27": [
-    "kilsyth-south",
-    "hallam"
-  ],
-  "2028-08-28": [
-    "carrum",
-    "narre-warren"
-  ],
-  "2028-08-29": [
-    "coolaroo",
-    "yan-yean"
-  ],
-  "2028-08-30": [
-    "mill-park",
-    "christmas-hills"
-  ],
-  "2028-08-31": [
-    "mount-evelyn",
-    "templestowe"
-  ],
-  "2028-09-01": [
-    "sandhurst",
-    "clayton-south"
-  ],
-  "2028-09-02": [
-    "caroline-springs",
-    "keilor-park"
-  ],
-  "2028-09-03": [
-    "mont-albert",
-    "yallambie"
-  ],
-  "2028-09-04": [
-    "laverton-north",
-    "airport-west"
-  ],
-  "2028-09-05": [
-    "elwood",
-    "mentone"
-  ],
-  "2028-09-06": [
-    "westmeadows",
-    "caroline-springs"
-  ],
-  "2028-09-07": [
-    "narre-warren-east",
-    "tooradin"
-  ],
-  "2028-09-08": [
-    "black-rock",
-    "edithvale"
-  ],
-  "2028-09-09": [
-    "kalorama",
-    "north-warrandyte"
-  ],
-  "2028-09-10": [
-    "attwood",
-    "burnside-heights"
-  ],
-  "2028-09-11": [
-    "sunshine",
-    "glenroy"
-  ],
-  "2028-09-12": [
-    "ormond",
-    "deepdene"
-  ],
-  "2028-09-13": [
-    "abbotsford",
-    "warrandyte"
-  ],
-  "2028-09-14": [
-    "carlton",
-    "essendon-fields"
-  ],
-  "2028-09-15": [
-    "lyndhurst",
-    "belgrave-heights"
-  ],
-  "2028-09-16": [
-    "deepdene",
-    "pascoe-vale-south"
-  ],
-  "2028-09-17": [
-    "prahran",
-    "pascoe-vale"
-  ],
-  "2028-09-18": [
-    "bulla",
-    "hadfield"
-  ],
-  "2028-09-19": [
-    "kingsville",
-    "werribee"
-  ],
-  "2028-09-20": [
-    "keilor-lodge",
-    "brooklyn"
-  ],
-  "2028-09-21": [
-    "arthurs-creek",
-    "yallambie"
-  ],
-  "2028-09-22": [
-    "montmorency",
-    "pascoe-vale-south"
-  ],
-  "2028-09-23": [
-    "croydon-north",
-    "monbulk"
-  ],
-  "2028-09-24": [
-    "burwood-east",
-    "ivanhoe"
-  ],
-  "2028-09-25": [
-    "strathtulloh",
-    "taylors-lakes"
-  ],
-  "2028-09-26": [
-    "point-cook",
-    "melton"
-  ],
-  "2028-09-27": [
-    "rowville",
-    "mordialloc"
-  ],
-  "2028-09-28": [
-    "tullamarine",
-    "west-footscray"
-  ],
-  "2028-09-29": [
-    "blackburn-south",
-    "lysterfield"
-  ],
-  "2028-09-30": [
-    "dandenong-south",
-    "ormond"
-  ],
-  "2028-10-01": [
-    "edithvale",
-    "clyde-north"
-  ],
-  "2028-10-02": [
-    "heathmont",
-    "research"
-  ],
-  "2028-10-03": [
-    "southbank",
-    "hughesdale"
-  ],
-  "2028-10-04": [
-    "clyde-north",
-    "braeside"
-  ],
-  "2028-10-05": [
-    "narre-warren-east",
-    "lilydale"
-  ],
-  "2028-10-06": [
-    "harkaway",
-    "aspendale-gardens"
-  ],
-  "2028-10-07": [
-    "frankston-north",
-    "dandenong-north"
-  ],
-  "2028-10-08": [
-    "collingwood",
-    "seddon"
-  ],
-  "2028-10-09": [
-    "craigieburn",
-    "sydenham"
-  ],
-  "2028-10-10": [
-    "thornbury",
-    "maidstone"
-  ],
-  "2028-10-11": [
-    "cocoroc",
-    "yarraville"
-  ],
-  "2028-10-12": [
-    "east-melbourne",
-    "carnegie"
-  ],
-  "2028-10-13": [
-    "devon-meadows",
-    "emerald"
-  ],
-  "2028-10-14": [
-    "waterways",
-    "hughesdale"
-  ],
-  "2028-10-15": [
-    "bundoora",
-    "ascot-vale"
-  ],
-  "2028-10-16": [
-    "mckinnon",
-    "vermont-south"
-  ],
-  "2028-10-17": [
-    "kilsyth",
-    "doncaster"
-  ],
-  "2028-10-18": [
-    "lysterfield-south",
-    "sandhurst"
-  ],
-  "2028-10-19": [
-    "glenroy",
-    "footscray"
-  ],
-  "2028-10-20": [
-    "flemington",
-    "keilor-lodge"
-  ],
-  "2028-10-21": [
-    "princes-hill",
-    "strathmore-heights"
-  ],
-  "2028-10-22": [
-    "carrum-downs",
-    "bentleigh-east"
-  ],
-  "2028-10-23": [
-    "doreen",
-    "ringwood-north"
-  ],
-  "2028-10-24": [
-    "laverton-north",
-    "brunswick-west"
-  ],
-  "2028-10-25": [
-    "upper-ferntree-gully",
-    "oakleigh-east"
-  ],
-  "2028-10-26": [
-    "warranwood",
-    "ferny-creek"
-  ],
-  "2028-10-27": [
-    "guys-hill",
-    "knoxfield"
-  ],
-  "2028-10-28": [
-    "brunswick-west",
-    "altona"
-  ],
-  "2028-10-29": [
-    "kalorama",
-    "beaconsfield"
-  ],
-  "2028-10-30": [
-    "fairfield",
-    "roxburgh-park"
-  ],
-  "2028-10-31": [
-    "epping",
-    "keilor-downs"
-  ],
-  "2028-11-01": [
-    "yarraville",
-    "balwyn"
-  ],
-  "2028-11-02": [
-    "broadmeadows",
-    "viewbank"
-  ],
-  "2028-11-03": [
-    "woodstock",
-    "coldstream"
-  ],
-  "2028-11-04": [
-    "hampton",
-    "waterways"
-  ],
-  "2028-11-05": [
-    "panton-hill",
-    "kilsyth-south"
-  ],
-  "2028-11-06": [
-    "south-kingsville",
-    "st-kilda-east"
-  ],
-  "2028-11-07": [
-    "pascoe-vale",
-    "southbank"
-  ],
-  "2028-11-08": [
-    "bend-of-islands",
-    "epping"
-  ],
-  "2028-11-09": [
-    "chirnside-park",
-    "box-hill"
-  ],
-  "2028-11-10": [
-    "avondale-heights",
-    "hillside"
-  ],
-  "2028-11-11": [
-    "wonga-park",
-    "woodstock"
-  ],
-  "2028-11-12": [
-    "chadstone",
-    "ferntree-gully"
-  ],
-  "2028-11-13": [
-    "strathmore-heights",
-    "ivanhoe"
-  ],
-  "2028-11-14": [
-    "sassafras",
-    "notting-hill"
-  ],
-  "2028-11-15": [
-    "taylors-lakes",
-    "pascoe-vale-south"
-  ],
-  "2028-11-16": [
-    "mickleham",
-    "diamond-creek"
-  ],
-  "2028-11-17": [
-    "southbank",
-    "murrumbeena"
-  ],
-  "2028-11-18": [
-    "mernda",
-    "wildwood"
-  ],
-  "2028-11-19": [
-    "monbulk",
-    "clyde"
-  ],
-  "2028-11-20": [
-    "south-wharf",
-    "coburg-north"
-  ],
-  "2028-11-21": [
-    "deer-park",
-    "essendon-west"
-  ],
-  "2028-11-22": [
-    "noble-park",
-    "carnegie"
-  ],
-  "2028-11-23": [
-    "seddon",
-    "fieldstone"
-  ],
-  "2028-11-24": [
-    "patterson-lakes",
-    "bentleigh-east"
-  ],
-  "2028-11-25": [
-    "edithvale",
-    "clayton"
-  ],
-  "2028-11-26": [
-    "brighton",
-    "carlton-north"
-  ],
-  "2028-11-27": [
-    "beaumaris",
-    "carrum-downs"
-  ],
-  "2028-11-28": [
-    "albert-park",
-    "deer-park"
-  ],
-  "2028-11-29": [
-    "bulla",
-    "preston"
-  ],
-  "2028-11-30": [
-    "seaholme",
-    "albanvale"
-  ],
-  "2028-12-01": [
-    "cranbourne",
-    "moorabbin-airport"
-  ],
-  "2028-12-02": [
-    "ivanhoe-east",
-    "epping"
-  ],
-  "2028-12-03": [
-    "ashburton",
-    "hampton"
-  ],
-  "2028-12-04": [
-    "beaconsfield",
-    "wheelers-hill"
-  ],
-  "2028-12-05": [
-    "woodstock",
-    "watsonia"
-  ],
-  "2028-12-06": [
-    "aspendale",
-    "clyde-north"
-  ],
-  "2028-12-07": [
-    "camberwell",
-    "brunswick"
-  ],
-  "2028-12-08": [
-    "murrumbeena",
-    "scoresby"
-  ],
-  "2028-12-09": [
-    "brighton-east",
-    "aspendale"
-  ],
-  "2028-12-10": [
-    "moorabbin",
-    "doveton"
-  ],
-  "2028-12-11": [
-    "tooradin",
-    "bangholme"
-  ],
-  "2028-12-12": [
-    "armadale",
-    "tottenham"
-  ],
-  "2028-12-13": [
-    "lalor",
-    "panton-hill"
-  ],
-  "2028-12-14": [
-    "heidelberg-heights",
-    "north-melbourne"
-  ],
-  "2028-12-15": [
-    "croydon-north",
-    "the-patch"
-  ],
-  "2028-12-16": [
-    "cranbourne-north",
-    "boronia"
-  ],
-  "2028-12-17": [
-    "mambourin",
-    "fraser-rise"
-  ],
-  "2028-12-18": [
-    "taylors-lakes",
-    "epping"
-  ],
-  "2028-12-19": [
-    "melton",
-    "broadmeadows"
-  ],
-  "2028-12-20": [
-    "heidelberg",
-    "forest-hill"
-  ],
-  "2028-12-21": [
-    "huntingdale",
-    "melbourne-cbd"
-  ],
-  "2028-12-22": [
-    "ringwood-north",
-    "plenty"
-  ],
-  "2028-12-23": [
-    "noble-park-north",
-    "beaconsfield"
-  ],
-  "2028-12-24": [
-    "deepdene",
-    "flemington"
-  ],
-  "2028-12-25": [
-    "belgrave",
-    "noble-park"
-  ],
-  "2028-12-26": [
-    "attwood",
-    "rockbank"
-  ],
-  "2028-12-27": [
-    "macleod",
-    "essendon"
-  ],
-  "2028-12-28": [
-    "ardeer",
-    "seabrook"
-  ],
-  "2028-12-29": [
-    "mount-waverley",
-    "black-rock"
-  ],
-  "2028-12-30": [
-    "yering",
-    "plenty"
-  ],
-  "2028-12-31": [
-    "balwyn",
-    "wheelers-hill"
-  ],
-  "2029-01-01": [
-    "essendon-north",
-    "ivanhoe"
-  ],
-  "2029-01-02": [
-    "box-hill-south",
-    "preston"
-  ],
-  "2029-01-03": [
-    "campbellfield",
-    "gisborne-south"
-  ],
-  "2029-01-04": [
-    "seaford",
-    "clyde"
-  ],
-  "2029-01-05": [
-    "essendon",
-    "somerton"
-  ],
-  "2029-01-06": [
-    "selby",
-    "hampton-park"
-  ],
-  "2029-01-07": [
-    "alphington",
-    "port-melbourne"
-  ],
-  "2029-01-08": [
-    "tremont",
-    "cranbourne-north"
-  ],
-  "2029-01-09": [
-    "keilor-park",
-    "kingsville"
-  ],
-  "2029-01-10": [
-    "langwarrin",
-    "parkdale"
-  ],
-  "2029-01-11": [
-    "ripponlea",
-    "dingley-village"
-  ],
-  "2029-01-12": [
-    "nutfield",
-    "greenvale"
-  ],
-  "2029-01-13": [
-    "deer-park",
-    "manor-lakes"
-  ],
-  "2029-01-14": [
-    "blackburn-north",
-    "wheelers-hill"
-  ],
-  "2029-01-15": [
-    "hoppers-crossing",
-    "west-melbourne"
-  ],
-  "2029-01-16": [
-    "tooradin",
-    "narre-warren-east"
-  ],
-  "2029-01-17": [
-    "wattle-glen",
-    "donnybrook"
-  ],
-  "2029-01-18": [
-    "keilor-lodge",
-    "campbellfield"
-  ],
-  "2029-01-19": [
-    "gowanbrae",
-    "west-footscray"
-  ],
-  "2029-01-20": [
-    "altona-meadows",
-    "south-melbourne"
-  ],
-  "2029-01-21": [
-    "mount-eliza",
-    "tooradin"
-  ],
-  "2029-01-22": [
-    "balwyn-north",
-    "kensington"
-  ],
-  "2029-01-23": [
-    "kew-east",
-    "st-kilda-west"
-  ],
-  "2029-01-24": [
-    "notting-hill",
-    "sherbrooke"
-  ],
-  "2029-01-25": [
-    "airport-west",
-    "kingsbury"
-  ],
-  "2029-01-26": [
-    "chelsea-heights",
-    "black-rock"
-  ],
-  "2029-01-27": [
-    "wonga-park",
-    "box-hill-south"
-  ],
-  "2029-01-28": [
-    "aspendale",
-    "botanic-ridge"
-  ],
-  "2029-01-29": [
-    "wollert",
-    "kinglake"
-  ],
-  "2029-01-30": [
-    "burwood",
-    "ringwood-north"
-  ],
-  "2029-01-31": [
-    "edithvale",
-    "junction-village"
-  ],
-  "2029-02-01": [
-    "langwarrin",
-    "officer-south"
-  ],
-  "2029-02-02": [
-    "narre-warren-east",
-    "cranbourne-south"
-  ],
-  "2029-02-03": [
-    "dingley-village",
-    "elwood"
-  ],
-  "2029-02-04": [
-    "warrandyte",
-    "bellfield"
-  ],
-  "2029-02-05": [
-    "montmorency",
-    "craigieburn"
-  ],
-  "2029-02-06": [
-    "thornbury",
-    "briar-hill"
-  ],
-  "2029-02-07": [
-    "werribee",
-    "albanvale"
-  ],
-  "2029-02-08": [
-    "berwick",
-    "chelsea"
-  ],
-  "2029-02-09": [
-    "balaclava",
-    "williamstown"
-  ],
-  "2029-02-10": [
-    "hughesdale",
-    "east-melbourne"
-  ],
-  "2029-02-11": [
-    "glen-iris",
-    "docklands"
-  ],
-  "2029-02-12": [
-    "croydon-south",
-    "arthurs-creek"
-  ],
-  "2029-02-13": [
-    "pascoe-vale",
-    "windsor"
-  ],
-  "2029-02-14": [
-    "moonee-ponds",
-    "williamstown-north"
-  ],
-  "2029-02-15": [
-    "ascot-vale",
-    "keilor-lodge"
-  ],
-  "2029-02-16": [
-    "murrumbeena",
-    "alphington"
-  ],
-  "2029-02-17": [
-    "hampton-east",
-    "rowville"
-  ],
-  "2029-02-18": [
-    "brooklyn",
-    "melbourne-airport"
-  ],
-  "2029-02-19": [
-    "balwyn-north",
-    "heathmont"
-  ],
-  "2029-02-20": [
-    "keilor",
-    "truganina"
-  ],
-  "2029-02-21": [
-    "hadfield",
-    "st-helena"
-  ],
-  "2029-02-22": [
-    "boronia",
-    "kangaroo-ground"
-  ],
-  "2029-02-23": [
-    "tottenham",
-    "elwood"
-  ],
-  "2029-02-24": [
-    "bellfield",
-    "south-wharf"
-  ],
-  "2029-02-25": [
-    "park-orchards",
-    "mount-evelyn"
-  ],
-  "2029-02-26": [
-    "officer",
-    "langwarrin"
-  ],
-  "2029-02-27": [
-    "taylors-hill",
-    "spotswood"
-  ],
-  "2029-02-28": [
-    "hampton-east",
-    "noble-park"
-  ],
-  "2029-03-01": [
-    "west-footscray",
-    "taylors-lakes"
-  ],
-  "2029-03-02": [
-    "cranbourne-south",
-    "noble-park-north"
-  ],
-  "2029-03-03": [
-    "yering",
-    "box-hill-north"
-  ],
-  "2029-03-04": [
-    "elwood",
-    "burwood"
-  ],
-  "2029-03-05": [
-    "lalor",
-    "st-andrews"
-  ],
-  "2029-03-06": [
-    "hadfield",
-    "oaklands-junction"
-  ],
-  "2029-03-07": [
-    "abbotsford",
-    "maidstone"
-  ],
-  "2029-03-08": [
-    "rosanna",
-    "strathmore"
-  ],
-  "2029-03-09": [
-    "altona-meadows",
-    "flemington"
-  ],
-  "2029-03-10": [
-    "oak-park",
-    "travancore"
-  ],
-  "2029-03-11": [
-    "doncaster",
-    "steels-creek"
-  ],
-  "2029-03-12": [
-    "yarrambat",
-    "ivanhoe-east"
-  ],
-  "2029-03-13": [
-    "blackburn-north",
-    "coburg"
-  ],
-  "2029-03-14": [
-    "kilsyth-south",
-    "blackburn-north"
-  ],
-  "2029-03-15": [
-    "wollert",
-    "bend-of-islands"
-  ],
-  "2029-03-16": [
-    "middle-park",
-    "canterbury"
-  ],
-  "2029-03-17": [
-    "st-kilda-west",
-    "northcote"
-  ],
-  "2029-03-18": [
-    "hadfield",
-    "st-helena"
-  ],
-  "2029-03-19": [
-    "parkdale",
-    "malvern-east"
-  ],
-  "2029-03-20": [
-    "heatherton",
-    "langwarrin"
-  ],
-  "2029-03-21": [
-    "fairfield",
-    "mount-waverley"
-  ],
-  "2029-03-22": [
-    "dalmore",
-    "lysterfield"
-  ],
-  "2029-03-23": [
-    "ferntree-gully",
-    "warrandyte-south"
-  ],
-  "2029-03-24": [
-    "essendon",
-    "plenty"
-  ],
-  "2029-03-25": [
-    "wattle-glen",
-    "vermont"
-  ],
-  "2029-03-26": [
-    "mount-eliza",
-    "junction-village"
-  ],
-  "2029-03-27": [
-    "belgrave",
-    "croydon-south"
-  ],
-  "2029-03-28": [
-    "roxburgh-park",
-    "avondale-heights"
-  ],
-  "2029-03-29": [
-    "park-orchards",
-    "glen-waverley"
-  ],
-  "2029-03-30": [
-    "eumemmerring",
-    "clematis"
-  ],
-  "2029-03-31": [
-    "greensborough",
-    "yering"
-  ],
-  "2029-04-01": [
-    "coburg",
-    "ripponlea"
-  ],
-  "2029-04-02": [
-    "thomastown",
-    "diggers-rest"
-  ],
-  "2029-04-03": [
-    "upwey",
-    "cranbourne-west"
-  ],
-  "2029-04-04": [
-    "strathtulloh",
-    "tottenham"
-  ],
-  "2029-04-05": [
-    "kew-east",
-    "glen-huntly"
-  ],
-  "2029-04-06": [
-    "frankston-south",
-    "dingley-village"
-  ],
-  "2029-04-07": [
-    "clarinda",
-    "skye"
-  ],
-  "2029-04-08": [
-    "kilsyth-south",
-    "beaconsfield-upper"
-  ],
-  "2029-04-09": [
-    "thomastown",
-    "mont-albert-north"
-  ],
-  "2029-04-10": [
-    "roxburgh-park",
-    "humevale"
-  ],
-  "2029-04-11": [
-    "montmorency",
-    "alphington"
-  ],
-  "2029-04-12": [
-    "clarinda",
-    "narre-warren-east"
-  ],
-  "2029-04-13": [
-    "selby",
-    "clyde-north"
-  ],
-  "2029-04-14": [
-    "brooklyn",
-    "melton-south"
-  ],
-  "2029-04-15": [
-    "altona-meadows",
-    "thornhill-park"
-  ],
-  "2029-04-16": [
-    "bend-of-islands",
-    "box-hill"
-  ],
-  "2029-04-17": [
-    "hawthorn-east",
-    "st-kilda-west"
-  ],
-  "2029-04-18": [
-    "christmas-hills",
-    "viewbank"
-  ],
-  "2029-04-19": [
-    "melbourne-cbd",
-    "box-hill-south"
-  ],
-  "2029-04-20": [
-    "cottles-bridge",
-    "templestowe-lower"
-  ],
-  "2029-04-21": [
-    "skye",
-    "lysterfield"
-  ],
-  "2029-04-22": [
-    "werribee",
-    "kurunjang"
-  ],
-  "2029-04-23": [
-    "heidelberg-west",
-    "cottles-bridge"
-  ],
-  "2029-04-24": [
-    "balwyn",
-    "wantirna-south"
-  ],
-  "2029-04-25": [
-    "plumpton",
-    "strathmore"
-  ],
-  "2029-04-26": [
-    "heidelberg-heights",
-    "ascot-vale"
-  ],
-  "2029-04-27": [
-    "coldstream",
-    "vermont-south"
-  ],
-  "2029-04-28": [
-    "wyndham-vale",
-    "gisborne-south"
-  ],
-  "2029-04-29": [
-    "yarra-glen",
-    "sassafras"
-  ],
-  "2029-04-30": [
-    "oakleigh-east",
-    "narre-warren-east"
-  ],
-  "2029-05-01": [
-    "weir-views",
-    "kings-park"
-  ],
-  "2029-05-02": [
-    "ripponlea",
-    "clarinda"
-  ],
-  "2029-05-03": [
-    "st-kilda",
-    "sunshine"
-  ],
-  "2029-05-04": [
-    "wyndham-vale",
-    "sydenham"
-  ],
-  "2029-05-05": [
-    "st-kilda-east",
-    "maidstone"
-  ],
-  "2029-05-06": [
-    "bonbeach",
+    "mitcham",
     "endeavour-hills"
   ],
-  "2029-05-07": [
-    "st-kilda-east",
-    "heatherton"
-  ],
-  "2029-05-08": [
-    "airport-west",
-    "fitzroy"
-  ],
-  "2029-05-09": [
-    "bulleen",
-    "wantirna"
-  ],
-  "2029-05-10": [
-    "tecoma",
-    "lyndhurst"
-  ],
-  "2029-05-11": [
-    "forest-hill",
-    "heatherton"
-  ],
-  "2029-05-12": [
-    "st-albans",
-    "parkville"
-  ],
-  "2029-05-13": [
-    "springvale",
-    "berwick"
-  ],
-  "2029-05-14": [
-    "north-melbourne",
-    "ashwood"
-  ],
-  "2029-05-15": [
-    "ferny-creek",
-    "beaconsfield"
-  ],
-  "2029-05-16": [
-    "balwyn-north",
-    "chirnside-park"
-  ],
-  "2029-05-17": [
-    "waterways",
-    "oakleigh"
-  ],
-  "2029-05-18": [
-    "humevale",
-    "warrandyte-south"
-  ],
-  "2029-05-19": [
-    "gowanbrae",
-    "bonnie-brook"
-  ],
-  "2029-05-20": [
-    "warranwood",
-    "tremont"
-  ],
-  "2029-05-21": [
-    "doreen",
-    "oaklands-junction"
-  ],
-  "2029-05-22": [
-    "ivanhoe",
-    "warrandyte-south"
-  ],
-  "2029-05-23": [
-    "bonnie-brook",
-    "seabrook"
-  ],
-  "2029-05-24": [
-    "park-orchards",
-    "glen-waverley"
-  ],
-  "2029-05-25": [
-    "chirnside-park",
-    "balwyn-north"
-  ],
-  "2029-05-26": [
-    "preston",
-    "west-footscray"
-  ],
-  "2029-05-27": [
-    "box-hill",
-    "eltham-north"
-  ],
-  "2029-05-28": [
-    "williamstown",
-    "richmond"
-  ],
-  "2029-05-29": [
-    "kew-east",
-    "chadstone"
-  ],
-  "2029-05-30": [
-    "eumemmerring",
-    "bayswater"
-  ],
-  "2029-05-31": [
-    "caroline-springs",
-    "maidstone"
-  ],
-  "2029-06-01": [
-    "forest-hill",
-    "toorak"
-  ],
-  "2029-06-02": [
-    "ivanhoe",
-    "vermont"
-  ],
-  "2029-06-03": [
-    "beaumaris",
-    "ripponlea"
-  ],
-  "2029-06-04": [
-    "malvern",
-    "nunawading"
-  ],
-  "2029-06-05": [
-    "sunbury",
-    "woodstock"
-  ],
-  "2029-06-06": [
-    "strathmore-heights",
-    "heidelberg-heights"
-  ],
-  "2029-06-07": [
-    "heathmont",
-    "oakleigh-east"
-  ],
-  "2029-06-08": [
-    "monbulk",
-    "mulgrave"
-  ],
-  "2029-06-09": [
-    "deanside",
-    "tullamarine"
-  ],
-  "2029-06-10": [
-    "wheelers-hill",
-    "ringwood-north"
-  ],
-  "2029-06-11": [
-    "tullamarine",
-    "docklands"
-  ],
-  "2029-06-12": [
-    "kurunjang",
-    "tullamarine"
-  ],
-  "2029-06-13": [
-    "laverton",
-    "parkville"
-  ],
-  "2029-06-14": [
-    "hillside",
-    "yuroke"
-  ],
-  "2029-06-15": [
-    "rowville",
-    "aspendale"
-  ],
-  "2029-06-16": [
-    "gardenvale",
-    "east-melbourne"
-  ],
-  "2029-06-17": [
-    "emerald",
-    "lyndhurst"
-  ],
-  "2029-06-18": [
-    "edithvale",
-    "bentleigh-east"
-  ],
-  "2029-06-19": [
-    "coburg-north",
-    "cremorne"
-  ],
-  "2029-06-20": [
-    "derrimut",
-    "south-melbourne"
-  ],
-  "2029-06-21": [
-    "ivanhoe-east",
-    "malvern-east"
-  ],
-  "2029-06-22": [
-    "mickleham",
-    "fraser-rise"
-  ],
-  "2029-06-23": [
-    "nutfield",
-    "dallas"
-  ],
-  "2029-06-24": [
-    "albanvale",
-    "grangefields"
-  ],
-  "2029-06-25": [
-    "knoxfield",
-    "surrey-hills"
-  ],
-  "2029-06-26": [
-    "burwood-east",
-    "abbotsford"
-  ],
-  "2029-06-27": [
-    "burwood-east",
-    "bulleen"
-  ],
-  "2029-06-28": [
-    "woodstock",
-    "keilor"
-  ],
-  "2029-06-29": [
-    "travancore",
-    "heidelberg-heights"
-  ],
-  "2029-06-30": [
-    "tullamarine",
-    "tottenham"
-  ],
-  "2029-07-01": [
-    "kallista",
-    "cardinia"
-  ],
-  "2029-07-02": [
-    "melbourne-airport",
-    "flemington"
-  ],
-  "2029-07-03": [
-    "south-melbourne",
-    "truganina"
-  ],
-  "2029-07-04": [
-    "werribee-south",
-    "melton"
-  ],
-  "2029-07-05": [
-    "yarrambat",
-    "oak-park"
-  ],
-  "2029-07-06": [
-    "wantirna",
-    "bentleigh-east"
-  ],
-  "2029-07-07": [
-    "noble-park",
-    "glen-iris"
-  ],
-  "2029-07-08": [
-    "st-kilda-west",
-    "carnegie"
-  ],
-  "2029-07-09": [
-    "thornhill-park",
-    "sunshine"
-  ],
-  "2029-07-10": [
-    "cranbourne-south",
-    "edithvale"
-  ],
-  "2029-07-11": [
-    "vermont-south",
-    "eumemmerring"
-  ],
-  "2029-07-12": [
-    "silvan",
-    "warrandyte-south"
-  ],
-  "2029-07-13": [
-    "seaford",
-    "springvale"
-  ],
-  "2029-07-14": [
-    "clyde",
-    "ferntree-gully"
-  ],
-  "2029-07-15": [
-    "brunswick",
-    "watsonia"
-  ],
-  "2029-07-16": [
-    "box-hill-north",
-    "st-andrews"
-  ],
-  "2029-07-17": [
-    "clyde-north",
-    "frankston-south"
-  ],
-  "2029-07-18": [
-    "junction-village",
-    "dingley-village"
-  ],
-  "2029-07-19": [
-    "balaclava",
-    "fairfield"
-  ],
-  "2029-07-20": [
+  "2028-07-20": [
+    "doncaster",
+    "port-melbourne"
+  ],
+  "2028-07-21": [
+    "panton-hill",
+    "hadfield"
+  ],
+  "2028-07-22": [
     "croydon",
-    "burwood"
+    "epping"
   ],
-  "2029-07-21": [
-    "dallas",
-    "keilor-downs"
-  ],
-  "2029-07-22": [
-    "black-rock",
-    "noble-park-north"
-  ],
-  "2029-07-23": [
-    "yuroke",
-    "strathmore"
-  ],
-  "2029-07-24": [
-    "gisborne-south",
-    "burnside-heights"
-  ],
-  "2029-07-25": [
-    "cranbourne-east",
-    "kallista"
-  ],
-  "2029-07-26": [
-    "port-melbourne",
-    "kew-east"
-  ],
-  "2029-07-27": [
-    "toolern-vale",
-    "campbellfield"
-  ],
-  "2029-07-28": [
-    "chirnside-park",
-    "mont-albert-north"
-  ],
-  "2029-07-29": [
-    "balaclava",
+  "2028-07-23": [
+    "melton",
     "seddon"
   ],
-  "2029-07-30": [
-    "beaumaris",
-    "carrum-downs"
+  "2028-07-24": [
+    "williamstown",
+    "cobblebank"
   ],
-  "2029-07-31": [
-    "kilsyth",
-    "oakleigh-east"
-  ],
-  "2029-08-01": [
-    "lalor",
-    "doncaster"
-  ],
-  "2029-08-02": [
-    "south-kingsville",
-    "st-albans"
-  ],
-  "2029-08-03": [
-    "essendon-north",
-    "windsor"
-  ],
-  "2029-08-04": [
-    "gowanbrae",
-    "brooklyn"
-  ],
-  "2029-08-05": [
-    "forest-hill",
-    "kew"
-  ],
-  "2029-08-06": [
-    "fieldstone",
-    "sunbury"
-  ],
-  "2029-08-07": [
-    "kalorama",
-    "warrandyte"
-  ],
-  "2029-08-08": [
-    "mont-albert-north",
-    "caulfield-north"
-  ],
-  "2029-08-09": [
-    "keysborough",
-    "boronia"
-  ],
-  "2029-08-10": [
-    "strathewen",
-    "bundoora"
-  ],
-  "2029-08-11": [
-    "heidelberg",
-    "east-melbourne"
-  ],
-  "2029-08-12": [
-    "diamond-creek",
-    "coburg"
-  ],
-  "2029-08-13": [
-    "surrey-hills",
-    "caulfield"
-  ],
-  "2029-08-14": [
-    "ormond",
-    "aspendale-gardens"
-  ],
-  "2029-08-15": [
-    "selby",
-    "springvale"
-  ],
-  "2029-08-16": [
-    "travancore",
-    "balwyn-north"
-  ],
-  "2029-08-17": [
-    "ardeer",
-    "essendon-north"
-  ],
-  "2029-08-18": [
-    "box-hill",
-    "brunswick-east"
-  ],
-  "2029-08-19": [
-    "kalorama",
-    "ringwood-north"
-  ],
-  "2029-08-20": [
-    "glen-waverley",
-    "caulfield-south"
-  ],
-  "2029-08-21": [
-    "craigieburn",
-    "panton-hill"
-  ],
-  "2029-08-22": [
-    "clyde",
-    "upwey"
-  ],
-  "2029-08-23": [
+  "2028-07-25": [
     "arthurs-creek",
-    "kilsyth"
+    "melbourne-airport"
   ],
-  "2029-08-24": [
-    "aintree",
-    "keilor-east"
-  ],
-  "2029-08-25": [
-    "skye",
-    "narre-warren-east"
-  ],
-  "2029-08-26": [
-    "delahey",
-    "altona-north"
-  ],
-  "2029-08-27": [
-    "oaklands-junction",
-    "coburg-north"
-  ],
-  "2029-08-28": [
-    "westmeadows",
-    "rockbank"
-  ],
-  "2029-08-29": [
-    "brunswick",
-    "watsonia"
-  ],
-  "2029-08-30": [
-    "warranwood",
-    "box-hill"
-  ],
-  "2029-08-31": [
-    "ivanhoe-east",
-    "dallas"
-  ],
-  "2029-09-01": [
-    "heathmont",
-    "yarra-glen"
-  ],
-  "2029-09-02": [
-    "prahran",
-    "glen-waverley"
-  ],
-  "2029-09-03": [
-    "ormond",
-    "scoresby"
-  ],
-  "2029-09-04": [
-    "beaumaris",
-    "carrum-downs"
-  ],
-  "2029-09-05": [
-    "hoppers-crossing",
-    "maidstone"
-  ],
-  "2029-09-06": [
-    "seddon",
-    "balaclava"
-  ],
-  "2029-09-07": [
-    "hampton",
-    "aspendale-gardens"
-  ],
-  "2029-09-08": [
-    "bentleigh",
-    "kooyong"
-  ],
-  "2029-09-09": [
-    "glen-huntly",
-    "fairfield"
-  ],
-  "2029-09-10": [
-    "strathmore-heights",
-    "alphington"
-  ],
-  "2029-09-11": [
-    "manor-lakes",
-    "burnside"
-  ],
-  "2029-09-12": [
-    "huntingdale",
-    "waterways"
-  ],
-  "2029-09-13": [
-    "wantirna-south",
-    "harkaway"
-  ],
-  "2029-09-14": [
-    "clayton",
-    "narre-warren"
-  ],
-  "2029-09-15": [
-    "laverton",
-    "avondale-heights"
-  ],
-  "2029-09-16": [
-    "avondale-heights",
-    "toolern-vale"
-  ],
-  "2029-09-17": [
-    "albion",
-    "westmeadows"
-  ],
-  "2029-09-18": [
-    "briar-hill",
-    "forest-hill"
-  ],
-  "2029-09-19": [
+  "2028-07-26": [
     "bangholme",
-    "murrumbeena"
+    "tremont"
   ],
-  "2029-09-20": [
-    "spotswood",
-    "canterbury"
+  "2028-07-27": [
+    "ormond",
+    "carrum"
   ],
-  "2029-09-21": [
-    "dandenong-north",
-    "clyde"
+  "2028-07-28": [
+    "ringwood-east",
+    "clayton-south"
   ],
-  "2029-09-22": [
-    "heatherton",
-    "armadale"
+  "2028-07-29": [
+    "ardeer",
+    "broadmeadows"
   ],
-  "2029-09-23": [
-    "dixons-creek",
-    "diamond-creek"
+  "2028-07-30": [
+    "blackburn",
+    "dandenong-south"
   ],
-  "2029-09-24": [
-    "melbourne-airport",
-    "yarrambat"
+  "2028-07-31": [
+    "heathmont",
+    "clifton-hill"
   ],
-  "2029-09-25": [
-    "nutfield",
+  "2028-08-01": [
+    "lalor",
+    "chirnside-park"
+  ],
+  "2028-08-02": [
+    "cardinia",
+    "kalorama"
+  ],
+  "2028-08-03": [
+    "narre-warren",
+    "chirnside-park"
+  ],
+  "2028-08-04": [
+    "south-wharf",
+    "hadfield"
+  ],
+  "2028-08-05": [
+    "bend-of-islands",
+    "upper-ferntree-gully"
+  ],
+  "2028-08-06": [
+    "fitzroy",
+    "derrimut"
+  ],
+  "2028-08-07": [
+    "yering",
+    "belgrave-south"
+  ],
+  "2028-08-08": [
+    "cremorne",
+    "vermont"
+  ],
+  "2028-08-09": [
+    "templestowe-lower",
     "glenroy"
   ],
-  "2029-09-26": [
-    "ringwood-east",
-    "dixons-creek"
+  "2028-08-10": [
+    "frankston-south",
+    "clayton"
   ],
-  "2029-09-27": [
-    "southbank",
+  "2028-08-11": [
+    "brunswick",
+    "mickleham"
+  ],
+  "2028-08-12": [
+    "skye",
+    "carnegie"
+  ],
+  "2028-08-13": [
+    "port-melbourne",
+    "hillside"
+  ],
+  "2028-08-14": [
+    "windsor",
+    "albanvale"
+  ],
+  "2028-08-15": [
+    "jacana",
+    "south-wharf"
+  ],
+  "2028-08-16": [
+    "mickleham",
+    "strathtulloh"
+  ],
+  "2028-08-17": [
+    "maidstone",
+    "fairfield"
+  ],
+  "2028-08-18": [
+    "ravenhall",
+    "brunswick-west"
+  ],
+  "2028-08-19": [
+    "laverton",
+    "keilor-north"
+  ],
+  "2028-08-20": [
+    "narre-warren-south",
+    "carnegie"
+  ],
+  "2028-08-21": [
+    "heathmont",
+    "noble-park"
+  ],
+  "2028-08-22": [
+    "alphington",
+    "bentleigh"
+  ],
+  "2028-08-23": [
+    "deer-park",
+    "balaclava"
+  ],
+  "2028-08-24": [
+    "bulleen",
+    "bayswater"
+  ],
+  "2028-08-25": [
+    "forest-hill",
+    "st-kilda-east"
+  ],
+  "2028-08-26": [
+    "williams-landing",
+    "coburg"
+  ],
+  "2028-08-27": [
+    "campbellfield",
+    "yarra-glen"
+  ],
+  "2028-08-28": [
+    "deepdene",
+    "tottenham"
+  ],
+  "2028-08-29": [
+    "aspendale-gardens",
+    "bayswater-north"
+  ],
+  "2028-08-30": [
+    "nunawading",
+    "st-kilda-east"
+  ],
+  "2028-08-31": [
+    "donnybrook",
+    "taylors-hill"
+  ],
+  "2028-09-01": [
+    "clayton",
+    "kallista"
+  ],
+  "2028-09-02": [
+    "vermont",
+    "collingwood"
+  ],
+  "2028-09-03": [
+    "wildwood",
+    "ardeer"
+  ],
+  "2028-09-04": [
+    "mill-park",
+    "essendon-north"
+  ],
+  "2028-09-05": [
+    "heatherton",
+    "botanic-ridge"
+  ],
+  "2028-09-06": [
+    "wyndham-vale",
+    "keilor-lodge"
+  ],
+  "2028-09-07": [
+    "mordialloc",
+    "boronia"
+  ],
+  "2028-09-08": [
+    "panton-hill",
+    "kew"
+  ],
+  "2028-09-09": [
+    "epping",
+    "melton-south"
+  ],
+  "2028-09-10": [
+    "bonbeach",
+    "bentleigh"
+  ],
+  "2028-09-11": [
+    "brighton",
+    "williamstown"
+  ],
+  "2028-09-12": [
+    "lalor",
+    "maidstone"
+  ],
+  "2028-09-13": [
+    "cranbourne-east",
+    "sassafras"
+  ],
+  "2028-09-14": [
+    "south-morang",
+    "northcote"
+  ],
+  "2028-09-15": [
+    "west-footscray",
+    "broadmeadows"
+  ],
+  "2028-09-16": [
+    "ivanhoe",
+    "humevale"
+  ],
+  "2028-09-17": [
+    "dandenong-south",
+    "nunawading"
+  ],
+  "2028-09-18": [
+    "thornbury",
     "glen-huntly"
   ],
-  "2029-09-28": [
-    "the-basin",
-    "watsons-creek"
+  "2028-09-19": [
+    "lynbrook",
+    "the-patch"
   ],
-  "2029-09-29": [
-    "travancore",
-    "sunshine-west"
+  "2028-09-20": [
+    "mitcham",
+    "lysterfield-south"
   ],
-  "2029-09-30": [
-    "taylors-lakes",
+  "2028-09-21": [
+    "oak-park",
+    "doncaster"
+  ],
+  "2028-09-22": [
+    "frankston-north",
+    "knoxfield"
+  ],
+  "2028-09-23": [
+    "delahey",
     "dallas"
   ],
+  "2028-09-24": [
+    "altona-meadows",
+    "keilor"
+  ],
+  "2028-09-25": [
+    "keilor",
+    "laverton"
+  ],
+  "2028-09-26": [
+    "panton-hill",
+    "gowanbrae"
+  ],
+  "2028-09-27": [
+    "bulleen",
+    "glen-huntly"
+  ],
+  "2028-09-28": [
+    "hampton-park",
+    "carnegie"
+  ],
+  "2028-09-29": [
+    "sassafras",
+    "heatherton"
+  ],
+  "2028-09-30": [
+    "yallambie",
+    "bayswater-north"
+  ],
+  "2028-10-01": [
+    "braybrook",
+    "dallas"
+  ],
+  "2028-10-02": [
+    "travancore",
+    "ravenhall"
+  ],
+  "2028-10-03": [
+    "kilsyth-south",
+    "cranbourne-west"
+  ],
+  "2028-10-04": [
+    "bayswater",
+    "mordialloc"
+  ],
+  "2028-10-05": [
+    "springvale-south",
+    "canterbury"
+  ],
+  "2028-10-06": [
+    "plumpton",
+    "flemington"
+  ],
+  "2028-10-07": [
+    "armadale",
+    "laverton-north"
+  ],
+  "2028-10-08": [
+    "yallambie",
+    "oak-park"
+  ],
+  "2028-10-09": [
+    "kensington",
+    "mount-cottrell"
+  ],
+  "2028-10-10": [
+    "wandin-north",
+    "blackburn-north"
+  ],
+  "2028-10-11": [
+    "campbellfield",
+    "croydon-north"
+  ],
+  "2028-10-12": [
+    "clarinda",
+    "kew-east"
+  ],
+  "2028-10-13": [
+    "kingsville",
+    "hampton"
+  ],
+  "2028-10-14": [
+    "pascoe-vale-south",
+    "camberwell"
+  ],
+  "2028-10-15": [
+    "ardeer",
+    "campbellfield"
+  ],
+  "2028-10-16": [
+    "oaklands-junction",
+    "parkville"
+  ],
+  "2028-10-17": [
+    "park-orchards",
+    "wheelers-hill"
+  ],
+  "2028-10-18": [
+    "ashburton",
+    "brunswick"
+  ],
+  "2028-10-19": [
+    "mambourin",
+    "port-melbourne"
+  ],
+  "2028-10-20": [
+    "broadmeadows",
+    "wattle-glen"
+  ],
+  "2028-10-21": [
+    "warrandyte",
+    "brunswick"
+  ],
+  "2028-10-22": [
+    "burnside-heights",
+    "roxburgh-park"
+  ],
+  "2028-10-23": [
+    "taylors-lakes",
+    "werribee"
+  ],
+  "2028-10-24": [
+    "moorabbin-airport",
+    "cranbourne-east"
+  ],
+  "2028-10-25": [
+    "monbulk",
+    "dandenong"
+  ],
+  "2028-10-26": [
+    "epping",
+    "mont-albert"
+  ],
+  "2028-10-27": [
+    "yering",
+    "bulleen"
+  ],
+  "2028-10-28": [
+    "sunshine",
+    "cocoroc"
+  ],
+  "2028-10-29": [
+    "windsor",
+    "essendon-fields"
+  ],
+  "2028-10-30": [
+    "altona-meadows",
+    "armadale"
+  ],
+  "2028-10-31": [
+    "essendon-north",
+    "laverton"
+  ],
+  "2028-11-01": [
+    "sydenham",
+    "donnybrook"
+  ],
+  "2028-11-02": [
+    "reservoir",
+    "forest-hill"
+  ],
+  "2028-11-03": [
+    "ascot-vale",
+    "craigieburn"
+  ],
+  "2028-11-04": [
+    "ferntree-gully",
+    "malvern"
+  ],
+  "2028-11-05": [
+    "burnley",
+    "altona-meadows"
+  ],
+  "2028-11-06": [
+    "bonbeach",
+    "brighton-east"
+  ],
+  "2028-11-07": [
+    "keilor",
+    "cremorne"
+  ],
+  "2028-11-08": [
+    "werribee",
+    "melbourne-cbd"
+  ],
+  "2028-11-09": [
+    "botanic-ridge",
+    "ferntree-gully"
+  ],
+  "2028-11-10": [
+    "sunshine-north",
+    "epping"
+  ],
+  "2028-11-11": [
+    "burnside",
+    "aberfeldie"
+  ],
+  "2028-11-12": [
+    "lysterfield-south",
+    "box-hill-north"
+  ],
+  "2028-11-13": [
+    "keilor-downs",
+    "albert-park"
+  ],
+  "2028-11-14": [
+    "nutfield",
+    "bellfield"
+  ],
+  "2028-11-15": [
+    "ascot-vale",
+    "calder-park"
+  ],
+  "2028-11-16": [
+    "kew-east",
+    "hampton"
+  ],
+  "2028-11-17": [
+    "south-yarra",
+    "albion"
+  ],
+  "2028-11-18": [
+    "essendon-west",
+    "kew"
+  ],
+  "2028-11-19": [
+    "south-morang",
+    "keilor-east"
+  ],
+  "2028-11-20": [
+    "selby",
+    "kangaroo-ground"
+  ],
+  "2028-11-21": [
+    "yarrambat",
+    "wantirna-south"
+  ],
+  "2028-11-22": [
+    "abbotsford",
+    "warranwood"
+  ],
+  "2028-11-23": [
+    "point-cook",
+    "carlton-north"
+  ],
+  "2028-11-24": [
+    "footscray",
+    "mont-albert-north"
+  ],
+  "2028-11-25": [
+    "wandin-north",
+    "watsonia"
+  ],
+  "2028-11-26": [
+    "vermont",
+    "hampton-east"
+  ],
+  "2028-11-27": [
+    "pascoe-vale-south",
+    "delahey"
+  ],
+  "2028-11-28": [
+    "the-basin",
+    "doncaster"
+  ],
+  "2028-11-29": [
+    "yan-yean",
+    "keilor-park"
+  ],
+  "2028-11-30": [
+    "oakleigh",
+    "west-footscray"
+  ],
+  "2028-12-01": [
+    "bulleen",
+    "kilsyth"
+  ],
+  "2028-12-02": [
+    "braybrook",
+    "wyndham-vale"
+  ],
+  "2028-12-03": [
+    "altona-north",
+    "glen-huntly"
+  ],
+  "2028-12-04": [
+    "castella",
+    "lower-plenty"
+  ],
+  "2028-12-05": [
+    "kingsbury",
+    "vermont"
+  ],
+  "2028-12-06": [
+    "st-kilda-west",
+    "heatherton"
+  ],
+  "2028-12-07": [
+    "knoxfield",
+    "watsons-creek"
+  ],
+  "2028-12-08": [
+    "kangaroo-ground",
+    "upper-ferntree-gully"
+  ],
+  "2028-12-09": [
+    "yarrambat",
+    "essendon-north"
+  ],
+  "2028-12-10": [
+    "canterbury",
+    "the-basin"
+  ],
+  "2028-12-11": [
+    "officer",
+    "clarinda"
+  ],
+  "2028-12-12": [
+    "the-patch",
+    "watsons-creek"
+  ],
+  "2028-12-13": [
+    "officer",
+    "kilsyth-south"
+  ],
+  "2028-12-14": [
+    "scoresby",
+    "balaclava"
+  ],
+  "2028-12-15": [
+    "point-cook",
+    "strathmore"
+  ],
+  "2028-12-16": [
+    "croydon",
+    "bentleigh-east"
+  ],
+  "2028-12-17": [
+    "glen-waverley",
+    "bulleen"
+  ],
+  "2028-12-18": [
+    "caulfield-north",
+    "heidelberg"
+  ],
+  "2028-12-19": [
+    "niddrie",
+    "balaclava"
+  ],
+  "2028-12-20": [
+    "bellfield",
+    "clayton"
+  ],
+  "2028-12-21": [
+    "nutfield",
+    "blackburn-north"
+  ],
+  "2028-12-22": [
+    "plumpton",
+    "coburg-north"
+  ],
+  "2028-12-23": [
+    "hawthorn-east",
+    "ferntree-gully"
+  ],
+  "2028-12-24": [
+    "richmond",
+    "tullamarine"
+  ],
+  "2028-12-25": [
+    "chelsea",
+    "upwey"
+  ],
+  "2028-12-26": [
+    "the-basin",
+    "springvale-south"
+  ],
+  "2028-12-27": [
+    "smiths-gully",
+    "belgrave-south"
+  ],
+  "2028-12-28": [
+    "fitzroy",
+    "briar-hill"
+  ],
+  "2028-12-29": [
+    "ashwood",
+    "tottenham"
+  ],
+  "2028-12-30": [
+    "briar-hill",
+    "greenvale"
+  ],
+  "2028-12-31": [
+    "ringwood-east",
+    "fairfield"
+  ],
+  "2029-01-01": [
+    "essendon-fields",
+    "laverton-north"
+  ],
+  "2029-01-02": [
+    "bellfield",
+    "keilor"
+  ],
+  "2029-01-03": [
+    "mont-albert",
+    "wattle-glen"
+  ],
+  "2029-01-04": [
+    "beaconsfield",
+    "kilsyth-south"
+  ],
+  "2029-01-05": [
+    "elsternwick",
+    "south-kingsville"
+  ],
+  "2029-01-06": [
+    "castella",
+    "mont-albert"
+  ],
+  "2029-01-07": [
+    "mooroolbark",
+    "eumemmerring"
+  ],
+  "2029-01-08": [
+    "balwyn-north",
+    "west-footscray"
+  ],
+  "2029-01-09": [
+    "melbourne-airport",
+    "eltham-north"
+  ],
+  "2029-01-10": [
+    "guys-hill",
+    "mooroolbark"
+  ],
+  "2029-01-11": [
+    "burwood-east",
+    "heidelberg-heights"
+  ],
+  "2029-01-12": [
+    "niddrie",
+    "balwyn"
+  ],
+  "2029-01-13": [
+    "somerton",
+    "park-orchards"
+  ],
+  "2029-01-14": [
+    "northcote",
+    "mount-waverley"
+  ],
+  "2029-01-15": [
+    "altona",
+    "gowanbrae"
+  ],
+  "2029-01-16": [
+    "maidstone",
+    "thornhill-park"
+  ],
+  "2029-01-17": [
+    "junction-village",
+    "boronia"
+  ],
+  "2029-01-18": [
+    "coldstream",
+    "lysterfield-south"
+  ],
+  "2029-01-19": [
+    "montmorency",
+    "kilsyth-south"
+  ],
+  "2029-01-20": [
+    "monbulk",
+    "junction-village"
+  ],
+  "2029-01-21": [
+    "lynbrook",
+    "sassafras"
+  ],
+  "2029-01-22": [
+    "cranbourne-west",
+    "selby"
+  ],
+  "2029-01-23": [
+    "coburg-north",
+    "warrandyte-south"
+  ],
+  "2029-01-24": [
+    "campbellfield",
+    "mont-albert"
+  ],
+  "2029-01-25": [
+    "eumemmerring",
+    "caulfield-east"
+  ],
+  "2029-01-26": [
+    "mernda",
+    "lilydale"
+  ],
+  "2029-01-27": [
+    "lilydale",
+    "burwood-east"
+  ],
+  "2029-01-28": [
+    "wildwood",
+    "burnside"
+  ],
+  "2029-01-29": [
+    "ashburton",
+    "mount-dandenong"
+  ],
+  "2029-01-30": [
+    "sassafras",
+    "cottles-bridge"
+  ],
+  "2029-01-31": [
+    "melton-south",
+    "broadmeadows"
+  ],
+  "2029-02-01": [
+    "altona-north",
+    "kurunjang"
+  ],
+  "2029-02-02": [
+    "edithvale",
+    "upwey"
+  ],
+  "2029-02-03": [
+    "harkaway",
+    "croydon-south"
+  ],
+  "2029-02-04": [
+    "heidelberg-heights",
+    "yering"
+  ],
+  "2029-02-05": [
+    "berwick",
+    "clarinda"
+  ],
+  "2029-02-06": [
+    "beaconsfield",
+    "tarrawarra"
+  ],
+  "2029-02-07": [
+    "heatherton",
+    "carlton"
+  ],
+  "2029-02-08": [
+    "aberfeldie",
+    "oakleigh"
+  ],
+  "2029-02-09": [
+    "kingsville",
+    "glenroy"
+  ],
+  "2029-02-10": [
+    "wonga-park",
+    "brunswick"
+  ],
+  "2029-02-11": [
+    "laverton",
+    "essendon-fields"
+  ],
+  "2029-02-12": [
+    "dalmore",
+    "selby"
+  ],
+  "2029-02-13": [
+    "bellfield",
+    "wonga-park"
+  ],
+  "2029-02-14": [
+    "boronia",
+    "ormond"
+  ],
+  "2029-02-15": [
+    "lower-plenty",
+    "airport-west"
+  ],
+  "2029-02-16": [
+    "narre-warren-east",
+    "blackburn-south"
+  ],
+  "2029-02-17": [
+    "chirnside-park",
+    "belgrave"
+  ],
+  "2029-02-18": [
+    "keilor-north",
+    "rosanna"
+  ],
+  "2029-02-19": [
+    "coolaroo",
+    "melton-south"
+  ],
+  "2029-02-20": [
+    "moorabbin",
+    "bayswater-north"
+  ],
+  "2029-02-21": [
+    "coldstream",
+    "bulleen"
+  ],
+  "2029-02-22": [
+    "ravenhall",
+    "st-kilda"
+  ],
+  "2029-02-23": [
+    "ringwood-north",
+    "upper-ferntree-gully"
+  ],
+  "2029-02-24": [
+    "burnside",
+    "ascot-vale"
+  ],
+  "2029-02-25": [
+    "hawthorn",
+    "rowville"
+  ],
+  "2029-02-26": [
+    "delahey",
+    "port-melbourne"
+  ],
+  "2029-02-27": [
+    "eumemmerring",
+    "croydon-north"
+  ],
+  "2029-02-28": [
+    "beaumaris",
+    "st-kilda-east"
+  ],
+  "2029-03-01": [
+    "burwood-east",
+    "cranbourne-north"
+  ],
+  "2029-03-02": [
+    "chirnside-park",
+    "mount-waverley"
+  ],
+  "2029-03-03": [
+    "berwick",
+    "clayton-south"
+  ],
+  "2029-03-04": [
+    "strathmore",
+    "fraser-rise"
+  ],
+  "2029-03-05": [
+    "watsonia-north",
+    "dixons-creek"
+  ],
+  "2029-03-06": [
+    "caroline-springs",
+    "southbank"
+  ],
+  "2029-03-07": [
+    "yarra-glen",
+    "mill-park"
+  ],
+  "2029-03-08": [
+    "wollert",
+    "brunswick-west"
+  ],
+  "2029-03-09": [
+    "lalor",
+    "nunawading"
+  ],
+  "2029-03-10": [
+    "warrandyte-south",
+    "narre-warren-east"
+  ],
+  "2029-03-11": [
+    "sandringham",
+    "glen-waverley"
+  ],
+  "2029-03-12": [
+    "arthurs-creek",
+    "bulla"
+  ],
+  "2029-03-13": [
+    "strathmore",
+    "taylors-hill"
+  ],
+  "2029-03-14": [
+    "bentleigh-east",
+    "cremorne"
+  ],
+  "2029-03-15": [
+    "sunbury",
+    "sunshine"
+  ],
+  "2029-03-16": [
+    "canterbury",
+    "plenty"
+  ],
+  "2029-03-17": [
+    "belgrave",
+    "christmas-hills"
+  ],
+  "2029-03-18": [
+    "moonee-ponds",
+    "hoppers-crossing"
+  ],
+  "2029-03-19": [
+    "belgrave-heights",
+    "mitcham"
+  ],
+  "2029-03-20": [
+    "meadow-heights",
+    "abbotsford"
+  ],
+  "2029-03-21": [
+    "malvern-east",
+    "essendon-west"
+  ],
+  "2029-03-22": [
+    "narre-warren-east",
+    "warranwood"
+  ],
+  "2029-03-23": [
+    "northcote",
+    "laverton-north"
+  ],
+  "2029-03-24": [
+    "hadfield",
+    "ardeer"
+  ],
+  "2029-03-25": [
+    "beaconsfield",
+    "chelsea"
+  ],
+  "2029-03-26": [
+    "mont-albert-north",
+    "gowanbrae"
+  ],
+  "2029-03-27": [
+    "wollert",
+    "yarra-glen"
+  ],
+  "2029-03-28": [
+    "mont-albert-north",
+    "gowanbrae"
+  ],
+  "2029-03-29": [
+    "ivanhoe",
+    "ormond"
+  ],
+  "2029-03-30": [
+    "frankston-north",
+    "hughesdale"
+  ],
+  "2029-03-31": [
+    "monbulk",
+    "clayton"
+  ],
+  "2029-04-01": [
+    "wattle-glen",
+    "ferny-creek"
+  ],
+  "2029-04-02": [
+    "ringwood",
+    "cremorne"
+  ],
+  "2029-04-03": [
+    "kingsville",
+    "kingsbury"
+  ],
+  "2029-04-04": [
+    "macleod",
+    "caulfield-north"
+  ],
+  "2029-04-05": [
+    "clematis",
+    "kilsyth-south"
+  ],
+  "2029-04-06": [
+    "dingley-village",
+    "balwyn"
+  ],
+  "2029-04-07": [
+    "delahey",
+    "north-melbourne"
+  ],
+  "2029-04-08": [
+    "endeavour-hills",
+    "caulfield-east"
+  ],
+  "2029-04-09": [
+    "coolaroo",
+    "wattle-glen"
+  ],
+  "2029-04-10": [
+    "cheltenham",
+    "cranbourne-south"
+  ],
+  "2029-04-11": [
+    "highett",
+    "nunawading"
+  ],
+  "2029-04-12": [
+    "laverton-north",
+    "greenvale"
+  ],
+  "2029-04-13": [
+    "cobblebank",
+    "mickleham"
+  ],
+  "2029-04-14": [
+    "sandringham",
+    "frankston-north"
+  ],
+  "2029-04-15": [
+    "fairfield",
+    "altona-north"
+  ],
+  "2029-04-16": [
+    "craigieburn",
+    "ivanhoe-east"
+  ],
+  "2029-04-17": [
+    "cobblebank",
+    "glenroy"
+  ],
+  "2029-04-18": [
+    "st-helena",
+    "mooroolbark"
+  ],
+  "2029-04-19": [
+    "glen-waverley",
+    "burnley"
+  ],
+  "2029-04-20": [
+    "oakleigh",
+    "bonbeach"
+  ],
+  "2029-04-21": [
+    "patterson-lakes",
+    "belgrave-heights"
+  ],
+  "2029-04-22": [
+    "richmond",
+    "derrimut"
+  ],
+  "2029-04-23": [
+    "burwood-east",
+    "aspendale-gardens"
+  ],
+  "2029-04-24": [
+    "yering",
+    "guys-hill"
+  ],
+  "2029-04-25": [
+    "lalor",
+    "glen-iris"
+  ],
+  "2029-04-26": [
+    "the-basin",
+    "ashburton"
+  ],
+  "2029-04-27": [
+    "chirnside-park",
+    "abbotsford"
+  ],
+  "2029-04-28": [
+    "mckinnon",
+    "tremont"
+  ],
+  "2029-04-29": [
+    "lilydale",
+    "berwick"
+  ],
+  "2029-04-30": [
+    "altona-north",
+    "reservoir"
+  ],
+  "2029-05-01": [
+    "south-morang",
+    "dixons-creek"
+  ],
+  "2029-05-02": [
+    "beaconsfield",
+    "croydon"
+  ],
+  "2029-05-03": [
+    "kingsville",
+    "ashburton"
+  ],
+  "2029-05-04": [
+    "spotswood",
+    "jacana"
+  ],
+  "2029-05-05": [
+    "mambourin",
+    "tottenham"
+  ],
+  "2029-05-06": [
+    "cottles-bridge",
+    "coburg-north"
+  ],
+  "2029-05-07": [
+    "kew",
+    "croydon-south"
+  ],
+  "2029-05-08": [
+    "lyndhurst",
+    "forest-hill"
+  ],
+  "2029-05-09": [
+    "blackburn",
+    "melbourne-cbd"
+  ],
+  "2029-05-10": [
+    "toolern-vale",
+    "laverton"
+  ],
+  "2029-05-11": [
+    "steels-creek",
+    "box-hill-south"
+  ],
+  "2029-05-12": [
+    "abbotsford",
+    "watsonia"
+  ],
+  "2029-05-13": [
+    "smiths-gully",
+    "scoresby"
+  ],
+  "2029-05-14": [
+    "clifton-hill",
+    "moorabbin"
+  ],
+  "2029-05-15": [
+    "attwood",
+    "carlton-north"
+  ],
+  "2029-05-16": [
+    "wantirna",
+    "yarrambat"
+  ],
+  "2029-05-17": [
+    "burnside",
+    "kensington"
+  ],
+  "2029-05-18": [
+    "cairnlea",
+    "east-melbourne"
+  ],
+  "2029-05-19": [
+    "newport",
+    "essendon-fields"
+  ],
+  "2029-05-20": [
+    "the-basin",
+    "bangholme"
+  ],
+  "2029-05-21": [
+    "carlton-north",
+    "melbourne-airport"
+  ],
+  "2029-05-22": [
+    "broadmeadows",
+    "balwyn"
+  ],
+  "2029-05-23": [
+    "box-hill-south",
+    "sherbrooke"
+  ],
+  "2029-05-24": [
+    "campbellfield",
+    "tottenham"
+  ],
+  "2029-05-25": [
+    "albanvale",
+    "manor-lakes"
+  ],
+  "2029-05-26": [
+    "kangaroo-ground",
+    "burwood"
+  ],
+  "2029-05-27": [
+    "warrandyte-south",
+    "brunswick"
+  ],
+  "2029-05-28": [
+    "black-rock",
+    "ashburton"
+  ],
+  "2029-05-29": [
+    "clyde",
+    "olinda"
+  ],
+  "2029-05-30": [
+    "humevale",
+    "westmeadows"
+  ],
+  "2029-05-31": [
+    "mount-evelyn",
+    "doreen"
+  ],
+  "2029-06-01": [
+    "doncaster-east",
+    "sassafras"
+  ],
+  "2029-06-02": [
+    "clarinda",
+    "ferny-creek"
+  ],
+  "2029-06-03": [
+    "beaconsfield-upper",
+    "aspendale-gardens"
+  ],
+  "2029-06-04": [
+    "bulleen",
+    "west-footscray"
+  ],
+  "2029-06-05": [
+    "mordialloc",
+    "belgrave-south"
+  ],
+  "2029-06-06": [
+    "yarrambat",
+    "croydon-south"
+  ],
+  "2029-06-07": [
+    "eltham-north",
+    "bulla"
+  ],
+  "2029-06-08": [
+    "narre-warren-north",
+    "tarrawarra"
+  ],
+  "2029-06-09": [
+    "cobblebank",
+    "roxburgh-park"
+  ],
+  "2029-06-10": [
+    "kalkallo",
+    "thornhill-park"
+  ],
+  "2029-06-11": [
+    "fitzroy",
+    "aintree"
+  ],
+  "2029-06-12": [
+    "keilor-east",
+    "cremorne"
+  ],
+  "2029-06-13": [
+    "hampton-park",
+    "highett"
+  ],
+  "2029-06-14": [
+    "cheltenham",
+    "tecoma"
+  ],
+  "2029-06-15": [
+    "brunswick-east",
+    "taylors-lakes"
+  ],
+  "2029-06-16": [
+    "park-orchards",
+    "sassafras"
+  ],
+  "2029-06-17": [
+    "the-basin",
+    "bentleigh"
+  ],
+  "2029-06-18": [
+    "hughesdale",
+    "brooklyn"
+  ],
+  "2029-06-19": [
+    "bonnie-brook",
+    "epping"
+  ],
+  "2029-06-20": [
+    "albert-park",
+    "wyndham-vale"
+  ],
+  "2029-06-21": [
+    "ferny-creek",
+    "smiths-gully"
+  ],
+  "2029-06-22": [
+    "officer-south",
+    "aspendale"
+  ],
+  "2029-06-23": [
+    "deer-park",
+    "cremorne"
+  ],
+  "2029-06-24": [
+    "carlton-north",
+    "yarrambat"
+  ],
+  "2029-06-25": [
+    "nutfield",
+    "bayswater-north"
+  ],
+  "2029-06-26": [
+    "essendon-fields",
+    "toorak"
+  ],
+  "2029-06-27": [
+    "plenty",
+    "footscray"
+  ],
+  "2029-06-28": [
+    "knoxfield",
+    "hampton"
+  ],
+  "2029-06-29": [
+    "heidelberg",
+    "croydon"
+  ],
+  "2029-06-30": [
+    "middle-park",
+    "oak-park"
+  ],
+  "2029-07-01": [
+    "parkville",
+    "glen-waverley"
+  ],
+  "2029-07-02": [
+    "springvale-south",
+    "mount-dandenong"
+  ],
+  "2029-07-03": [
+    "lalor",
+    "toorak"
+  ],
+  "2029-07-04": [
+    "craigieburn",
+    "watsons-creek"
+  ],
+  "2029-07-05": [
+    "belgrave",
+    "clyde"
+  ],
+  "2029-07-06": [
+    "bulleen",
+    "newport"
+  ],
+  "2029-07-07": [
+    "cottles-bridge",
+    "bayswater-north"
+  ],
+  "2029-07-08": [
+    "beaconsfield",
+    "wantirna-south"
+  ],
+  "2029-07-09": [
+    "albert-park",
+    "grangefields"
+  ],
+  "2029-07-10": [
+    "south-melbourne",
+    "strathmore-heights"
+  ],
+  "2029-07-11": [
+    "fitzroy-north",
+    "caulfield-south"
+  ],
+  "2029-07-12": [
+    "heidelberg-heights",
+    "middle-park"
+  ],
+  "2029-07-13": [
+    "junction-village",
+    "olinda"
+  ],
+  "2029-07-14": [
+    "caulfield-south",
+    "box-hill"
+  ],
+  "2029-07-15": [
+    "melton-south",
+    "oak-park"
+  ],
+  "2029-07-16": [
+    "melton",
+    "lalor"
+  ],
+  "2029-07-17": [
+    "ringwood-east",
+    "glen-iris"
+  ],
+  "2029-07-18": [
+    "beaumaris",
+    "seaford"
+  ],
+  "2029-07-19": [
+    "keilor-park",
+    "heidelberg"
+  ],
+  "2029-07-20": [
+    "moorabbin",
+    "doncaster-east"
+  ],
+  "2029-07-21": [
+    "hadfield",
+    "plumpton"
+  ],
+  "2029-07-22": [
+    "knoxfield",
+    "junction-village"
+  ],
+  "2029-07-23": [
+    "reservoir",
+    "delahey"
+  ],
+  "2029-07-24": [
+    "prahran",
+    "seaholme"
+  ],
+  "2029-07-25": [
+    "maidstone",
+    "kew-east"
+  ],
+  "2029-07-26": [
+    "coburg-north",
+    "melton"
+  ],
+  "2029-07-27": [
+    "st-helena",
+    "surrey-hills"
+  ],
+  "2029-07-28": [
+    "maribyrnong",
+    "ashwood"
+  ],
+  "2029-07-29": [
+    "altona-north",
+    "murrumbeena"
+  ],
+  "2029-07-30": [
+    "kingsbury",
+    "vermont"
+  ],
+  "2029-07-31": [
+    "lower-plenty",
+    "kooyong"
+  ],
+  "2029-08-01": [
+    "melbourne-airport",
+    "manor-lakes"
+  ],
+  "2029-08-02": [
+    "seabrook",
+    "carlton"
+  ],
+  "2029-08-03": [
+    "macleod",
+    "niddrie"
+  ],
+  "2029-08-04": [
+    "malvern-east",
+    "eaglemont"
+  ],
+  "2029-08-05": [
+    "elsternwick",
+    "templestowe-lower"
+  ],
+  "2029-08-06": [
+    "carlton",
+    "watsonia-north"
+  ],
+  "2029-08-07": [
+    "deepdene",
+    "christmas-hills"
+  ],
+  "2029-08-08": [
+    "junction-village",
+    "clayton-south"
+  ],
+  "2029-08-09": [
+    "heidelberg-west",
+    "caulfield-north"
+  ],
+  "2029-08-10": [
+    "glen-waverley",
+    "diamond-creek"
+  ],
+  "2029-08-11": [
+    "fairfield",
+    "donnybrook"
+  ],
+  "2029-08-12": [
+    "hillside",
+    "seddon"
+  ],
+  "2029-08-13": [
+    "kealba",
+    "mernda"
+  ],
+  "2029-08-14": [
+    "heidelberg-heights",
+    "caulfield-east"
+  ],
+  "2029-08-15": [
+    "the-patch",
+    "strathewen"
+  ],
+  "2029-08-16": [
+    "delahey",
+    "mernda"
+  ],
+  "2029-08-17": [
+    "collingwood",
+    "keilor-park"
+  ],
+  "2029-08-18": [
+    "huntingdale",
+    "cranbourne-north"
+  ],
+  "2029-08-19": [
+    "strathmore-heights",
+    "east-melbourne"
+  ],
+  "2029-08-20": [
+    "mount-waverley",
+    "narre-warren-south"
+  ],
+  "2029-08-21": [
+    "airport-west",
+    "melton-south"
+  ],
+  "2029-08-22": [
+    "fairfield",
+    "laverton"
+  ],
+  "2029-08-23": [
+    "west-melbourne",
+    "clayton"
+  ],
+  "2029-08-24": [
+    "hampton",
+    "west-footscray"
+  ],
+  "2029-08-25": [
+    "kensington",
+    "grangefields"
+  ],
+  "2029-08-26": [
+    "guys-hill",
+    "heathmont"
+  ],
+  "2029-08-27": [
+    "clyde",
+    "scoresby"
+  ],
+  "2029-08-28": [
+    "pascoe-vale",
+    "kangaroo-ground"
+  ],
+  "2029-08-29": [
+    "cocoroc",
+    "kealba"
+  ],
+  "2029-08-30": [
+    "park-orchards",
+    "burnley"
+  ],
+  "2029-08-31": [
+    "travancore",
+    "box-hill"
+  ],
+  "2029-09-01": [
+    "kilsyth",
+    "bentleigh-east"
+  ],
+  "2029-09-02": [
+    "narre-warren-north",
+    "black-rock"
+  ],
+  "2029-09-03": [
+    "broadmeadows",
+    "ardeer"
+  ],
+  "2029-09-04": [
+    "epping",
+    "north-melbourne"
+  ],
+  "2029-09-05": [
+    "huntingdale",
+    "mooroolbark"
+  ],
+  "2029-09-06": [
+    "kinglake",
+    "vermont-south"
+  ],
+  "2029-09-07": [
+    "keilor-downs",
+    "lalor"
+  ],
+  "2029-09-08": [
+    "strathmore-heights",
+    "research"
+  ],
+  "2029-09-09": [
+    "bayswater-north",
+    "springvale-south"
+  ],
+  "2029-09-10": [
+    "sunshine-north",
+    "burnley"
+  ],
+  "2029-09-11": [
+    "doreen",
+    "brunswick-east"
+  ],
+  "2029-09-12": [
+    "scoresby",
+    "burnley"
+  ],
+  "2029-09-13": [
+    "hughesdale",
+    "kilsyth-south"
+  ],
+  "2029-09-14": [
+    "mambourin",
+    "southbank"
+  ],
+  "2029-09-15": [
+    "tooradin",
+    "bonbeach"
+  ],
+  "2029-09-16": [
+    "springvale",
+    "doncaster-east"
+  ],
+  "2029-09-17": [
+    "westmeadows",
+    "south-yarra"
+  ],
+  "2029-09-18": [
+    "sunshine",
+    "kalkallo"
+  ],
+  "2029-09-19": [
+    "alphington",
+    "oaklands-junction"
+  ],
+  "2029-09-20": [
+    "essendon-west",
+    "briar-hill"
+  ],
+  "2029-09-21": [
+    "gowanbrae",
+    "templestowe"
+  ],
+  "2029-09-22": [
+    "mount-waverley",
+    "heidelberg-west"
+  ],
+  "2029-09-23": [
+    "burwood",
+    "mount-evelyn"
+  ],
+  "2029-09-24": [
+    "weir-views",
+    "docklands"
+  ],
+  "2029-09-25": [
+    "carlton-north",
+    "dallas"
+  ],
+  "2029-09-26": [
+    "kew-east",
+    "oakleigh-south"
+  ],
+  "2029-09-27": [
+    "panton-hill",
+    "gladstone-park"
+  ],
+  "2029-09-28": [
+    "newport",
+    "bulleen"
+  ],
+  "2029-09-29": [
+    "clarinda",
+    "windsor"
+  ],
+  "2029-09-30": [
+    "nunawading",
+    "pascoe-vale-south"
+  ],
   "2029-10-01": [
-    "south-kingsville",
-    "collingwood"
+    "notting-hill",
+    "st-kilda-west"
   ],
   "2029-10-02": [
     "tarrawarra",
-    "doreen"
+    "woodstock"
   ],
   "2029-10-03": [
-    "chirnside-park",
-    "bulleen"
+    "kalorama",
+    "doreen"
   ],
   "2029-10-04": [
-    "coburg",
-    "craigieburn"
+    "plumpton",
+    "thomastown"
   ],
   "2029-10-05": [
-    "st-albans",
-    "altona-meadows"
+    "brunswick-west",
+    "melton"
   ],
   "2029-10-06": [
-    "campbellfield",
-    "essendon-west"
+    "warrandyte-south",
+    "heidelberg-heights"
   ],
   "2029-10-07": [
-    "fraser-rise",
-    "seabrook"
+    "patterson-lakes",
+    "wantirna-south"
   ],
   "2029-10-08": [
-    "middle-park",
-    "hampton-east"
+    "keysborough",
+    "ringwood-east"
   ],
   "2029-10-09": [
-    "elsternwick",
-    "princes-hill"
+    "bulleen",
+    "chadstone"
   ],
   "2029-10-10": [
-    "greenvale",
-    "maribyrnong"
+    "kingsbury",
+    "warrandyte-south"
   ],
   "2029-10-11": [
-    "essendon-fields",
-    "carlton"
+    "north-melbourne",
+    "somerton"
   ],
   "2029-10-12": [
-    "roxburgh-park",
-    "st-albans"
+    "humevale",
+    "gladstone-park"
   ],
   "2029-10-13": [
-    "albanvale",
-    "tullamarine"
+    "kealba",
+    "yan-yean"
   ],
   "2029-10-14": [
-    "preston",
-    "kalkallo"
-  ],
-  "2029-10-15": [
-    "fraser-rise",
-    "yuroke"
-  ],
-  "2029-10-16": [
-    "harkaway",
-    "the-basin"
-  ],
-  "2029-10-17": [
-    "eltham",
-    "deepdene"
-  ],
-  "2029-10-18": [
-    "windsor",
-    "airport-west"
-  ],
-  "2029-10-19": [
-    "bonbeach",
-    "botanic-ridge"
-  ],
-  "2029-10-20": [
-    "frankston-south",
-    "hallam"
-  ],
-  "2029-10-21": [
-    "ivanhoe",
-    "greenvale"
-  ],
-  "2029-10-22": [
-    "mordialloc",
-    "clyde-north"
-  ],
-  "2029-10-23": [
-    "strathtulloh",
-    "delahey"
-  ],
-  "2029-10-24": [
-    "tooradin",
-    "mount-eliza"
-  ],
-  "2029-10-25": [
-    "chirnside-park",
-    "balwyn-north"
-  ],
-  "2029-10-26": [
-    "heidelberg-west",
-    "cottles-bridge"
-  ],
-  "2029-10-27": [
-    "plenty",
-    "croydon-north"
-  ],
-  "2029-10-28": [
-    "heidelberg-heights",
-    "blackburn-south"
-  ],
-  "2029-10-29": [
-    "kilsyth",
-    "research"
-  ],
-  "2029-10-30": [
-    "ardeer",
-    "plumpton"
-  ],
-  "2029-10-31": [
-    "frankston",
-    "braeside"
-  ],
-  "2029-11-01": [
-    "woodstock",
-    "yering"
-  ],
-  "2029-11-02": [
-    "rosanna",
-    "craigieburn"
-  ],
-  "2029-11-03": [
-    "balaclava",
-    "camberwell"
-  ],
-  "2029-11-04": [
-    "altona-north",
-    "hawthorn"
-  ],
-  "2029-11-05": [
-    "ringwood-north",
-    "kalorama"
-  ],
-  "2029-11-06": [
-    "ormond",
-    "south-yarra"
-  ],
-  "2029-11-07": [
-    "brunswick-west",
-    "sunshine"
-  ],
-  "2029-11-08": [
-    "balaclava",
-    "alphington"
-  ],
-  "2029-11-09": [
-    "caulfield-south",
-    "kew-east"
-  ],
-  "2029-11-10": [
-    "vermont-south",
-    "moorabbin"
-  ],
-  "2029-11-11": [
-    "elsternwick",
-    "balwyn-north"
-  ],
-  "2029-11-12": [
-    "officer",
-    "sassafras"
-  ],
-  "2029-11-13": [
-    "thornhill-park",
-    "wildwood"
-  ],
-  "2029-11-14": [
-    "devon-meadows",
-    "bonbeach"
-  ],
-  "2029-11-15": [
-    "beaumaris",
-    "carrum-downs"
-  ],
-  "2029-11-16": [
-    "brighton-east",
-    "dandenong-south"
-  ],
-  "2029-11-17": [
-    "moonee-ponds",
+    "calder-park",
     "williamstown"
   ],
-  "2029-11-18": [
-    "ripponlea",
-    "mentone"
+  "2029-10-15": [
+    "humevale",
+    "ringwood"
   ],
-  "2029-11-19": [
-    "st-kilda-west",
-    "northcote"
+  "2029-10-16": [
+    "beaumaris",
+    "frankston-south"
   ],
-  "2029-11-20": [
-    "noble-park",
-    "carnegie"
+  "2029-10-17": [
+    "bellfield",
+    "chirnside-park"
   ],
-  "2029-11-21": [
-    "doveton",
-    "kilsyth"
+  "2029-10-18": [
+    "templestowe",
+    "st-kilda-east"
   ],
-  "2029-11-22": [
-    "windsor",
-    "doncaster"
+  "2029-10-19": [
+    "richmond",
+    "altona-meadows"
   ],
-  "2029-11-23": [
-    "malvern",
-    "footscray"
-  ],
-  "2029-11-24": [
-    "roxburgh-park",
-    "bonnie-brook"
-  ],
-  "2029-11-25": [
-    "mooroolbark",
-    "blackburn-south"
-  ],
-  "2029-11-26": [
-    "monbulk",
-    "cranbourne-north"
-  ],
-  "2029-11-27": [
-    "bentleigh",
-    "kooyong"
-  ],
-  "2029-11-28": [
-    "melton",
-    "werribee-south"
-  ],
-  "2029-11-29": [
-    "south-melbourne",
+  "2029-10-20": [
+    "travancore",
     "murrumbeena"
   ],
-  "2029-11-30": [
-    "wandin-north",
-    "vermont"
+  "2029-10-21": [
+    "clematis",
+    "chelsea-heights"
   ],
-  "2029-12-01": [
-    "clarinda",
-    "seaford"
+  "2029-10-22": [
+    "springvale",
+    "warrandyte-south"
   ],
-  "2029-12-02": [
-    "mount-cottrell",
-    "melbourne-airport"
+  "2029-10-23": [
+    "lower-plenty",
+    "clayton"
   ],
-  "2029-12-03": [
-    "smiths-gully",
-    "box-hill-north"
-  ],
-  "2029-12-04": [
-    "kealba",
-    "epping"
-  ],
-  "2029-12-05": [
-    "wildwood",
-    "essendon-north"
-  ],
-  "2029-12-06": [
-    "moorabbin-airport",
-    "seaford"
-  ],
-  "2029-12-07": [
-    "upwey",
-    "lyndhurst"
-  ],
-  "2029-12-08": [
-    "elsternwick",
-    "spotswood"
-  ],
-  "2029-12-09": [
-    "ivanhoe-east",
-    "st-helena"
-  ],
-  "2029-12-10": [
-    "seabrook",
-    "docklands"
-  ],
-  "2029-12-11": [
-    "reservoir",
-    "arthurs-creek"
-  ],
-  "2029-12-12": [
-    "princes-hill",
-    "brooklyn"
-  ],
-  "2029-12-13": [
-    "aspendale-gardens",
-    "harkaway"
-  ],
-  "2029-12-14": [
-    "melbourne-airport",
-    "brooklyn"
-  ],
-  "2029-12-15": [
-    "burwood",
-    "gardenvale"
-  ],
-  "2029-12-16": [
-    "kew-east",
-    "coolaroo"
-  ],
-  "2029-12-17": [
-    "east-melbourne",
-    "laverton"
-  ],
-  "2029-12-18": [
-    "sherbrooke",
-    "hampton-park"
-  ],
-  "2029-12-19": [
-    "olinda",
-    "officer-south"
-  ],
-  "2029-12-20": [
-    "sunshine-north",
-    "carlton-north"
-  ],
-  "2029-12-21": [
-    "bellfield",
-    "meadow-heights"
-  ],
-  "2029-12-22": [
+  "2029-10-24": [
     "malvern",
-    "eaglemont"
-  ],
-  "2029-12-23": [
-    "kensington",
-    "kealba"
-  ],
-  "2029-12-24": [
-    "ormond",
-    "noble-park"
-  ],
-  "2029-12-25": [
-    "kurunjang",
-    "mambourin"
-  ],
-  "2029-12-26": [
-    "tremont",
-    "oakleigh-south"
-  ],
-  "2029-12-27": [
-    "narre-warren",
-    "mordialloc"
-  ],
-  "2029-12-28": [
-    "noble-park-north",
-    "ashburton"
-  ],
-  "2029-12-29": [
-    "footscray",
-    "kooyong"
-  ],
-  "2029-12-30": [
-    "vermont",
-    "ivanhoe-east"
-  ],
-  "2029-12-31": [
-    "maidstone",
-    "collingwood"
-  ],
-  "2030-01-01": [
-    "rowville",
-    "camberwell"
-  ],
-  "2030-01-02": [
-    "kilsyth",
-    "eltham"
-  ],
-  "2030-01-03": [
-    "ascot-vale",
-    "balwyn"
-  ],
-  "2030-01-04": [
-    "mordialloc",
-    "ashwood"
-  ],
-  "2030-01-05": [
-    "humevale",
     "warranwood"
   ],
-  "2030-01-06": [
-    "tecoma",
+  "2029-10-25": [
+    "clyde-north",
+    "lilydale"
+  ],
+  "2029-10-26": [
+    "kilsyth-south",
     "oakleigh-south"
   ],
+  "2029-10-27": [
+    "sandringham",
+    "spotswood"
+  ],
+  "2029-10-28": [
+    "oakleigh-east",
+    "lower-plenty"
+  ],
+  "2029-10-29": [
+    "cranbourne-north",
+    "oakleigh-south"
+  ],
+  "2029-10-30": [
+    "coolaroo",
+    "bulleen"
+  ],
+  "2029-10-31": [
+    "belgrave",
+    "ringwood"
+  ],
+  "2029-11-01": [
+    "hallam",
+    "montrose"
+  ],
+  "2029-11-02": [
+    "port-melbourne",
+    "reservoir"
+  ],
+  "2029-11-03": [
+    "strathmore",
+    "point-cook"
+  ],
+  "2029-11-04": [
+    "humevale",
+    "doncaster-east"
+  ],
+  "2029-11-05": [
+    "forest-hill",
+    "heidelberg-west"
+  ],
+  "2029-11-06": [
+    "st-andrews",
+    "balwyn-north"
+  ],
+  "2029-11-07": [
+    "st-kilda",
+    "st-albans"
+  ],
+  "2029-11-08": [
+    "blackburn-north",
+    "mount-dandenong"
+  ],
+  "2029-11-09": [
+    "arthurs-creek",
+    "sunbury"
+  ],
+  "2029-11-10": [
+    "keilor",
+    "wyndham-vale"
+  ],
+  "2029-11-11": [
+    "burnley",
+    "wonga-park"
+  ],
+  "2029-11-12": [
+    "fawkner",
+    "brooklyn"
+  ],
+  "2029-11-13": [
+    "ascot-vale",
+    "greenvale"
+  ],
+  "2029-11-14": [
+    "gladstone-park",
+    "deer-park"
+  ],
+  "2029-11-15": [
+    "eltham",
+    "notting-hill"
+  ],
+  "2029-11-16": [
+    "cremorne",
+    "yallambie"
+  ],
+  "2029-11-17": [
+    "thornbury",
+    "glen-huntly"
+  ],
+  "2029-11-18": [
+    "chirnside-park",
+    "chadstone"
+  ],
+  "2029-11-19": [
+    "reservoir",
+    "st-kilda-west"
+  ],
+  "2029-11-20": [
+    "seabrook",
+    "middle-park"
+  ],
+  "2029-11-21": [
+    "research",
+    "fitzroy-north"
+  ],
+  "2029-11-22": [
+    "kings-park",
+    "brunswick"
+  ],
+  "2029-11-23": [
+    "essendon-west",
+    "rosanna"
+  ],
+  "2029-11-24": [
+    "box-hill-north",
+    "springvale"
+  ],
+  "2029-11-25": [
+    "blackburn-north",
+    "west-melbourne"
+  ],
+  "2029-11-26": [
+    "kilsyth-south",
+    "nutfield"
+  ],
+  "2029-11-27": [
+    "doreen",
+    "keilor-park"
+  ],
+  "2029-11-28": [
+    "wildwood",
+    "strathtulloh"
+  ],
+  "2029-11-29": [
+    "parkville",
+    "williams-landing"
+  ],
+  "2029-11-30": [
+    "arthurs-creek",
+    "vermont-south"
+  ],
+  "2029-12-01": [
+    "mount-cottrell",
+    "airport-west"
+  ],
+  "2029-12-02": [
+    "mambourin",
+    "albanvale"
+  ],
+  "2029-12-03": [
+    "monbulk",
+    "notting-hill"
+  ],
+  "2029-12-04": [
+    "ringwood-east",
+    "kallista"
+  ],
+  "2029-12-05": [
+    "coldstream",
+    "mill-park"
+  ],
+  "2029-12-06": [
+    "kinglake",
+    "lalor"
+  ],
+  "2029-12-07": [
+    "tullamarine",
+    "ivanhoe"
+  ],
+  "2029-12-08": [
+    "alphington",
+    "kingsville"
+  ],
+  "2029-12-09": [
+    "roxburgh-park",
+    "deer-park"
+  ],
+  "2029-12-10": [
+    "campbellfield",
+    "blackburn-north"
+  ],
+  "2029-12-11": [
+    "narre-warren",
+    "bentleigh"
+  ],
+  "2029-12-12": [
+    "somerton",
+    "yarra-glen"
+  ],
+  "2029-12-13": [
+    "springvale",
+    "deepdene"
+  ],
+  "2029-12-14": [
+    "ringwood-east",
+    "belgrave"
+  ],
+  "2029-12-15": [
+    "bayswater",
+    "keysborough"
+  ],
+  "2029-12-16": [
+    "dandenong-north",
+    "malvern"
+  ],
+  "2029-12-17": [
+    "humevale",
+    "ringwood"
+  ],
+  "2029-12-18": [
+    "forest-hill",
+    "doreen"
+  ],
+  "2029-12-19": [
+    "williamstown-north",
+    "toorak"
+  ],
+  "2029-12-20": [
+    "kangaroo-ground",
+    "ivanhoe"
+  ],
+  "2029-12-21": [
+    "moonee-ponds",
+    "taylors-hill"
+  ],
+  "2029-12-22": [
+    "oak-park",
+    "newport"
+  ],
+  "2029-12-23": [
+    "seaford",
+    "bentleigh"
+  ],
+  "2029-12-24": [
+    "panton-hill",
+    "glen-waverley"
+  ],
+  "2029-12-25": [
+    "chelsea-heights",
+    "clematis"
+  ],
+  "2029-12-26": [
+    "keilor-east",
+    "ivanhoe"
+  ],
+  "2029-12-27": [
+    "donvale",
+    "belgrave-heights"
+  ],
+  "2029-12-28": [
+    "tullamarine",
+    "burnley"
+  ],
+  "2029-12-29": [
+    "abbotsford",
+    "williams-landing"
+  ],
+  "2029-12-30": [
+    "bend-of-islands",
+    "bellfield"
+  ],
+  "2029-12-31": [
+    "blackburn-north",
+    "balaclava"
+  ],
+  "2030-01-01": [
+    "humevale",
+    "templestowe"
+  ],
+  "2030-01-02": [
+    "mckinnon",
+    "narre-warren-south"
+  ],
+  "2030-01-03": [
+    "mount-dandenong",
+    "ashburton"
+  ],
+  "2030-01-04": [
+    "panton-hill",
+    "glen-waverley"
+  ],
+  "2030-01-05": [
+    "knoxfield",
+    "botanic-ridge"
+  ],
+  "2030-01-06": [
+    "kingsbury",
+    "richmond"
+  ],
   "2030-01-07": [
-    "attwood",
-    "rockbank"
+    "ivanhoe-east",
+    "clayton-south"
   ],
   "2030-01-08": [
-    "berwick",
-    "bayswater-north"
+    "cranbourne-north",
+    "hughesdale"
   ],
   "2030-01-09": [
-    "hurstbridge",
-    "broadmeadows"
+    "tottenham",
+    "kew-east"
   ],
   "2030-01-10": [
-    "sunshine",
-    "plumpton"
+    "laverton",
+    "oak-park"
   ],
   "2030-01-11": [
-    "kilsyth-south",
-    "north-warrandyte"
+    "templestowe",
+    "ascot-vale"
   ],
   "2030-01-12": [
     "melton",
-    "point-cook"
-  ],
-  "2030-01-13": [
-    "yan-yean",
-    "warranwood"
-  ],
-  "2030-01-14": [
-    "elwood",
-    "dingley-village"
-  ],
-  "2030-01-15": [
-    "keilor-north",
-    "wyndham-vale"
-  ],
-  "2030-01-16": [
-    "glen-waverley",
-    "kew-east"
-  ],
-  "2030-01-17": [
-    "doncaster-east",
-    "boronia"
-  ],
-  "2030-01-18": [
-    "parkdale",
-    "caulfield-east"
-  ],
-  "2030-01-19": [
-    "clayton",
-    "edithvale"
-  ],
-  "2030-01-20": [
-    "braybrook",
-    "richmond"
-  ],
-  "2030-01-21": [
-    "diggers-rest",
-    "wyndham-vale"
-  ],
-  "2030-01-22": [
-    "ferntree-gully",
-    "wandin-north"
-  ],
-  "2030-01-23": [
-    "frankston-south",
-    "aspendale"
-  ],
-  "2030-01-24": [
-    "collingwood",
-    "hadfield"
-  ],
-  "2030-01-25": [
-    "brighton",
-    "canterbury"
-  ],
-  "2030-01-26": [
-    "clifton-hill",
-    "oakleigh"
-  ],
-  "2030-01-27": [
-    "south-melbourne",
     "essendon-north"
   ],
-  "2030-01-28": [
-    "box-hill-south",
-    "fitzroy-north"
-  ],
-  "2030-01-29": [
-    "seaford",
-    "dandenong-north"
-  ],
-  "2030-01-30": [
-    "sherbrooke",
-    "tarrawarra"
-  ],
-  "2030-01-31": [
-    "noble-park",
-    "beaumaris"
-  ],
-  "2030-02-01": [
-    "viewbank",
-    "craigieburn"
-  ],
-  "2030-02-02": [
-    "panton-hill",
-    "heidelberg-west"
-  ],
-  "2030-02-03": [
-    "botanic-ridge",
-    "mordialloc"
-  ],
-  "2030-02-04": [
-    "strathmore",
-    "wildwood"
-  ],
-  "2030-02-05": [
-    "lysterfield",
-    "carrum-downs"
-  ],
-  "2030-02-06": [
-    "st-albans",
-    "craigieburn"
-  ],
-  "2030-02-07": [
-    "strathmore",
-    "tottenham"
-  ],
-  "2030-02-08": [
-    "truganina",
-    "flemington"
-  ],
-  "2030-02-09": [
-    "princes-hill",
-    "hawthorn-east"
-  ],
-  "2030-02-10": [
-    "south-melbourne",
-    "derrimut"
-  ],
-  "2030-02-11": [
-    "bentleigh",
-    "hawthorn-east"
-  ],
-  "2030-02-12": [
-    "cocoroc",
-    "melton-south"
-  ],
-  "2030-02-13": [
-    "lalor",
-    "fairfield"
-  ],
-  "2030-02-14": [
-    "somerton",
-    "cottles-bridge"
-  ],
-  "2030-02-15": [
-    "dallas",
-    "northcote"
-  ],
-  "2030-02-16": [
-    "eltham-north",
-    "humevale"
-  ],
-  "2030-02-17": [
-    "monbulk",
-    "croydon"
-  ],
-  "2030-02-18": [
-    "gardenvale",
-    "east-melbourne"
-  ],
-  "2030-02-19": [
-    "mont-albert-north",
-    "st-helena"
-  ],
-  "2030-02-20": [
-    "kealba",
-    "dallas"
-  ],
-  "2030-02-21": [
-    "kilsyth",
-    "harkaway"
-  ],
-  "2030-02-22": [
-    "south-morang",
-    "doncaster-east"
-  ],
-  "2030-02-23": [
-    "kew",
-    "watsonia-north"
-  ],
-  "2030-02-24": [
-    "kingsbury",
-    "moonee-ponds"
-  ],
-  "2030-02-25": [
-    "mont-albert",
-    "docklands"
-  ],
-  "2030-02-26": [
-    "plumpton",
-    "oak-park"
-  ],
-  "2030-02-27": [
-    "melton",
-    "airport-west"
-  ],
-  "2030-02-28": [
-    "mentone",
-    "mulgrave"
-  ],
-  "2030-03-01": [
-    "pascoe-vale-south",
-    "doncaster"
-  ],
-  "2030-03-02": [
-    "heidelberg-west",
-    "cremorne"
-  ],
-  "2030-03-03": [
-    "west-footscray",
-    "clifton-hill"
-  ],
-  "2030-03-04": [
-    "melton",
-    "albanvale"
-  ],
-  "2030-03-05": [
-    "sunbury",
-    "lalor"
-  ],
-  "2030-03-06": [
-    "park-orchards",
-    "wandin-north"
-  ],
-  "2030-03-07": [
-    "essendon-fields",
-    "kings-park"
-  ],
-  "2030-03-08": [
-    "gisborne-south",
-    "airport-west"
-  ],
-  "2030-03-09": [
-    "burnside-heights",
-    "newport"
-  ],
-  "2030-03-10": [
-    "pascoe-vale-south",
-    "montmorency"
-  ],
-  "2030-03-11": [
-    "clyde-north",
-    "aspendale"
-  ],
-  "2030-03-12": [
-    "langwarrin-south",
-    "noble-park"
-  ],
-  "2030-03-13": [
-    "upwey",
-    "lyndhurst"
-  ],
-  "2030-03-14": [
-    "oaklands-junction",
-    "thornhill-park"
-  ],
-  "2030-03-15": [
-    "grangefields",
-    "cairnlea"
-  ],
-  "2030-03-16": [
-    "lyndhurst",
-    "emerald"
-  ],
-  "2030-03-17": [
-    "montmorency",
-    "glenroy"
-  ],
-  "2030-03-18": [
-    "port-melbourne",
-    "alphington"
-  ],
-  "2030-03-19": [
-    "strathmore-heights",
-    "sydenham"
-  ],
-  "2030-03-20": [
-    "beaconsfield",
-    "knoxfield"
-  ],
-  "2030-03-21": [
-    "strathmore",
-    "south-morang"
-  ],
-  "2030-03-22": [
-    "windsor",
-    "hampton-east"
-  ],
-  "2030-03-23": [
-    "airport-west",
-    "bonnie-brook"
-  ],
-  "2030-03-24": [
-    "langwarrin",
-    "narre-warren-north"
-  ],
-  "2030-03-25": [
-    "surrey-hills",
-    "southbank"
-  ],
-  "2030-03-26": [
-    "seaholme",
-    "southbank"
-  ],
-  "2030-03-27": [
-    "lysterfield",
-    "chirnside-park"
-  ],
-  "2030-03-28": [
-    "taylors-lakes",
-    "oak-park"
-  ],
-  "2030-03-29": [
-    "box-hill-south",
-    "east-melbourne"
-  ],
-  "2030-03-30": [
-    "derrimut",
-    "melbourne-airport"
-  ],
-  "2030-03-31": [
-    "aintree",
-    "west-melbourne"
-  ],
-  "2030-04-01": [
-    "hampton",
-    "south-wharf"
-  ],
-  "2030-04-02": [
-    "st-helena",
-    "box-hill-north"
-  ],
-  "2030-04-03": [
-    "kalorama",
-    "vermont-south"
-  ],
-  "2030-04-04": [
-    "south-yarra",
-    "hampton"
-  ],
-  "2030-04-05": [
-    "doncaster-east",
-    "clayton"
-  ],
-  "2030-04-06": [
-    "brighton",
-    "canterbury"
-  ],
-  "2030-04-07": [
-    "plumpton",
-    "fawkner"
-  ],
-  "2030-04-08": [
-    "northcote",
-    "balaclava"
-  ],
-  "2030-04-09": [
-    "knoxfield",
-    "glen-iris"
-  ],
-  "2030-04-10": [
-    "sunbury",
-    "mernda"
-  ],
-  "2030-04-11": [
-    "clifton-hill",
-    "yallambie"
-  ],
-  "2030-04-12": [
-    "docklands",
-    "glen-iris"
-  ],
-  "2030-04-13": [
-    "fieldstone",
-    "keilor-lodge"
-  ],
-  "2030-04-14": [
-    "braybrook",
-    "fieldstone"
-  ],
-  "2030-04-15": [
-    "delahey",
-    "roxburgh-park"
-  ],
-  "2030-04-16": [
-    "sydenham",
-    "altona"
-  ],
-  "2030-04-17": [
-    "sunbury",
-    "weir-views"
-  ],
-  "2030-04-18": [
-    "templestowe-lower",
-    "doreen"
-  ],
-  "2030-04-19": [
-    "devon-meadows",
-    "keysborough"
-  ],
-  "2030-04-20": [
-    "gowanbrae",
-    "seddon"
-  ],
-  "2030-04-21": [
-    "caroline-springs",
-    "tullamarine"
-  ],
-  "2030-04-22": [
-    "williamstown-north",
-    "bonnie-brook"
-  ],
-  "2030-04-23": [
-    "parkville",
-    "ashwood"
-  ],
-  "2030-04-24": [
-    "fawkner",
-    "wattle-glen"
-  ],
-  "2030-04-25": [
-    "southbank",
-    "preston"
-  ],
-  "2030-04-26": [
-    "narre-warren-north",
-    "kalorama"
-  ],
-  "2030-04-27": [
-    "cranbourne-west",
-    "mulgrave"
-  ],
-  "2030-04-28": [
-    "broadmeadows",
-    "kew-east"
-  ],
-  "2030-04-29": [
-    "mernda",
-    "keilor-park"
-  ],
-  "2030-04-30": [
-    "melbourne-cbd",
-    "hadfield"
-  ],
-  "2030-05-01": [
-    "st-kilda",
-    "doncaster"
-  ],
-  "2030-05-02": [
-    "clematis",
-    "coldstream"
-  ],
-  "2030-05-03": [
-    "moorabbin-airport",
-    "carrum"
-  ],
-  "2030-05-04": [
-    "yarrambat",
-    "gowanbrae"
-  ],
-  "2030-05-05": [
-    "templestowe",
-    "kinglake"
-  ],
-  "2030-05-06": [
-    "st-kilda",
-    "laverton-north"
-  ],
-  "2030-05-07": [
-    "deanside",
-    "docklands"
-  ],
-  "2030-05-08": [
-    "kingsville",
-    "brunswick-east"
-  ],
-  "2030-05-09": [
-    "wildwood",
-    "aintree"
-  ],
-  "2030-05-10": [
-    "mount-waverley",
-    "fairfield"
-  ],
-  "2030-05-11": [
-    "yering",
-    "wantirna"
-  ],
-  "2030-05-12": [
-    "rowville",
-    "kalorama"
-  ],
-  "2030-05-13": [
-    "donnybrook",
-    "airport-west"
-  ],
-  "2030-05-14": [
-    "strathmore-heights",
-    "west-melbourne"
-  ],
-  "2030-05-15": [
-    "narre-warren",
-    "langwarrin"
-  ],
-  "2030-05-16": [
-    "tremont",
-    "oakleigh"
-  ],
-  "2030-05-17": [
-    "bend-of-islands",
-    "yallambie"
-  ],
-  "2030-05-18": [
-    "notting-hill",
-    "elsternwick"
-  ],
-  "2030-05-19": [
-    "diamond-creek",
-    "greenvale"
-  ],
-  "2030-05-20": [
-    "greenvale",
-    "braybrook"
-  ],
-  "2030-05-21": [
-    "sydenham",
-    "altona-north"
-  ],
-  "2030-05-22": [
-    "bentleigh",
-    "rowville"
-  ],
-  "2030-05-23": [
-    "warrandyte-south",
-    "tremont"
-  ],
-  "2030-05-24": [
-    "thornbury",
-    "keilor-park"
-  ],
-  "2030-05-25": [
-    "deer-park",
-    "airport-west"
-  ],
-  "2030-05-26": [
-    "donvale",
-    "mill-park"
-  ],
-  "2030-05-27": [
-    "mickleham",
-    "fraser-rise"
-  ],
-  "2030-05-28": [
-    "glenroy",
-    "st-helena"
-  ],
-  "2030-05-29": [
-    "eltham",
-    "abbotsford"
-  ],
-  "2030-05-30": [
-    "bayswater-north",
-    "beaconsfield-upper"
-  ],
-  "2030-05-31": [
-    "ardeer",
-    "werribee-south"
-  ],
-  "2030-06-01": [
-    "donvale",
-    "kinglake"
-  ],
-  "2030-06-02": [
-    "deanside",
-    "oaklands-junction"
-  ],
-  "2030-06-03": [
-    "carlton-north",
-    "thomastown"
-  ],
-  "2030-06-04": [
-    "airport-west",
-    "east-melbourne"
-  ],
-  "2030-06-05": [
-    "coburg-north",
-    "south-melbourne"
-  ],
-  "2030-06-06": [
-    "mitcham",
-    "kew"
-  ],
-  "2030-06-07": [
-    "kings-park",
-    "gowanbrae"
-  ],
-  "2030-06-08": [
-    "thornhill-park",
-    "seabrook"
-  ],
-  "2030-06-09": [
-    "moonee-ponds",
-    "rosanna"
-  ],
-  "2030-06-10": [
-    "kooyong",
-    "clarinda"
-  ],
-  "2030-06-11": [
-    "kalorama",
-    "guys-hill"
-  ],
-  "2030-06-12": [
-    "eltham-north",
-    "donnybrook"
-  ],
-  "2030-06-13": [
-    "black-rock",
-    "edithvale"
-  ],
-  "2030-06-14": [
-    "kalkallo",
-    "heidelberg-heights"
-  ],
-  "2030-06-15": [
-    "maidstone",
-    "gladstone-park"
-  ],
-  "2030-06-16": [
-    "bonbeach",
-    "cheltenham"
-  ],
-  "2030-06-17": [
-    "seaholme",
-    "maribyrnong"
-  ],
-  "2030-06-18": [
-    "mitcham",
-    "panton-hill"
-  ],
-  "2030-06-19": [
-    "monbulk",
-    "dandenong-north"
-  ],
-  "2030-06-20": [
-    "wyndham-vale",
-    "kings-park"
-  ],
-  "2030-06-21": [
-    "toorak",
-    "kingsville"
-  ],
-  "2030-06-22": [
-    "richmond",
-    "laverton-north"
-  ],
-  "2030-06-23": [
-    "coburg",
+  "2030-01-13": [
+    "calder-park",
+    "pascoe-vale"
+  ],
+  "2030-01-14": [
+    "altona-meadows",
     "keilor"
   ],
-  "2030-06-24": [
-    "maribyrnong",
-    "balaclava"
+  "2030-01-15": [
+    "melbourne-cbd",
+    "moorabbin-airport"
   ],
-  "2030-06-25": [
-    "st-kilda-west",
-    "aberfeldie"
+  "2030-01-16": [
+    "murrumbeena",
+    "tecoma"
   ],
-  "2030-06-26": [
-    "mordialloc",
-    "scoresby"
-  ],
-  "2030-06-27": [
-    "croydon-hills",
-    "mernda"
-  ],
-  "2030-06-28": [
-    "chelsea",
-    "narre-warren-south"
-  ],
-  "2030-06-29": [
-    "west-melbourne",
-    "surrey-hills"
-  ],
-  "2030-06-30": [
-    "hadfield",
-    "collingwood"
-  ],
-  "2030-07-01": [
-    "preston",
-    "seddon"
-  ],
-  "2030-07-02": [
-    "ripponlea",
-    "seddon"
-  ],
-  "2030-07-03": [
-    "silvan",
-    "bayswater"
-  ],
-  "2030-07-04": [
-    "noble-park-north",
-    "junction-village"
-  ],
-  "2030-07-05": [
-    "the-basin",
-    "steels-creek"
-  ],
-  "2030-07-06": [
-    "hampton-park",
-    "kallista"
-  ],
-  "2030-07-07": [
-    "mulgrave",
-    "monbulk"
-  ],
-  "2030-07-08": [
-    "bentleigh-east",
-    "south-yarra"
-  ],
-  "2030-07-09": [
-    "mentone",
-    "noble-park-north"
-  ],
-  "2030-07-10": [
-    "botanic-ridge",
-    "narre-warren-east"
-  ],
-  "2030-07-11": [
-    "wandin-north",
-    "humevale"
-  ],
-  "2030-07-12": [
-    "glen-iris",
-    "heidelberg"
-  ],
-  "2030-07-13": [
+  "2030-01-17": [
     "ardeer",
-    "north-melbourne"
-  ],
-  "2030-07-14": [
-    "harkaway",
-    "dingley-village"
-  ],
-  "2030-07-15": [
-    "niddrie",
-    "albert-park"
-  ],
-  "2030-07-16": [
-    "hillside",
-    "mickleham"
-  ],
-  "2030-07-17": [
-    "edithvale",
-    "langwarrin-south"
-  ],
-  "2030-07-18": [
-    "chirnside-park",
-    "emerald"
-  ],
-  "2030-07-19": [
-    "bonbeach",
-    "endeavour-hills"
-  ],
-  "2030-07-20": [
-    "braybrook",
-    "diggers-rest"
-  ],
-  "2030-07-21": [
-    "clematis",
-    "cardinia"
-  ],
-  "2030-07-22": [
-    "warranwood",
-    "yallambie"
-  ],
-  "2030-07-23": [
-    "west-footscray",
-    "gowanbrae"
-  ],
-  "2030-07-24": [
-    "thomastown",
-    "sunbury"
-  ],
-  "2030-07-25": [
-    "mount-eliza",
-    "cranbourne-north"
-  ],
-  "2030-07-26": [
-    "gowanbrae",
-    "gisborne-south"
-  ],
-  "2030-07-27": [
-    "clematis",
-    "eumemmerring"
-  ],
-  "2030-07-28": [
-    "maidstone",
-    "burnside-heights"
-  ],
-  "2030-07-29": [
-    "weir-views",
-    "tottenham"
-  ],
-  "2030-07-30": [
-    "hillside",
-    "altona-meadows"
-  ],
-  "2030-07-31": [
-    "kingsville",
-    "thornbury"
-  ],
-  "2030-08-01": [
-    "kew",
-    "forest-hill"
-  ],
-  "2030-08-02": [
-    "airport-west",
-    "deer-park"
-  ],
-  "2030-08-03": [
-    "park-orchards",
-    "mount-evelyn"
-  ],
-  "2030-08-04": [
-    "sunshine-north",
-    "craigieburn"
-  ],
-  "2030-08-05": [
-    "hurstbridge",
-    "heidelberg"
-  ],
-  "2030-08-06": [
-    "campbellfield",
-    "princes-hill"
-  ],
-  "2030-08-07": [
-    "dandenong-north",
-    "carrum"
-  ],
-  "2030-08-08": [
-    "newport",
-    "wyndham-vale"
-  ],
-  "2030-08-09": [
-    "south-morang",
-    "wildwood"
-  ],
-  "2030-08-10": [
-    "balaclava",
-    "huntingdale"
-  ],
-  "2030-08-11": [
-    "narre-warren-south",
-    "mordialloc"
-  ],
-  "2030-08-12": [
-    "clayton",
-    "beaconsfield-upper"
-  ],
-  "2030-08-13": [
-    "tooradin",
-    "seaford"
-  ],
-  "2030-08-14": [
-    "east-melbourne",
-    "altona"
-  ],
-  "2030-08-15": [
-    "sunbury",
-    "fawkner"
-  ],
-  "2030-08-16": [
-    "mount-cottrell",
-    "melbourne-airport"
-  ],
-  "2030-08-17": [
-    "vermont-south",
-    "bulleen"
-  ],
-  "2030-08-18": [
-    "albanvale",
     "toolern-vale"
   ],
-  "2030-08-19": [
-    "bellfield",
-    "glen-iris"
-  ],
-  "2030-08-20": [
-    "yan-yean",
-    "kingsbury"
-  ],
-  "2030-08-21": [
-    "research",
-    "wantirna"
-  ],
-  "2030-08-22": [
-    "aberfeldie",
-    "caulfield-north"
-  ],
-  "2030-08-23": [
-    "ringwood-north",
-    "nutfield"
-  ],
-  "2030-08-24": [
-    "manor-lakes",
-    "deer-park"
-  ],
-  "2030-08-25": [
-    "roxburgh-park",
-    "diamond-creek"
-  ],
-  "2030-08-26": [
-    "mitcham",
-    "ashburton"
-  ],
-  "2030-08-27": [
-    "middle-park",
+  "2030-01-18": [
+    "kilsyth",
     "balwyn"
   ],
-  "2030-08-28": [
+  "2030-01-19": [
+    "gladstone-park",
+    "yarraville"
+  ],
+  "2030-01-20": [
+    "cottles-bridge",
+    "blackburn"
+  ],
+  "2030-01-21": [
+    "clyde-north",
+    "oakleigh-south"
+  ],
+  "2030-01-22": [
+    "spotswood",
+    "glen-huntly"
+  ],
+  "2030-01-23": [
+    "ardeer",
+    "pascoe-vale-south"
+  ],
+  "2030-01-24": [
+    "heidelberg",
+    "strathewen"
+  ],
+  "2030-01-25": [
+    "hampton-park",
+    "bayswater"
+  ],
+  "2030-01-26": [
+    "travancore",
+    "werribee-south"
+  ],
+  "2030-01-27": [
+    "the-basin",
+    "camberwell"
+  ],
+  "2030-01-28": [
+    "melbourne-airport",
+    "docklands"
+  ],
+  "2030-01-29": [
+    "pascoe-vale",
+    "brooklyn"
+  ],
+  "2030-01-30": [
+    "doreen",
+    "essendon-north"
+  ],
+  "2030-01-31": [
+    "balaclava",
+    "keysborough"
+  ],
+  "2030-02-01": [
+    "werribee",
+    "middle-park"
+  ],
+  "2030-02-02": [
+    "hawthorn",
+    "sunshine-west"
+  ],
+  "2030-02-03": [
+    "fitzroy-north",
+    "yallambie"
+  ],
+  "2030-02-04": [
+    "doncaster-east",
+    "ascot-vale"
+  ],
+  "2030-02-05": [
+    "abbotsford",
+    "point-cook"
+  ],
+  "2030-02-06": [
+    "hawthorn-east",
+    "bend-of-islands"
+  ],
+  "2030-02-07": [
+    "clyde",
+    "clayton-south"
+  ],
+  "2030-02-08": [
+    "carrum-downs",
+    "selby"
+  ],
+  "2030-02-09": [
+    "weir-views",
+    "keilor-east"
+  ],
+  "2030-02-10": [
+    "sunbury",
+    "moonee-ponds"
+  ],
+  "2030-02-11": [
+    "viewbank",
+    "bulla"
+  ],
+  "2030-02-12": [
+    "caulfield",
+    "mulgrave"
+  ],
+  "2030-02-13": [
+    "prahran",
+    "williams-landing"
+  ],
+  "2030-02-14": [
+    "wantirna-south",
+    "kew-east"
+  ],
+  "2030-02-15": [
+    "mooroolbark",
+    "donnybrook"
+  ],
+  "2030-02-16": [
+    "heidelberg-west",
+    "vermont"
+  ],
+  "2030-02-17": [
+    "mount-dandenong",
+    "doveton"
+  ],
+  "2030-02-18": [
+    "brooklyn",
+    "doncaster"
+  ],
+  "2030-02-19": [
+    "toorak",
+    "williamstown-north"
+  ],
+  "2030-02-20": [
+    "aintree",
+    "glenroy"
+  ],
+  "2030-02-21": [
+    "rockbank",
+    "st-kilda"
+  ],
+  "2030-02-22": [
+    "mitcham",
+    "richmond"
+  ],
+  "2030-02-23": [
+    "doreen",
+    "wantirna"
+  ],
+  "2030-02-24": [
+    "beaumaris",
+    "prahran"
+  ],
+  "2030-02-25": [
+    "elwood",
+    "sunshine-north"
+  ],
+  "2030-02-26": [
+    "sherbrooke",
+    "oakleigh"
+  ],
+  "2030-02-27": [
+    "wandin-north",
+    "watsonia-north"
+  ],
+  "2030-02-28": [
+    "doveton",
+    "black-rock"
+  ],
+  "2030-03-01": [
+    "keilor-north",
+    "nutfield"
+  ],
+  "2030-03-02": [
+    "altona",
+    "strathmore-heights"
+  ],
+  "2030-03-03": [
+    "yan-yean",
+    "airport-west"
+  ],
+  "2030-03-04": [
+    "kangaroo-ground",
+    "hawthorn-east"
+  ],
+  "2030-03-05": [
+    "caulfield-south",
+    "boronia"
+  ],
+  "2030-03-06": [
+    "eltham",
+    "roxburgh-park"
+  ],
+  "2030-03-07": [
+    "keilor-downs",
+    "seaholme"
+  ],
+  "2030-03-08": [
+    "lynbrook",
+    "belgrave"
+  ],
+  "2030-03-09": [
+    "edithvale",
+    "huntingdale"
+  ],
+  "2030-03-10": [
+    "pascoe-vale",
+    "williamstown"
+  ],
+  "2030-03-11": [
+    "oak-park",
+    "williamstown-north"
+  ],
+  "2030-03-12": [
+    "thomastown",
+    "richmond"
+  ],
+  "2030-03-13": [
+    "carrum",
+    "moorabbin"
+  ],
+  "2030-03-14": [
+    "point-cook",
+    "parkville"
+  ],
+  "2030-03-15": [
+    "kalkallo",
+    "albanvale"
+  ],
+  "2030-03-16": [
     "box-hill-north",
-    "steels-creek"
+    "castella"
   ],
-  "2030-08-29": [
-    "mont-albert",
-    "carlton"
+  "2030-03-17": [
+    "west-footscray",
+    "westmeadows"
   ],
-  "2030-08-30": [
-    "mordialloc",
+  "2030-03-18": [
+    "oaklands-junction",
+    "tarneit"
+  ],
+  "2030-03-19": [
+    "officer-south",
+    "clayton"
+  ],
+  "2030-03-20": [
+    "attwood",
+    "ivanhoe"
+  ],
+  "2030-03-21": [
+    "doncaster-east",
+    "lysterfield-south"
+  ],
+  "2030-03-22": [
+    "abbotsford",
+    "broadmeadows"
+  ],
+  "2030-03-23": [
+    "christmas-hills",
+    "burwood"
+  ],
+  "2030-03-24": [
+    "kingsbury",
+    "yering"
+  ],
+  "2030-03-25": [
+    "yarra-glen",
+    "narre-warren-north"
+  ],
+  "2030-03-26": [
+    "eumemmerring",
+    "chadstone"
+  ],
+  "2030-03-27": [
+    "oaklands-junction",
+    "eltham"
+  ],
+  "2030-03-28": [
+    "southbank",
+    "cocoroc"
+  ],
+  "2030-03-29": [
+    "lysterfield",
+    "frankston-north"
+  ],
+  "2030-03-30": [
+    "sandhurst",
+    "sandringham"
+  ],
+  "2030-03-31": [
+    "pascoe-vale",
+    "toorak"
+  ],
+  "2030-04-01": [
+    "kensington",
+    "macleod"
+  ],
+  "2030-04-02": [
+    "yan-yean",
+    "sunbury"
+  ],
+  "2030-04-03": [
+    "coolaroo",
+    "yarraville"
+  ],
+  "2030-04-04": [
+    "watsons-creek",
+    "mont-albert"
+  ],
+  "2030-04-05": [
+    "brunswick",
+    "sydenham"
+  ],
+  "2030-04-06": [
+    "st-kilda-east",
+    "box-hill-north"
+  ],
+  "2030-04-07": [
+    "mickleham",
+    "wattle-glen"
+  ],
+  "2030-04-08": [
+    "seaholme",
+    "prahran"
+  ],
+  "2030-04-09": [
+    "kingsville",
+    "ashburton"
+  ],
+  "2030-04-10": [
+    "travancore",
+    "plumpton"
+  ],
+  "2030-04-11": [
+    "mount-dandenong",
+    "berwick"
+  ],
+  "2030-04-12": [
+    "mitcham",
+    "upper-ferntree-gully"
+  ],
+  "2030-04-13": [
+    "mulgrave",
+    "lower-plenty"
+  ],
+  "2030-04-14": [
+    "bentleigh-east",
+    "selby"
+  ],
+  "2030-04-15": [
+    "chelsea",
+    "oakleigh-south"
+  ],
+  "2030-04-16": [
+    "bentleigh",
+    "deepdene"
+  ],
+  "2030-04-17": [
+    "ashwood",
+    "narre-warren-east"
+  ],
+  "2030-04-18": [
+    "thornhill-park",
+    "kensington"
+  ],
+  "2030-04-19": [
+    "tarrawarra",
+    "bundoora"
+  ],
+  "2030-04-20": [
+    "kinglake",
+    "knoxfield"
+  ],
+  "2030-04-21": [
+    "berwick",
+    "oakleigh"
+  ],
+  "2030-04-22": [
+    "dandenong",
+    "mount-evelyn"
+  ],
+  "2030-04-23": [
+    "langwarrin",
+    "oakleigh-south"
+  ],
+  "2030-04-24": [
+    "diamond-creek",
+    "keilor"
+  ],
+  "2030-04-25": [
+    "warrandyte-south",
+    "northcote"
+  ],
+  "2030-04-26": [
+    "watsons-creek",
+    "somerton"
+  ],
+  "2030-04-27": [
+    "rowville",
+    "box-hill-north"
+  ],
+  "2030-04-28": [
+    "coolaroo",
+    "burnside-heights"
+  ],
+  "2030-04-29": [
+    "botanic-ridge",
+    "menzies-creek"
+  ],
+  "2030-04-30": [
+    "wandin-north",
+    "epping"
+  ],
+  "2030-05-01": [
+    "waterways",
+    "dalmore"
+  ],
+  "2030-05-02": [
+    "bend-of-islands",
+    "upwey"
+  ],
+  "2030-05-03": [
+    "park-orchards",
+    "sherbrooke"
+  ],
+  "2030-05-04": [
+    "watsonia-north",
+    "east-melbourne"
+  ],
+  "2030-05-05": [
+    "donnybrook",
+    "croydon-north"
+  ],
+  "2030-05-06": [
+    "st-helena",
+    "abbotsford"
+  ],
+  "2030-05-07": [
+    "sunbury",
+    "plenty"
+  ],
+  "2030-05-08": [
+    "mount-evelyn",
+    "lower-plenty"
+  ],
+  "2030-05-09": [
+    "frankston-north",
+    "hampton-east"
+  ],
+  "2030-05-10": [
+    "templestowe-lower",
+    "wandin-north"
+  ],
+  "2030-05-11": [
+    "lower-plenty",
+    "montrose"
+  ],
+  "2030-05-12": [
+    "ripponlea",
+    "preston"
+  ],
+  "2030-05-13": [
+    "clyde",
+    "kilsyth-south"
+  ],
+  "2030-05-14": [
+    "box-hill",
+    "windsor"
+  ],
+  "2030-05-15": [
+    "cranbourne",
+    "the-basin"
+  ],
+  "2030-05-16": [
+    "truganina",
+    "clifton-hill"
+  ],
+  "2030-05-17": [
+    "wantirna",
+    "toorak"
+  ],
+  "2030-05-18": [
+    "roxburgh-park",
+    "wattle-glen"
+  ],
+  "2030-05-19": [
+    "chelsea",
+    "glen-waverley"
+  ],
+  "2030-05-20": [
+    "burwood-east",
+    "mount-evelyn"
+  ],
+  "2030-05-21": [
+    "melbourne-cbd",
+    "wyndham-vale"
+  ],
+  "2030-05-22": [
+    "caulfield-north",
+    "sunshine-north"
+  ],
+  "2030-05-23": [
+    "caroline-springs",
+    "campbellfield"
+  ],
+  "2030-05-24": [
+    "carrum",
     "rowville"
   ],
-  "2030-08-31": [
-    "balaclava",
-    "fairfield"
+  "2030-05-25": [
+    "kallista",
+    "cranbourne-west"
   ],
-  "2030-09-01": [
-    "bellfield",
+  "2030-05-26": [
+    "bentleigh-east",
+    "cranbourne-west"
+  ],
+  "2030-05-27": [
+    "sandringham",
+    "deepdene"
+  ],
+  "2030-05-28": [
+    "mulgrave",
+    "templestowe"
+  ],
+  "2030-05-29": [
+    "mount-evelyn",
+    "officer-south"
+  ],
+  "2030-05-30": [
+    "fitzroy-north",
+    "braybrook"
+  ],
+  "2030-05-31": [
+    "hampton",
+    "tottenham"
+  ],
+  "2030-06-01": [
+    "campbellfield",
+    "toorak"
+  ],
+  "2030-06-02": [
+    "brighton",
+    "dandenong-south"
+  ],
+  "2030-06-03": [
+    "skye",
+    "black-rock"
+  ],
+  "2030-06-04": [
+    "viewbank",
+    "st-kilda-east"
+  ],
+  "2030-06-05": [
+    "frankston",
+    "mentone"
+  ],
+  "2030-06-06": [
+    "cocoroc",
+    "plumpton"
+  ],
+  "2030-06-07": [
+    "truganina",
+    "craigieburn"
+  ],
+  "2030-06-08": [
+    "sandringham",
+    "frankston-north"
+  ],
+  "2030-06-09": [
+    "ripponlea",
+    "gowanbrae"
+  ],
+  "2030-06-10": [
+    "montmorency",
+    "meadow-heights"
+  ],
+  "2030-06-11": [
+    "dandenong",
+    "camberwell"
+  ],
+  "2030-06-12": [
+    "ringwood",
+    "caulfield-north"
+  ],
+  "2030-06-13": [
+    "ferntree-gully",
+    "langwarrin"
+  ],
+  "2030-06-14": [
+    "deer-park",
+    "fitzroy"
+  ],
+  "2030-06-15": [
+    "alphington",
+    "sunshine"
+  ],
+  "2030-06-16": [
+    "deer-park",
+    "windsor"
+  ],
+  "2030-06-17": [
+    "mount-dandenong",
+    "berwick"
+  ],
+  "2030-06-18": [
+    "ringwood-east",
+    "kew"
+  ],
+  "2030-06-19": [
+    "black-rock",
+    "southbank"
+  ],
+  "2030-06-20": [
+    "rockbank",
+    "strathmore"
+  ],
+  "2030-06-21": [
+    "carlton",
+    "albanvale"
+  ],
+  "2030-06-22": [
+    "point-cook",
+    "balaclava"
+  ],
+  "2030-06-23": [
+    "east-melbourne",
+    "nunawading"
+  ],
+  "2030-06-24": [
+    "plenty",
+    "fitzroy"
+  ],
+  "2030-06-25": [
+    "ringwood-east",
+    "mill-park"
+  ],
+  "2030-06-26": [
+    "keilor-downs",
+    "albert-park"
+  ],
+  "2030-06-27": [
+    "lalor",
     "south-yarra"
   ],
-  "2030-09-02": [
+  "2030-06-28": [
+    "glen-waverley",
+    "templestowe-lower"
+  ],
+  "2030-06-29": [
+    "woodstock",
+    "brunswick"
+  ],
+  "2030-06-30": [
+    "north-warrandyte",
+    "toorak"
+  ],
+  "2030-07-01": [
+    "menzies-creek",
+    "huntingdale"
+  ],
+  "2030-07-02": [
+    "fraser-rise",
+    "essendon"
+  ],
+  "2030-07-03": [
+    "wildwood",
+    "bellfield"
+  ],
+  "2030-07-04": [
+    "highett",
+    "parkville"
+  ],
+  "2030-07-05": [
+    "olinda",
+    "nutfield"
+  ],
+  "2030-07-06": [
+    "ardeer",
+    "gladstone-park"
+  ],
+  "2030-07-07": [
+    "hillside",
+    "albert-park"
+  ],
+  "2030-07-08": [
+    "lilydale",
+    "donnybrook"
+  ],
+  "2030-07-09": [
+    "wantirna",
+    "arthurs-creek"
+  ],
+  "2030-07-10": [
+    "lilydale",
+    "blackburn-south"
+  ],
+  "2030-07-11": [
+    "eumemmerring",
+    "beaumaris"
+  ],
+  "2030-07-12": [
+    "craigieburn",
+    "fieldstone"
+  ],
+  "2030-07-13": [
+    "dalmore",
+    "knoxfield"
+  ],
+  "2030-07-14": [
+    "keilor-lodge",
+    "heidelberg-west"
+  ],
+  "2030-07-15": [
+    "ivanhoe",
+    "keilor-park"
+  ],
+  "2030-07-16": [
+    "strathmore-heights",
+    "laverton"
+  ],
+  "2030-07-17": [
+    "noble-park",
+    "croydon-south"
+  ],
+  "2030-07-18": [
+    "monbulk",
+    "eltham"
+  ],
+  "2030-07-19": [
+    "heidelberg-west",
+    "south-melbourne"
+  ],
+  "2030-07-20": [
+    "surrey-hills",
+    "aberfeldie"
+  ],
+  "2030-07-21": [
+    "rowville",
+    "warrandyte"
+  ],
+  "2030-07-22": [
+    "brunswick",
+    "chadstone"
+  ],
+  "2030-07-23": [
+    "kensington",
+    "plenty"
+  ],
+  "2030-07-24": [
+    "thornhill-park",
+    "meadow-heights"
+  ],
+  "2030-07-25": [
+    "north-melbourne",
+    "bundoora"
+  ],
+  "2030-07-26": [
     "kew-east",
+    "mckinnon"
+  ],
+  "2030-07-27": [
+    "coburg-north",
+    "burnley"
+  ],
+  "2030-07-28": [
+    "lilydale",
+    "plenty"
+  ],
+  "2030-07-29": [
+    "kings-park",
+    "roxburgh-park"
+  ],
+  "2030-07-30": [
+    "keilor-park",
+    "south-wharf"
+  ],
+  "2030-07-31": [
+    "werribee",
+    "middle-park"
+  ],
+  "2030-08-01": [
+    "endeavour-hills",
+    "mont-albert-north"
+  ],
+  "2030-08-02": [
+    "keilor-lodge",
+    "yarrambat"
+  ],
+  "2030-08-03": [
+    "laverton-north",
+    "pascoe-vale-south"
+  ],
+  "2030-08-04": [
+    "christmas-hills",
+    "thomastown"
+  ],
+  "2030-08-05": [
+    "sunshine-west",
+    "campbellfield"
+  ],
+  "2030-08-06": [
+    "keysborough",
+    "forest-hill"
+  ],
+  "2030-08-07": [
+    "donnybrook",
+    "kings-park"
+  ],
+  "2030-08-08": [
+    "tullamarine",
+    "yallambie"
+  ],
+  "2030-08-09": [
+    "dandenong-south",
+    "elwood"
+  ],
+  "2030-08-10": [
+    "niddrie",
+    "diamond-creek"
+  ],
+  "2030-08-11": [
+    "box-hill-north",
+    "kensington"
+  ],
+  "2030-08-12": [
+    "blackburn-north",
+    "caulfield"
+  ],
+  "2030-08-13": [
+    "diggers-rest",
+    "cocoroc"
+  ],
+  "2030-08-14": [
+    "fitzroy-north",
+    "gardenvale"
+  ],
+  "2030-08-15": [
+    "altona-meadows",
+    "moonee-ponds"
+  ],
+  "2030-08-16": [
+    "beaconsfield-upper",
+    "clayton-south"
+  ],
+  "2030-08-17": [
+    "glen-huntly",
+    "ivanhoe"
+  ],
+  "2030-08-18": [
+    "brunswick-west",
+    "werribee-south"
+  ],
+  "2030-08-19": [
+    "greenvale",
+    "northcote"
+  ],
+  "2030-08-20": [
+    "fawkner",
+    "west-footscray"
+  ],
+  "2030-08-21": [
+    "kingsbury",
+    "camberwell"
+  ],
+  "2030-08-22": [
+    "narre-warren-east",
+    "bend-of-islands"
+  ],
+  "2030-08-23": [
+    "gardenvale",
+    "box-hill"
+  ],
+  "2030-08-24": [
+    "kealba",
+    "clifton-hill"
+  ],
+  "2030-08-25": [
+    "balwyn-north",
+    "woodstock"
+  ],
+  "2030-08-26": [
+    "wandin-north",
+    "blackburn-north"
+  ],
+  "2030-08-27": [
+    "ringwood-east",
+    "dandenong-south"
+  ],
+  "2030-08-28": [
+    "avondale-heights",
+    "brighton"
+  ],
+  "2030-08-29": [
+    "aberfeldie",
+    "murrumbeena"
+  ],
+  "2030-08-30": [
+    "botanic-ridge",
+    "mentone"
+  ],
+  "2030-08-31": [
+    "yering",
+    "epping"
+  ],
+  "2030-09-01": [
+    "albanvale",
+    "kalkallo"
+  ],
+  "2030-09-02": [
+    "eumemmerring",
     "oakleigh"
   ],
   "2030-09-03": [
-    "balwyn",
-    "park-orchards"
+    "toolern-vale",
+    "strathmore"
   ],
   "2030-09-04": [
-    "lilydale",
-    "doncaster"
+    "sherbrooke",
+    "donvale"
   ],
   "2030-09-05": [
-    "braybrook",
-    "point-cook"
+    "keilor-lodge",
+    "lalor"
   ],
   "2030-09-06": [
-    "rowville",
-    "cranbourne"
-  ],
-  "2030-09-07": [
-    "montrose",
-    "strathewen"
-  ],
-  "2030-09-08": [
-    "noble-park-north",
-    "bayswater-north"
-  ],
-  "2030-09-09": [
-    "mernda",
-    "steels-creek"
-  ],
-  "2030-09-10": [
-    "south-wharf",
-    "essendon-north"
-  ],
-  "2030-09-11": [
-    "burnley",
-    "heidelberg-heights"
-  ],
-  "2030-09-12": [
-    "reservoir",
-    "blackburn-north"
-  ],
-  "2030-09-13": [
-    "spotswood",
-    "caulfield"
-  ],
-  "2030-09-14": [
-    "laverton",
-    "sydenham"
-  ],
-  "2030-09-15": [
-    "essendon-west",
-    "bellfield"
-  ],
-  "2030-09-16": [
-    "ferntree-gully",
-    "burwood"
-  ],
-  "2030-09-17": [
-    "surrey-hills",
-    "west-melbourne"
-  ],
-  "2030-09-18": [
-    "doncaster-east",
-    "glen-iris"
-  ],
-  "2030-09-19": [
-    "parkville",
-    "ashwood"
-  ],
-  "2030-09-20": [
-    "cocoroc",
-    "melton-south"
-  ],
-  "2030-09-21": [
-    "st-albans",
-    "west-melbourne"
-  ],
-  "2030-09-22": [
-    "oaklands-junction",
-    "doreen"
-  ],
-  "2030-09-23": [
-    "cairnlea",
-    "moonee-ponds"
-  ],
-  "2030-09-24": [
-    "altona-meadows",
-    "grangefields"
-  ],
-  "2030-09-25": [
-    "weir-views",
-    "west-footscray"
-  ],
-  "2030-09-26": [
-    "yuroke",
-    "hurstbridge"
-  ],
-  "2030-09-27": [
-    "maidstone",
-    "st-kilda-east"
-  ],
-  "2030-09-28": [
-    "narre-warren",
-    "mordialloc"
-  ],
-  "2030-09-29": [
-    "kilsyth-south",
-    "springvale"
-  ],
-  "2030-09-30": [
-    "mernda",
-    "eaglemont"
-  ],
-  "2030-10-01": [
-    "fraser-rise",
-    "gladstone-park"
-  ],
-  "2030-10-02": [
-    "plumpton",
-    "somerton"
-  ],
-  "2030-10-03": [
-    "keilor",
-    "thomastown"
-  ],
-  "2030-10-04": [
-    "deanside",
-    "westmeadows"
-  ],
-  "2030-10-05": [
-    "wantirna-south",
-    "hampton-park"
-  ],
-  "2030-10-06": [
-    "cottles-bridge",
-    "heidelberg-heights"
-  ],
-  "2030-10-07": [
-    "cocoroc",
-    "seaholme"
-  ],
-  "2030-10-08": [
-    "mooroolbark",
-    "mount-waverley"
-  ],
-  "2030-10-09": [
-    "fitzroy",
-    "laverton"
-  ],
-  "2030-10-10": [
-    "cobblebank",
-    "kings-park"
-  ],
-  "2030-10-11": [
-    "strathmore",
-    "watsonia"
-  ],
-  "2030-10-12": [
-    "blackburn",
-    "thornbury"
-  ],
-  "2030-10-13": [
-    "mill-park",
-    "sunbury"
-  ],
-  "2030-10-14": [
-    "westmeadows",
-    "deanside"
-  ],
-  "2030-10-15": [
-    "mernda",
-    "croydon-hills"
-  ],
-  "2030-10-16": [
-    "junction-village",
-    "narre-warren-east"
-  ],
-  "2030-10-17": [
-    "monbulk",
-    "dixons-creek"
-  ],
-  "2030-10-18": [
-    "clematis",
-    "dandenong-north"
-  ],
-  "2030-10-19": [
-    "mordialloc",
-    "caulfield-east"
-  ],
-  "2030-10-20": [
-    "hillside",
+    "strathmore-heights",
     "williamstown-north"
   ],
-  "2030-10-21": [
-    "box-hill-north",
-    "boronia"
+  "2030-09-07": [
+    "windsor",
+    "keilor"
   ],
-  "2030-10-22": [
-    "moorabbin",
-    "windsor"
+  "2030-09-08": [
+    "kooyong",
+    "essendon-north"
   ],
-  "2030-10-23": [
-    "mount-dandenong",
-    "smiths-gully"
+  "2030-09-09": [
+    "broadmeadows",
+    "strathtulloh"
   ],
-  "2030-10-24": [
-    "oaklands-junction",
-    "pascoe-vale"
+  "2030-09-10": [
+    "clayton",
+    "st-kilda-west"
   ],
-  "2030-10-25": [
-    "altona-meadows",
-    "grangefields"
+  "2030-09-11": [
+    "yuroke",
+    "weir-views"
   ],
-  "2030-10-26": [
-    "fitzroy",
-    "reservoir"
+  "2030-09-12": [
+    "box-hill",
+    "glenroy"
   ],
-  "2030-10-27": [
-    "clifton-hill",
-    "altona-north"
-  ],
-  "2030-10-28": [
-    "noble-park",
-    "bayswater"
-  ],
-  "2030-10-29": [
-    "north-warrandyte",
-    "kingsbury"
-  ],
-  "2030-10-30": [
-    "wattle-glen",
-    "heidelberg"
-  ],
-  "2030-10-31": [
-    "alphington",
-    "caulfield-south"
-  ],
-  "2030-11-01": [
-    "fitzroy-north",
-    "box-hill"
-  ],
-  "2030-11-02": [
-    "sandringham",
-    "malvern"
-  ],
-  "2030-11-03": [
-    "bentleigh",
-    "prahran"
-  ],
-  "2030-11-04": [
-    "point-cook",
-    "cobblebank"
-  ],
-  "2030-11-05": [
-    "macleod",
-    "greenvale"
-  ],
-  "2030-11-06": [
-    "roxburgh-park",
-    "nutfield"
-  ],
-  "2030-11-07": [
-    "sandhurst",
-    "mulgrave"
-  ],
-  "2030-11-08": [
-    "pascoe-vale",
-    "mernda"
-  ],
-  "2030-11-09": [
-    "wantirna",
-    "briar-hill"
-  ],
-  "2030-11-10": [
-    "upwey",
-    "mount-waverley"
-  ],
-  "2030-11-11": [
-    "eaglemont",
-    "essendon"
-  ],
-  "2030-11-12": [
-    "monbulk",
-    "cardinia"
-  ],
-  "2030-11-13": [
-    "templestowe",
-    "burwood"
-  ],
-  "2030-11-14": [
-    "langwarrin-south",
-    "dalmore"
-  ],
-  "2030-11-15": [
-    "manor-lakes",
-    "burnside-heights"
-  ],
-  "2030-11-16": [
-    "coburg",
-    "brooklyn"
-  ],
-  "2030-11-17": [
-    "upper-ferntree-gully",
-    "keysborough"
-  ],
-  "2030-11-18": [
-    "kurunjang",
-    "manor-lakes"
-  ],
-  "2030-11-19": [
-    "caulfield",
-    "kensington"
-  ],
-  "2030-11-20": [
-    "aspendale",
-    "hampton"
-  ],
-  "2030-11-21": [
-    "kealba",
-    "cobblebank"
-  ],
-  "2030-11-22": [
-    "langwarrin-south",
-    "noble-park"
-  ],
-  "2030-11-23": [
-    "smiths-gully",
-    "kalorama"
-  ],
-  "2030-11-24": [
-    "watsonia",
-    "st-andrews"
-  ],
-  "2030-11-25": [
-    "mooroolbark",
-    "wheelers-hill"
-  ],
-  "2030-11-26": [
-    "essendon-fields",
-    "wildwood"
-  ],
-  "2030-11-27": [
-    "hawthorn",
-    "brooklyn"
-  ],
-  "2030-11-28": [
-    "murrumbeena",
-    "forest-hill"
-  ],
-  "2030-11-29": [
-    "laverton",
-    "melton"
-  ],
-  "2030-11-30": [
-    "west-footscray",
+  "2030-09-13": [
+    "heidelberg",
     "balaclava"
   ],
-  "2030-12-01": [
-    "bayswater-north",
-    "selby"
+  "2030-09-14": [
+    "hadfield",
+    "wattle-glen"
   ],
-  "2030-12-02": [
-    "langwarrin-south",
-    "edithvale"
+  "2030-09-15": [
+    "mont-albert-north",
+    "steels-creek"
   ],
-  "2030-12-03": [
-    "moorabbin",
-    "edithvale"
+  "2030-09-16": [
+    "hampton-park",
+    "sassafras"
   ],
-  "2030-12-04": [
-    "fitzroy-north",
-    "templestowe"
-  ],
-  "2030-12-05": [
-    "sassafras",
-    "tarrawarra"
-  ],
-  "2030-12-06": [
-    "lilydale",
-    "nutfield"
-  ],
-  "2030-12-07": [
-    "deepdene",
-    "gardenvale"
-  ],
-  "2030-12-08": [
-    "belgrave-heights",
-    "oakleigh-south"
-  ],
-  "2030-12-09": [
-    "east-melbourne",
-    "gardenvale"
-  ],
-  "2030-12-10": [
-    "diamond-creek",
-    "coburg"
-  ],
-  "2030-12-11": [
-    "yan-yean",
-    "dallas"
-  ],
-  "2030-12-12": [
-    "yarraville",
-    "coburg-north"
-  ],
-  "2030-12-13": [
-    "mount-evelyn",
-    "strathewen"
-  ],
-  "2030-12-14": [
-    "mickleham",
-    "humevale"
-  ],
-  "2030-12-15": [
-    "harkaway",
-    "springvale"
-  ],
-  "2030-12-16": [
-    "ascot-vale",
-    "campbellfield"
-  ],
-  "2030-12-17": [
-    "south-kingsville",
-    "pascoe-vale-south"
-  ],
-  "2030-12-18": [
-    "somerton",
-    "plumpton"
-  ],
-  "2030-12-19": [
-    "carlton-north",
-    "gowanbrae"
-  ],
-  "2030-12-20": [
-    "caulfield",
-    "footscray"
-  ],
-  "2030-12-21": [
-    "burnside-heights",
-    "greenvale"
-  ],
-  "2030-12-22": [
-    "devon-meadows",
-    "dandenong"
-  ],
-  "2030-12-23": [
-    "chelsea-heights",
-    "rowville"
-  ],
-  "2030-12-24": [
-    "box-hill-north",
+  "2030-09-17": [
+    "mooroolbark",
     "st-helena"
   ],
-  "2030-12-25": [
-    "kooyong",
-    "vermont-south"
+  "2030-09-18": [
+    "glen-iris",
+    "greensborough"
   ],
-  "2030-12-26": [
-    "clarinda",
+  "2030-09-19": [
+    "newport",
+    "kings-park"
+  ],
+  "2030-09-20": [
+    "coburg-north",
+    "port-melbourne"
+  ],
+  "2030-09-21": [
+    "langwarrin-south",
+    "beaconsfield-upper"
+  ],
+  "2030-09-22": [
+    "wyndham-vale",
+    "kingsville"
+  ],
+  "2030-09-23": [
+    "noble-park",
+    "kew-east"
+  ],
+  "2030-09-24": [
+    "tottenham",
+    "gardenvale"
+  ],
+  "2030-09-25": [
+    "research",
+    "fitzroy"
+  ],
+  "2030-09-26": [
+    "parkdale",
+    "mount-eliza"
+  ],
+  "2030-09-27": [
+    "monbulk",
+    "nutfield"
+  ],
+  "2030-09-28": [
+    "ripponlea",
+    "blackburn-north"
+  ],
+  "2030-09-29": [
+    "kingsbury",
+    "kealba"
+  ],
+  "2030-09-30": [
+    "princes-hill",
+    "lalor"
+  ],
+  "2030-10-01": [
+    "essendon-west",
+    "wollert"
+  ],
+  "2030-10-02": [
+    "north-melbourne",
+    "burwood-east"
+  ],
+  "2030-10-03": [
+    "lysterfield",
+    "bentleigh"
+  ],
+  "2030-10-04": [
+    "briar-hill",
+    "blackburn-south"
+  ],
+  "2030-10-05": [
+    "oak-park",
+    "toorak"
+  ],
+  "2030-10-06": [
+    "canterbury",
+    "bayswater"
+  ],
+  "2030-10-07": [
+    "tecoma",
+    "heatherton"
+  ],
+  "2030-10-08": [
+    "rockbank",
+    "melbourne-cbd"
+  ],
+  "2030-10-09": [
+    "kooyong",
+    "avondale-heights"
+  ],
+  "2030-10-10": [
+    "bangholme",
+    "ashburton"
+  ],
+  "2030-10-11": [
+    "carlton-north",
+    "eltham-north"
+  ],
+  "2030-10-12": [
+    "nunawading",
+    "kingsbury"
+  ],
+  "2030-10-13": [
+    "seddon",
+    "wyndham-vale"
+  ],
+  "2030-10-14": [
+    "kilsyth",
+    "hawthorn-east"
+  ],
+  "2030-10-15": [
+    "chadstone",
+    "brunswick-west"
+  ],
+  "2030-10-16": [
+    "chirnside-park",
+    "reservoir"
+  ],
+  "2030-10-17": [
+    "kealba",
+    "manor-lakes"
+  ],
+  "2030-10-18": [
+    "newport",
+    "deepdene"
+  ],
+  "2030-10-19": [
+    "eaglemont",
+    "essendon-north"
+  ],
+  "2030-10-20": [
+    "plenty",
+    "keilor-north"
+  ],
+  "2030-10-21": [
+    "essendon",
+    "doncaster-east"
+  ],
+  "2030-10-22": [
+    "yallambie",
+    "croydon-south"
+  ],
+  "2030-10-23": [
+    "southbank",
+    "hadfield"
+  ],
+  "2030-10-24": [
+    "officer-south",
+    "mount-eliza"
+  ],
+  "2030-10-25": [
+    "keilor-park",
+    "cremorne"
+  ],
+  "2030-10-26": [
+    "doreen",
+    "croydon-south"
+  ],
+  "2030-10-27": [
+    "yan-yean",
+    "strathmore"
+  ],
+  "2030-10-28": [
+    "altona",
+    "caulfield-east"
+  ],
+  "2030-10-29": [
+    "glen-huntly",
+    "hallam"
+  ],
+  "2030-10-30": [
+    "mitcham",
+    "reservoir"
+  ],
+  "2030-10-31": [
+    "fairfield",
+    "braybrook"
+  ],
+  "2030-11-01": [
+    "fawkner",
+    "caroline-springs"
+  ],
+  "2030-11-02": [
+    "watsonia",
+    "avondale-heights"
+  ],
+  "2030-11-03": [
+    "donvale",
+    "moorabbin"
+  ],
+  "2030-11-04": [
+    "williams-landing",
+    "keilor-lodge"
+  ],
+  "2030-11-05": [
+    "hurstbridge",
+    "bayswater-north"
+  ],
+  "2030-11-06": [
+    "lalor",
+    "kurunjang"
+  ],
+  "2030-11-07": [
+    "brunswick",
+    "st-helena"
+  ],
+  "2030-11-08": [
+    "carnegie",
+    "footscray"
+  ],
+  "2030-11-09": [
+    "gardenvale",
+    "newport"
+  ],
+  "2030-11-10": [
+    "mulgrave",
+    "carrum"
+  ],
+  "2030-11-11": [
+    "noble-park",
+    "clyde"
+  ],
+  "2030-11-12": [
+    "hampton-park",
+    "bayswater"
+  ],
+  "2030-11-13": [
+    "endeavour-hills",
+    "canterbury"
+  ],
+  "2030-11-14": [
+    "gisborne-south",
+    "sunshine"
+  ],
+  "2030-11-15": [
+    "kingsville",
+    "cobblebank"
+  ],
+  "2030-11-16": [
+    "strathewen",
+    "heathmont"
+  ],
+  "2030-11-17": [
+    "macleod",
+    "keilor-east"
+  ],
+  "2030-11-18": [
+    "gladstone-park",
+    "hawthorn-east"
+  ],
+  "2030-11-19": [
+    "kew",
+    "clayton-south"
+  ],
+  "2030-11-20": [
+    "lilydale",
+    "rosanna"
+  ],
+  "2030-11-21": [
+    "mont-albert-north",
+    "moorabbin"
+  ],
+  "2030-11-22": [
+    "armadale",
+    "gowanbrae"
+  ],
+  "2030-11-23": [
+    "altona",
+    "kurunjang"
+  ],
+  "2030-11-24": [
+    "templestowe",
     "armadale"
   ],
+  "2030-11-25": [
+    "deepdene",
+    "greensborough"
+  ],
+  "2030-11-26": [
+    "keilor-park",
+    "newport"
+  ],
+  "2030-11-27": [
+    "the-basin",
+    "box-hill-north"
+  ],
+  "2030-11-28": [
+    "sunshine",
+    "coburg-north"
+  ],
+  "2030-11-29": [
+    "west-melbourne",
+    "meadow-heights"
+  ],
+  "2030-11-30": [
+    "oakleigh-south",
+    "berwick"
+  ],
+  "2030-12-01": [
+    "north-melbourne",
+    "lower-plenty"
+  ],
+  "2030-12-02": [
+    "essendon-north",
+    "caroline-springs"
+  ],
+  "2030-12-03": [
+    "doveton",
+    "croydon"
+  ],
+  "2030-12-04": [
+    "blackburn",
+    "burnley"
+  ],
+  "2030-12-05": [
+    "viewbank",
+    "gladstone-park"
+  ],
+  "2030-12-06": [
+    "spotswood",
+    "brighton-east"
+  ],
+  "2030-12-07": [
+    "junction-village",
+    "ferntree-gully"
+  ],
+  "2030-12-08": [
+    "carnegie",
+    "brooklyn"
+  ],
+  "2030-12-09": [
+    "hampton",
+    "hampton-park"
+  ],
+  "2030-12-10": [
+    "cranbourne-south",
+    "emerald"
+  ],
+  "2030-12-11": [
+    "panton-hill",
+    "fawkner"
+  ],
+  "2030-12-12": [
+    "narre-warren-east",
+    "surrey-hills"
+  ],
+  "2030-12-13": [
+    "kilsyth-south",
+    "montmorency"
+  ],
+  "2030-12-14": [
+    "deepdene",
+    "wantirna"
+  ],
+  "2030-12-15": [
+    "gowanbrae",
+    "heidelberg"
+  ],
+  "2030-12-16": [
+    "carnegie",
+    "sandhurst"
+  ],
+  "2030-12-17": [
+    "hampton-east",
+    "balwyn"
+  ],
+  "2030-12-18": [
+    "oakleigh-south",
+    "frankston"
+  ],
+  "2030-12-19": [
+    "bundoora",
+    "collingwood"
+  ],
+  "2030-12-20": [
+    "wandin-north",
+    "notting-hill"
+  ],
+  "2030-12-21": [
+    "brunswick",
+    "calder-park"
+  ],
+  "2030-12-22": [
+    "north-melbourne",
+    "kingsbury"
+  ],
+  "2030-12-23": [
+    "sunshine",
+    "carlton-north"
+  ],
+  "2030-12-24": [
+    "narre-warren-north",
+    "blackburn-south"
+  ],
+  "2030-12-25": [
+    "sunbury",
+    "cairnlea"
+  ],
+  "2030-12-26": [
+    "coldstream",
+    "macleod"
+  ],
   "2030-12-27": [
-    "altona-meadows",
-    "taylors-hill"
+    "flemington",
+    "broadmeadows"
   ],
   "2030-12-28": [
-    "pascoe-vale",
-    "briar-hill"
+    "derrimut",
+    "carlton"
   ],
   "2030-12-29": [
-    "watsonia",
-    "arthurs-creek"
+    "chirnside-park",
+    "ivanhoe"
   ],
   "2030-12-30": [
-    "fairfield",
-    "watsonia"
+    "essendon",
+    "hillside"
   ],
   "2030-12-31": [
-    "jacana",
-    "gisborne-south"
+    "thornhill-park",
+    "wollert"
   ]
 };

@@ -4,6 +4,18 @@ const DAILY_ACTIVE_KEY_PREFIX = 'suburbia_daily_active_';
 const PRACTICE_ACTIVE_KEY_PREFIX = 'suburbia_practice_active_';
 const LAST_MODE_KEY = 'suburbia_last_mode_v1';
 const SELECTED_CITY_KEY = 'suburbia_selected_city_v1';
+const LAST_PLAYED_CITY_KEY = 'suburbia_last_played_city_v1';
+
+export const VALID_CITIES: CityId[] = [
+  'adelaide',
+  'brisbane',
+  'canberra',
+  'chennai',
+  'hobart',
+  'melbourne',
+  'perth',
+  'sydney',
+];
 
 export function getDailyActiveStorageKey(dateStr: string, cityId: CityId = 'melbourne'): string {
   return `${DAILY_ACTIVE_KEY_PREFIX}${cityId}_${dateStr}`;
@@ -23,6 +35,7 @@ export function saveActiveGameState(state: GameState): void {
     }
     localStorage.setItem(LAST_MODE_KEY, state.gameMode);
     localStorage.setItem(SELECTED_CITY_KEY, cityId);
+    localStorage.setItem(LAST_PLAYED_CITY_KEY, cityId);
   } catch (err) {
     console.warn('Failed to save active game state to localStorage:', err);
   }
@@ -85,9 +98,13 @@ export function loadActivePracticeState(cityId: CityId = 'melbourne'): GameState
 
 export function loadSelectedCity(): CityId {
   try {
+    const lastPlayed = localStorage.getItem(LAST_PLAYED_CITY_KEY);
+    if (lastPlayed && VALID_CITIES.includes(lastPlayed as CityId)) {
+      return lastPlayed as CityId;
+    }
     const saved = localStorage.getItem(SELECTED_CITY_KEY);
-    if (saved === 'adelaide' || saved === 'melbourne' || saved === 'sydney' || saved === 'chennai') {
-      return saved;
+    if (saved && VALID_CITIES.includes(saved as CityId)) {
+      return saved as CityId;
     }
   } catch {
     // fallback
@@ -98,6 +115,7 @@ export function loadSelectedCity(): CityId {
 export function saveSelectedCity(cityId: CityId): void {
   try {
     localStorage.setItem(SELECTED_CITY_KEY, cityId);
+    localStorage.setItem(LAST_PLAYED_CITY_KEY, cityId);
   } catch (err) {
     console.warn('Failed to save selected city:', err);
   }

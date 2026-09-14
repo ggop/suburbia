@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import { SuburbProjected, SuburbRole, SuburbTooltipInfo, GameState } from '../types';
 import { SVG_WIDTH, SVG_HEIGHT, CityMapModel } from '../utils/mapGeometry';
 import { Tooltip } from './Tooltip';
-import { ZoomIn, ZoomOut, RotateCcw, Locate, Eye, Compass } from 'lucide-react';
+import { ZoomIn, ZoomOut, Locate, Eye, Compass, Maximize } from 'lucide-react';
 
 interface MapViewportProps {
   mapModel: CityMapModel;
@@ -35,6 +35,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     x: 0,
     y: 0,
     scale: 1,
+  });
+
+  const [viewportSize, setViewportSize] = useState<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
   });
 
   const [hoveredSuburbId, setHoveredSuburbId] = useState<string | null>(null);
@@ -96,47 +101,17 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     ]
   );
 
-  // Zoom to start/target view bounds so area of interest and surrounding context occupies the view comfortably
-  const focusOnAreaOfInterest = useCallback(() => {
-    if (!containerRef.current) return;
-    const startSub = mapModel.suburbMap.get(gameState.startSuburbId);
-    const targetSub = mapModel.suburbMap.get(gameState.targetSuburbId);
-    if (!startSub || !targetSub) return;
-
-    // Collect all suburbs in the area of interest:
-    // start, target, all adjacent neighbors of start, all adjacent neighbors of target,
-    // and all suburbs along the optimal corridor with their immediate neighbors
-    const corridorIds = new Set<string>([
-      gameState.startSuburbId,
-      gameState.targetSuburbId,
-      ...gameState.bestPath,
-    ]);
-
-    // Ensure all surrounding suburbs around start and target are included in the view bounds
-    startSub.neighbors.forEach((nid) => corridorIds.add(nid));
-    targetSub.neighbors.forEach((nid) => corridorIds.add(nid));
-
-    // Also include corridor neighbors
-    gameState.bestPath.forEach((id) => {
-      const s = mapModel.suburbMap.get(id);
-      if (s) {
-        s.neighbors.forEach((nid) => corridorIds.add(nid));
-      }
-    });
-
+  // Bounding box of the entire city map across all suburbs
+  const cityBounds = useMemo(() => {
     let minX = Infinity;
     let maxX = -Infinity;
     let minY = Infinity;
     let maxY = -Infinity;
-
-    corridorIds.forEach((id) => {
-      const s = mapModel.suburbMap.get(id);
-      if (!s) return;
+    mapModel.suburbs.forEach((s) => {
       minX = Math.min(minX, s.x);
       maxX = Math.max(maxX, s.x);
       minY = Math.min(minY, s.y);
       maxY = Math.max(maxY, s.y);
-
       if (s.polygon && s.polygon.length > 0) {
         s.polygon.forEach(([px, py]) => {
           minX = Math.min(minX, px);
@@ -147,23 +122,134 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       }
     });
 
+    if (!Number.isFinite(minX) || !Number.isFinite(maxX)) {
+      minX = 0;
+      maxX = SVG_WIDTH;
+      minY = 0;
+      maxY = SVG_HEIGHT;
+    }
+
+    return {
+      minX,
+      maxX,
+      minY,
+      maxY,
+      width: Math.max(maxX - minX, 100),
+      height: Math.max(maxY - minY, 100),
+      centerX: (minX + maxX) / 2,
+      centerY: (minY + maxY) / 2,
+    };
+  }, [mapModel.suburbs]);
+
+  // The minimum zoom scale where the entire city map covers/fits comfortably into the viewport
+  const minScale = useMemo(() => {
+    const w = viewportSize.width > 0 ? viewportSize.width : (containerRef.current?.clientWidth || 800);
+    const h = viewportSize.height > 0 ? viewportSize.height : (containerRef.current?.clientHeight || 600);
+    const padding = 36;
+    const spanW = cityBounds.width + padding * 2;
+    const spanH = cityBounds.height + padding * 2;
+    const calculated = Math.min(w / spanW, h / spanH);
+    return Math.max(0.2, Math.min(calculated, 2.5));
+  }, [viewportSize.width, viewportSize.height, cityBounds]);
+
+  // Check if zooming out should be disallowed because the entire map of the city already covers/fits within the viewport
+  const isEntireMapVisible = useMemo(() => {
+    const w = viewportSize.width > 0 ? viewportSize.width : (containerRef.current?.clientWidth || 800);
+    const h = viewportSize.height > 0 ? viewportSize.height : (containerRef.current?.clientHeight || 600);
+
+    // If scale is at or below the minimum city overview scale
+    if (transform.scale <= minScale + 0.01) {
+      return true;
+    }
+
+    // Or if the entire bounding box of all suburbs in the city is already fully visible within the viewport
+    const screenLeft = transform.x + cityBounds.minX * transform.scale;
+    const screenRight = transform.x + cityBounds.maxX * transform.scale;
+    const screenTop = transform.y + cityBounds.minY * transform.scale;
+    const screenBottom = transform.y + cityBounds.maxY * transform.scale;
+
+    return (
+      screenLeft >= -6 &&
+      screenRight <= w + 6 &&
+      screenTop >= -6 &&
+      screenBottom <= h + 6
+    );
+  }, [transform, minScale, viewportSize.width, viewportSize.height, cityBounds]);
+
+  // Zoom in as much as possible while strictly keeping start & end points and their suburb labels fully visible within the map view
+  const focusOnAreaOfInterest = useCallback(() => {
+    if (!containerRef.current) return;
+    const startSub = mapModel.suburbMap.get(gameState.startSuburbId);
+    const targetSub = mapModel.suburbMap.get(gameState.targetSuburbId);
+    if (!startSub || !targetSub) return;
+
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+    const includePoint = (px: number, py: number) => {
+      minX = Math.min(minX, px);
+      maxX = Math.max(maxX, px);
+      minY = Math.min(minY, py);
+      maxY = Math.max(maxY, py);
+    };
+
+    const includeSuburb = (sub: SuburbProjected, includeCalloutMargin = true) => {
+      includePoint(sub.x, sub.y);
+      if (sub.polygon && sub.polygon.length > 0) {
+        for (const [px, py] of sub.polygon) {
+          includePoint(px, py);
+        }
+      }
+      if (includeCalloutMargin) {
+        // Generous margin in SVG space ensuring callout leader lines, pin badges, and label pill text fit completely
+        const labelMargin = 95;
+        includePoint(sub.x - labelMargin, sub.y - labelMargin);
+        includePoint(sub.x + labelMargin, sub.y + labelMargin);
+      }
+    };
+
+    // Include Start and Target suburbs with callout badge margins
+    includeSuburb(startSub, true);
+    includeSuburb(targetSub, true);
+
+    // Also include Start suburb's immediate neighbors so initial route choices are visible
+    startSub.neighbors.forEach((nid) => {
+      const neighbor = mapModel.suburbMap.get(nid);
+      if (neighbor) {
+        includeSuburb(neighbor, false);
+      }
+    });
+
     const { clientWidth, clientHeight } = containerRef.current;
     if (clientWidth <= 0 || clientHeight <= 0) return;
 
-    // Generous margin padding so surrounding suburbs and badges fit comfortably within view
-    const padding = 110;
-    const spanW = Math.max(maxX - minX + padding * 2, 420);
-    const spanH = Math.max(maxY - minY + padding * 2, 340);
+    // Viewport padding in screen pixels tailored to floating UI overlays
+    // (Right: zoom buttons; Top: controls / touch hint; Bottom: status bar / legend)
+    const paddingLeft = Math.min(80, Math.max(48, clientWidth * 0.08));
+    const paddingRight = Math.min(95, Math.max(68, clientWidth * 0.10)); // Extra space for zoom controls
+    const paddingTop = Math.min(85, Math.max(56, clientHeight * 0.09));
+    const paddingBottom = Math.min(95, Math.max(64, clientHeight * 0.10)); // Extra space for status pill / legend
 
-    const scale = Math.min(clientWidth / spanW, clientHeight / spanH);
-    // Balanced zoom scale: minimum 0.60, capped at 1.45 so surrounding context is never cropped
-    const clampedScale = Math.max(0.60, Math.min(scale, 1.45));
+    const availableWidth = Math.max(clientWidth - (paddingLeft + paddingRight), 40);
+    const availableHeight = Math.max(clientHeight - (paddingTop + paddingBottom), 40);
+
+    const spanW = Math.max(maxX - minX, 10);
+    const spanH = Math.max(maxY - minY, 10);
+
+    // Zoom in as much as possible while strictly keeping start/target and their callout labels inside view
+    const calculatedScale = Math.min(availableWidth / spanW, availableHeight / spanH);
+    const clampedScale = Math.max(minScale, Math.min(calculatedScale, 4.0));
 
     const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
 
-    const newX = clientWidth / 2 - centerX * clampedScale;
-    const newY = clientHeight / 2 - centerY * clampedScale;
+    const screenCenterX = paddingLeft + availableWidth / 2;
+    const screenCenterY = paddingTop + availableHeight / 2;
+
+    const newX = screenCenterX - centerX * clampedScale;
+    const newY = screenCenterY - centerY * clampedScale;
 
     if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(clampedScale)) {
       setTransform({
@@ -172,7 +258,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         scale: clampedScale,
       });
     }
-  }, [gameState.startSuburbId, gameState.targetSuburbId, gameState.bestPath, mapModel.suburbMap]);
+  }, [gameState.startSuburbId, gameState.targetSuburbId, mapModel.suburbMap, minScale]);
 
   // Unique identifier for current puzzle round (tied to city and start/target)
   const currentPuzzleKey = `${gameState.cityId}_${gameState.startSuburbId}->${gameState.targetSuburbId}`;
@@ -196,6 +282,10 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+          setViewportSize({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height,
+          });
           if (!initialFittedRef.current) {
             initialFittedRef.current = true;
             focusOnAreaOfInterest();
@@ -225,26 +315,28 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     };
   }, []);
 
-  // Reset to entire Melbourne metropolitan area overview
-  const resetView = useCallback(() => {
+  // View entire city visible at the exact minimum zoom required
+  const fitWholeCity = useCallback(() => {
     if (!containerRef.current) return;
     const { clientWidth, clientHeight } = containerRef.current;
     if (clientWidth <= 0 || clientHeight <= 0) return;
 
-    const scaleX = clientWidth / SVG_WIDTH;
-    const scaleY = clientHeight / SVG_HEIGHT;
-    const initialScale = Math.min(scaleX, scaleY) * 0.95;
-    const newX = (clientWidth - SVG_WIDTH * initialScale) / 2;
-    const newY = (clientHeight - SVG_HEIGHT * initialScale) / 2;
+    const padding = 24;
+    const spanW = cityBounds.width + padding * 2;
+    const spanH = cityBounds.height + padding * 2;
+    const minZoomRequired = Math.min(clientWidth / spanW, clientHeight / spanH);
 
-    if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(initialScale)) {
+    const newX = clientWidth / 2 - cityBounds.centerX * minZoomRequired;
+    const newY = clientHeight / 2 - cityBounds.centerY * minZoomRequired;
+
+    if (Number.isFinite(newX) && Number.isFinite(newY) && Number.isFinite(minZoomRequired)) {
       setTransform({
         x: newX,
         y: newY,
-        scale: initialScale,
+        scale: minZoomRequired,
       });
     }
-  }, []);
+  }, [cityBounds]);
 
   const focusOnCurrent = useCallback(() => {
     if (!containerRef.current || !currentSuburb) return;
@@ -270,6 +362,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
     const { clientWidth, clientHeight } = containerRef.current;
     if (clientWidth <= 0 || clientHeight <= 0) return;
 
+    // Do not allow zooming out if the entire city map already covers/fits within the viewport
+    if (direction === 'out' && isEntireMapVisible) {
+      return;
+    }
+
     const centerPoint = { x: clientWidth / 2, y: clientHeight / 2 };
 
     setTransform((prev) => {
@@ -277,26 +374,33 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       const validX = Number.isFinite(prev.x) ? prev.x : 0;
       const validY = Number.isFinite(prev.y) ? prev.y : 0;
 
-      const newScale = direction === 'in' ? validScale * factor : validScale / factor;
-      const clampedScale = Math.max(0.4, Math.min(newScale, 5.0));
-
-      const ratio = clampedScale / validScale;
-      const newX = centerPoint.x - (centerPoint.x - validX) * ratio;
-      const newY = centerPoint.y - (centerPoint.y - validY) * ratio;
-
-      if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(clampedScale)) {
+      const newScale = direction === 'in' ? Math.min(validScale * factor, 5.0) : Math.max(minScale, validScale / factor);
+      if (direction === 'out' && newScale >= validScale - 0.001) {
         return prev;
       }
 
-      return { x: newX, y: newY, scale: clampedScale };
+      const ratio = newScale / validScale;
+      const newX = centerPoint.x - (centerPoint.x - validX) * ratio;
+      const newY = centerPoint.y - (centerPoint.y - validY) * ratio;
+
+      if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(newScale)) {
+        return prev;
+      }
+
+      return { x: newX, y: newY, scale: newScale };
     });
-  }, []);
+  }, [isEntireMapVisible, minScale]);
 
   // Mouse wheel zoom
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     e.preventDefault();
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
+
+    // If scrolling down (zoom out) and entire map is visible, do not zoom out
+    if (e.deltaY > 0 && isEntireMapVisible) {
+      return;
+    }
 
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -309,7 +413,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       const validX = Number.isFinite(prev.x) ? prev.x : 0;
       const validY = Number.isFinite(prev.y) ? prev.y : 0;
 
-      const newScale = Math.max(0.4, Math.min(validScale * zoomFactor, 5.0));
+      const newScale = Math.max(minScale, Math.min(validScale * zoomFactor, 5.0));
+      if (e.deltaY > 0 && newScale >= validScale - 0.001) {
+        return prev;
+      }
+
       const ratio = newScale / validScale;
       const newX = mouseX - (mouseX - validX) * ratio;
       const newY = mouseY - (mouseY - validY) * ratio;
@@ -347,6 +455,38 @@ export const MapViewport: React.FC<MapViewportProps> = ({
 
   const handleMouseUp = () => {
     isDraggingRef.current = false;
+  };
+
+  // Double click to zoom in one level centered on the clicked position
+  const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+    const zoomFactor = 1.35; // One standard zoom level
+
+    setTooltipInfo(null);
+
+    setTransform((prev) => {
+      const validScale = Number.isFinite(prev.scale) && prev.scale > 0 ? prev.scale : 1.0;
+      const validX = Number.isFinite(prev.x) ? prev.x : 0;
+      const validY = Number.isFinite(prev.y) ? prev.y : 0;
+
+      const newScale = Math.min(validScale * zoomFactor, 5.0);
+      if (newScale <= validScale) return prev;
+
+      const ratio = newScale / validScale;
+      const newX = clickX - (clickX - validX) * ratio;
+      const newY = clickY - (clickY - validY) * ratio;
+
+      if (!Number.isFinite(newX) || !Number.isFinite(newY) || !Number.isFinite(newScale)) {
+        return prev;
+      }
+
+      return { x: newX, y: newY, scale: newScale };
+    });
   };
 
   // Touch handlers for mobile & pinch-to-zoom (Rock-solid NaN-safe implementation)
@@ -412,6 +552,12 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       const { lastDist, lastCenter } = touchPinchRef.current;
       if (lastDist > 10) {
         const factor = dist / lastDist;
+        // If pinching to zoom out and entire map is visible, ignore zoom out factor
+        if (factor < 1 && isEntireMapVisible) {
+          touchPinchRef.current = { lastDist: dist, lastCenter: currentCenter };
+          return;
+        }
+
         // Clamp factor per frame to prevent erratic scale jumps
         const clampedFactor = Math.max(0.75, Math.min(factor, 1.35));
         const dx = currentCenter.x - lastCenter.x;
@@ -422,7 +568,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
           const currentX = Number.isFinite(prev.x) ? prev.x : 0;
           const currentY = Number.isFinite(prev.y) ? prev.y : 0;
 
-          const newScale = Math.max(0.4, Math.min(currentScale * clampedFactor, 5.0));
+          const newScale = Math.max(minScale, Math.min(currentScale * clampedFactor, 5.0));
+          if (clampedFactor < 1 && newScale >= currentScale - 0.001) {
+            return prev;
+          }
+
           const ratio = newScale / currentScale;
 
           const newX = currentCenter.x - (currentCenter.x - (currentX + dx)) * ratio;
@@ -1081,6 +1231,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       id="melbourne-map-viewport"
       className="relative w-full h-full bg-neutral-100 overflow-hidden select-none cursor-grab active:cursor-grabbing touch-none"
       onWheel={handleWheel}
+      onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -1108,23 +1259,29 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#000000" floodOpacity="0.08" />
           </filter>
 
-          {/* Realistic Bay Water Gradient */}
+          {/* Realistic Bay/Ocean Water Gradient */}
           <linearGradient id="bay-water-grad" x1="0%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stopColor="#f0f9ff" stopOpacity="0.95" />
-            <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.97" />
-            <stop offset="100%" stopColor="#bae6fd" stopOpacity="1" />
+            <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#7dd3fc" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.95" />
+          </linearGradient>
+
+          {/* Realistic Inland Lake Gradient (e.g. Lake Burley Griffin in Canberra) */}
+          <linearGradient id="lake-water-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.88" />
+            <stop offset="50%" stopColor="#7dd3fc" stopOpacity="0.92" />
+            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.95" />
           </linearGradient>
         </defs>
 
         {/* Global Pan/Zoom Layer */}
         <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.scale})`}>
           {/* Background Land Surface & Grid */}
-          <rect x="-1000" y="-1000" width={SVG_WIDTH + 2000} height={SVG_HEIGHT + 2000} fill="url(#carto-grid)" />
+          <rect x="-4000" y="-4000" width={SVG_WIDTH + 8000} height={SVG_HEIGHT + 8000} fill="url(#carto-grid)" />
 
-          {/* Port Phillip Bay Background Water Layer (rendered beneath land/suburbs) */}
+          {/* Background Coastal Water Layer (Bays & Oceans rendered beneath land/suburbs) */}
           <g id="bay-water-base" className="pointer-events-none select-none">
-            {/* Port Phillip Bay High-Resolution Water Polygon */}
-            {mapModel.waterPolygonPath && (
+            {mapModel.waterPolygonPath && mapModel.cityId !== 'canberra' && (
               <path
                 d={mapModel.waterPolygonPath}
                 fill="url(#bay-water-grad)"
@@ -1266,21 +1423,61 @@ export const MapViewport: React.FC<MapViewportProps> = ({
             })}
           </g>
 
-          {/* High-Resolution GIS Waterways Overlay Layer (Rivers & Labels, Coastline blue line removed) */}
+          {/* High-Resolution GIS Waterways Overlay Layer (Lakes, Rivers & Water Labels) */}
           <g id="gis-waterways" className="pointer-events-none select-none">
+            {/* Inland Lake (Lake Burley Griffin in Canberra) shaded cleanly above suburb fills */}
+            {mapModel.cityId === 'canberra' && mapModel.waterPolygonPath && (
+              <g id="canberra-lake-water">
+                <path
+                  d={mapModel.waterPolygonPath}
+                  fill="url(#lake-water-grad)"
+                  stroke="#0284c7"
+                  strokeWidth={1.5 / Math.sqrt(transform.scale)}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-opacity duration-300"
+                />
+              </g>
+            )}
+
             {/* Water body label */}
-            <text
-              x={mapModel.waterLabelX ?? 260}
-              y={mapModel.waterLabelY ?? 930}
-              fill="#64748b"
-              fontSize="24"
-              fontFamily="'Space Grotesk', sans-serif"
-              fontWeight="bold"
-              letterSpacing="6"
-              className="opacity-60 uppercase"
-            >
-              {mapModel.waterBodyName || 'Waterway'}
-            </text>
+            {mapModel.cityId === 'canberra' ? (
+              <text
+                x={752}
+                y={528}
+                textAnchor="middle"
+                fill="#0369a1"
+                fontSize={11 / Math.sqrt(transform.scale)}
+                fontFamily="'Plus Jakarta Sans', sans-serif"
+                fontWeight="700"
+                fontStyle="italic"
+                letterSpacing={2}
+                stroke="#ffffff"
+                strokeWidth={2.5 / Math.sqrt(transform.scale)}
+                strokeLinejoin="round"
+                paintOrder="stroke fill"
+                className="opacity-90 uppercase"
+              >
+                Lake Burley Griffin
+              </text>
+            ) : (
+              <text
+                x={mapModel.waterLabelX ?? 260}
+                y={mapModel.waterLabelY ?? 930}
+                fill="#0369a1"
+                fontSize="22"
+                fontFamily="'Space Grotesk', sans-serif"
+                fontWeight="bold"
+                letterSpacing="5"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinejoin="round"
+                paintOrder="stroke fill"
+                className="opacity-70 uppercase"
+              >
+                {mapModel.waterBodyName || 'Waterway'}
+              </text>
+            )}
 
             {/* Primary River GIS Flowline (e.g. River Torrens or Yarra River) */}
             {mapModel.primaryRiverPath && (
@@ -1289,11 +1486,11 @@ export const MapViewport: React.FC<MapViewportProps> = ({
                 <path
                   d={mapModel.primaryRiverPath}
                   fill="none"
-                  stroke="#e0f2fe"
+                  stroke="#bae6fd"
                   strokeWidth={6 / Math.sqrt(transform.scale)}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  opacity="0.9"
+                  opacity="0.95"
                 />
                 {/* River water channel */}
                 <path
@@ -1547,7 +1744,7 @@ export const MapViewport: React.FC<MapViewportProps> = ({
       <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex flex-col gap-1.5 sm:gap-2">
         <button
           id="zoom-in-btn"
-          title="Zoom In (or pinch / scroll)"
+          title="Zoom In (or double-click / pinch / scroll)"
           onClick={() => handleZoom('in')}
           className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
         >
@@ -1555,9 +1752,14 @@ export const MapViewport: React.FC<MapViewportProps> = ({
         </button>
         <button
           id="zoom-out-btn"
-          title="Zoom Out (or pinch / scroll)"
+          title={isEntireMapVisible ? `Entire ${mapModel.cityName} map is in view` : "Zoom Out (or pinch / scroll)"}
+          disabled={isEntireMapVisible}
           onClick={() => handleZoom('out')}
-          className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
+          className={`w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs text-neutral-800 transition-colors ${
+            isEntireMapVisible
+              ? 'opacity-40 cursor-not-allowed text-neutral-400'
+              : 'hover:bg-neutral-50 active:scale-95 cursor-pointer'
+          }`}
         >
           <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
@@ -1578,12 +1780,13 @@ export const MapViewport: React.FC<MapViewportProps> = ({
           <Locate className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
-          id="reset-view-btn"
-          title="Reset Whole Melbourne Metro View"
-          onClick={resetView}
+          id="fit-whole-city-btn"
+          title={`View Whole ${mapModel.cityName} (Minimum Zoom Required)`}
+          aria-label={`View Whole ${mapModel.cityName} at Minimum Zoom Required`}
+          onClick={fitWholeCity}
           className="w-9 h-9 sm:w-10 sm:h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shadow-xs hover:bg-neutral-50 text-neutral-800 transition-colors active:scale-95 cursor-pointer"
         >
-          <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" />
+          <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
 

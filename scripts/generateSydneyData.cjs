@@ -548,7 +548,7 @@ const GEORGES_RIVER_GIS = [
   [151.175, -34.000]  // Botany Bay entrance
 ];
 
-// 10. Generate 1,461 Canonical Daily Challenges (2025-01-01 to 2028-12-31)
+// 10. Generate Canonical Daily Challenges (2025-01-01 to 2030-12-31)
 function getSeededRandom(seedStr) {
   let h = 0x811c9dc5;
   for (let i = 0; i < seedStr.length; i++) {
@@ -586,7 +586,7 @@ const allIds = processedSuburbs.map(s => s.id).sort();
 const canonicalChallenges = {};
 
 const startDate = new Date('2025-01-01T00:00:00Z');
-const endDate = new Date('2028-12-31T00:00:00Z');
+const endDate = new Date('2030-12-31T00:00:00Z');
 
 let solvedCount = 0;
 let totalDays = 0;

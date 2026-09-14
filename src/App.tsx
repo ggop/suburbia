@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
   buildCityMapModel,
   generateRandomGame,
@@ -183,9 +183,26 @@ export default function App() {
     return getDistancesFrom(currentSuburbId, mapModel.adjacency);
   }, [currentSuburbId, mapModel.adjacency]);
 
-  // When game completes (won or lost), open results
+  // Track previous status and initial mount to avoid showing results popup on page load in a new tab
+  const isInitialMountRef = useRef<boolean>(true);
+  const prevStatusRef = useRef<GameState['status']>(gameState.status);
+
+  // When game completes (won or lost) during active play, open results
   useEffect(() => {
-    if (gameState.status === 'won' || gameState.status === 'lost') {
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      // On initial page load / new browser tab: do NOT load the results popup!
+      if (gameState.status === 'won' || gameState.status === 'lost') {
+        setShowBestPathOverlay(true);
+      }
+      return;
+    }
+
+    const prevStatus = prevStatusRef.current;
+    prevStatusRef.current = gameState.status;
+
+    // Only auto-open result modal if transition occurred from playing to won/lost during active play
+    if (prevStatus === 'playing' && (gameState.status === 'won' || gameState.status === 'lost')) {
       setIsResultModalOpen(true);
       setShowBestPathOverlay(true);
     }
@@ -500,6 +517,10 @@ export default function App() {
 
       const newModel = buildCityMapModel(newCity);
       const nextState = createInitialGameState(newCity, gameState.gameMode, newModel);
+      prevStatusRef.current = nextState.status;
+      if (nextState.status !== 'playing') {
+        setShowBestPathOverlay(true);
+      }
       setGameState(nextState);
     },
     [selectedCity, gameState.gameMode]
@@ -515,11 +536,11 @@ export default function App() {
       setIsResultModalOpen(false);
 
       const nextState = createInitialGameState(selectedCity, mode, mapModel);
-      setGameState(nextState);
+      prevStatusRef.current = nextState.status;
       if (nextState.status !== 'playing') {
-        setIsResultModalOpen(true);
         setShowBestPathOverlay(true);
       }
+      setGameState(nextState);
     },
     [gameState.gameMode, selectedCity, mapModel]
   );
