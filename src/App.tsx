@@ -28,13 +28,9 @@ import {
   loadActiveDailyState,
   loadActivePracticeState,
   loadLastMode,
+  loadSelectedCity,
   saveSelectedCity,
 } from './utils/gameStateStorage';
-import {
-  getInitialCity,
-  getCityFromUrl,
-  syncCityUrl,
-} from './utils/cityUrl';
 
 function createInitialGameState(
   cityId: CityId,
@@ -107,8 +103,11 @@ function createInitialGameState(
 }
 
 export default function App() {
-  // Selected city/map (persisted across sessions or extracted directly from URL)
-  const [selectedCity, setSelectedCity] = useState<CityId>(() => getInitialCity());
+  // Selected city/map (persisted across sessions)
+  const [selectedCity, setSelectedCity] = useState<CityId>(() => {
+    const loaded = loadSelectedCity();
+    return CITIES[loaded]?.hidden ? 'melbourne' : loaded;
+  });
 
   // Pre-calculate city geometry, Voronoi line polygons, and adjacency graph for selected city
   const mapModel = useMemo(() => buildCityMapModel(selectedCity), [selectedCity]);
@@ -116,9 +115,10 @@ export default function App() {
   // Initialize game on load with full refresh persistence (preventing reset on tab refresh)
   const [gameState, setGameState] = useState<GameState>(() => {
     const lastMode = loadLastMode();
-    const initialCity = getInitialCity();
-    const initialModel = buildCityMapModel(initialCity);
-    return createInitialGameState(initialCity, lastMode, initialModel);
+    const city = loadSelectedCity();
+    const effectiveCity = CITIES[city]?.hidden ? 'melbourne' : city;
+    const initialModel = buildCityMapModel(effectiveCity);
+    return createInitialGameState(effectiveCity, lastMode, initialModel);
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -516,13 +516,12 @@ export default function App() {
     setIsResultModalOpen(true);
   }, [gameState.status]);
 
-  // City Switcher (e.g. Melbourne, Sydney, Singapore, Adelaide, Perth, Brisbane, Hobart, Canberra)
+  // City Switcher (Melbourne vs. Adelaide)
   const handleSelectCity = useCallback(
     (newCity: CityId) => {
       if (newCity === selectedCity || CITIES[newCity]?.hidden) return;
       saveSelectedCity(newCity);
       setSelectedCity(newCity);
-      syncCityUrl(newCity, false);
       setErrorMessage(null);
       setConsecutiveErrors(0);
       setShowBestPathOverlay(false);
@@ -538,28 +537,6 @@ export default function App() {
     },
     [selectedCity, gameState.gameMode]
   );
-
-  // Synchronize the browser URL to keep the active city in all lowercase (e.g., /singapore, /sydney)
-  useEffect(() => {
-    syncCityUrl(selectedCity, true);
-  }, [selectedCity]);
-
-  // Listen for browser back/forward navigation or manual URL updates to jump directly to the city
-  useEffect(() => {
-    const handleUrlChange = () => {
-      const cityFromUrl = getCityFromUrl();
-      if (cityFromUrl && cityFromUrl !== selectedCity && !CITIES[cityFromUrl]?.hidden) {
-        handleSelectCity(cityFromUrl);
-      }
-    };
-
-    window.addEventListener('popstate', handleUrlChange);
-    window.addEventListener('hashchange', handleUrlChange);
-    return () => {
-      window.removeEventListener('popstate', handleUrlChange);
-      window.removeEventListener('hashchange', handleUrlChange);
-    };
-  }, [selectedCity, handleSelectCity]);
 
   // Mode switcher (Daily vs Practice)
   const handleSelectMode = useCallback(

@@ -310,7 +310,7 @@ export function generateDailyShareText(
     : `Practice`;
 
   const playLabel = isDaily ? "Play today's daily" : 'Play Suburbia';
-  const playUrl = `${window.location.origin}/${(mapModel.cityId || 'melbourne').toLowerCase()}`;
+  const playUrl = `${window.location.origin}${window.location.pathname}`;
 
   // Compact summary without "Turn limit reached [Turn Limit Exceeded]"
   const lines: string[] = [

@@ -28,7 +28,7 @@ export default defineConfig(() => {
   const gitCommitSha = getGitCommitShortSha();
 
   return {
-    base: '/',
+    base: './',
     define: {
       __APP_VERSION__: JSON.stringify(gitCommitSha),
     },
