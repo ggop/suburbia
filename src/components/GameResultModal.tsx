@@ -136,7 +136,7 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
 
   const visitedSet = new Set(gameState.path);
 
-  const handleShare = () => {
+  const handleShare = async () => {
     const dailyResult: DailyResultData = {
       dateStr: gameState.dailyDate || getTodayDateString(),
       challengeNumber: gameState.challengeNumber || 1,
@@ -151,10 +151,41 @@ export const GameResultModal: React.FC<GameResultModalProps> = ({
     };
 
     const text = generateDailyShareText(dailyResult, mapModel, isDaily);
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    });
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+        return;
+      }
+    } catch (err) {
+      console.warn('Clipboard API writeText failed, trying fallback copy', err);
+    }
+
+    // Fallback copy mechanism using a temporary textarea (works in iframes and strict permission contexts)
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      if (successful) {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } else {
+        alert('Copy to clipboard failed. Here is your result text:\n\n' + text);
+      }
+    } catch (fallbackErr) {
+      console.error('Fallback copy failed', fallbackErr);
+      alert('Copy to clipboard failed. Here is your result text:\n\n' + text);
+    }
   };
 
   return (
