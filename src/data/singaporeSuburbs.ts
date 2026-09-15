@@ -42,16 +42,6 @@ export const SINGAPORE_SUBURBS: SuburbData[] = [
     "historicalFact": "Meaning 'Red Hill' in Malay from legendary red laterite soil tales; encompasses historic Tiong Bahru (Singapore's oldest Art Deco public housing estate, 1936), Mount Faber, and Telok Blangah."
   },
   {
-    "id": "central-water-catchment",
-    "name": "Central Water Catchment",
-    "lat": 1.364788,
-    "lng": 103.816714,
-    "postcode": "729825",
-    "region": "North Region",
-    "population": 10,
-    "historicalFact": "Singapore's largest protected green reserve (over 3,000 hectares), preserving primary equatorial rainforest around MacRitchie, Upper Peirce, Lower Peirce, and Upper Seletar Reservoirs."
-  },
-  {
     "id": "downtown-core",
     "name": "Downtown Core",
     "lat": 1.286231,
@@ -102,16 +92,6 @@ export const SINGAPORE_SUBURBS: SuburbData[] = [
     "historicalFact": "Named after rubber pioneer Chew Boon Lay, industrial heart of Jurong Industrial Estate and gateway to Jurong Bird Park's historic original 1971 site."
   },
   {
-    "id": "western-water-catchment",
-    "name": "Western Water Catchment",
-    "lat": 1.391385,
-    "lng": 103.670991,
-    "postcode": "698928",
-    "region": "West Region",
-    "population": 700,
-    "historicalFact": "Expansive western water reservoir catchment area encompassing Sarimbun, Murai, Poyan, and Tengeh Reservoirs (site of Singapore's largest floating solar farm), used for military training."
-  },
-  {
     "id": "woodlands",
     "name": "Woodlands",
     "lat": 1.44804,
@@ -140,16 +120,6 @@ export const SINGAPORE_SUBURBS: SuburbData[] = [
     "region": "Central Region",
     "population": 8000,
     "historicalFact": "Famous for Newton Food Centre (opened 1971), one of Singapore's most celebrated hawker centers renowned for chilli crab and satay, surrounded by leafy heritage residential enclaves."
-  },
-  {
-    "id": "north-eastern-islands",
-    "name": "North-Eastern Islands",
-    "lat": 1.413644,
-    "lng": 103.962804,
-    "postcode": "508436",
-    "region": "North-East Region",
-    "population": 50,
-    "historicalFact": "Comprises Pulau Ubin (preserving Singapore's last traditional rural kampong life and Chek Jawa coastal wetlands) and Pulau Tekong (home to the Basic Military Training Centre)."
   },
   {
     "id": "orchard",

@@ -1,6 +1,6 @@
 /**
  * Canonical Deterministic Daily Challenges for Singapore (2025-2030).
- * Guarantees every single day's puzzle is 100% immutable and strictly 5 steps away.
+ * Guarantees every single day's puzzle is 100% immutable and strictly solvable.
  */
 export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, string]> = {
   "2025-01-01": [
@@ -9,107 +9,107 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-01-02": [
     "hougang",
-    "western-islands"
+    "pioneer"
   ],
   "2025-01-03": [
     "simpang",
-    "marina-south"
+    "bukit-merah"
   ],
   "2025-01-04": [
     "marina-south",
-    "woodlands"
+    "yishun"
   ],
   "2025-01-05": [
     "tuas",
-    "marina-east"
+    "lim-chu-kang"
   ],
   "2025-01-06": [
     "changi",
-    "queenstown"
+    "outram"
   ],
   "2025-01-07": [
-    "bukit-merah",
-    "changi-bay"
+    "bukit-panjang",
+    "changi"
   ],
   "2025-01-08": [
-    "tengah",
-    "north-eastern-islands"
+    "outram",
+    "sembawang"
   ],
   "2025-01-09": [
     "serangoon",
-    "western-islands"
+    "tuas"
   ],
   "2025-01-10": [
     "museum",
-    "punggol"
+    "simpang"
   ],
   "2025-01-11": [
     "queenstown",
     "changi"
   ],
   "2025-01-12": [
-    "geylang",
-    "western-islands"
+    "tampines",
+    "choa-chu-kang"
   ],
   "2025-01-13": [
     "outram",
-    "woodlands"
+    "yishun"
   ],
   "2025-01-14": [
     "changi-bay",
-    "tengah"
+    "sungei-kadut"
   ],
   "2025-01-15": [
     "bukit-merah",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2025-01-16": [
-    "tuas",
-    "museum"
+    "tengah",
+    "tampines"
   ],
   "2025-01-17": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2025-01-18": [
-    "lim-chu-kang",
-    "marina-south"
+    "yishun",
+    "outram"
   ],
   "2025-01-19": [
-    "museum",
-    "north-eastern-islands"
+    "marine-parade",
+    "lim-chu-kang"
   ],
   "2025-01-20": [
     "straits-view",
-    "seletar"
+    "sembawang"
   ],
   "2025-01-21": [
     "pasir-ris",
-    "jurong-east"
+    "boon-lay"
   ],
   "2025-01-22": [
     "western-islands",
-    "sengkang"
+    "serangoon"
   ],
   "2025-01-23": [
-    "western-islands",
-    "paya-lebar"
+    "tuas",
+    "marina-south"
   ],
   "2025-01-24": [
     "pasir-ris",
-    "jurong-west"
+    "jurong-east"
   ],
   "2025-01-25": [
-    "tengah",
-    "changi-bay"
+    "tampines",
+    "western-islands"
   ],
   "2025-01-26": [
-    "western-water-catchment",
-    "changi"
+    "tampines",
+    "jurong-east"
   ],
   "2025-01-27": [
     "southern-islands",
-    "punggol"
+    "seletar"
   ],
   "2025-01-28": [
     "sengkang",
@@ -117,91 +117,91 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-01-29": [
     "singapore-river",
-    "punggol"
+    "simpang"
   ],
   "2025-01-30": [
-    "tampines",
-    "western-islands"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2025-01-31": [
-    "pioneer",
-    "changi-bay"
+    "kallang",
+    "tuas"
   ],
   "2025-02-01": [
-    "western-islands",
-    "geylang"
+    "tuas",
+    "hougang"
   ],
   "2025-02-02": [
     "marine-parade",
-    "tuas"
+    "western-islands"
   ],
   "2025-02-03": [
-    "queenstown",
-    "north-eastern-islands"
+    "river-valley",
+    "sembawang"
   ],
   "2025-02-04": [
     "pioneer",
-    "museum"
+    "rochor"
   ],
   "2025-02-05": [
     "singapore-river",
-    "punggol"
+    "simpang"
   ],
   "2025-02-06": [
     "serangoon",
-    "boon-lay"
+    "pioneer"
   ],
   "2025-02-07": [
     "boon-lay",
-    "punggol"
+    "sembawang"
   ],
   "2025-02-08": [
     "marine-parade",
     "jurong-west"
   ],
   "2025-02-09": [
-    "paya-lebar",
-    "boon-lay"
-  ],
-  "2025-02-10": [
-    "sembawang",
+    "sungei-kadut",
     "marina-south"
   ],
+  "2025-02-10": [
+    "seletar",
+    "jurong-east"
+  ],
   "2025-02-11": [
-    "museum",
-    "changi"
+    "marine-parade",
+    "boon-lay"
   ],
   "2025-02-12": [
     "jurong-east",
-    "bedok"
+    "changi"
   ],
   "2025-02-13": [
     "punggol",
-    "outram"
+    "orchard"
   ],
   "2025-02-14": [
     "outram",
-    "simpang"
+    "woodlands"
   ],
   "2025-02-15": [
-    "marine-parade",
-    "jurong-west"
+    "downtown-core",
+    "sembawang"
   ],
   "2025-02-16": [
-    "orchard",
-    "changi-bay"
+    "mandai",
+    "outram"
   ],
   "2025-02-17": [
     "queenstown",
     "changi-bay"
   ],
   "2025-02-18": [
-    "changi",
-    "clementi"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2025-02-19": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sengkang"
   ],
   "2025-02-20": [
     "southern-islands",
@@ -213,63 +213,63 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-02-22": [
     "marina-east",
-    "tuas"
+    "woodlands"
   ],
   "2025-02-23": [
     "marine-parade",
-    "pioneer"
+    "tuas"
   ],
   "2025-02-24": [
     "simpang",
-    "marina-south"
+    "marina-east"
   ],
   "2025-02-25": [
     "jurong-west",
     "tampines"
   ],
   "2025-02-26": [
-    "orchard",
-    "punggol"
+    "yishun",
+    "southern-islands"
   ],
   "2025-02-27": [
     "rochor",
-    "pioneer"
+    "sembawang"
   ],
   "2025-02-28": [
-    "north-eastern-islands",
-    "lim-chu-kang"
+    "jurong-west",
+    "pasir-ris"
   ],
   "2025-03-01": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2025-03-02": [
-    "marina-south",
-    "north-eastern-islands"
+    "changi",
+    "lim-chu-kang"
   ],
   "2025-03-03": [
     "pioneer",
-    "punggol"
+    "serangoon"
   ],
   "2025-03-04": [
     "pasir-ris",
-    "tuas"
+    "tengah"
   ],
   "2025-03-05": [
-    "woodlands",
-    "southern-islands"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2025-03-06": [
     "orchard",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2025-03-07": [
     "museum",
-    "changi"
+    "pioneer"
   ],
   "2025-03-08": [
     "jurong-west",
-    "punggol"
+    "sengkang"
   ],
   "2025-03-09": [
     "southern-islands",
@@ -277,67 +277,67 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-03-10": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-03-11": [
     "changi",
-    "singapore-river"
+    "river-valley"
   ],
   "2025-03-12": [
     "paya-lebar",
-    "western-islands"
+    "pioneer"
   ],
   "2025-03-13": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-03-14": [
-    "western-water-catchment",
-    "marina-south"
+    "downtown-core",
+    "mandai"
   ],
   "2025-03-15": [
     "woodlands",
     "straits-view"
   ],
   "2025-03-16": [
-    "paya-lebar",
-    "boon-lay"
+    "geylang",
+    "pioneer"
   ],
   "2025-03-17": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2025-03-18": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "toa-payoh",
+    "pioneer"
   ],
   "2025-03-19": [
-    "straits-view",
+    "southern-islands",
     "woodlands"
   ],
   "2025-03-20": [
     "boon-lay",
-    "sengkang"
+    "serangoon"
   ],
   "2025-03-21": [
-    "simpang",
-    "southern-islands"
+    "kallang",
+    "tuas"
   ],
   "2025-03-22": [
     "changi",
-    "tuas"
+    "tengah"
   ],
   "2025-03-23": [
-    "outram",
-    "punggol"
+    "pasir-ris",
+    "jurong-west"
   ],
   "2025-03-24": [
     "changi",
-    "southern-islands"
+    "river-valley"
   ],
   "2025-03-25": [
-    "paya-lebar",
-    "boon-lay"
+    "bishan",
+    "tuas"
   ],
   "2025-03-26": [
     "sengkang",
@@ -345,15 +345,15 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-03-27": [
     "straits-view",
-    "simpang"
+    "woodlands"
   ],
   "2025-03-28": [
     "sembawang",
-    "marina-south"
+    "downtown-core"
   ],
   "2025-03-29": [
-    "tengah",
-    "north-eastern-islands"
+    "orchard",
+    "simpang"
   ],
   "2025-03-30": [
     "marina-east",
@@ -368,32 +368,32 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "seletar"
   ],
   "2025-04-02": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "tampines",
+    "boon-lay"
   ],
   "2025-04-03": [
     "river-valley",
     "changi"
   ],
   "2025-04-04": [
-    "hougang",
-    "boon-lay"
+    "bukit-panjang",
+    "changi"
   ],
   "2025-04-05": [
-    "southern-islands",
-    "woodlands"
+    "kallang",
+    "tuas"
   ],
   "2025-04-06": [
-    "outram",
-    "punggol"
+    "straits-view",
+    "sembawang"
   ],
   "2025-04-07": [
-    "woodlands",
-    "southern-islands"
+    "bishan",
+    "tuas"
   ],
   "2025-04-08": [
-    "north-eastern-islands",
-    "jurong-west"
+    "hougang",
+    "boon-lay"
   ],
   "2025-04-09": [
     "orchard",
@@ -401,55 +401,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-04-10": [
     "geylang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2025-04-11": [
-    "sembawang",
-    "outram"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2025-04-12": [
     "pioneer",
-    "pasir-ris"
+    "sembawang"
   ],
   "2025-04-13": [
-    "tampines",
-    "jurong-east"
+    "yishun",
+    "tuas"
   ],
   "2025-04-14": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2025-04-15": [
     "serangoon",
     "western-islands"
   ],
   "2025-04-16": [
-    "paya-lebar",
-    "boon-lay"
+    "pioneer",
+    "bishan"
   ],
   "2025-04-17": [
     "marina-south",
     "seletar"
   ],
   "2025-04-18": [
-    "tuas",
-    "pasir-ris"
+    "toa-payoh",
+    "tuas"
   ],
   "2025-04-19": [
     "seletar",
-    "boon-lay"
+    "jurong-east"
   ],
   "2025-04-20": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "orchard",
+    "changi"
   ],
   "2025-04-21": [
-    "changi-bay",
-    "tuas"
+    "orchard",
+    "changi"
   ],
   "2025-04-22": [
     "boon-lay",
-    "serangoon"
+    "simpang"
   ],
   "2025-04-23": [
     "clementi",
@@ -457,31 +457,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-04-24": [
     "marine-parade",
-    "boon-lay"
+    "jurong-west"
   ],
   "2025-04-25": [
-    "tampines",
-    "tengah"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2025-04-26": [
     "changi",
     "bukit-merah"
   ],
   "2025-04-27": [
-    "pioneer",
-    "tampines"
+    "bukit-merah",
+    "simpang"
   ],
   "2025-04-28": [
-    "orchard",
-    "changi"
+    "outram",
+    "changi-bay"
   ],
   "2025-04-29": [
-    "changi",
-    "clementi"
+    "changi-bay",
+    "choa-chu-kang"
   ],
   "2025-04-30": [
     "river-valley",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2025-05-01": [
     "lim-chu-kang",
@@ -493,87 +493,87 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-05-03": [
     "tampines",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2025-05-04": [
-    "rochor",
-    "tuas"
+    "mandai",
+    "outram"
   ],
   "2025-05-05": [
     "bedok",
-    "jurong-west"
+    "jurong-east"
   ],
   "2025-05-06": [
-    "north-eastern-islands",
-    "jurong-east"
+    "downtown-core",
+    "woodlands"
   ],
   "2025-05-07": [
     "seletar",
-    "marina-south"
+    "jurong-east"
   ],
   "2025-05-08": [
-    "marina-east",
+    "mandai",
     "tuas"
   ],
   "2025-05-09": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2025-05-10": [
     "changi-bay",
-    "choa-chu-kang"
+    "bukit-panjang"
   ],
   "2025-05-11": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "museum",
+    "punggol"
   ],
   "2025-05-12": [
     "rochor",
     "tuas"
   ],
   "2025-05-13": [
-    "lim-chu-kang",
-    "outram"
+    "kallang",
+    "tuas"
   ],
   "2025-05-14": [
-    "choa-chu-kang",
-    "north-eastern-islands"
+    "clementi",
+    "punggol"
   ],
   "2025-05-15": [
-    "singapore-river",
-    "changi-bay"
+    "simpang",
+    "orchard"
   ],
   "2025-05-16": [
     "museum",
     "changi"
   ],
   "2025-05-17": [
-    "tuas",
-    "museum"
+    "geylang",
+    "western-islands"
   ],
   "2025-05-18": [
-    "tuas",
-    "tampines"
+    "toa-payoh",
+    "tuas"
   ],
   "2025-05-19": [
-    "choa-chu-kang",
-    "marina-south"
+    "downtown-core",
+    "mandai"
   ],
   "2025-05-20": [
-    "southern-islands",
-    "changi"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2025-05-21": [
     "jurong-west",
-    "pasir-ris"
+    "seletar"
   ],
   "2025-05-22": [
-    "tuas",
-    "museum"
+    "toa-payoh",
+    "tuas"
   ],
   "2025-05-23": [
-    "straits-view",
-    "lim-chu-kang"
+    "southern-islands",
+    "changi"
   ],
   "2025-05-24": [
     "pasir-ris",
@@ -584,55 +584,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "western-islands"
   ],
   "2025-05-26": [
-    "bukit-merah",
-    "changi-bay"
+    "bishan",
+    "pioneer"
   ],
   "2025-05-27": [
-    "changi",
+    "changi-bay",
     "lim-chu-kang"
   ],
   "2025-05-28": [
-    "punggol",
-    "marina-south"
+    "queenstown",
+    "changi"
   ],
   "2025-05-29": [
-    "southern-islands",
-    "lim-chu-kang"
+    "singapore-river",
+    "changi-bay"
   ],
   "2025-05-30": [
     "pasir-ris",
-    "pioneer"
+    "jurong-west"
   ],
   "2025-05-31": [
-    "sembawang",
-    "straits-view"
+    "kallang",
+    "pioneer"
   ],
   "2025-06-01": [
     "lim-chu-kang",
-    "changi-bay"
+    "geylang"
   ],
   "2025-06-02": [
-    "sengkang",
-    "boon-lay"
+    "mandai",
+    "southern-islands"
   ],
   "2025-06-03": [
     "seletar",
-    "southern-islands"
+    "pioneer"
   ],
   "2025-06-04": [
     "outram",
-    "sembawang"
+    "simpang"
   ],
   "2025-06-05": [
-    "geylang",
-    "boon-lay"
+    "bukit-panjang",
+    "changi"
   ],
   "2025-06-06": [
     "paya-lebar",
-    "boon-lay"
+    "jurong-west"
   ],
   "2025-06-07": [
-    "marina-south",
+    "marina-east",
     "tuas"
   ],
   "2025-06-08": [
@@ -641,55 +641,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-06-09": [
     "punggol",
-    "river-valley"
+    "outram"
   ],
   "2025-06-10": [
     "marina-south",
     "choa-chu-kang"
   ],
   "2025-06-11": [
-    "pioneer",
-    "museum"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-06-12": [
-    "southern-islands",
-    "lim-chu-kang"
+    "bishan",
+    "pioneer"
   ],
   "2025-06-13": [
-    "straits-view",
-    "lim-chu-kang"
+    "southern-islands",
+    "changi"
   ],
   "2025-06-14": [
-    "simpang",
-    "marina-south"
+    "tampines",
+    "tengah"
   ],
   "2025-06-15": [
-    "serangoon",
-    "boon-lay"
+    "tengah",
+    "punggol"
   ],
   "2025-06-16": [
-    "queenstown",
-    "north-eastern-islands"
+    "river-valley",
+    "simpang"
   ],
   "2025-06-17": [
-    "sembawang",
-    "marina-south"
+    "seletar",
+    "jurong-east"
   ],
   "2025-06-18": [
-    "tengah",
-    "tampines"
+    "yishun",
+    "western-islands"
   ],
   "2025-06-19": [
-    "tuas",
-    "bedok"
+    "toa-payoh",
+    "pioneer"
   ],
   "2025-06-20": [
-    "woodlands",
-    "marina-south"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2025-06-21": [
-    "jurong-east",
-    "tampines"
+    "yishun",
+    "outram"
   ],
   "2025-06-22": [
     "singapore-river",
@@ -697,63 +697,63 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-06-23": [
     "changi",
-    "outram"
+    "orchard"
   ],
   "2025-06-24": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2025-06-25": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2025-06-26": [
     "rochor",
     "tuas"
   ],
   "2025-06-27": [
-    "orchard",
-    "changi"
+    "changi",
+    "museum"
   ],
   "2025-06-28": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2025-06-29": [
-    "marina-south",
-    "western-water-catchment"
+    "yishun",
+    "pioneer"
   ],
   "2025-06-30": [
-    "tengah",
-    "pasir-ris"
+    "punggol",
+    "bukit-batok"
   ],
   "2025-07-01": [
-    "straits-view",
-    "seletar"
+    "tampines",
+    "western-islands"
   ],
   "2025-07-02": [
     "geylang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2025-07-03": [
     "marina-south",
     "seletar"
   ],
   "2025-07-04": [
-    "marina-south",
-    "lim-chu-kang"
+    "downtown-core",
+    "sembawang"
   ],
   "2025-07-05": [
-    "singapore-river",
-    "north-eastern-islands"
+    "mandai",
+    "straits-view"
   ],
   "2025-07-06": [
     "river-valley",
-    "changi-bay"
+    "punggol"
   ],
   "2025-07-07": [
-    "north-eastern-islands",
-    "clementi"
+    "kallang",
+    "pioneer"
   ],
   "2025-07-08": [
     "choa-chu-kang",
@@ -761,51 +761,51 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-07-09": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2025-07-10": [
     "southern-islands",
     "changi"
   ],
   "2025-07-11": [
-    "boon-lay",
-    "pasir-ris"
+    "bishan",
+    "pioneer"
   ],
   "2025-07-12": [
     "singapore-river",
     "changi"
   ],
   "2025-07-13": [
-    "changi-bay",
-    "tuas"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2025-07-14": [
     "bukit-merah",
     "changi-bay"
   ],
   "2025-07-15": [
-    "serangoon",
-    "boon-lay"
+    "changi",
+    "river-valley"
   ],
   "2025-07-16": [
-    "western-islands",
-    "bedok"
+    "tuas",
+    "bishan"
   ],
   "2025-07-17": [
     "boon-lay",
     "paya-lebar"
   ],
   "2025-07-18": [
-    "marina-east",
-    "pioneer"
+    "geylang",
+    "lim-chu-kang"
   ],
   "2025-07-19": [
-    "tampines",
-    "pioneer"
+    "bukit-merah",
+    "simpang"
   ],
   "2025-07-20": [
     "woodlands",
-    "outram"
+    "marine-parade"
   ],
   "2025-07-21": [
     "orchard",
@@ -820,56 +820,56 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "outram"
   ],
   "2025-07-24": [
-    "tuas",
-    "changi-bay"
+    "toa-payoh",
+    "pioneer"
   ],
   "2025-07-25": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2025-07-26": [
-    "marina-south",
-    "tuas"
+    "kallang",
+    "pioneer"
   ],
   "2025-07-27": [
     "woodlands",
     "marina-south"
   ],
   "2025-07-28": [
-    "western-islands",
-    "punggol"
+    "tuas",
+    "paya-lebar"
   ],
   "2025-07-29": [
     "sembawang",
-    "straits-view"
+    "tuas"
   ],
   "2025-07-30": [
     "punggol",
-    "marina-south"
+    "jurong-west"
   ],
   "2025-07-31": [
-    "changi",
+    "changi-bay",
     "bukit-merah"
   ],
   "2025-08-01": [
     "boon-lay",
-    "punggol"
+    "seletar"
   ],
   "2025-08-02": [
-    "museum",
-    "pioneer"
+    "marine-parade",
+    "tuas"
   ],
   "2025-08-03": [
     "bedok",
     "boon-lay"
   ],
   "2025-08-04": [
-    "punggol",
-    "orchard"
+    "changi",
+    "outram"
   ],
   "2025-08-05": [
     "bukit-merah",
-    "changi-bay"
+    "punggol"
   ],
   "2025-08-06": [
     "jurong-west",
@@ -877,71 +877,71 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-08-07": [
     "sembawang",
-    "southern-islands"
+    "rochor"
   ],
   "2025-08-08": [
-    "western-islands",
-    "paya-lebar"
+    "tuas",
+    "museum"
   ],
   "2025-08-09": [
     "singapore-river",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-08-10": [
     "simpang",
-    "straits-view"
+    "western-islands"
   ],
   "2025-08-11": [
-    "pasir-ris",
-    "tuas"
+    "paya-lebar",
+    "western-islands"
   ],
   "2025-08-12": [
-    "tampines",
-    "tengah"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2025-08-13": [
     "jurong-west",
-    "marine-parade"
+    "pasir-ris"
   ],
   "2025-08-14": [
-    "western-islands",
-    "serangoon"
+    "tuas",
+    "toa-payoh"
   ],
   "2025-08-15": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-08-16": [
-    "seletar",
-    "boon-lay"
+    "yishun",
+    "straits-view"
   ],
   "2025-08-17": [
     "river-valley",
-    "changi-bay"
+    "punggol"
   ],
   "2025-08-18": [
     "singapore-river",
-    "changi"
+    "changi-bay"
   ],
   "2025-08-19": [
-    "lim-chu-kang",
-    "changi"
+    "tengah",
+    "changi-bay"
   ],
   "2025-08-20": [
     "sembawang",
-    "marina-south"
+    "bukit-merah"
   ],
   "2025-08-21": [
     "sembawang",
-    "marina-south"
+    "marina-east"
   ],
   "2025-08-22": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2025-08-23": [
     "paya-lebar",
-    "western-islands"
+    "pioneer"
   ],
   "2025-08-24": [
     "bukit-merah",
@@ -949,103 +949,103 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-08-25": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2025-08-26": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2025-08-27": [
-    "north-eastern-islands",
-    "bukit-batok"
+    "bishan",
+    "pioneer"
   ],
   "2025-08-28": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2025-08-29": [
-    "bedok",
+    "ang-mo-kio",
     "jurong-west"
   ],
   "2025-08-30": [
-    "north-eastern-islands",
-    "singapore-river"
+    "sengkang",
+    "western-islands"
   ],
   "2025-08-31": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2025-09-01": [
-    "serangoon",
+    "sengkang",
     "boon-lay"
   ],
   "2025-09-02": [
     "changi",
-    "bukit-merah"
+    "bukit-batok"
   ],
   "2025-09-03": [
-    "southern-islands",
-    "woodlands"
+    "downtown-core",
+    "sembawang"
   ],
   "2025-09-04": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-09-05": [
-    "museum",
-    "tuas"
+    "marine-parade",
+    "woodlands"
   ],
   "2025-09-06": [
     "museum",
-    "changi-bay"
+    "lim-chu-kang"
   ],
   "2025-09-07": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2025-09-08": [
     "marina-south",
-    "western-water-catchment"
+    "woodlands"
   ],
   "2025-09-09": [
     "museum",
-    "pioneer"
+    "punggol"
   ],
   "2025-09-10": [
-    "tengah",
-    "changi-bay"
+    "marina-east",
+    "tuas"
   ],
   "2025-09-11": [
     "boon-lay",
-    "sengkang"
+    "serangoon"
   ],
   "2025-09-12": [
     "pioneer",
-    "marine-parade"
+    "museum"
   ],
   "2025-09-13": [
     "changi-bay",
-    "western-water-catchment"
+    "woodlands"
   ],
   "2025-09-14": [
     "river-valley",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2025-09-15": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2025-09-16": [
-    "tampines",
-    "pioneer"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-09-17": [
     "marine-parade",
-    "jurong-west"
+    "lim-chu-kang"
   ],
   "2025-09-18": [
-    "north-eastern-islands",
-    "bukit-merah"
+    "bukit-batok",
+    "changi-bay"
   ],
   "2025-09-19": [
     "marina-east",
@@ -1057,7 +1057,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-09-21": [
     "woodlands",
-    "southern-islands"
+    "outram"
   ],
   "2025-09-22": [
     "outram",
@@ -1072,23 +1072,23 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "tuas"
   ],
   "2025-09-25": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "museum",
+    "woodlands"
   ],
   "2025-09-26": [
-    "marine-parade",
-    "tuas"
+    "orchard",
+    "punggol"
   ],
   "2025-09-27": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "tampines"
   ],
   "2025-09-28": [
     "pioneer",
-    "rochor"
+    "simpang"
   ],
   "2025-09-29": [
-    "serangoon",
+    "sengkang",
     "boon-lay"
   ],
   "2025-09-30": [
@@ -1100,68 +1100,68 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi-bay"
   ],
   "2025-10-02": [
-    "western-islands",
-    "pasir-ris"
+    "tampines",
+    "boon-lay"
   ],
   "2025-10-03": [
     "jurong-west",
-    "changi"
+    "geylang"
   ],
   "2025-10-04": [
     "serangoon",
-    "western-islands"
+    "tuas"
   ],
   "2025-10-05": [
     "sembawang",
-    "marina-south"
+    "downtown-core"
   ],
   "2025-10-06": [
     "changi-bay",
-    "clementi"
+    "choa-chu-kang"
   ],
   "2025-10-07": [
-    "outram",
-    "seletar"
+    "kallang",
+    "pioneer"
   ],
   "2025-10-08": [
-    "pioneer",
-    "rochor"
+    "punggol",
+    "southern-islands"
   ],
   "2025-10-09": [
     "marina-south",
-    "pioneer"
+    "punggol"
   ],
   "2025-10-10": [
-    "river-valley",
-    "changi"
+    "yishun",
+    "straits-view"
   ],
   "2025-10-11": [
-    "bedok",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-10-12": [
     "bukit-merah",
-    "changi"
+    "changi-bay"
   ],
   "2025-10-13": [
     "singapore-river",
-    "punggol"
+    "simpang"
   ],
   "2025-10-14": [
     "bukit-merah",
-    "punggol"
+    "changi"
   ],
   "2025-10-15": [
-    "simpang",
-    "straits-view"
+    "orchard",
+    "sembawang"
   ],
   "2025-10-16": [
-    "north-eastern-islands",
-    "marina-south"
+    "mandai",
+    "marina-east"
   ],
   "2025-10-17": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2025-10-18": [
     "lim-chu-kang",
@@ -1172,32 +1172,32 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2025-10-20": [
-    "hougang",
-    "boon-lay"
+    "jurong-east",
+    "changi"
   ],
   "2025-10-21": [
     "simpang",
-    "marina-south"
+    "boon-lay"
   ],
   "2025-10-22": [
     "seletar",
     "straits-view"
   ],
   "2025-10-23": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "ang-mo-kio"
   ],
   "2025-10-24": [
-    "pasir-ris",
+    "paya-lebar",
     "boon-lay"
   ],
   "2025-10-25": [
     "pioneer",
-    "museum"
+    "paya-lebar"
   ],
   "2025-10-26": [
-    "pioneer",
-    "punggol"
+    "mandai",
+    "rochor"
   ],
   "2025-10-27": [
     "straits-view",
@@ -1205,91 +1205,91 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-10-28": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2025-10-29": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-10-30": [
     "punggol",
-    "boon-lay"
+    "bukit-batok"
   ],
   "2025-10-31": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "bedok"
   ],
   "2025-11-01": [
     "orchard",
     "changi"
   ],
   "2025-11-02": [
-    "straits-view",
-    "woodlands"
+    "southern-islands",
+    "yishun"
   ],
   "2025-11-03": [
     "simpang",
-    "marina-south"
+    "bukit-merah"
   ],
   "2025-11-04": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2025-11-05": [
     "boon-lay",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2025-11-06": [
     "seletar",
     "western-islands"
   ],
   "2025-11-07": [
-    "hougang",
-    "western-islands"
+    "tampines",
+    "choa-chu-kang"
   ],
   "2025-11-08": [
-    "changi-bay",
-    "pioneer"
+    "choa-chu-kang",
+    "changi-bay"
   ],
   "2025-11-09": [
-    "western-islands",
-    "hougang"
+    "tuas",
+    "lim-chu-kang"
   ],
   "2025-11-10": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2025-11-11": [
-    "lim-chu-kang",
-    "southern-islands"
+    "downtown-core",
+    "mandai"
   ],
   "2025-11-12": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "bedok"
   ],
   "2025-11-13": [
-    "jurong-west",
-    "north-eastern-islands"
+    "tampines",
+    "jurong-east"
   ],
   "2025-11-14": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2025-11-15": [
-    "outram",
-    "sembawang"
+    "pasir-ris",
+    "tengah"
   ],
   "2025-11-16": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "rochor"
   ],
   "2025-11-17": [
     "simpang",
-    "outram"
+    "marina-south"
   ],
   "2025-11-18": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "serangoon"
   ],
   "2025-11-19": [
     "marina-east",
@@ -1297,35 +1297,35 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2025-11-20": [
     "straits-view",
-    "north-eastern-islands"
+    "woodlands"
   ],
   "2025-11-21": [
     "sembawang",
-    "outram"
+    "marina-south"
   ],
   "2025-11-22": [
-    "tuas",
-    "rochor"
+    "downtown-core",
+    "woodlands"
   ],
   "2025-11-23": [
-    "orchard",
-    "changi"
+    "lim-chu-kang",
+    "marine-parade"
   ],
   "2025-11-24": [
     "tengah",
-    "changi"
+    "bedok"
   ],
   "2025-11-25": [
-    "marine-parade",
-    "jurong-west"
+    "changi",
+    "bukit-merah"
   ],
   "2025-11-26": [
-    "tampines",
-    "pioneer"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-11-27": [
-    "western-water-catchment",
-    "changi-bay"
+    "woodlands",
+    "marina-south"
   ],
   "2025-11-28": [
     "bukit-batok",
@@ -1336,135 +1336,135 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2025-11-30": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "serangoon"
   ],
   "2025-12-01": [
     "lim-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2025-12-02": [
     "woodlands",
     "straits-view"
   ],
   "2025-12-03": [
-    "tengah",
-    "pasir-ris"
+    "queenstown",
+    "changi-bay"
   ],
   "2025-12-04": [
     "lim-chu-kang",
-    "straits-view"
+    "tuas"
   ],
   "2025-12-05": [
-    "outram",
-    "lim-chu-kang"
+    "pasir-ris",
+    "jurong-east"
   ],
   "2025-12-06": [
-    "geylang",
-    "boon-lay"
+    "tengah",
+    "changi"
   ],
   "2025-12-07": [
     "bukit-batok",
     "changi-bay"
   ],
   "2025-12-08": [
-    "paya-lebar",
-    "boon-lay"
+    "tengah",
+    "pasir-ris"
   ],
   "2025-12-09": [
     "tampines",
     "boon-lay"
   ],
   "2025-12-10": [
-    "outram",
-    "sembawang"
+    "yishun",
+    "southern-islands"
   ],
   "2025-12-11": [
     "rochor",
-    "tuas"
+    "simpang"
   ],
   "2025-12-12": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2025-12-13": [
     "rochor",
-    "pioneer"
+    "mandai"
   ],
   "2025-12-14": [
     "woodlands",
-    "marina-south"
+    "marina-east"
   ],
   "2025-12-15": [
     "changi-bay",
     "bukit-merah"
   ],
   "2025-12-16": [
-    "north-eastern-islands",
-    "queenstown"
+    "river-valley",
+    "sembawang"
   ],
   "2025-12-17": [
-    "sembawang",
-    "straits-view"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2025-12-18": [
     "serangoon",
-    "boon-lay"
+    "pioneer"
   ],
   "2025-12-19": [
-    "tuas",
-    "tampines"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2025-12-20": [
     "lim-chu-kang",
-    "changi-bay"
+    "geylang"
   ],
   "2025-12-21": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2025-12-22": [
-    "bukit-merah",
-    "north-eastern-islands"
+    "bukit-batok",
+    "changi-bay"
   ],
   "2025-12-23": [
     "simpang",
-    "marina-south"
+    "marina-east"
   ],
   "2025-12-24": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-12-25": [
     "singapore-river",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2025-12-26": [
     "orchard",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2025-12-27": [
     "changi-bay",
-    "tuas"
+    "tengah"
   ],
   "2025-12-28": [
-    "tuas",
-    "rochor"
+    "museum",
+    "woodlands"
   ],
   "2025-12-29": [
-    "orchard",
+    "outram",
     "changi"
   ],
   "2025-12-30": [
-    "seletar",
-    "southern-islands"
+    "museum",
+    "sembawang"
   ],
   "2025-12-31": [
-    "western-islands",
-    "pasir-ris"
+    "museum",
+    "woodlands"
   ],
   "2026-01-01": [
-    "pasir-ris",
+    "paya-lebar",
     "tuas"
   ],
   "2026-01-02": [
@@ -1473,43 +1473,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-01-03": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2026-01-04": [
-    "tampines",
-    "western-islands"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2026-01-05": [
-    "boon-lay",
-    "tampines"
+    "bishan",
+    "tuas"
   ],
   "2026-01-06": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2026-01-07": [
     "marine-parade",
     "boon-lay"
   ],
   "2026-01-08": [
-    "tampines",
-    "jurong-east"
+    "museum",
+    "changi"
   ],
   "2026-01-09": [
     "geylang",
-    "boon-lay"
+    "lim-chu-kang"
   ],
   "2026-01-10": [
     "southern-islands",
-    "sembawang"
+    "simpang"
   ],
   "2026-01-11": [
     "serangoon",
     "boon-lay"
   ],
   "2026-01-12": [
-    "bukit-batok",
-    "changi-bay"
+    "bukit-merah",
+    "changi"
   ],
   "2026-01-13": [
     "woodlands",
@@ -1520,20 +1520,20 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "tampines"
   ],
   "2026-01-15": [
-    "punggol",
-    "bukit-merah"
+    "queenstown",
+    "changi"
   ],
   "2026-01-16": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2026-01-17": [
-    "north-eastern-islands",
-    "jurong-west"
+    "museum",
+    "pioneer"
   ],
   "2026-01-18": [
-    "geylang",
-    "boon-lay"
+    "tengah",
+    "changi-bay"
   ],
   "2026-01-19": [
     "bedok",
@@ -1541,7 +1541,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-01-20": [
     "pioneer",
-    "marine-parade"
+    "museum"
   ],
   "2026-01-21": [
     "jurong-east",
@@ -1549,7 +1549,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-01-22": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2026-01-23": [
     "woodlands",
@@ -1560,16 +1560,16 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "pioneer"
   ],
   "2026-01-25": [
-    "western-water-catchment",
-    "marina-south"
+    "mandai",
+    "tuas"
   ],
   "2026-01-26": [
-    "north-eastern-islands",
-    "southern-islands"
+    "simpang",
+    "museum"
   ],
   "2026-01-27": [
     "jurong-east",
-    "pasir-ris"
+    "seletar"
   ],
   "2026-01-28": [
     "queenstown",
@@ -1580,8 +1580,8 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2026-01-30": [
-    "tampines",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2026-01-31": [
     "marina-east",
@@ -1589,15 +1589,15 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-02-01": [
     "punggol",
-    "marina-south"
+    "jurong-west"
   ],
   "2026-02-02": [
     "straits-view",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2026-02-03": [
-    "straits-view",
-    "lim-chu-kang"
+    "southern-islands",
+    "changi"
   ],
   "2026-02-04": [
     "bukit-merah",
@@ -1608,16 +1608,16 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "paya-lebar"
   ],
   "2026-02-06": [
-    "river-valley",
-    "changi-bay"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2026-02-07": [
     "jurong-west",
-    "changi"
+    "bedok"
   ],
   "2026-02-08": [
-    "sembawang",
-    "outram"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2026-02-09": [
     "tengah",
@@ -1625,27 +1625,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-02-10": [
     "orchard",
-    "punggol"
+    "simpang"
   ],
   "2026-02-11": [
     "changi",
-    "tuas"
+    "southern-islands"
   ],
   "2026-02-12": [
-    "changi",
+    "changi-bay",
     "bukit-batok"
   ],
   "2026-02-13": [
-    "orchard",
-    "changi"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2026-02-14": [
-    "museum",
-    "pioneer"
+    "marine-parade",
+    "tuas"
   ],
   "2026-02-15": [
     "singapore-river",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2026-02-16": [
     "bukit-batok",
@@ -1653,7 +1653,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-02-17": [
     "marina-south",
-    "sembawang"
+    "simpang"
   ],
   "2026-02-18": [
     "river-valley",
@@ -1661,43 +1661,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-02-19": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-02-20": [
-    "changi",
+    "changi-bay",
     "orchard"
   ],
   "2026-02-21": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2026-02-22": [
-    "southern-islands",
+    "singapore-river",
     "simpang"
   ],
   "2026-02-23": [
     "lim-chu-kang",
-    "north-eastern-islands"
+    "museum"
   ],
   "2026-02-24": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2026-02-25": [
-    "hougang",
-    "western-islands"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-02-26": [
     "singapore-river",
     "changi"
   ],
   "2026-02-27": [
-    "tengah",
-    "punggol"
+    "southern-islands",
+    "changi"
   ],
   "2026-02-28": [
     "simpang",
-    "southern-islands"
+    "pioneer"
   ],
   "2026-03-01": [
     "straits-view",
@@ -1712,36 +1712,36 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2026-03-04": [
-    "punggol",
-    "boon-lay"
+    "queenstown",
+    "changi"
   ],
   "2026-03-05": [
     "punggol",
-    "outram"
+    "orchard"
   ],
   "2026-03-06": [
     "punggol",
-    "jurong-west"
+    "jurong-east"
   ],
   "2026-03-07": [
     "river-valley",
     "changi-bay"
   ],
   "2026-03-08": [
-    "marina-south",
-    "choa-chu-kang"
+    "bishan",
+    "pioneer"
   ],
   "2026-03-09": [
     "sembawang",
-    "southern-islands"
+    "singapore-river"
   ],
   "2026-03-10": [
     "pasir-ris",
-    "pioneer"
+    "jurong-west"
   ],
   "2026-03-11": [
-    "marina-south",
-    "western-water-catchment"
+    "tampines",
+    "jurong-east"
   ],
   "2026-03-12": [
     "pasir-ris",
@@ -1749,103 +1749,103 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-03-13": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2026-03-14": [
-    "changi",
+    "changi-bay",
     "tengah"
   ],
   "2026-03-15": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-03-16": [
     "orchard",
-    "changi-bay"
+    "punggol"
   ],
   "2026-03-17": [
-    "tuas",
-    "tampines"
+    "toa-payoh",
+    "tuas"
   ],
   "2026-03-18": [
     "pasir-ris",
-    "tuas"
+    "western-islands"
   ],
   "2026-03-19": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2026-03-20": [
     "punggol",
-    "singapore-river"
+    "river-valley"
   ],
   "2026-03-21": [
     "marina-east",
-    "pioneer"
+    "sembawang"
   ],
   "2026-03-22": [
     "punggol",
-    "river-valley"
+    "outram"
   ],
   "2026-03-23": [
     "jurong-west",
-    "changi"
+    "geylang"
   ],
   "2026-03-24": [
     "changi",
     "bukit-batok"
   ],
   "2026-03-25": [
-    "tengah",
-    "changi-bay"
+    "mandai",
+    "museum"
   ],
   "2026-03-26": [
     "paya-lebar",
     "western-islands"
   ],
   "2026-03-27": [
-    "outram",
-    "lim-chu-kang"
+    "pasir-ris",
+    "jurong-east"
   ],
   "2026-03-28": [
-    "paya-lebar",
-    "boon-lay"
+    "kallang",
+    "tuas"
   ],
   "2026-03-29": [
-    "boon-lay",
-    "seletar"
+    "bishan",
+    "tuas"
   ],
   "2026-03-30": [
-    "western-islands",
-    "punggol"
+    "changi",
+    "museum"
   ],
   "2026-03-31": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "sembawang"
   ],
   "2026-04-01": [
-    "straits-view",
-    "woodlands"
+    "southern-islands",
+    "yishun"
   ],
   "2026-04-02": [
-    "orchard",
-    "punggol"
+    "outram",
+    "woodlands"
   ],
   "2026-04-03": [
-    "serangoon",
-    "western-islands"
+    "bishan",
+    "tuas"
   ],
   "2026-04-04": [
-    "marina-east",
-    "pioneer"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-04-05": [
     "tuas",
-    "marina-east"
+    "lim-chu-kang"
   ],
   "2026-04-06": [
-    "southern-islands",
-    "woodlands"
+    "singapore-river",
+    "simpang"
   ],
   "2026-04-07": [
     "geylang",
@@ -1861,47 +1861,47 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-04-10": [
     "tampines",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2026-04-11": [
     "punggol",
-    "western-islands"
+    "tengah"
   ],
   "2026-04-12": [
     "river-valley",
     "changi-bay"
   ],
   "2026-04-13": [
-    "lim-chu-kang",
-    "marina-south"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2026-04-14": [
     "bukit-merah",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-04-15": [
-    "marine-parade",
-    "tuas"
+    "marina-south",
+    "sungei-kadut"
   ],
   "2026-04-16": [
     "changi",
-    "outram"
+    "museum"
   ],
   "2026-04-17": [
-    "orchard",
-    "changi-bay"
+    "outram",
+    "mandai"
   ],
   "2026-04-18": [
-    "marina-south",
-    "simpang"
+    "changi",
+    "lim-chu-kang"
   ],
   "2026-04-19": [
     "singapore-river",
-    "changi-bay"
+    "punggol"
   ],
   "2026-04-20": [
     "changi",
-    "choa-chu-kang"
+    "bukit-panjang"
   ],
   "2026-04-21": [
     "clementi",
@@ -1916,12 +1916,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "punggol"
   ],
   "2026-04-24": [
-    "western-islands",
-    "paya-lebar"
+    "tuas",
+    "marine-parade"
   ],
   "2026-04-25": [
-    "western-islands",
-    "bedok"
+    "tuas",
+    "ang-mo-kio"
   ],
   "2026-04-26": [
     "bukit-batok",
@@ -1933,19 +1933,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-04-28": [
     "museum",
-    "pioneer"
+    "sembawang"
   ],
   "2026-04-29": [
     "outram",
     "lim-chu-kang"
   ],
   "2026-04-30": [
-    "marine-parade",
-    "jurong-west"
+    "kallang",
+    "pioneer"
   ],
   "2026-05-01": [
-    "orchard",
-    "punggol"
+    "outram",
+    "woodlands"
   ],
   "2026-05-02": [
     "paya-lebar",
@@ -1960,12 +1960,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "boon-lay"
   ],
   "2026-05-05": [
-    "choa-chu-kang",
-    "marina-south"
+    "downtown-core",
+    "mandai"
   ],
   "2026-05-06": [
     "sengkang",
-    "western-islands"
+    "pioneer"
   ],
   "2026-05-07": [
     "bukit-merah",
@@ -1973,27 +1973,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-05-08": [
     "boon-lay",
-    "serangoon"
+    "tampines"
   ],
   "2026-05-09": [
     "tuas",
-    "north-eastern-islands"
+    "paya-lebar"
   ],
   "2026-05-10": [
-    "punggol",
+    "changi",
     "outram"
   ],
   "2026-05-11": [
     "pioneer",
-    "punggol"
+    "serangoon"
   ],
   "2026-05-12": [
     "lim-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2026-05-13": [
     "bukit-merah",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-05-14": [
     "clementi",
@@ -2001,43 +2001,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-05-15": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-05-16": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2026-05-17": [
-    "changi-bay",
-    "western-water-catchment"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2026-05-18": [
-    "seletar",
-    "southern-islands"
+    "straits-view",
+    "simpang"
   ],
   "2026-05-19": [
     "changi",
-    "choa-chu-kang"
+    "bukit-panjang"
   ],
   "2026-05-20": [
     "southern-islands",
-    "seletar"
+    "sembawang"
   ],
   "2026-05-21": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "mandai"
   ],
   "2026-05-22": [
     "outram",
     "seletar"
   ],
   "2026-05-23": [
-    "tampines",
-    "tengah"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2026-05-24": [
     "western-islands",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2026-05-25": [
     "clementi",
@@ -2045,39 +2045,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-05-26": [
     "tampines",
-    "pioneer"
+    "jurong-west"
   ],
   "2026-05-27": [
-    "tuas",
-    "bedok"
+    "toa-payoh",
+    "pioneer"
   ],
   "2026-05-28": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2026-05-29": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2026-05-30": [
-    "southern-islands",
+    "singapore-river",
     "sembawang"
   ],
   "2026-05-31": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2026-06-01": [
-    "woodlands",
-    "straits-view"
+    "kallang",
+    "tuas"
   ],
   "2026-06-02": [
-    "marina-south",
-    "punggol"
+    "toa-payoh",
+    "pioneer"
   ],
   "2026-06-03": [
     "sengkang",
-    "western-islands"
+    "pioneer"
   ],
   "2026-06-04": [
     "bukit-batok",
@@ -2085,31 +2085,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-06-05": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2026-06-06": [
-    "museum",
-    "pioneer"
+    "marine-parade",
+    "tuas"
   ],
   "2026-06-07": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2026-06-08": [
-    "simpang",
-    "southern-islands"
+    "downtown-core",
+    "sembawang"
   ],
   "2026-06-09": [
     "paya-lebar",
-    "boon-lay"
+    "pioneer"
   ],
   "2026-06-10": [
     "boon-lay",
-    "paya-lebar"
+    "seletar"
   ],
   "2026-06-11": [
-    "sengkang",
-    "western-islands"
+    "sembawang",
+    "southern-islands"
   ],
   "2026-06-12": [
     "bedok",
@@ -2121,83 +2121,83 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-06-14": [
     "orchard",
-    "punggol"
+    "simpang"
   ],
   "2026-06-15": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "paya-lebar"
   ],
   "2026-06-16": [
     "boon-lay",
-    "seletar"
+    "sengkang"
   ],
   "2026-06-17": [
-    "choa-chu-kang",
+    "clementi",
     "changi"
   ],
   "2026-06-18": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-06-19": [
     "geylang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2026-06-20": [
     "pasir-ris",
     "jurong-west"
   ],
   "2026-06-21": [
-    "tuas",
-    "rochor"
+    "toa-payoh",
+    "tuas"
   ],
   "2026-06-22": [
     "singapore-river",
-    "changi"
+    "changi-bay"
   ],
   "2026-06-23": [
     "tuas",
-    "punggol"
+    "simpang"
   ],
   "2026-06-24": [
     "singapore-river",
-    "punggol"
+    "simpang"
   ],
   "2026-06-25": [
-    "western-islands",
-    "bedok"
+    "tuas",
+    "ang-mo-kio"
   ],
   "2026-06-26": [
     "marina-south",
-    "tuas"
+    "sungei-kadut"
   ],
   "2026-06-27": [
     "tampines",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2026-06-28": [
-    "western-islands",
-    "serangoon"
+    "yishun",
+    "western-islands"
   ],
   "2026-06-29": [
-    "orchard",
-    "punggol"
+    "outram",
+    "woodlands"
   ],
   "2026-06-30": [
-    "serangoon",
-    "boon-lay"
+    "mandai",
+    "marina-east"
   ],
   "2026-07-01": [
     "outram",
-    "sembawang"
+    "simpang"
   ],
   "2026-07-02": [
-    "pioneer",
-    "changi-bay"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2026-07-03": [
-    "bukit-batok",
-    "changi"
+    "yishun",
+    "boon-lay"
   ],
   "2026-07-04": [
     "bukit-batok",
@@ -2205,139 +2205,139 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-07-05": [
     "simpang",
-    "marina-south"
+    "downtown-core"
   ],
   "2026-07-06": [
     "marina-south",
-    "woodlands"
+    "yishun"
   ],
   "2026-07-07": [
-    "queenstown",
-    "north-eastern-islands"
+    "orchard",
+    "sembawang"
   ],
   "2026-07-08": [
     "queenstown",
     "changi-bay"
   ],
   "2026-07-09": [
-    "clementi",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2026-07-10": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-07-11": [
-    "boon-lay",
-    "tampines"
+    "bishan",
+    "tuas"
   ],
   "2026-07-12": [
     "serangoon",
     "western-islands"
   ],
   "2026-07-13": [
-    "jurong-east",
+    "bukit-panjang",
     "changi"
   ],
   "2026-07-14": [
-    "hougang",
-    "boon-lay"
+    "toa-payoh",
+    "pioneer"
   ],
   "2026-07-15": [
     "straits-view",
     "seletar"
   ],
   "2026-07-16": [
-    "simpang",
-    "marina-south"
+    "straits-view",
+    "woodlands"
   ],
   "2026-07-17": [
-    "tuas",
-    "changi-bay"
+    "toa-payoh",
+    "pioneer"
   ],
   "2026-07-18": [
-    "sengkang",
-    "western-islands"
+    "sembawang",
+    "rochor"
   ],
   "2026-07-19": [
     "tengah",
     "changi"
   ],
   "2026-07-20": [
-    "tengah",
-    "tampines"
+    "yishun",
+    "pioneer"
   ],
   "2026-07-21": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2026-07-22": [
-    "museum",
-    "punggol"
+    "marine-parade",
+    "western-islands"
   ],
   "2026-07-23": [
     "outram",
-    "seletar"
+    "sembawang"
   ],
   "2026-07-24": [
     "changi-bay",
-    "jurong-east"
+    "clementi"
   ],
   "2026-07-25": [
-    "tuas",
-    "punggol"
+    "toa-payoh",
+    "tuas"
   ],
   "2026-07-26": [
     "singapore-river",
     "changi"
   ],
   "2026-07-27": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "tengah",
+    "tampines"
   ],
   "2026-07-28": [
     "paya-lebar",
     "boon-lay"
   ],
   "2026-07-29": [
-    "museum",
-    "punggol"
+    "yishun",
+    "pioneer"
   ],
   "2026-07-30": [
     "museum",
     "changi"
   ],
   "2026-07-31": [
-    "marina-east",
-    "pioneer"
+    "tengah",
+    "changi-bay"
   ],
   "2026-08-01": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2026-08-02": [
     "sembawang",
-    "straits-view"
+    "southern-islands"
   ],
   "2026-08-03": [
-    "north-eastern-islands",
-    "bukit-batok"
+    "mandai",
+    "downtown-core"
   ],
   "2026-08-04": [
     "orchard",
-    "punggol"
+    "simpang"
   ],
   "2026-08-05": [
-    "orchard",
-    "north-eastern-islands"
+    "outram",
+    "sembawang"
   ],
   "2026-08-06": [
-    "straits-view",
-    "seletar"
+    "orchard",
+    "changi"
   ],
   "2026-08-07": [
     "orchard",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-08-08": [
     "woodlands",
@@ -2349,63 +2349,63 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-08-10": [
     "changi",
-    "queenstown"
+    "outram"
   ],
   "2026-08-11": [
     "bukit-merah",
-    "punggol"
+    "sembawang"
   ],
   "2026-08-12": [
-    "western-water-catchment",
-    "changi"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2026-08-13": [
     "sembawang",
-    "marina-south"
+    "boon-lay"
   ],
   "2026-08-14": [
     "simpang",
-    "southern-islands"
+    "river-valley"
   ],
   "2026-08-15": [
-    "north-eastern-islands",
-    "jurong-east"
+    "tengah",
+    "pasir-ris"
   ],
   "2026-08-16": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2026-08-17": [
-    "jurong-west",
-    "tampines"
+    "yishun",
+    "outram"
   ],
   "2026-08-18": [
     "rochor",
-    "tuas"
+    "sembawang"
   ],
   "2026-08-19": [
     "marina-south",
     "seletar"
   ],
   "2026-08-20": [
-    "changi-bay",
-    "clementi"
+    "yishun",
+    "marina-south"
   ],
   "2026-08-21": [
     "jurong-west",
-    "tampines"
+    "serangoon"
   ],
   "2026-08-22": [
-    "bukit-merah",
-    "north-eastern-islands"
+    "tengah",
+    "bedok"
   ],
   "2026-08-23": [
-    "straits-view",
-    "woodlands"
+    "southern-islands",
+    "yishun"
   ],
   "2026-08-24": [
     "marina-south",
-    "punggol"
+    "seletar"
   ],
   "2026-08-25": [
     "rochor",
@@ -2413,11 +2413,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-08-26": [
     "museum",
-    "tuas"
+    "woodlands"
   ],
   "2026-08-27": [
-    "sengkang",
-    "boon-lay"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2026-08-28": [
     "river-valley",
@@ -2425,31 +2425,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-08-29": [
     "simpang",
-    "marina-south"
+    "downtown-core"
   ],
   "2026-08-30": [
     "tuas",
-    "marina-south"
+    "marina-east"
   ],
   "2026-08-31": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "pasir-ris"
   ],
   "2026-09-01": [
     "paya-lebar",
     "boon-lay"
   ],
   "2026-09-02": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "boon-lay",
+    "simpang"
   ],
   "2026-09-03": [
-    "western-islands",
-    "geylang"
+    "bishan",
+    "tuas"
   ],
   "2026-09-04": [
     "paya-lebar",
-    "boon-lay"
+    "jurong-west"
   ],
   "2026-09-05": [
     "hougang",
@@ -2460,12 +2460,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "simpang"
   ],
   "2026-09-07": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sembawang"
   ],
   "2026-09-08": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2026-09-09": [
     "woodlands",
@@ -2473,47 +2473,47 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-09-10": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2026-09-11": [
     "paya-lebar",
-    "western-islands"
-  ],
-  "2026-09-12": [
-    "marina-east",
     "tuas"
   ],
+  "2026-09-12": [
+    "straits-view",
+    "mandai"
+  ],
   "2026-09-13": [
-    "queenstown",
-    "changi"
+    "geylang",
+    "western-islands"
   ],
   "2026-09-14": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "woodlands",
+    "straits-view"
   ],
   "2026-09-15": [
     "rochor",
     "tuas"
   ],
   "2026-09-16": [
-    "hougang",
-    "western-islands"
+    "downtown-core",
+    "mandai"
   ],
   "2026-09-17": [
     "outram",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2026-09-18": [
-    "choa-chu-kang",
-    "marina-south"
+    "clementi",
+    "punggol"
   ],
   "2026-09-19": [
     "pioneer",
-    "rochor"
+    "simpang"
   ],
   "2026-09-20": [
-    "geylang",
-    "boon-lay"
+    "hougang",
+    "jurong-west"
   ],
   "2026-09-21": [
     "clementi",
@@ -2521,51 +2521,51 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-09-22": [
     "tampines",
-    "tuas"
+    "tengah"
   ],
   "2026-09-23": [
     "pioneer",
-    "tampines"
+    "toa-payoh"
   ],
   "2026-09-24": [
     "jurong-west",
-    "pasir-ris"
+    "punggol"
   ],
   "2026-09-25": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2026-09-26": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2026-09-27": [
-    "tuas",
-    "rochor"
+    "toa-payoh",
+    "tuas"
   ],
   "2026-09-28": [
-    "changi-bay",
+    "downtown-core",
     "lim-chu-kang"
   ],
   "2026-09-29": [
     "woodlands",
-    "southern-islands"
+    "rochor"
   ],
   "2026-09-30": [
-    "jurong-west",
-    "pasir-ris"
+    "kallang",
+    "tuas"
   ],
   "2026-10-01": [
-    "sengkang",
-    "boon-lay"
+    "bishan",
+    "pioneer"
   ],
   "2026-10-02": [
     "jurong-west",
-    "pasir-ris"
+    "seletar"
   ],
   "2026-10-03": [
-    "north-eastern-islands",
-    "choa-chu-kang"
+    "bukit-merah",
+    "changi-bay"
   ],
   "2026-10-04": [
     "bukit-batok",
@@ -2577,35 +2577,35 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-10-06": [
     "bukit-merah",
-    "changi-bay"
+    "punggol"
   ],
   "2026-10-07": [
-    "marina-east",
-    "tuas"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-10-08": [
-    "simpang",
-    "outram"
+    "yishun",
+    "tuas"
   ],
   "2026-10-09": [
-    "boon-lay",
-    "sengkang"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-10-10": [
-    "seletar",
+    "yishun",
     "straits-view"
   ],
   "2026-10-11": [
     "sengkang",
-    "western-islands"
+    "pioneer"
   ],
   "2026-10-12": [
     "queenstown",
     "changi"
   ],
   "2026-10-13": [
-    "bedok",
-    "jurong-west"
+    "museum",
+    "changi"
   ],
   "2026-10-14": [
     "jurong-east",
@@ -2613,31 +2613,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-10-15": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-10-16": [
     "southern-islands",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2026-10-17": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2026-10-18": [
     "boon-lay",
-    "tampines"
+    "yishun"
   ],
   "2026-10-19": [
     "straits-view",
     "simpang"
   ],
   "2026-10-20": [
-    "western-islands",
-    "marine-parade"
+    "tuas",
+    "mandai"
   ],
   "2026-10-21": [
-    "north-eastern-islands",
-    "orchard"
+    "paya-lebar",
+    "western-islands"
   ],
   "2026-10-22": [
     "serangoon",
@@ -2649,19 +2649,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-10-24": [
     "sengkang",
-    "western-islands"
+    "pioneer"
   ],
   "2026-10-25": [
-    "tuas",
-    "punggol"
+    "toa-payoh",
+    "tuas"
   ],
   "2026-10-26": [
-    "sembawang",
-    "straits-view"
+    "bishan",
+    "tuas"
   ],
   "2026-10-27": [
-    "marine-parade",
-    "jurong-west"
+    "kallang",
+    "pioneer"
   ],
   "2026-10-28": [
     "pasir-ris",
@@ -2673,31 +2673,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-10-30": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2026-10-31": [
-    "serangoon",
-    "western-islands"
+    "mandai",
+    "southern-islands"
   ],
   "2026-11-01": [
-    "southern-islands",
+    "singapore-river",
     "simpang"
   ],
   "2026-11-02": [
-    "clementi",
+    "bukit-merah",
     "changi-bay"
   ],
   "2026-11-03": [
-    "north-eastern-islands",
-    "choa-chu-kang"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-11-04": [
     "marina-south",
-    "sembawang"
+    "simpang"
   ],
   "2026-11-05": [
     "simpang",
-    "southern-islands"
+    "pioneer"
   ],
   "2026-11-06": [
     "bukit-merah",
@@ -2705,83 +2705,83 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-11-07": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2026-11-08": [
     "changi-bay",
-    "pioneer"
+    "outram"
   ],
   "2026-11-09": [
-    "marine-parade",
-    "boon-lay"
+    "tengah",
+    "bedok"
   ],
   "2026-11-10": [
-    "museum",
-    "pioneer"
+    "marine-parade",
+    "tuas"
   ],
   "2026-11-11": [
     "sembawang",
-    "straits-view"
+    "western-islands"
   ],
   "2026-11-12": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2026-11-13": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-11-14": [
-    "changi-bay",
-    "pioneer"
+    "geylang",
+    "jurong-west"
   ],
   "2026-11-15": [
-    "serangoon",
-    "western-islands"
+    "downtown-core",
+    "simpang"
   ],
   "2026-11-16": [
-    "outram",
-    "woodlands"
+    "pasir-ris",
+    "western-islands"
   ],
   "2026-11-17": [
-    "bukit-merah",
+    "bukit-batok",
     "changi"
   ],
   "2026-11-18": [
     "river-valley",
-    "changi-bay"
+    "punggol"
   ],
   "2026-11-19": [
     "punggol",
-    "orchard"
+    "museum"
   ],
   "2026-11-20": [
     "sembawang",
-    "outram"
+    "orchard"
   ],
   "2026-11-21": [
-    "seletar",
-    "boon-lay"
+    "tampines",
+    "lim-chu-kang"
   ],
   "2026-11-22": [
     "woodlands",
-    "southern-islands"
+    "outram"
   ],
   "2026-11-23": [
     "hougang",
     "boon-lay"
   ],
   "2026-11-24": [
-    "bedok",
-    "boon-lay"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-11-25": [
     "seletar",
-    "marina-south"
+    "jurong-east"
   ],
   "2026-11-26": [
     "pioneer",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2026-11-27": [
     "bukit-merah",
@@ -2789,22 +2789,22 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-11-28": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2026-11-29": [
-    "orchard",
-    "north-eastern-islands"
+    "outram",
+    "sembawang"
   ],
   "2026-11-30": [
-    "north-eastern-islands",
-    "pioneer"
+    "paya-lebar",
+    "tuas"
   ],
   "2026-12-01": [
     "marine-parade",
-    "tuas"
+    "western-islands"
   ],
   "2026-12-02": [
-    "changi",
+    "changi-bay",
     "bukit-merah"
   ],
   "2026-12-03": [
@@ -2812,8 +2812,8 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2026-12-04": [
-    "simpang",
-    "outram"
+    "serangoon",
+    "pioneer"
   ],
   "2026-12-05": [
     "bedok",
@@ -2821,11 +2821,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-12-06": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2026-12-07": [
     "jurong-west",
-    "north-eastern-islands"
+    "paya-lebar"
   ],
   "2026-12-08": [
     "marine-parade",
@@ -2833,74 +2833,74 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2026-12-09": [
     "tuas",
-    "marine-parade"
+    "marina-south"
   ],
   "2026-12-10": [
     "marina-east",
-    "pioneer"
+    "mandai"
   ],
   "2026-12-11": [
     "changi-bay",
-    "clementi"
+    "choa-chu-kang"
   ],
   "2026-12-12": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2026-12-13": [
-    "museum",
-    "changi"
+    "tengah",
+    "changi-bay"
   ],
   "2026-12-14": [
     "jurong-west",
-    "punggol"
+    "sengkang"
   ],
   "2026-12-15": [
-    "changi-bay",
-    "bukit-merah"
+    "bukit-panjang",
+    "changi"
   ],
   "2026-12-16": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2026-12-17": [
-    "north-eastern-islands",
-    "lim-chu-kang"
+    "lim-chu-kang",
+    "museum"
   ],
   "2026-12-18": [
     "southern-islands",
     "seletar"
   ],
   "2026-12-19": [
-    "tengah",
-    "north-eastern-islands"
+    "pasir-ris",
+    "tengah"
   ],
   "2026-12-20": [
-    "hougang",
-    "western-islands"
+    "jurong-east",
+    "tampines"
   ],
   "2026-12-21": [
     "woodlands",
-    "straits-view"
+    "tuas"
   ],
   "2026-12-22": [
-    "tampines",
-    "jurong-east"
+    "museum",
+    "tuas"
   ],
   "2026-12-23": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "woodlands"
   ],
   "2026-12-24": [
-    "pioneer",
-    "rochor"
+    "straits-view",
+    "sembawang"
   ],
   "2026-12-25": [
-    "pasir-ris",
+    "paya-lebar",
     "boon-lay"
   ],
   "2026-12-26": [
-    "changi",
+    "changi-bay",
     "outram"
   ],
   "2026-12-27": [
@@ -2916,36 +2916,36 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "boon-lay"
   ],
   "2026-12-30": [
-    "orchard",
-    "changi-bay"
+    "outram",
+    "punggol"
   ],
   "2026-12-31": [
-    "seletar",
-    "marina-south"
+    "rochor",
+    "mandai"
   ],
   "2027-01-01": [
-    "orchard",
-    "punggol"
+    "tengah",
+    "pasir-ris"
   ],
   "2027-01-02": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2027-01-03": [
-    "southern-islands",
-    "woodlands"
+    "singapore-river",
+    "simpang"
   ],
   "2027-01-04": [
-    "punggol",
-    "singapore-river"
+    "geylang",
+    "pioneer"
   ],
   "2027-01-05": [
-    "bukit-merah",
+    "bukit-batok",
     "punggol"
   ],
   "2027-01-06": [
-    "queenstown",
-    "changi"
+    "museum",
+    "woodlands"
   ],
   "2027-01-07": [
     "marine-parade",
@@ -2953,19 +2953,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-01-08": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2027-01-09": [
-    "tengah",
-    "bedok"
+    "boon-lay",
+    "geylang"
   ],
   "2027-01-10": [
     "changi-bay",
     "queenstown"
   ],
   "2027-01-11": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "museum",
+    "punggol"
   ],
   "2027-01-12": [
     "clementi",
@@ -2973,103 +2973,103 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-01-13": [
     "woodlands",
-    "straits-view"
+    "tuas"
   ],
   "2027-01-14": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2027-01-15": [
-    "tengah",
-    "changi"
+    "clementi",
+    "punggol"
   ],
   "2027-01-16": [
     "paya-lebar",
     "western-islands"
   ],
   "2027-01-17": [
-    "hougang",
-    "boon-lay"
+    "yishun",
+    "outram"
   ],
   "2027-01-18": [
     "clementi",
     "changi"
   ],
   "2027-01-19": [
-    "changi",
-    "clementi"
+    "changi-bay",
+    "choa-chu-kang"
   ],
   "2027-01-20": [
-    "marine-parade",
-    "jurong-west"
+    "marina-south",
+    "punggol"
   ],
   "2027-01-21": [
-    "bukit-merah",
-    "north-eastern-islands"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2027-01-22": [
-    "outram",
-    "changi"
+    "pasir-ris",
+    "boon-lay"
   ],
   "2027-01-23": [
     "clementi",
     "changi"
   ],
   "2027-01-24": [
-    "seletar",
-    "straits-view"
+    "changi",
+    "queenstown"
   ],
   "2027-01-25": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2027-01-26": [
-    "tuas",
-    "north-eastern-islands"
+    "toa-payoh",
+    "tuas"
   ],
   "2027-01-27": [
     "jurong-east",
     "tampines"
   ],
   "2027-01-28": [
-    "southern-islands",
-    "north-eastern-islands"
+    "singapore-river",
+    "changi-bay"
   ],
   "2027-01-29": [
     "marina-east",
     "pioneer"
   ],
   "2027-01-30": [
-    "pasir-ris",
-    "tengah"
+    "kallang",
+    "tuas"
   ],
   "2027-01-31": [
-    "jurong-west",
-    "changi"
+    "kallang",
+    "pioneer"
   ],
   "2027-02-01": [
-    "tengah",
-    "north-eastern-islands"
+    "changi",
+    "jurong-east"
   ],
   "2027-02-02": [
-    "outram",
-    "changi-bay"
+    "straits-view",
+    "sembawang"
   ],
   "2027-02-03": [
     "queenstown",
     "changi"
   ],
   "2027-02-04": [
-    "punggol",
-    "boon-lay"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2027-02-05": [
     "sembawang",
-    "southern-islands"
+    "pioneer"
   ],
   "2027-02-06": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2027-02-07": [
     "rochor",
@@ -3077,27 +3077,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-02-08": [
     "museum",
-    "punggol"
+    "simpang"
   ],
   "2027-02-09": [
     "punggol",
-    "boon-lay"
+    "bukit-batok"
   ],
   "2027-02-10": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2027-02-11": [
-    "changi-bay",
-    "museum"
+    "bukit-panjang",
+    "changi"
   ],
   "2027-02-12": [
-    "southern-islands",
+    "singapore-river",
     "simpang"
   ],
   "2027-02-13": [
-    "western-islands",
-    "marine-parade"
+    "tuas",
+    "mandai"
   ],
   "2027-02-14": [
     "clementi",
@@ -3105,15 +3105,15 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-02-15": [
     "outram",
-    "lim-chu-kang"
+    "mandai"
   ],
   "2027-02-16": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2027-02-17": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2027-02-18": [
     "geylang",
@@ -3124,180 +3124,180 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2027-02-20": [
-    "pasir-ris",
-    "tengah"
+    "mandai",
+    "outram"
   ],
   "2027-02-21": [
     "jurong-west",
-    "tampines"
+    "serangoon"
   ],
   "2027-02-22": [
     "singapore-river",
-    "changi-bay"
+    "punggol"
   ],
   "2027-02-23": [
     "orchard",
     "changi-bay"
   ],
   "2027-02-24": [
-    "bukit-merah",
+    "bukit-batok",
     "punggol"
   ],
   "2027-02-25": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2027-02-26": [
-    "changi-bay",
-    "woodlands"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2027-02-27": [
-    "tuas",
-    "changi-bay"
+    "kallang",
+    "tuas"
   ],
   "2027-02-28": [
-    "river-valley",
-    "punggol"
+    "rochor",
+    "woodlands"
   ],
   "2027-03-01": [
     "rochor",
-    "pioneer"
+    "sembawang"
   ],
   "2027-03-02": [
-    "simpang",
-    "marina-south"
+    "changi",
+    "river-valley"
   ],
   "2027-03-03": [
-    "north-eastern-islands",
-    "museum"
+    "marine-parade",
+    "woodlands"
   ],
   "2027-03-04": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "ang-mo-kio"
   ],
   "2027-03-05": [
-    "geylang",
-    "western-islands"
+    "changi",
+    "clementi"
   ],
   "2027-03-06": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-03-07": [
     "bukit-batok",
     "changi"
   ],
   "2027-03-08": [
-    "rochor",
-    "tuas"
+    "straits-view",
+    "simpang"
   ],
   "2027-03-09": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "yishun",
+    "boon-lay"
   ],
   "2027-03-10": [
-    "marina-south",
-    "tuas"
+    "bukit-panjang",
+    "changi"
   ],
   "2027-03-11": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "pasir-ris"
   ],
   "2027-03-12": [
-    "changi-bay",
-    "lim-chu-kang"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2027-03-13": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "serangoon"
   ],
   "2027-03-14": [
-    "singapore-river",
-    "changi"
+    "tampines",
+    "tengah"
   ],
   "2027-03-15": [
     "punggol",
-    "singapore-river"
+    "queenstown"
   ],
   "2027-03-16": [
     "choa-chu-kang",
     "changi-bay"
   ],
   "2027-03-17": [
-    "seletar",
-    "western-islands"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2027-03-18": [
-    "singapore-river",
+    "tengah",
     "punggol"
   ],
   "2027-03-19": [
-    "seletar",
-    "marina-south"
+    "bishan",
+    "tuas"
   ],
   "2027-03-20": [
     "pasir-ris",
-    "jurong-east"
+    "boon-lay"
   ],
   "2027-03-21": [
-    "western-islands",
-    "bedok"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-03-22": [
-    "jurong-west",
-    "tampines"
+    "bishan",
+    "pioneer"
   ],
   "2027-03-23": [
     "hougang",
     "western-islands"
   ],
   "2027-03-24": [
-    "outram",
-    "sembawang"
+    "pasir-ris",
+    "tengah"
   ],
   "2027-03-25": [
     "marina-south",
     "lim-chu-kang"
   ],
   "2027-03-26": [
-    "bukit-batok",
-    "changi"
+    "boon-lay",
+    "ang-mo-kio"
   ],
   "2027-03-27": [
-    "outram",
-    "simpang"
+    "geylang",
+    "pioneer"
   ],
   "2027-03-28": [
     "seletar",
     "straits-view"
   ],
   "2027-03-29": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "seletar"
   ],
   "2027-03-30": [
     "marine-parade",
     "tuas"
   ],
   "2027-03-31": [
-    "paya-lebar",
-    "boon-lay"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-04-01": [
-    "clementi",
-    "changi"
+    "tampines",
+    "choa-chu-kang"
   ],
   "2027-04-02": [
     "marina-south",
-    "lim-chu-kang"
+    "mandai"
   ],
   "2027-04-03": [
     "straits-view",
-    "woodlands"
+    "yishun"
   ],
   "2027-04-04": [
-    "paya-lebar",
-    "boon-lay"
+    "pioneer",
+    "bishan"
   ],
   "2027-04-05": [
     "serangoon",
@@ -3305,127 +3305,127 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-04-06": [
     "jurong-east",
-    "pasir-ris"
+    "seletar"
   ],
   "2027-04-07": [
-    "punggol",
-    "bukit-merah"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2027-04-08": [
     "straits-view",
-    "sembawang"
+    "simpang"
   ],
   "2027-04-09": [
-    "tuas",
-    "changi-bay"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-04-10": [
     "lim-chu-kang",
-    "marina-south"
+    "marina-east"
   ],
   "2027-04-11": [
-    "geylang",
-    "boon-lay"
+    "hougang",
+    "jurong-west"
   ],
   "2027-04-12": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-04-13": [
-    "changi",
-    "tengah"
+    "tengah",
+    "tampines"
   ],
   "2027-04-14": [
-    "clementi",
-    "changi"
+    "downtown-core",
+    "mandai"
   ],
   "2027-04-15": [
-    "straits-view",
-    "lim-chu-kang"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-04-16": [
     "hougang",
-    "western-islands"
+    "pioneer"
   ],
   "2027-04-17": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2027-04-18": [
     "lim-chu-kang",
-    "changi-bay"
+    "geylang"
   ],
   "2027-04-19": [
-    "tengah",
-    "changi"
+    "changi",
+    "bukit-batok"
   ],
   "2027-04-20": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2027-04-21": [
     "queenstown",
     "changi-bay"
   ],
   "2027-04-22": [
-    "serangoon",
-    "western-islands"
+    "changi",
+    "river-valley"
   ],
   "2027-04-23": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "sembawang"
   ],
   "2027-04-24": [
     "southern-islands",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2027-04-25": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2027-04-26": [
-    "pioneer",
-    "north-eastern-islands"
+    "punggol",
+    "queenstown"
   ],
   "2027-04-27": [
-    "museum",
+    "marine-parade",
     "pioneer"
   ],
   "2027-04-28": [
     "river-valley",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2027-04-29": [
-    "pioneer",
-    "museum"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-04-30": [
-    "north-eastern-islands",
-    "queenstown"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-05-01": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2027-05-02": [
-    "north-eastern-islands",
-    "bukit-merah"
+    "boon-lay",
+    "bedok"
   ],
   "2027-05-03": [
     "woodlands",
-    "marina-south"
+    "marina-east"
   ],
   "2027-05-04": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2027-05-05": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2027-05-06": [
-    "paya-lebar",
-    "western-islands"
+    "kallang",
+    "tuas"
   ],
   "2027-05-07": [
     "queenstown",
@@ -3437,131 +3437,131 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-05-09": [
     "simpang",
-    "straits-view"
+    "tuas"
   ],
   "2027-05-10": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "pasir-ris"
   ],
   "2027-05-11": [
     "serangoon",
-    "boon-lay"
+    "pioneer"
   ],
   "2027-05-12": [
-    "pasir-ris",
+    "paya-lebar",
     "western-islands"
   ],
   "2027-05-13": [
     "marine-parade",
-    "jurong-west"
+    "lim-chu-kang"
   ],
   "2027-05-14": [
-    "western-islands",
-    "pasir-ris"
+    "tuas",
+    "marina-east"
   ],
   "2027-05-15": [
     "orchard",
     "changi"
   ],
   "2027-05-16": [
-    "north-eastern-islands",
-    "straits-view"
+    "straits-view",
+    "punggol"
   ],
   "2027-05-17": [
     "marina-south",
-    "simpang"
+    "sungei-kadut"
   ],
   "2027-05-18": [
-    "punggol",
-    "jurong-east"
+    "mandai",
+    "rochor"
   ],
   "2027-05-19": [
-    "tengah",
-    "changi"
+    "changi",
+    "southern-islands"
   ],
   "2027-05-20": [
     "lim-chu-kang",
-    "changi"
+    "changi-bay"
   ],
   "2027-05-21": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-05-22": [
     "marine-parade",
     "tuas"
   ],
   "2027-05-23": [
-    "tampines",
-    "pioneer"
+    "bishan",
+    "tuas"
   ],
   "2027-05-24": [
     "sengkang",
     "boon-lay"
   ],
   "2027-05-25": [
-    "bukit-merah",
+    "bukit-batok",
     "changi"
   ],
   "2027-05-26": [
-    "changi-bay",
-    "woodlands"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2027-05-27": [
-    "orchard",
-    "punggol"
+    "outram",
+    "woodlands"
   ],
   "2027-05-28": [
-    "tuas",
-    "changi-bay"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-05-29": [
-    "simpang",
-    "southern-islands"
+    "bukit-merah",
+    "sembawang"
   ],
   "2027-05-30": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2027-05-31": [
-    "orchard",
-    "north-eastern-islands"
+    "outram",
+    "seletar"
   ],
   "2027-06-01": [
-    "pioneer",
-    "pasir-ris"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-06-02": [
-    "choa-chu-kang",
-    "changi-bay"
+    "tengah",
+    "changi"
   ],
   "2027-06-03": [
-    "tengah",
-    "changi-bay"
+    "jurong-east",
+    "bedok"
   ],
   "2027-06-04": [
     "queenstown",
     "changi-bay"
   ],
   "2027-06-05": [
-    "tuas",
-    "bedok"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-06-06": [
     "boon-lay",
-    "punggol"
+    "sembawang"
   ],
   "2027-06-07": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "yishun",
+    "pioneer"
   ],
   "2027-06-08": [
     "marina-south",
-    "sembawang"
+    "simpang"
   ],
   "2027-06-09": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2027-06-10": [
     "queenstown",
@@ -3569,19 +3569,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-06-11": [
     "bedok",
-    "jurong-west"
+    "jurong-east"
   ],
   "2027-06-12": [
-    "tengah",
-    "changi-bay"
+    "lim-chu-kang",
+    "marina-south"
   ],
   "2027-06-13": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-06-14": [
     "bukit-merah",
-    "changi"
+    "changi-bay"
   ],
   "2027-06-15": [
     "marina-south",
@@ -3589,59 +3589,59 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-06-16": [
     "changi-bay",
-    "pioneer"
+    "outram"
   ],
   "2027-06-17": [
     "southern-islands",
-    "woodlands"
+    "yishun"
   ],
   "2027-06-18": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2027-06-19": [
     "hougang",
     "western-islands"
   ],
   "2027-06-20": [
-    "straits-view",
-    "north-eastern-islands"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-06-21": [
     "lim-chu-kang",
-    "marina-south"
+    "geylang"
   ],
   "2027-06-22": [
-    "lim-chu-kang",
-    "north-eastern-islands"
+    "kallang",
+    "pioneer"
   ],
   "2027-06-23": [
     "bukit-merah",
-    "punggol"
+    "simpang"
   ],
   "2027-06-24": [
-    "pioneer",
-    "north-eastern-islands"
+    "downtown-core",
+    "sembawang"
   ],
   "2027-06-25": [
-    "orchard",
-    "punggol"
+    "outram",
+    "yishun"
   ],
   "2027-06-26": [
     "singapore-river",
-    "punggol"
+    "simpang"
   ],
   "2027-06-27": [
     "marine-parade",
     "western-islands"
   ],
   "2027-06-28": [
-    "orchard",
-    "punggol"
+    "bishan",
+    "tuas"
   ],
   "2027-06-29": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "boon-lay",
+    "serangoon"
   ],
   "2027-06-30": [
     "marina-east",
@@ -3649,7 +3649,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-07-01": [
     "pasir-ris",
-    "jurong-east"
+    "boon-lay"
   ],
   "2027-07-02": [
     "changi-bay",
@@ -3661,23 +3661,23 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-07-04": [
     "museum",
-    "punggol"
+    "simpang"
   ],
   "2027-07-05": [
     "boon-lay",
-    "serangoon"
+    "simpang"
   ],
   "2027-07-06": [
     "tampines",
-    "jurong-west"
+    "jurong-east"
   ],
   "2027-07-07": [
     "seletar",
     "outram"
   ],
   "2027-07-08": [
-    "north-eastern-islands",
-    "queenstown"
+    "punggol",
+    "clementi"
   ],
   "2027-07-09": [
     "bukit-merah",
@@ -3688,71 +3688,71 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "tampines"
   ],
   "2027-07-11": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "sengkang"
   ],
   "2027-07-12": [
     "marina-south",
-    "simpang"
+    "sungei-kadut"
   ],
   "2027-07-13": [
     "lim-chu-kang",
-    "straits-view"
+    "tampines"
   ],
   "2027-07-14": [
-    "marina-south",
-    "woodlands"
+    "tengah",
+    "changi-bay"
   ],
   "2027-07-15": [
     "lim-chu-kang",
-    "southern-islands"
+    "straits-view"
   ],
   "2027-07-16": [
     "bukit-merah",
-    "punggol"
+    "simpang"
   ],
   "2027-07-17": [
-    "lim-chu-kang",
-    "changi-bay"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2027-07-18": [
-    "north-eastern-islands",
-    "bukit-merah"
+    "bishan",
+    "pioneer"
   ],
   "2027-07-19": [
     "tengah",
     "tampines"
   ],
   "2027-07-20": [
-    "western-islands",
-    "sengkang"
+    "tuas",
+    "serangoon"
   ],
   "2027-07-21": [
     "marina-south",
-    "woodlands"
+    "yishun"
   ],
   "2027-07-22": [
-    "tuas",
-    "pasir-ris"
+    "toa-payoh",
+    "tuas"
   ],
   "2027-07-23": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2027-07-24": [
     "marina-east",
-    "tuas"
+    "sembawang"
   ],
   "2027-07-25": [
     "straits-view",
     "punggol"
   ],
   "2027-07-26": [
-    "marine-parade",
-    "tuas"
+    "kallang",
+    "pioneer"
   ],
   "2027-07-27": [
-    "sengkang",
+    "sembawang",
     "western-islands"
   ],
   "2027-07-28": [
@@ -3760,7 +3760,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "boon-lay"
   ],
   "2027-07-29": [
-    "pioneer",
+    "punggol",
     "marina-south"
   ],
   "2027-07-30": [
@@ -3768,152 +3768,152 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "boon-lay"
   ],
   "2027-07-31": [
-    "straits-view",
-    "woodlands"
+    "changi",
+    "museum"
   ],
   "2027-08-01": [
-    "sengkang",
-    "boon-lay"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2027-08-02": [
-    "sengkang",
-    "boon-lay"
+    "kallang",
+    "tuas"
   ],
   "2027-08-03": [
-    "jurong-east",
-    "bedok"
+    "kallang",
+    "pioneer"
   ],
   "2027-08-04": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2027-08-05": [
-    "changi-bay",
-    "outram"
+    "choa-chu-kang",
+    "changi-bay"
   ],
   "2027-08-06": [
     "paya-lebar",
-    "boon-lay"
+    "pioneer"
   ],
   "2027-08-07": [
-    "paya-lebar",
-    "western-islands"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2027-08-08": [
     "outram",
     "seletar"
   ],
   "2027-08-09": [
-    "choa-chu-kang",
-    "marina-south"
+    "mandai",
+    "outram"
   ],
   "2027-08-10": [
-    "sembawang",
-    "marina-south"
+    "kallang",
+    "tuas"
   ],
   "2027-08-11": [
-    "woodlands",
-    "southern-islands"
+    "downtown-core",
+    "mandai"
   ],
   "2027-08-12": [
-    "western-islands",
-    "geylang"
+    "mandai",
+    "tuas"
   ],
   "2027-08-13": [
     "punggol",
-    "straits-view"
+    "southern-islands"
   ],
   "2027-08-14": [
-    "tampines",
-    "tuas"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2027-08-15": [
-    "marina-east",
-    "tuas"
+    "yishun",
+    "pioneer"
   ],
   "2027-08-16": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-08-17": [
-    "marine-parade",
-    "jurong-west"
+    "marina-south",
+    "mandai"
   ],
   "2027-08-18": [
     "woodlands",
-    "outram"
+    "marine-parade"
   ],
   "2027-08-19": [
-    "bukit-batok",
-    "changi"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2027-08-20": [
     "outram",
-    "lim-chu-kang"
+    "mandai"
   ],
   "2027-08-21": [
-    "simpang",
-    "outram"
+    "bishan",
+    "tuas"
   ],
   "2027-08-22": [
-    "serangoon",
-    "boon-lay"
+    "yishun",
+    "straits-view"
   ],
   "2027-08-23": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2027-08-24": [
-    "north-eastern-islands",
-    "bukit-merah"
+    "bishan",
+    "pioneer"
   ],
   "2027-08-25": [
-    "western-islands",
-    "bedok"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2027-08-26": [
-    "queenstown",
-    "changi"
+    "kallang",
+    "pioneer"
   ],
   "2027-08-27": [
-    "changi-bay",
-    "river-valley"
+    "choa-chu-kang",
+    "marina-south"
   ],
   "2027-08-28": [
     "southern-islands",
     "changi-bay"
   ],
   "2027-08-29": [
-    "tengah",
-    "pasir-ris"
+    "punggol",
+    "bukit-batok"
   ],
   "2027-08-30": [
-    "tampines",
-    "tuas"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2027-08-31": [
-    "singapore-river",
-    "punggol"
+    "simpang",
+    "southern-islands"
   ],
   "2027-09-01": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2027-09-02": [
-    "changi",
-    "river-valley"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2027-09-03": [
-    "straits-view",
-    "north-eastern-islands"
+    "southern-islands",
+    "lim-chu-kang"
   ],
   "2027-09-04": [
-    "punggol",
-    "singapore-river"
+    "queenstown",
+    "changi-bay"
   ],
   "2027-09-05": [
-    "marina-south",
-    "choa-chu-kang"
+    "marina-east",
+    "lim-chu-kang"
   ],
   "2027-09-06": [
     "bedok",
@@ -3921,31 +3921,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-09-07": [
     "seletar",
-    "southern-islands"
+    "pioneer"
   ],
   "2027-09-08": [
     "tuas",
-    "marina-south"
+    "marina-east"
   ],
   "2027-09-09": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-09-10": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2027-09-11": [
     "pioneer",
-    "north-eastern-islands"
+    "rochor"
   ],
   "2027-09-12": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2027-09-13": [
     "lim-chu-kang",
-    "marina-south"
+    "geylang"
   ],
   "2027-09-14": [
     "bukit-batok",
@@ -3953,131 +3953,131 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-09-15": [
     "western-islands",
-    "punggol"
+    "seletar"
   ],
   "2027-09-16": [
-    "changi",
-    "choa-chu-kang"
+    "changi-bay",
+    "bukit-panjang"
   ],
   "2027-09-17": [
-    "marine-parade",
-    "western-islands"
+    "marina-south",
+    "yishun"
   ],
   "2027-09-18": [
     "sengkang",
-    "western-islands"
-  ],
-  "2027-09-19": [
-    "queenstown",
-    "changi"
-  ],
-  "2027-09-20": [
-    "changi-bay",
     "pioneer"
   ],
+  "2027-09-19": [
+    "changi",
+    "bukit-batok"
+  ],
+  "2027-09-20": [
+    "geylang",
+    "jurong-west"
+  ],
   "2027-09-21": [
-    "seletar",
-    "southern-islands"
+    "yishun",
+    "straits-view"
   ],
   "2027-09-22": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2027-09-23": [
-    "north-eastern-islands",
-    "tengah"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2027-09-24": [
     "paya-lebar",
-    "western-islands"
+    "pioneer"
   ],
   "2027-09-25": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2027-09-26": [
-    "changi-bay",
-    "river-valley"
+    "bishan",
+    "pioneer"
   ],
   "2027-09-27": [
     "western-islands",
     "pasir-ris"
   ],
   "2027-09-28": [
-    "seletar",
-    "boon-lay"
+    "kallang",
+    "tuas"
   ],
   "2027-09-29": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-09-30": [
-    "hougang",
-    "boon-lay"
+    "mandai",
+    "marina-south"
   ],
   "2027-10-01": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "marine-parade"
   ],
   "2027-10-02": [
     "pasir-ris",
-    "pioneer"
+    "jurong-west"
   ],
   "2027-10-03": [
-    "southern-islands",
+    "singapore-river",
     "simpang"
   ],
   "2027-10-04": [
     "marina-east",
-    "pioneer"
+    "mandai"
   ],
   "2027-10-05": [
     "tengah",
     "changi-bay"
   ],
   "2027-10-06": [
-    "lim-chu-kang",
+    "bukit-panjang",
     "changi"
   ],
   "2027-10-07": [
-    "straits-view",
-    "simpang"
+    "tengah",
+    "punggol"
   ],
   "2027-10-08": [
-    "changi-bay",
-    "river-valley"
+    "kallang",
+    "pioneer"
   ],
   "2027-10-09": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2027-10-10": [
-    "tuas",
-    "marina-south"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-10-11": [
-    "boon-lay",
-    "paya-lebar"
+    "bukit-panjang",
+    "changi"
   ],
   "2027-10-12": [
-    "jurong-east",
-    "bedok"
+    "mandai",
+    "tuas"
   ],
   "2027-10-13": [
-    "marina-south",
-    "pioneer"
+    "bukit-panjang",
+    "changi"
   ],
   "2027-10-14": [
     "serangoon",
-    "boon-lay"
+    "jurong-west"
   ],
   "2027-10-15": [
-    "north-eastern-islands",
-    "river-valley"
+    "rochor",
+    "simpang"
   ],
   "2027-10-16": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2027-10-17": [
     "pasir-ris",
@@ -4085,59 +4085,59 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-10-18": [
     "museum",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2027-10-19": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-10-20": [
     "marina-east",
-    "pioneer"
+    "sembawang"
   ],
   "2027-10-21": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "seletar"
   ],
   "2027-10-22": [
-    "museum",
-    "changi"
+    "bukit-merah",
+    "punggol"
   ],
   "2027-10-23": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2027-10-24": [
     "tampines",
     "boon-lay"
   ],
   "2027-10-25": [
-    "outram",
-    "seletar"
+    "pasir-ris",
+    "jurong-west"
   ],
   "2027-10-26": [
     "boon-lay",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2027-10-27": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "simpang"
   ],
   "2027-10-28": [
-    "bukit-batok",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-10-29": [
     "lim-chu-kang",
-    "changi-bay"
+    "geylang"
   ],
   "2027-10-30": [
-    "outram",
-    "woodlands"
+    "bukit-merah",
+    "punggol"
   ],
   "2027-10-31": [
     "sengkang",
-    "western-islands"
+    "pioneer"
   ],
   "2027-11-01": [
     "straits-view",
@@ -4148,116 +4148,116 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi-bay"
   ],
   "2027-11-03": [
-    "north-eastern-islands",
-    "marina-south"
+    "marina-east",
+    "mandai"
   ],
   "2027-11-04": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2027-11-05": [
-    "jurong-west",
-    "pasir-ris"
+    "bishan",
+    "pioneer"
   ],
   "2027-11-06": [
     "outram",
     "sembawang"
   ],
   "2027-11-07": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2027-11-08": [
-    "sembawang",
+    "seletar",
     "outram"
   ],
   "2027-11-09": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2027-11-10": [
-    "paya-lebar",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2027-11-11": [
     "river-valley",
-    "changi-bay"
+    "punggol"
   ],
   "2027-11-12": [
-    "river-valley",
-    "changi-bay"
+    "rochor",
+    "sembawang"
   ],
   "2027-11-13": [
     "western-islands",
-    "serangoon"
+    "tampines"
   ],
   "2027-11-14": [
     "pasir-ris",
-    "tuas"
+    "tengah"
   ],
   "2027-11-15": [
     "bukit-batok",
     "changi"
   ],
   "2027-11-16": [
-    "southern-islands",
+    "singapore-river",
     "changi-bay"
   ],
   "2027-11-17": [
-    "tuas",
-    "north-eastern-islands"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2027-11-18": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2027-11-19": [
-    "choa-chu-kang",
-    "changi"
+    "mandai",
+    "marina-east"
   ],
   "2027-11-20": [
-    "simpang",
-    "marina-south"
+    "museum",
+    "pioneer"
   ],
   "2027-11-21": [
     "lim-chu-kang",
     "changi"
   ],
   "2027-11-22": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2027-11-23": [
     "seletar",
-    "straits-view"
+    "southern-islands"
   ],
   "2027-11-24": [
-    "southern-islands",
+    "singapore-river",
     "changi"
   ],
   "2027-11-25": [
-    "paya-lebar",
-    "boon-lay"
+    "pioneer",
+    "marina-east"
   ],
   "2027-11-26": [
     "boon-lay",
     "hougang"
   ],
   "2027-11-27": [
-    "lim-chu-kang",
-    "straits-view"
+    "downtown-core",
+    "mandai"
   ],
   "2027-11-28": [
     "western-islands",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2027-11-29": [
-    "river-valley",
-    "changi"
+    "kallang",
+    "tuas"
   ],
   "2027-11-30": [
-    "north-eastern-islands",
-    "singapore-river"
+    "tampines",
+    "jurong-west"
   ],
   "2027-12-01": [
     "marina-south",
@@ -4265,11 +4265,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-12-02": [
     "jurong-west",
-    "marine-parade"
+    "pasir-ris"
   ],
   "2027-12-03": [
-    "sembawang",
-    "outram"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2027-12-04": [
     "serangoon",
@@ -4277,83 +4277,83 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-12-05": [
     "outram",
-    "woodlands"
+    "yishun"
   ],
   "2027-12-06": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2027-12-07": [
-    "tuas",
-    "rochor"
+    "toa-payoh",
+    "tuas"
   ],
   "2027-12-08": [
-    "tuas",
-    "bedok"
+    "toa-payoh",
+    "pioneer"
   ],
   "2027-12-09": [
     "simpang",
-    "southern-islands"
+    "singapore-river"
   ],
   "2027-12-10": [
-    "north-eastern-islands",
-    "jurong-east"
+    "downtown-core",
+    "mandai"
   ],
   "2027-12-11": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2027-12-12": [
-    "north-eastern-islands",
-    "tuas"
+    "tuas",
+    "lim-chu-kang"
   ],
   "2027-12-13": [
-    "changi-bay",
-    "tengah"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2027-12-14": [
     "punggol",
-    "marina-south"
+    "jurong-east"
   ],
   "2027-12-15": [
-    "punggol",
-    "boon-lay"
+    "changi",
+    "outram"
   ],
   "2027-12-16": [
     "marina-south",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2027-12-17": [
     "paya-lebar",
-    "boon-lay"
+    "pioneer"
   ],
   "2027-12-18": [
     "rochor",
-    "tuas"
+    "sembawang"
   ],
   "2027-12-19": [
     "river-valley",
-    "changi-bay"
+    "punggol"
   ],
   "2027-12-20": [
-    "marine-parade",
-    "western-islands"
+    "marina-south",
+    "woodlands"
   ],
   "2027-12-21": [
-    "changi",
-    "clementi"
+    "changi-bay",
+    "choa-chu-kang"
   ],
   "2027-12-22": [
-    "simpang",
-    "marina-south"
+    "serangoon",
+    "boon-lay"
   ],
   "2027-12-23": [
-    "sembawang",
-    "southern-islands"
+    "geylang",
+    "boon-lay"
   ],
   "2027-12-24": [
     "bukit-merah",
-    "punggol"
+    "simpang"
   ],
   "2027-12-25": [
     "river-valley",
@@ -4361,27 +4361,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2027-12-26": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2027-12-27": [
     "marina-east",
-    "tuas"
+    "sembawang"
   ],
   "2027-12-28": [
-    "pasir-ris",
-    "jurong-east"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2027-12-29": [
     "tampines",
     "western-islands"
   ],
   "2027-12-30": [
-    "tengah",
-    "tampines"
+    "yishun",
+    "straits-view"
   ],
   "2027-12-31": [
     "pioneer",
-    "changi-bay"
+    "hougang"
   ],
   "2028-01-01": [
     "western-islands",
@@ -4389,103 +4389,103 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-01-02": [
     "sembawang",
-    "outram"
+    "museum"
   ],
   "2028-01-03": [
-    "boon-lay",
-    "pasir-ris"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2028-01-04": [
-    "boon-lay",
-    "punggol"
+    "toa-payoh",
+    "pioneer"
   ],
   "2028-01-05": [
     "lim-chu-kang",
     "straits-view"
   ],
   "2028-01-06": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "bedok"
   ],
   "2028-01-07": [
     "marina-south",
     "tuas"
   ],
   "2028-01-08": [
-    "choa-chu-kang",
-    "marina-south"
+    "changi",
+    "museum"
   ],
   "2028-01-09": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-01-10": [
-    "marine-parade",
-    "boon-lay"
+    "geylang",
+    "western-islands"
   ],
   "2028-01-11": [
     "jurong-west",
-    "changi"
+    "geylang"
   ],
   "2028-01-12": [
-    "marina-south",
-    "simpang"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2028-01-13": [
     "straits-view",
-    "simpang"
+    "woodlands"
   ],
   "2028-01-14": [
-    "tampines",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-01-15": [
-    "tuas",
-    "tampines"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-01-16": [
     "bukit-merah",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-01-17": [
-    "clementi",
-    "north-eastern-islands"
+    "mandai",
+    "marina-south"
   ],
   "2028-01-18": [
-    "western-islands",
-    "sengkang"
+    "tampines",
+    "western-islands"
   ],
   "2028-01-19": [
     "simpang",
-    "outram"
+    "museum"
   ],
   "2028-01-20": [
-    "outram",
-    "seletar"
+    "pasir-ris",
+    "tengah"
   ],
   "2028-01-21": [
     "rochor",
-    "tuas"
+    "woodlands"
   ],
   "2028-01-22": [
     "tampines",
-    "tuas"
+    "tengah"
   ],
   "2028-01-23": [
     "simpang",
-    "southern-islands"
+    "singapore-river"
   ],
   "2028-01-24": [
     "marina-south",
     "lim-chu-kang"
   ],
   "2028-01-25": [
-    "punggol",
-    "orchard"
+    "queenstown",
+    "changi-bay"
   ],
   "2028-01-26": [
-    "sembawang",
-    "marina-south"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-01-27": [
     "pasir-ris",
@@ -4493,11 +4493,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-01-28": [
     "southern-islands",
-    "punggol"
+    "seletar"
   ],
   "2028-01-29": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-01-30": [
     "clementi",
@@ -4505,55 +4505,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-01-31": [
     "museum",
-    "pioneer"
+    "punggol"
   ],
   "2028-02-01": [
-    "outram",
-    "seletar"
+    "tengah",
+    "pasir-ris"
   ],
   "2028-02-02": [
-    "pasir-ris",
-    "pioneer"
+    "yishun",
+    "tuas"
   ],
   "2028-02-03": [
     "singapore-river",
     "changi"
   ],
   "2028-02-04": [
-    "tampines",
-    "tuas"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-02-05": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "paya-lebar"
   ],
   "2028-02-06": [
-    "sembawang",
-    "straits-view"
+    "mandai",
+    "southern-islands"
   ],
   "2028-02-07": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-02-08": [
     "singapore-river",
-    "changi-bay"
+    "punggol"
   ],
   "2028-02-09": [
-    "north-eastern-islands",
-    "queenstown"
+    "river-valley",
+    "punggol"
   ],
   "2028-02-10": [
-    "western-islands",
-    "hougang"
+    "mandai",
+    "marina-south"
   ],
   "2028-02-11": [
-    "marine-parade",
-    "boon-lay"
+    "marina-south",
+    "choa-chu-kang"
   ],
   "2028-02-12": [
-    "marina-east",
-    "pioneer"
+    "bishan",
+    "tuas"
   ],
   "2028-02-13": [
     "sengkang",
@@ -4565,59 +4565,59 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-02-15": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2028-02-16": [
-    "north-eastern-islands",
-    "western-water-catchment"
+    "yishun",
+    "tuas"
   ],
   "2028-02-17": [
-    "choa-chu-kang",
-    "north-eastern-islands"
+    "clementi",
+    "punggol"
   ],
   "2028-02-18": [
-    "straits-view",
+    "southern-islands",
     "seletar"
   ],
   "2028-02-19": [
-    "lim-chu-kang",
-    "changi"
+    "mandai",
+    "museum"
   ],
   "2028-02-20": [
     "sembawang",
-    "straits-view"
+    "western-islands"
   ],
   "2028-02-21": [
-    "western-islands",
-    "punggol"
+    "bishan",
+    "tuas"
   ],
   "2028-02-22": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2028-02-23": [
-    "tuas",
-    "pasir-ris"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-02-24": [
-    "marina-east",
-    "tuas"
+    "bishan",
+    "pioneer"
   ],
   "2028-02-25": [
     "outram",
     "changi"
   ],
   "2028-02-26": [
-    "rochor",
-    "pioneer"
+    "bishan",
+    "tuas"
   ],
   "2028-02-27": [
     "seletar",
-    "southern-islands"
+    "outram"
   ],
   "2028-02-28": [
     "orchard",
-    "punggol"
+    "sembawang"
   ],
   "2028-02-29": [
     "serangoon",
@@ -4625,115 +4625,115 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-03-01": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2028-03-02": [
     "pioneer",
-    "museum"
+    "rochor"
   ],
   "2028-03-03": [
     "bukit-merah",
     "changi"
   ],
   "2028-03-04": [
-    "straits-view",
-    "seletar"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-03-05": [
     "boon-lay",
-    "sengkang"
+    "simpang"
   ],
   "2028-03-06": [
-    "north-eastern-islands",
-    "tengah"
+    "bishan",
+    "pioneer"
   ],
   "2028-03-07": [
-    "pioneer",
-    "rochor"
+    "punggol",
+    "southern-islands"
   ],
   "2028-03-08": [
-    "outram",
-    "woodlands"
+    "pasir-ris",
+    "western-islands"
   ],
   "2028-03-09": [
     "river-valley",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-03-10": [
-    "hougang",
-    "western-islands"
+    "bukit-panjang",
+    "changi"
   ],
   "2028-03-11": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2028-03-12": [
-    "north-eastern-islands",
-    "singapore-river"
+    "sengkang",
+    "jurong-east"
   ],
   "2028-03-13": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "paya-lebar"
   ],
   "2028-03-14": [
-    "paya-lebar",
-    "boon-lay"
+    "bishan",
+    "tuas"
   ],
   "2028-03-15": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2028-03-16": [
-    "seletar",
-    "outram"
+    "kallang",
+    "tuas"
   ],
   "2028-03-17": [
-    "clementi",
-    "north-eastern-islands"
+    "yishun",
+    "western-islands"
   ],
   "2028-03-18": [
-    "bukit-merah",
-    "punggol"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2028-03-19": [
-    "orchard",
-    "punggol"
+    "outram",
+    "woodlands"
   ],
   "2028-03-20": [
-    "woodlands",
-    "outram"
+    "yishun",
+    "western-islands"
   ],
   "2028-03-21": [
-    "punggol",
-    "jurong-west"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2028-03-22": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2028-03-23": [
-    "straits-view",
-    "north-eastern-islands"
+    "southern-islands",
+    "lim-chu-kang"
   ],
   "2028-03-24": [
     "choa-chu-kang",
-    "marina-south"
+    "changi-bay"
   ],
   "2028-03-25": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2028-03-26": [
     "marine-parade",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2028-03-27": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2028-03-28": [
     "western-islands",
-    "geylang"
+    "bedok"
   ],
   "2028-03-29": [
     "woodlands",
@@ -4741,15 +4741,15 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-03-30": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2028-03-31": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2028-04-01": [
-    "rochor",
-    "tuas"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2028-04-02": [
     "clementi",
@@ -4760,20 +4760,20 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2028-04-04": [
-    "marina-south",
-    "punggol"
+    "marina-east",
+    "pioneer"
   ],
   "2028-04-05": [
-    "western-islands",
-    "serangoon"
+    "tuas",
+    "woodlands"
   ],
   "2028-04-06": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2028-04-07": [
-    "tuas",
-    "marina-east"
+    "bishan",
+    "pioneer"
   ],
   "2028-04-08": [
     "marina-east",
@@ -4784,36 +4784,36 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "marina-south"
   ],
   "2028-04-10": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "simpang"
   ],
   "2028-04-11": [
     "marine-parade",
-    "jurong-west"
+    "lim-chu-kang"
   ],
   "2028-04-12": [
     "woodlands",
-    "southern-islands"
+    "rochor"
   ],
   "2028-04-13": [
-    "queenstown",
-    "changi"
+    "changi",
+    "outram"
   ],
   "2028-04-14": [
     "museum",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2028-04-15": [
     "bedok",
     "boon-lay"
   ],
   "2028-04-16": [
-    "pioneer",
-    "marina-south"
+    "kallang",
+    "tuas"
   ],
   "2028-04-17": [
     "pioneer",
-    "marina-east"
+    "kallang"
   ],
   "2028-04-18": [
     "singapore-river",
@@ -4824,28 +4824,28 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "straits-view"
   ],
   "2028-04-20": [
-    "geylang",
-    "western-islands"
-  ],
-  "2028-04-21": [
-    "tampines",
+    "hougang",
     "pioneer"
   ],
+  "2028-04-21": [
+    "sungei-kadut",
+    "marina-south"
+  ],
   "2028-04-22": [
-    "rochor",
-    "tuas"
+    "tampines",
+    "western-islands"
   ],
   "2028-04-23": [
     "changi",
-    "museum"
+    "lim-chu-kang"
   ],
   "2028-04-24": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-04-25": [
     "western-islands",
-    "tampines"
+    "yishun"
   ],
   "2028-04-26": [
     "straits-view",
@@ -4856,40 +4856,40 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "seletar"
   ],
   "2028-04-28": [
-    "tengah",
-    "bedok"
+    "boon-lay",
+    "tampines"
   ],
   "2028-04-29": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2028-04-30": [
-    "marina-east",
-    "pioneer"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-05-01": [
-    "museum",
-    "changi"
+    "bishan",
+    "pioneer"
   ],
   "2028-05-02": [
-    "hougang",
-    "western-islands"
+    "jurong-east",
+    "sengkang"
   ],
   "2028-05-03": [
     "sengkang",
-    "western-islands"
+    "jurong-west"
   ],
   "2028-05-04": [
-    "tampines",
-    "tengah"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-05-05": [
-    "tampines",
-    "western-islands"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-05-06": [
-    "museum",
-    "pioneer"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-05-07": [
     "woodlands",
@@ -4904,28 +4904,28 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "straits-view"
   ],
   "2028-05-10": [
-    "tuas",
-    "north-eastern-islands"
+    "mandai",
+    "tuas"
   ],
   "2028-05-11": [
-    "boon-lay",
-    "bedok"
+    "bishan",
+    "pioneer"
   ],
   "2028-05-12": [
-    "north-eastern-islands",
-    "southern-islands"
+    "simpang",
+    "singapore-river"
   ],
   "2028-05-13": [
-    "bukit-batok",
-    "changi-bay"
+    "boon-lay",
+    "paya-lebar"
   ],
   "2028-05-14": [
-    "singapore-river",
-    "changi"
+    "kallang",
+    "tuas"
   ],
   "2028-05-15": [
     "tampines",
-    "jurong-east"
+    "choa-chu-kang"
   ],
   "2028-05-16": [
     "jurong-west",
@@ -4933,87 +4933,87 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-05-17": [
     "changi-bay",
-    "pioneer"
+    "outram"
   ],
   "2028-05-18": [
     "jurong-east",
     "tampines"
   ],
   "2028-05-19": [
-    "serangoon",
-    "western-islands"
+    "sengkang",
+    "pioneer"
   ],
   "2028-05-20": [
-    "marina-south",
+    "marina-east",
     "woodlands"
   ],
   "2028-05-21": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2028-05-22": [
     "pioneer",
-    "changi-bay"
+    "kallang"
   ],
   "2028-05-23": [
-    "woodlands",
-    "outram"
+    "yishun",
+    "western-islands"
   ],
   "2028-05-24": [
-    "singapore-river",
-    "north-eastern-islands"
+    "mandai",
+    "straits-view"
   ],
   "2028-05-25": [
-    "serangoon",
-    "western-islands"
+    "mandai",
+    "southern-islands"
   ],
   "2028-05-26": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2028-05-27": [
     "serangoon",
-    "western-islands"
+    "pioneer"
   ],
   "2028-05-28": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2028-05-29": [
     "rochor",
-    "tuas"
+    "woodlands"
   ],
   "2028-05-30": [
-    "jurong-west",
-    "changi-bay"
+    "straits-view",
+    "lim-chu-kang"
   ],
   "2028-05-31": [
-    "western-islands",
-    "tampines"
+    "tuas",
+    "yishun"
   ],
   "2028-06-01": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-06-02": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2028-06-03": [
     "museum",
-    "pioneer"
-  ],
-  "2028-06-04": [
-    "singapore-river",
     "punggol"
   ],
+  "2028-06-04": [
+    "simpang",
+    "straits-view"
+  ],
   "2028-06-05": [
-    "punggol",
-    "tuas"
+    "lim-chu-kang",
+    "outram"
   ],
   "2028-06-06": [
-    "marine-parade",
-    "tuas"
+    "marina-south",
+    "simpang"
   ],
   "2028-06-07": [
     "jurong-east",
@@ -5028,8 +5028,8 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "western-islands"
   ],
   "2028-06-10": [
-    "changi-bay",
-    "western-water-catchment"
+    "tampines",
+    "choa-chu-kang"
   ],
   "2028-06-11": [
     "tampines",
@@ -5037,27 +5037,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-06-12": [
     "rochor",
-    "tuas"
+    "simpang"
   ],
   "2028-06-13": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2028-06-14": [
     "serangoon",
     "western-islands"
   ],
   "2028-06-15": [
-    "bedok",
-    "tengah"
+    "bishan",
+    "pioneer"
   ],
   "2028-06-16": [
     "singapore-river",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2028-06-17": [
-    "tampines",
-    "tengah"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-06-18": [
     "paya-lebar",
@@ -5065,79 +5065,79 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-06-19": [
     "sembawang",
-    "southern-islands"
+    "river-valley"
   ],
   "2028-06-20": [
-    "bedok",
-    "western-islands"
+    "kallang",
+    "pioneer"
   ],
   "2028-06-21": [
-    "sembawang",
-    "marina-south"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2028-06-22": [
-    "choa-chu-kang",
-    "changi"
+    "museum",
+    "lim-chu-kang"
   ],
   "2028-06-23": [
     "pasir-ris",
-    "tuas"
+    "western-islands"
   ],
   "2028-06-24": [
-    "tampines",
-    "pioneer"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-06-25": [
     "southern-islands",
-    "simpang"
+    "woodlands"
   ],
   "2028-06-26": [
-    "seletar",
-    "boon-lay"
+    "museum",
+    "sembawang"
   ],
   "2028-06-27": [
-    "changi",
+    "changi-bay",
     "bukit-batok"
   ],
   "2028-06-28": [
-    "sengkang",
-    "western-islands"
+    "changi",
+    "queenstown"
   ],
   "2028-06-29": [
     "seletar",
-    "southern-islands"
+    "pioneer"
   ],
   "2028-06-30": [
     "clementi",
     "changi"
   ],
   "2028-07-01": [
-    "punggol",
-    "marina-south"
+    "orchard",
+    "punggol"
   ],
   "2028-07-02": [
-    "bukit-merah",
-    "north-eastern-islands"
+    "bukit-batok",
+    "punggol"
   ],
   "2028-07-03": [
-    "changi-bay",
-    "queenstown"
+    "kallang",
+    "pioneer"
   ],
   "2028-07-04": [
-    "choa-chu-kang",
+    "clementi",
     "changi-bay"
   ],
   "2028-07-05": [
-    "southern-islands",
-    "woodlands"
+    "singapore-river",
+    "simpang"
   ],
   "2028-07-06": [
     "changi",
-    "tengah"
+    "singapore-river"
   ],
   "2028-07-07": [
     "marina-east",
-    "tuas"
+    "simpang"
   ],
   "2028-07-08": [
     "western-islands",
@@ -5149,51 +5149,51 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-07-10": [
     "bedok",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2028-07-11": [
-    "river-valley",
-    "north-eastern-islands"
-  ],
-  "2028-07-12": [
-    "museum",
-    "north-eastern-islands"
-  ],
-  "2028-07-13": [
     "rochor",
     "tuas"
   ],
+  "2028-07-12": [
+    "yishun",
+    "pioneer"
+  ],
+  "2028-07-13": [
+    "rochor",
+    "woodlands"
+  ],
   "2028-07-14": [
     "woodlands",
-    "outram"
+    "marine-parade"
   ],
   "2028-07-15": [
     "seletar",
     "western-islands"
   ],
   "2028-07-16": [
-    "singapore-river",
-    "punggol"
-  ],
-  "2028-07-17": [
-    "hougang",
+    "geylang",
     "boon-lay"
   ],
+  "2028-07-17": [
+    "jurong-east",
+    "pasir-ris"
+  ],
   "2028-07-18": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-07-19": [
     "singapore-river",
-    "changi"
+    "changi-bay"
   ],
   "2028-07-20": [
-    "woodlands",
-    "changi-bay"
+    "kallang",
+    "tuas"
   ],
   "2028-07-21": [
     "sembawang",
-    "marina-south"
+    "boon-lay"
   ],
   "2028-07-22": [
     "geylang",
@@ -5201,27 +5201,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-07-23": [
     "straits-view",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2028-07-24": [
     "changi",
-    "clementi"
+    "bukit-panjang"
   ],
   "2028-07-25": [
-    "tengah",
-    "bedok"
+    "bukit-batok",
+    "changi"
   ],
   "2028-07-26": [
     "bukit-merah",
-    "punggol"
+    "simpang"
   ],
   "2028-07-27": [
-    "punggol",
-    "tengah"
+    "queenstown",
+    "punggol"
   ],
   "2028-07-28": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2028-07-29": [
     "southern-islands",
@@ -5229,43 +5229,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-07-30": [
     "southern-islands",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-07-31": [
-    "punggol",
-    "jurong-east"
+    "mandai",
+    "museum"
   ],
   "2028-08-01": [
-    "marina-south",
-    "western-water-catchment"
+    "downtown-core",
+    "sembawang"
   ],
   "2028-08-02": [
-    "southern-islands",
+    "straits-view",
     "woodlands"
   ],
   "2028-08-03": [
-    "marina-south",
-    "western-water-catchment"
+    "kallang",
+    "pioneer"
   ],
   "2028-08-04": [
     "marina-south",
-    "tuas"
+    "sungei-kadut"
   ],
   "2028-08-05": [
-    "tuas",
-    "punggol"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-08-06": [
     "changi-bay",
     "bukit-batok"
   ],
   "2028-08-07": [
-    "western-islands",
-    "pasir-ris"
+    "straits-view",
+    "yishun"
   ],
   "2028-08-08": [
-    "north-eastern-islands",
-    "queenstown"
+    "queenstown",
+    "punggol"
   ],
   "2028-08-09": [
     "tengah",
@@ -5273,43 +5273,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-08-10": [
     "southern-islands",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2028-08-11": [
     "punggol",
-    "river-valley"
+    "outram"
   ],
   "2028-08-12": [
     "boon-lay",
-    "sengkang"
+    "serangoon"
   ],
   "2028-08-13": [
-    "queenstown",
-    "changi"
-  ],
-  "2028-08-14": [
-    "river-valley",
-    "changi"
-  ],
-  "2028-08-15": [
-    "north-eastern-islands",
-    "jurong-west"
-  ],
-  "2028-08-16": [
-    "rochor",
+    "ang-mo-kio",
     "tuas"
   ],
-  "2028-08-17": [
-    "hougang",
-    "boon-lay"
+  "2028-08-14": [
+    "ang-mo-kio",
+    "tuas"
   ],
-  "2028-08-18": [
+  "2028-08-15": [
     "geylang",
     "western-islands"
   ],
+  "2028-08-16": [
+    "yishun",
+    "straits-view"
+  ],
+  "2028-08-17": [
+    "hougang",
+    "jurong-west"
+  ],
+  "2028-08-18": [
+    "geylang",
+    "tuas"
+  ],
   "2028-08-19": [
     "pioneer",
-    "tampines"
+    "toa-payoh"
   ],
   "2028-08-20": [
     "singapore-river",
@@ -5317,38 +5317,38 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-08-21": [
     "jurong-east",
-    "pasir-ris"
+    "seletar"
   ],
   "2028-08-22": [
-    "straits-view",
-    "north-eastern-islands"
+    "southern-islands",
+    "lim-chu-kang"
   ],
   "2028-08-23": [
-    "hougang",
-    "western-islands"
+    "jurong-east",
+    "seletar"
   ],
   "2028-08-24": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2028-08-25": [
-    "woodlands",
-    "changi-bay"
+    "yishun",
+    "boon-lay"
   ],
   "2028-08-26": [
-    "bukit-merah",
-    "punggol"
+    "kallang",
+    "pioneer"
   ],
   "2028-08-27": [
     "outram",
     "lim-chu-kang"
   ],
   "2028-08-28": [
-    "river-valley",
-    "changi-bay"
+    "kallang",
+    "tuas"
   ],
   "2028-08-29": [
-    "changi",
+    "changi-bay",
     "singapore-river"
   ],
   "2028-08-30": [
@@ -5356,12 +5356,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "seletar"
   ],
   "2028-08-31": [
-    "southern-islands",
-    "north-eastern-islands"
+    "singapore-river",
+    "punggol"
   ],
   "2028-09-01": [
     "simpang",
-    "southern-islands"
+    "pioneer"
   ],
   "2028-09-02": [
     "hougang",
@@ -5369,18 +5369,18 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-09-03": [
     "southern-islands",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-09-04": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2028-09-05": [
-    "outram",
-    "sembawang"
+    "pasir-ris",
+    "tengah"
   ],
   "2028-09-06": [
-    "orchard",
+    "bukit-merah",
     "punggol"
   ],
   "2028-09-07": [
@@ -5389,7 +5389,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-09-08": [
     "bukit-merah",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2028-09-09": [
     "sengkang",
@@ -5397,43 +5397,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-09-10": [
     "simpang",
-    "straits-view"
+    "southern-islands"
   ],
   "2028-09-11": [
     "museum",
-    "punggol"
+    "pioneer"
   ],
   "2028-09-12": [
-    "outram",
-    "changi"
+    "pasir-ris",
+    "boon-lay"
   ],
   "2028-09-13": [
     "rochor",
     "pioneer"
   ],
   "2028-09-14": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "serangoon"
   ],
   "2028-09-15": [
     "paya-lebar",
-    "western-islands"
+    "pioneer"
   ],
   "2028-09-16": [
     "singapore-river",
-    "north-eastern-islands"
+    "sembawang"
   ],
   "2028-09-17": [
-    "jurong-east",
-    "changi-bay"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2028-09-18": [
     "marina-south",
     "tuas"
   ],
   "2028-09-19": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sengkang"
   ],
   "2028-09-20": [
     "serangoon",
@@ -5441,31 +5441,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-09-21": [
     "marina-east",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2028-09-22": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2028-09-23": [
     "jurong-west",
-    "punggol"
+    "serangoon"
   ],
   "2028-09-24": [
     "outram",
     "changi"
   ],
   "2028-09-25": [
-    "serangoon",
-    "western-islands"
+    "downtown-core",
+    "simpang"
   ],
   "2028-09-26": [
-    "singapore-river",
-    "punggol"
+    "simpang",
+    "straits-view"
   ],
   "2028-09-27": [
-    "hougang",
-    "boon-lay"
+    "downtown-core",
+    "sembawang"
   ],
   "2028-09-28": [
     "river-valley",
@@ -5476,48 +5476,48 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi-bay"
   ],
   "2028-09-30": [
-    "tengah",
-    "changi-bay"
+    "marina-south",
+    "woodlands"
   ],
   "2028-10-01": [
-    "woodlands",
-    "marina-south"
+    "changi",
+    "tengah"
   ],
   "2028-10-02": [
-    "marina-east",
-    "tuas"
+    "mandai",
+    "rochor"
   ],
   "2028-10-03": [
-    "tampines",
-    "tuas"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2028-10-04": [
-    "tuas",
-    "north-eastern-islands"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-10-05": [
     "punggol",
-    "orchard"
+    "museum"
   ],
   "2028-10-06": [
     "rochor",
-    "pioneer"
+    "sembawang"
   ],
   "2028-10-07": [
-    "north-eastern-islands",
-    "outram"
+    "tampines",
+    "jurong-west"
   ],
   "2028-10-08": [
-    "changi",
+    "changi-bay",
     "tengah"
   ],
   "2028-10-09": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2028-10-10": [
-    "bukit-batok",
-    "changi-bay"
+    "geylang",
+    "boon-lay"
   ],
   "2028-10-11": [
     "marina-south",
@@ -5525,127 +5525,127 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-10-12": [
     "sembawang",
-    "southern-islands"
+    "river-valley"
   ],
   "2028-10-13": [
-    "tuas",
-    "tampines"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-10-14": [
-    "changi-bay",
-    "museum"
+    "choa-chu-kang",
+    "changi"
   ],
   "2028-10-15": [
     "serangoon",
-    "boon-lay"
+    "pioneer"
   ],
   "2028-10-16": [
     "changi",
-    "river-valley"
+    "queenstown"
   ],
   "2028-10-17": [
     "pasir-ris",
-    "tuas"
+    "tengah"
   ],
   "2028-10-18": [
-    "changi-bay",
-    "bukit-merah"
+    "choa-chu-kang",
+    "bedok"
   ],
   "2028-10-19": [
     "lim-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2028-10-20": [
-    "changi-bay",
-    "jurong-east"
+    "choa-chu-kang",
+    "changi"
   ],
   "2028-10-21": [
-    "bukit-merah",
+    "bukit-batok",
     "punggol"
   ],
   "2028-10-22": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2028-10-23": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "marina-south"
   ],
   "2028-10-24": [
-    "jurong-west",
-    "north-eastern-islands"
+    "geylang",
+    "jurong-west"
   ],
   "2028-10-25": [
-    "western-islands",
+    "tuas",
     "geylang"
   ],
   "2028-10-26": [
-    "pasir-ris",
-    "pioneer"
+    "museum",
+    "punggol"
   ],
   "2028-10-27": [
-    "tengah",
-    "bedok"
+    "bukit-panjang",
+    "changi"
   ],
   "2028-10-28": [
-    "sembawang",
-    "outram"
-  ],
-  "2028-10-29": [
-    "choa-chu-kang",
-    "north-eastern-islands"
-  ],
-  "2028-10-30": [
-    "serangoon",
-    "western-islands"
-  ],
-  "2028-10-31": [
     "seletar",
     "marina-south"
   ],
+  "2028-10-29": [
+    "choa-chu-kang",
+    "tampines"
+  ],
+  "2028-10-30": [
+    "serangoon",
+    "tuas"
+  ],
+  "2028-10-31": [
+    "seletar",
+    "jurong-west"
+  ],
   "2028-11-01": [
-    "changi",
-    "outram"
+    "changi-bay",
+    "orchard"
   ],
   "2028-11-02": [
     "singapore-river",
     "changi"
   ],
   "2028-11-03": [
-    "changi-bay",
-    "choa-chu-kang"
+    "choa-chu-kang",
+    "bedok"
   ],
   "2028-11-04": [
     "punggol",
-    "tuas"
+    "straits-view"
   ],
   "2028-11-05": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2028-11-06": [
     "sengkang",
     "boon-lay"
   ],
   "2028-11-07": [
-    "seletar",
-    "outram"
+    "mandai",
+    "marina-east"
   ],
   "2028-11-08": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "woodlands"
   ],
   "2028-11-09": [
-    "tuas",
-    "pasir-ris"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-11-10": [
     "changi-bay",
     "river-valley"
   ],
   "2028-11-11": [
-    "southern-islands",
-    "north-eastern-islands"
+    "changi",
+    "river-valley"
   ],
   "2028-11-12": [
     "river-valley",
@@ -5661,7 +5661,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-11-15": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2028-11-16": [
     "punggol",
@@ -5673,82 +5673,82 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-11-18": [
     "boon-lay",
-    "marine-parade"
+    "pasir-ris"
   ],
   "2028-11-19": [
-    "southern-islands",
-    "seletar"
+    "singapore-river",
+    "sembawang"
   ],
   "2028-11-20": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "simpang"
   ],
   "2028-11-21": [
-    "marina-east",
-    "tuas"
+    "mandai",
+    "rochor"
   ],
   "2028-11-22": [
-    "north-eastern-islands",
-    "western-water-catchment"
+    "woodlands",
+    "museum"
   ],
   "2028-11-23": [
-    "clementi",
-    "changi"
+    "downtown-core",
+    "mandai"
   ],
   "2028-11-24": [
     "jurong-west",
-    "punggol"
+    "sengkang"
   ],
   "2028-11-25": [
     "clementi",
     "changi"
   ],
   "2028-11-26": [
-    "geylang",
-    "boon-lay"
+    "museum",
+    "lim-chu-kang"
   ],
   "2028-11-27": [
-    "geylang",
-    "boon-lay"
+    "bishan",
+    "pioneer"
   ],
   "2028-11-28": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2028-11-29": [
-    "river-valley",
-    "north-eastern-islands"
+    "rochor",
+    "simpang"
   ],
   "2028-11-30": [
     "southern-islands",
-    "woodlands"
+    "yishun"
   ],
   "2028-12-01": [
     "jurong-east",
-    "changi-bay"
+    "pasir-ris"
   ],
   "2028-12-02": [
-    "boon-lay",
-    "hougang"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2028-12-03": [
     "hougang",
     "boon-lay"
   ],
   "2028-12-04": [
-    "changi",
-    "western-water-catchment"
+    "changi-bay",
+    "woodlands"
   ],
   "2028-12-05": [
     "singapore-river",
-    "changi-bay"
+    "punggol"
   ],
   "2028-12-06": [
-    "sembawang",
-    "outram"
+    "yishun",
+    "straits-view"
   ],
   "2028-12-07": [
-    "bedok",
+    "ang-mo-kio",
     "boon-lay"
   ],
   "2028-12-08": [
@@ -5756,20 +5756,20 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "pioneer"
   ],
   "2028-12-09": [
-    "marine-parade",
-    "jurong-west"
+    "marina-south",
+    "pioneer"
   ],
   "2028-12-10": [
-    "choa-chu-kang",
-    "marina-south"
+    "clementi",
+    "punggol"
   ],
   "2028-12-11": [
-    "southern-islands",
-    "north-eastern-islands"
+    "tampines",
+    "tengah"
   ],
   "2028-12-12": [
     "marina-south",
-    "choa-chu-kang"
+    "lim-chu-kang"
   ],
   "2028-12-13": [
     "boon-lay",
@@ -5777,27 +5777,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-12-14": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-12-15": [
-    "southern-islands",
-    "changi"
+    "tampines",
+    "tengah"
   ],
   "2028-12-16": [
     "southern-islands",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2028-12-17": [
-    "outram",
-    "changi-bay"
+    "pasir-ris",
+    "jurong-east"
   ],
   "2028-12-18": [
     "changi",
-    "lim-chu-kang"
+    "jurong-east"
   ],
   "2028-12-19": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2028-12-20": [
     "rochor",
@@ -5805,26 +5805,26 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2028-12-21": [
     "outram",
-    "woodlands"
+    "yishun"
   ],
   "2028-12-22": [
-    "tampines",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2028-12-23": [
-    "changi",
-    "museum"
+    "bukit-merah",
+    "punggol"
   ],
   "2028-12-24": [
-    "singapore-river",
-    "north-eastern-islands"
+    "simpang",
+    "river-valley"
   ],
   "2028-12-25": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2028-12-26": [
-    "changi",
+    "changi-bay",
     "orchard"
   ],
   "2028-12-27": [
@@ -5832,143 +5832,143 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "bukit-merah"
   ],
   "2028-12-28": [
-    "tuas",
-    "rochor"
+    "toa-payoh",
+    "tuas"
   ],
   "2028-12-29": [
-    "paya-lebar",
-    "boon-lay"
+    "pioneer",
+    "marina-east"
   ],
   "2028-12-30": [
-    "changi-bay",
-    "jurong-east"
+    "choa-chu-kang",
+    "changi"
   ],
   "2028-12-31": [
-    "western-islands",
-    "tampines"
+    "tuas",
+    "woodlands"
   ],
   "2029-01-01": [
-    "marina-east",
-    "tuas"
+    "yishun",
+    "pioneer"
   ],
   "2029-01-02": [
     "geylang",
-    "boon-lay"
+    "lim-chu-kang"
   ],
   "2029-01-03": [
-    "jurong-west",
-    "tampines"
+    "downtown-core",
+    "mandai"
   ],
   "2029-01-04": [
-    "sengkang",
-    "boon-lay"
+    "bukit-merah",
+    "sembawang"
   ],
   "2029-01-05": [
-    "tuas",
-    "bedok"
+    "tengah",
+    "changi"
   ],
   "2029-01-06": [
-    "western-islands",
-    "marine-parade"
+    "tuas",
+    "lim-chu-kang"
   ],
   "2029-01-07": [
-    "tampines",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-01-08": [
-    "jurong-east",
-    "pasir-ris"
+    "jurong-west",
+    "seletar"
   ],
   "2029-01-09": [
-    "seletar",
-    "boon-lay"
+    "orchard",
+    "sembawang"
   ],
   "2029-01-10": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2029-01-11": [
-    "marina-south",
-    "tuas"
+    "straits-view",
+    "seletar"
   ],
   "2029-01-12": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2029-01-13": [
     "outram",
-    "lim-chu-kang"
+    "mandai"
   ],
   "2029-01-14": [
     "orchard",
-    "punggol"
+    "sembawang"
   ],
   "2029-01-15": [
     "orchard",
-    "changi-bay"
+    "punggol"
   ],
   "2029-01-16": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "kallang",
+    "pioneer"
   ],
   "2029-01-17": [
     "river-valley",
-    "punggol"
+    "sembawang"
   ],
   "2029-01-18": [
     "boon-lay",
     "bedok"
   ],
   "2029-01-19": [
-    "choa-chu-kang",
+    "clementi",
     "changi-bay"
   ],
   "2029-01-20": [
-    "geylang",
+    "hougang",
     "boon-lay"
   ],
   "2029-01-21": [
-    "bedok",
-    "boon-lay"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2029-01-22": [
     "boon-lay",
-    "hougang"
+    "geylang"
   ],
   "2029-01-23": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "yishun"
   ],
   "2029-01-24": [
     "sembawang",
-    "straits-view"
+    "southern-islands"
   ],
   "2029-01-25": [
-    "changi-bay",
-    "western-water-catchment"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2029-01-26": [
     "geylang",
-    "boon-lay"
+    "lim-chu-kang"
   ],
   "2029-01-27": [
     "woodlands",
-    "southern-islands"
+    "outram"
   ],
   "2029-01-28": [
-    "punggol",
-    "museum"
+    "geylang",
+    "pioneer"
   ],
   "2029-01-29": [
     "jurong-east",
-    "changi"
+    "changi-bay"
   ],
   "2029-01-30": [
-    "marina-east",
-    "tuas"
+    "orchard",
+    "changi-bay"
   ],
   "2029-01-31": [
-    "geylang",
+    "ang-mo-kio",
     "western-islands"
   ],
   "2029-02-01": [
@@ -5977,119 +5977,119 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-02-02": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-02-03": [
-    "woodlands",
-    "changi-bay"
+    "tengah",
+    "tampines"
   ],
   "2029-02-04": [
     "tampines",
-    "pioneer"
+    "jurong-west"
   ],
   "2029-02-05": [
-    "north-eastern-islands",
-    "orchard"
+    "marine-parade",
+    "tuas"
   ],
   "2029-02-06": [
     "marina-south",
-    "tuas"
+    "sungei-kadut"
   ],
   "2029-02-07": [
-    "pasir-ris",
-    "western-islands"
+    "straits-view",
+    "sembawang"
   ],
   "2029-02-08": [
     "simpang",
-    "marina-south"
+    "boon-lay"
   ],
   "2029-02-09": [
-    "tengah",
-    "punggol"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-02-10": [
     "rochor",
-    "pioneer"
+    "mandai"
   ],
   "2029-02-11": [
-    "changi-bay",
-    "western-water-catchment"
+    "mandai",
+    "tuas"
   ],
   "2029-02-12": [
     "marina-south",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2029-02-13": [
-    "western-islands",
-    "tampines"
+    "toa-payoh",
+    "tuas"
   ],
   "2029-02-14": [
     "outram",
-    "changi"
+    "changi-bay"
   ],
   "2029-02-15": [
     "pioneer",
     "marine-parade"
   ],
   "2029-02-16": [
-    "woodlands",
-    "straits-view"
+    "kallang",
+    "tuas"
   ],
   "2029-02-17": [
-    "changi",
+    "changi-bay",
     "museum"
   ],
   "2029-02-18": [
-    "north-eastern-islands",
+    "paya-lebar",
     "pioneer"
   ],
   "2029-02-19": [
     "punggol",
-    "jurong-west"
+    "jurong-east"
   ],
   "2029-02-20": [
     "pioneer",
-    "punggol"
+    "sengkang"
   ],
   "2029-02-21": [
     "paya-lebar",
-    "boon-lay"
+    "jurong-west"
   ],
   "2029-02-22": [
-    "clementi",
+    "tengah",
     "changi"
   ],
   "2029-02-23": [
-    "changi-bay",
-    "jurong-west"
+    "choa-chu-kang",
+    "changi"
   ],
   "2029-02-24": [
     "seletar",
     "outram"
   ],
   "2029-02-25": [
-    "museum",
-    "changi-bay"
+    "marine-parade",
+    "jurong-west"
   ],
   "2029-02-26": [
-    "western-water-catchment",
-    "marina-south"
+    "changi",
+    "tengah"
   ],
   "2029-02-27": [
-    "boon-lay",
-    "pasir-ris"
+    "bishan",
+    "pioneer"
   ],
   "2029-02-28": [
-    "seletar",
-    "southern-islands"
+    "kallang",
+    "tuas"
   ],
   "2029-03-01": [
     "simpang",
-    "southern-islands"
+    "pioneer"
   ],
   "2029-03-02": [
-    "tampines",
-    "tengah"
+    "downtown-core",
+    "mandai"
   ],
   "2029-03-03": [
     "lim-chu-kang",
@@ -6097,123 +6097,123 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-03-04": [
     "pasir-ris",
-    "jurong-west"
+    "jurong-east"
   ],
   "2029-03-05": [
-    "western-islands",
-    "hougang"
+    "tuas",
+    "kallang"
   ],
   "2029-03-06": [
     "punggol",
-    "jurong-east"
-  ],
-  "2029-03-07": [
-    "north-eastern-islands",
     "clementi"
   ],
+  "2029-03-07": [
+    "changi-bay",
+    "bukit-batok"
+  ],
   "2029-03-08": [
-    "western-islands",
-    "tampines"
+    "tuas",
+    "yishun"
   ],
   "2029-03-09": [
     "boon-lay",
-    "punggol"
+    "sembawang"
   ],
   "2029-03-10": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-03-11": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "boon-lay",
+    "sengkang"
   ],
   "2029-03-12": [
-    "pasir-ris",
-    "jurong-west"
+    "yishun",
+    "southern-islands"
   ],
   "2029-03-13": [
     "jurong-east",
-    "north-eastern-islands"
+    "pasir-ris"
   ],
   "2029-03-14": [
     "serangoon",
-    "boon-lay"
+    "jurong-west"
   ],
   "2029-03-15": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "simpang"
   ],
   "2029-03-16": [
     "bukit-batok",
     "changi"
   ],
   "2029-03-17": [
-    "north-eastern-islands",
+    "geylang",
     "jurong-west"
   ],
   "2029-03-18": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "hougang"
   ],
   "2029-03-19": [
     "jurong-west",
-    "tampines"
+    "serangoon"
   ],
   "2029-03-20": [
     "boon-lay",
-    "pasir-ris"
+    "paya-lebar"
   ],
   "2029-03-21": [
-    "singapore-river",
-    "changi"
+    "simpang",
+    "downtown-core"
   ],
   "2029-03-22": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2029-03-23": [
     "seletar",
-    "boon-lay"
+    "jurong-east"
   ],
   "2029-03-24": [
-    "tengah",
-    "punggol"
+    "serangoon",
+    "jurong-west"
   ],
   "2029-03-25": [
     "western-islands",
-    "tampines"
+    "yishun"
   ],
   "2029-03-26": [
     "museum",
-    "pioneer"
+    "punggol"
   ],
   "2029-03-27": [
     "jurong-west",
-    "changi-bay"
+    "hougang"
   ],
   "2029-03-28": [
-    "marina-east",
+    "yishun",
     "pioneer"
   ],
   "2029-03-29": [
-    "bukit-batok",
-    "changi-bay"
+    "changi",
+    "jurong-east"
   ],
   "2029-03-30": [
-    "north-eastern-islands",
-    "museum"
+    "bishan",
+    "pioneer"
   ],
   "2029-03-31": [
     "sengkang",
-    "western-islands"
+    "jurong-west"
   ],
   "2029-04-01": [
-    "bedok",
-    "jurong-east"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-04-02": [
     "marine-parade",
-    "jurong-west"
+    "lim-chu-kang"
   ],
   "2029-04-03": [
     "clementi",
@@ -6225,47 +6225,47 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-04-05": [
     "straits-view",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-04-06": [
     "sembawang",
-    "straits-view"
+    "southern-islands"
   ],
   "2029-04-07": [
     "southern-islands",
-    "simpang"
+    "woodlands"
   ],
   "2029-04-08": [
-    "rochor",
+    "kallang",
     "tuas"
   ],
   "2029-04-09": [
     "simpang",
-    "outram"
+    "museum"
   ],
   "2029-04-10": [
-    "southern-islands",
-    "lim-chu-kang"
+    "singapore-river",
+    "changi-bay"
   ],
   "2029-04-11": [
-    "tengah",
-    "north-eastern-islands"
+    "bedok",
+    "jurong-east"
   ],
   "2029-04-12": [
-    "marine-parade",
-    "boon-lay"
+    "marina-south",
+    "choa-chu-kang"
   ],
   "2029-04-13": [
-    "lim-chu-kang",
-    "north-eastern-islands"
+    "yishun",
+    "outram"
   ],
   "2029-04-14": [
     "bukit-merah",
     "changi"
   ],
   "2029-04-15": [
-    "orchard",
-    "punggol"
+    "mandai",
+    "outram"
   ],
   "2029-04-16": [
     "woodlands",
@@ -6277,103 +6277,103 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-04-18": [
     "outram",
-    "punggol"
+    "seletar"
   ],
   "2029-04-19": [
     "changi",
-    "jurong-east"
+    "choa-chu-kang"
   ],
   "2029-04-20": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2029-04-21": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2029-04-22": [
-    "geylang",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-04-23": [
-    "straits-view",
-    "seletar"
+    "southern-islands",
+    "punggol"
   ],
   "2029-04-24": [
-    "changi-bay",
-    "singapore-river"
+    "kallang",
+    "pioneer"
   ],
   "2029-04-25": [
-    "geylang",
+    "hougang",
     "boon-lay"
   ],
   "2029-04-26": [
-    "bukit-merah",
+    "lim-chu-kang",
     "changi"
   ],
   "2029-04-27": [
-    "changi-bay",
-    "choa-chu-kang"
+    "choa-chu-kang",
+    "bedok"
   ],
   "2029-04-28": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-04-29": [
-    "marina-east",
-    "pioneer"
+    "mandai",
+    "marina-south"
   ],
   "2029-04-30": [
     "orchard",
-    "punggol"
+    "simpang"
   ],
   "2029-05-01": [
-    "pioneer",
-    "changi-bay"
+    "punggol",
+    "clementi"
   ],
   "2029-05-02": [
     "tuas",
-    "marine-parade"
+    "marina-south"
   ],
   "2029-05-03": [
     "woodlands",
     "marina-south"
   ],
   "2029-05-04": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "yishun"
   ],
   "2029-05-05": [
     "serangoon",
-    "western-islands"
+    "tuas"
   ],
   "2029-05-06": [
     "sembawang",
-    "outram"
+    "orchard"
   ],
   "2029-05-07": [
     "straits-view",
-    "seletar"
+    "sembawang"
   ],
   "2029-05-08": [
     "marina-east",
-    "tuas"
+    "simpang"
   ],
   "2029-05-09": [
-    "sengkang",
-    "boon-lay"
+    "sembawang",
+    "museum"
   ],
   "2029-05-10": [
     "jurong-east",
-    "pasir-ris"
+    "seletar"
   ],
   "2029-05-11": [
-    "tengah",
-    "bedok"
+    "bukit-merah",
+    "punggol"
   ],
   "2029-05-12": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2029-05-13": [
     "rochor",
@@ -6381,11 +6381,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-05-14": [
     "simpang",
-    "outram"
+    "orchard"
   ],
   "2029-05-15": [
-    "western-islands",
-    "sengkang"
+    "downtown-core",
+    "woodlands"
   ],
   "2029-05-16": [
     "clementi",
@@ -6393,10 +6393,10 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-05-17": [
     "punggol",
-    "museum"
+    "marina-south"
   ],
   "2029-05-18": [
-    "pasir-ris",
+    "paya-lebar",
     "pioneer"
   ],
   "2029-05-19": [
@@ -6404,12 +6404,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "straits-view"
   ],
   "2029-05-20": [
-    "singapore-river",
-    "changi"
+    "simpang",
+    "marina-east"
   ],
   "2029-05-21": [
-    "jurong-east",
-    "tampines"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2029-05-22": [
     "jurong-west",
@@ -6424,20 +6424,20 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "marina-south"
   ],
   "2029-05-25": [
-    "north-eastern-islands",
-    "queenstown"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2029-05-26": [
-    "river-valley",
-    "changi"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2029-05-27": [
-    "orchard",
-    "north-eastern-islands"
+    "outram",
+    "simpang"
   ],
   "2029-05-28": [
-    "straits-view",
-    "woodlands"
+    "southern-islands",
+    "yishun"
   ],
   "2029-05-29": [
     "straits-view",
@@ -6445,7 +6445,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-05-30": [
     "southern-islands",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-05-31": [
     "marina-east",
@@ -6456,39 +6456,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi-bay"
   ],
   "2029-06-02": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2029-06-03": [
-    "marina-east",
-    "tuas"
+    "downtown-core",
+    "mandai"
   ],
   "2029-06-04": [
     "museum",
-    "punggol"
+    "sembawang"
   ],
   "2029-06-05": [
     "pioneer",
-    "north-eastern-islands"
+    "seletar"
   ],
   "2029-06-06": [
     "rochor",
     "pioneer"
   ],
   "2029-06-07": [
-    "north-eastern-islands",
-    "orchard"
+    "museum",
+    "simpang"
   ],
   "2029-06-08": [
-    "tengah",
-    "north-eastern-islands"
+    "pasir-ris",
+    "jurong-east"
   ],
   "2029-06-09": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-06-10": [
-    "changi",
+    "changi-bay",
     "outram"
   ],
   "2029-06-11": [
@@ -6496,116 +6496,116 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "outram"
   ],
   "2029-06-12": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "pasir-ris"
   ],
   "2029-06-13": [
-    "marina-east",
+    "mandai",
     "tuas"
   ],
   "2029-06-14": [
     "lim-chu-kang",
-    "marina-south"
+    "marina-east"
   ],
   "2029-06-15": [
     "choa-chu-kang",
     "changi-bay"
   ],
   "2029-06-16": [
-    "woodlands",
-    "changi-bay"
+    "orchard",
+    "simpang"
   ],
   "2029-06-17": [
     "serangoon",
-    "boon-lay"
+    "jurong-west"
   ],
   "2029-06-18": [
     "tampines",
-    "tuas"
+    "tengah"
   ],
   "2029-06-19": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "pasir-ris"
   ],
   "2029-06-20": [
-    "pioneer",
-    "tampines"
+    "punggol",
+    "tengah"
   ],
   "2029-06-21": [
     "rochor",
-    "tuas"
+    "simpang"
   ],
   "2029-06-22": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2029-06-23": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2029-06-24": [
     "jurong-west",
-    "marine-parade"
+    "pasir-ris"
   ],
   "2029-06-25": [
     "bukit-batok",
     "changi-bay"
   ],
   "2029-06-26": [
-    "southern-islands",
-    "woodlands"
+    "singapore-river",
+    "simpang"
   ],
   "2029-06-27": [
-    "queenstown",
-    "north-eastern-islands"
+    "river-valley",
+    "simpang"
   ],
   "2029-06-28": [
-    "orchard",
-    "punggol"
+    "yishun",
+    "pioneer"
   ],
   "2029-06-29": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2029-06-30": [
-    "bukit-batok",
-    "changi"
+    "boon-lay",
+    "geylang"
   ],
   "2029-07-01": [
     "bukit-merah",
-    "changi-bay"
+    "punggol"
   ],
   "2029-07-02": [
-    "boon-lay",
-    "paya-lebar"
+    "changi",
+    "bukit-merah"
   ],
   "2029-07-03": [
-    "queenstown",
-    "north-eastern-islands"
+    "museum",
+    "sembawang"
   ],
   "2029-07-04": [
-    "punggol",
-    "marina-south"
+    "toa-payoh",
+    "tuas"
   ],
   "2029-07-05": [
     "simpang",
-    "outram"
+    "marina-south"
   ],
   "2029-07-06": [
-    "north-eastern-islands",
-    "tengah"
+    "woodlands",
+    "tuas"
   ],
   "2029-07-07": [
-    "western-islands",
-    "tampines"
+    "yishun",
+    "western-islands"
   ],
   "2029-07-08": [
-    "western-islands",
-    "tampines"
+    "tuas",
+    "yishun"
   ],
   "2029-07-09": [
-    "marina-south",
-    "seletar"
+    "bukit-panjang",
+    "changi"
   ],
   "2029-07-10": [
     "clementi",
@@ -6613,62 +6613,62 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-07-11": [
     "lim-chu-kang",
-    "marina-south"
+    "marina-east"
   ],
   "2029-07-12": [
     "marina-east",
-    "pioneer"
+    "mandai"
   ],
   "2029-07-13": [
-    "simpang",
-    "outram"
+    "bishan",
+    "tuas"
   ],
   "2029-07-14": [
-    "pioneer",
-    "marina-east"
+    "downtown-core",
+    "sembawang"
   ],
   "2029-07-15": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-07-16": [
     "woodlands",
-    "outram"
+    "museum"
   ],
   "2029-07-17": [
-    "changi-bay",
-    "lim-chu-kang"
+    "choa-chu-kang",
+    "changi"
   ],
   "2029-07-18": [
-    "clementi",
-    "changi"
+    "downtown-core",
+    "mandai"
   ],
   "2029-07-19": [
     "changi-bay",
-    "tengah"
+    "southern-islands"
   ],
   "2029-07-20": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "tampines"
   ],
   "2029-07-21": [
     "orchard",
-    "changi-bay"
+    "punggol"
   ],
   "2029-07-22": [
     "tengah",
-    "punggol"
+    "tampines"
   ],
   "2029-07-23": [
-    "straits-view",
-    "lim-chu-kang"
+    "kallang",
+    "tuas"
   ],
   "2029-07-24": [
     "pioneer",
-    "punggol"
+    "sengkang"
   ],
   "2029-07-25": [
-    "north-eastern-islands",
+    "toa-payoh",
     "tuas"
   ],
   "2029-07-26": [
@@ -6676,12 +6676,12 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "bukit-merah"
   ],
   "2029-07-27": [
-    "marina-south",
-    "seletar"
+    "geylang",
+    "lim-chu-kang"
   ],
   "2029-07-28": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2029-07-29": [
     "paya-lebar",
@@ -6689,31 +6689,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-07-30": [
     "marina-east",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2029-07-31": [
     "marine-parade",
-    "tuas"
+    "western-islands"
   ],
   "2029-08-01": [
     "sengkang",
     "boon-lay"
   ],
   "2029-08-02": [
-    "north-eastern-islands",
-    "jurong-east"
-  ],
-  "2029-08-03": [
-    "boon-lay",
+    "clementi",
     "punggol"
   ],
+  "2029-08-03": [
+    "bishan",
+    "tuas"
+  ],
   "2029-08-04": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "bedok"
   ],
   "2029-08-05": [
-    "marina-east",
-    "pioneer"
+    "changi",
+    "jurong-east"
   ],
   "2029-08-06": [
     "jurong-east",
@@ -6725,47 +6725,47 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-08-08": [
     "simpang",
-    "straits-view"
+    "western-islands"
   ],
   "2029-08-09": [
-    "north-eastern-islands",
-    "singapore-river"
+    "sembawang",
+    "pioneer"
   ],
   "2029-08-10": [
-    "hougang",
-    "boon-lay"
+    "downtown-core",
+    "mandai"
   ],
   "2029-08-11": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-08-12": [
-    "punggol",
-    "singapore-river"
+    "queenstown",
+    "punggol"
   ],
   "2029-08-13": [
-    "geylang",
-    "boon-lay"
+    "bukit-panjang",
+    "changi"
   ],
   "2029-08-14": [
     "hougang",
     "boon-lay"
   ],
   "2029-08-15": [
-    "bukit-batok",
-    "changi-bay"
+    "bukit-panjang",
+    "changi"
   ],
   "2029-08-16": [
     "choa-chu-kang",
-    "north-eastern-islands"
+    "tampines"
   ],
   "2029-08-17": [
-    "seletar",
-    "marina-south"
+    "straits-view",
+    "yishun"
   ],
   "2029-08-18": [
-    "simpang",
-    "outram"
+    "serangoon",
+    "pioneer"
   ],
   "2029-08-19": [
     "pasir-ris",
@@ -6776,52 +6776,52 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi-bay"
   ],
   "2029-08-21": [
-    "western-water-catchment",
-    "changi"
+    "woodlands",
+    "changi-bay"
   ],
   "2029-08-22": [
     "changi",
-    "orchard"
+    "museum"
   ],
   "2029-08-23": [
-    "north-eastern-islands",
-    "western-water-catchment"
+    "woodlands",
+    "rochor"
   ],
   "2029-08-24": [
-    "outram",
-    "sembawang"
+    "pasir-ris",
+    "tengah"
   ],
   "2029-08-25": [
-    "museum",
-    "pioneer"
+    "marine-parade",
+    "tuas"
   ],
   "2029-08-26": [
     "straits-view",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2029-08-27": [
-    "bedok",
+    "ang-mo-kio",
     "boon-lay"
   ],
   "2029-08-28": [
-    "western-islands",
-    "tampines"
+    "tampines",
+    "western-islands"
   ],
   "2029-08-29": [
     "museum",
-    "pioneer"
+    "punggol"
   ],
   "2029-08-30": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sembawang"
   ],
   "2029-08-31": [
     "jurong-west",
-    "pasir-ris"
+    "seletar"
   ],
   "2029-09-01": [
-    "tuas",
-    "rochor"
+    "yishun",
+    "western-islands"
   ],
   "2029-09-02": [
     "paya-lebar",
@@ -6833,7 +6833,7 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-09-04": [
     "marina-south",
-    "sembawang"
+    "simpang"
   ],
   "2029-09-05": [
     "lim-chu-kang",
@@ -6841,27 +6841,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-09-06": [
     "lim-chu-kang",
-    "outram"
+    "rochor"
   ],
   "2029-09-07": [
     "sembawang",
-    "marina-south"
+    "marina-east"
   ],
   "2029-09-08": [
-    "north-eastern-islands",
-    "bukit-merah"
+    "bukit-batok",
+    "punggol"
   ],
   "2029-09-09": [
-    "western-islands",
-    "hougang"
+    "tuas",
+    "kallang"
   ],
   "2029-09-10": [
     "woodlands",
-    "straits-view"
+    "southern-islands"
   ],
   "2029-09-11": [
     "straits-view",
-    "woodlands"
+    "yishun"
   ],
   "2029-09-12": [
     "paya-lebar",
@@ -6873,42 +6873,42 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-09-14": [
     "punggol",
-    "tuas"
+    "straits-view"
   ],
   "2029-09-15": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2029-09-16": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2029-09-17": [
-    "marine-parade",
-    "western-islands"
+    "marina-south",
+    "woodlands"
   ],
   "2029-09-18": [
     "museum",
-    "pioneer"
+    "sembawang"
   ],
   "2029-09-19": [
-    "bukit-merah",
-    "changi"
+    "bishan",
+    "pioneer"
   ],
   "2029-09-20": [
     "marina-east",
-    "tuas"
+    "simpang"
   ],
   "2029-09-21": [
-    "river-valley",
-    "changi"
+    "tengah",
+    "pasir-ris"
   ],
   "2029-09-22": [
-    "simpang",
-    "marina-south"
+    "serangoon",
+    "boon-lay"
   ],
   "2029-09-23": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2029-09-24": [
@@ -6917,67 +6917,67 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-09-25": [
     "jurong-west",
-    "north-eastern-islands"
+    "paya-lebar"
   ],
   "2029-09-26": [
-    "boon-lay",
-    "tampines"
+    "bishan",
+    "pioneer"
   ],
   "2029-09-27": [
     "woodlands",
-    "marina-south"
+    "marina-east"
   ],
   "2029-09-28": [
     "boon-lay",
-    "hougang"
+    "geylang"
   ],
   "2029-09-29": [
     "river-valley",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-09-30": [
-    "pioneer",
-    "changi"
+    "kallang",
+    "tuas"
   ],
   "2029-10-01": [
     "tampines",
-    "tuas"
+    "tengah"
   ],
   "2029-10-02": [
     "outram",
     "changi"
   ],
   "2029-10-03": [
-    "western-water-catchment",
-    "changi-bay"
+    "woodlands",
+    "marine-parade"
   ],
   "2029-10-04": [
     "changi",
-    "river-valley"
+    "queenstown"
   ],
   "2029-10-05": [
-    "tengah",
-    "changi"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2029-10-06": [
     "simpang",
-    "southern-islands"
+    "rochor"
   ],
   "2029-10-07": [
-    "tuas",
-    "north-eastern-islands"
+    "toa-payoh",
+    "tuas"
   ],
   "2029-10-08": [
-    "marine-parade",
-    "jurong-west"
+    "marina-south",
+    "pioneer"
   ],
   "2029-10-09": [
-    "tengah",
-    "bedok"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2029-10-10": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "paya-lebar"
   ],
   "2029-10-11": [
     "queenstown",
@@ -6989,39 +6989,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-10-13": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2029-10-14": [
-    "sembawang",
-    "southern-islands"
+    "museum",
+    "lim-chu-kang"
   ],
   "2029-10-15": [
-    "bukit-merah",
-    "changi-bay"
+    "bukit-batok",
+    "changi"
   ],
   "2029-10-16": [
-    "western-islands",
-    "serangoon"
+    "tuas",
+    "toa-payoh"
   ],
   "2029-10-17": [
-    "serangoon",
-    "western-islands"
+    "sengkang",
+    "pioneer"
   ],
   "2029-10-18": [
-    "tuas",
-    "marine-parade"
+    "toa-payoh",
+    "pioneer"
   ],
   "2029-10-19": [
     "museum",
-    "changi"
+    "changi-bay"
   ],
   "2029-10-20": [
-    "singapore-river",
-    "changi"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2029-10-21": [
-    "bukit-merah",
-    "north-eastern-islands"
+    "tampines",
+    "boon-lay"
   ],
   "2029-10-22": [
     "marine-parade",
@@ -7029,67 +7029,67 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-10-23": [
     "lim-chu-kang",
-    "changi-bay"
+    "downtown-core"
   ],
   "2029-10-24": [
     "hougang",
-    "western-islands"
+    "tuas"
   ],
   "2029-10-25": [
     "jurong-east",
-    "punggol"
+    "seletar"
   ],
   "2029-10-26": [
-    "paya-lebar",
-    "boon-lay"
+    "kallang",
+    "pioneer"
   ],
   "2029-10-27": [
-    "bukit-merah",
-    "changi"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2029-10-28": [
-    "paya-lebar",
-    "boon-lay"
+    "changi",
+    "orchard"
   ],
   "2029-10-29": [
-    "rochor",
-    "tuas"
+    "kallang",
+    "pioneer"
   ],
   "2029-10-30": [
     "boon-lay",
-    "tampines"
+    "yishun"
   ],
   "2029-10-31": [
-    "north-eastern-islands",
-    "southern-islands"
+    "changi",
+    "museum"
   ],
   "2029-11-01": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2029-11-02": [
     "marine-parade",
-    "jurong-west"
+    "lim-chu-kang"
   ],
   "2029-11-03": [
-    "tengah",
-    "pasir-ris"
+    "pioneer",
+    "simpang"
   ],
   "2029-11-04": [
     "jurong-west",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-11-05": [
     "sembawang",
-    "marina-south"
+    "boon-lay"
   ],
   "2029-11-06": [
     "simpang",
-    "marina-south"
+    "bukit-merah"
   ],
   "2029-11-07": [
     "sengkang",
-    "boon-lay"
+    "jurong-east"
   ],
   "2029-11-08": [
     "queenstown",
@@ -7097,31 +7097,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-11-09": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2029-11-10": [
     "singapore-river",
     "changi"
   ],
   "2029-11-11": [
-    "changi-bay",
-    "tuas"
+    "bishan",
+    "pioneer"
   ],
   "2029-11-12": [
-    "pasir-ris",
-    "jurong-west"
+    "downtown-core",
+    "sembawang"
   ],
   "2029-11-13": [
-    "boon-lay",
-    "sengkang"
+    "orchard",
+    "changi"
   ],
   "2029-11-14": [
-    "serangoon",
-    "western-islands"
+    "sengkang",
+    "pioneer"
   ],
   "2029-11-15": [
-    "bukit-merah",
-    "changi-bay"
+    "kallang",
+    "tuas"
   ],
   "2029-11-16": [
     "marine-parade",
@@ -7133,31 +7133,31 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-11-18": [
     "marina-east",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2029-11-19": [
-    "bukit-batok",
-    "changi"
+    "yishun",
+    "boon-lay"
   ],
   "2029-11-20": [
     "changi-bay",
-    "choa-chu-kang"
+    "bukit-panjang"
   ],
   "2029-11-21": [
     "tampines",
     "boon-lay"
   ],
   "2029-11-22": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2029-11-23": [
     "museum",
-    "changi-bay"
+    "mandai"
   ],
   "2029-11-24": [
-    "sembawang",
-    "outram"
+    "tengah",
+    "bedok"
   ],
   "2029-11-25": [
     "hougang",
@@ -7169,51 +7169,51 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-11-27": [
     "jurong-west",
-    "pasir-ris"
+    "seletar"
   ],
   "2029-11-28": [
     "southern-islands",
-    "punggol"
+    "seletar"
   ],
   "2029-11-29": [
     "punggol",
-    "jurong-east"
+    "clementi"
   ],
   "2029-11-30": [
     "woodlands",
-    "outram"
+    "museum"
   ],
   "2029-12-01": [
-    "straits-view",
-    "north-eastern-islands"
+    "kallang",
+    "tuas"
   ],
   "2029-12-02": [
-    "bedok",
-    "jurong-west"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2029-12-03": [
-    "rochor",
-    "pioneer"
+    "kallang",
+    "tuas"
   ],
   "2029-12-04": [
-    "pasir-ris",
-    "jurong-east"
+    "kallang",
+    "tuas"
   ],
   "2029-12-05": [
-    "bukit-batok",
-    "changi-bay"
+    "kallang",
+    "pioneer"
   ],
   "2029-12-06": [
     "changi",
-    "queenstown"
+    "outram"
   ],
   "2029-12-07": [
-    "woodlands",
-    "southern-islands"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2029-12-08": [
     "marina-east",
-    "tuas"
+    "simpang"
   ],
   "2029-12-09": [
     "marina-east",
@@ -7221,27 +7221,27 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-12-10": [
     "changi-bay",
-    "tuas"
+    "sungei-kadut"
   ],
   "2029-12-11": [
     "geylang",
     "western-islands"
   ],
   "2029-12-12": [
-    "southern-islands",
-    "lim-chu-kang"
+    "singapore-river",
+    "changi-bay"
   ],
   "2029-12-13": [
     "bedok",
-    "tuas"
+    "tengah"
   ],
   "2029-12-14": [
     "woodlands",
-    "outram"
+    "marine-parade"
   ],
   "2029-12-15": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-12-16": [
     "paya-lebar",
@@ -7249,19 +7249,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-12-17": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2029-12-18": [
-    "simpang",
-    "marina-south"
+    "serangoon",
+    "boon-lay"
   ],
   "2029-12-19": [
-    "museum",
-    "north-eastern-islands"
+    "bukit-panjang",
+    "changi"
   ],
   "2029-12-20": [
     "bedok",
-    "pioneer"
+    "jurong-west"
   ],
   "2029-12-21": [
     "clementi",
@@ -7273,83 +7273,83 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2029-12-23": [
     "marina-east",
-    "pioneer"
+    "mandai"
   ],
   "2029-12-24": [
-    "singapore-river",
-    "punggol"
+    "bukit-merah",
+    "sembawang"
   ],
   "2029-12-25": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2029-12-26": [
-    "museum",
-    "pioneer"
+    "tengah",
+    "changi-bay"
   ],
   "2029-12-27": [
-    "southern-islands",
-    "seletar"
+    "singapore-river",
+    "sembawang"
   ],
   "2029-12-28": [
     "woodlands",
-    "changi-bay"
+    "marina-east"
   ],
   "2029-12-29": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2029-12-30": [
-    "choa-chu-kang",
-    "changi"
+    "tampines",
+    "choa-chu-kang"
   ],
   "2029-12-31": [
     "changi",
     "bukit-batok"
   ],
   "2030-01-01": [
-    "sengkang",
-    "western-islands"
+    "mandai",
+    "marina-east"
   ],
   "2030-01-02": [
-    "changi",
-    "singapore-river"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2030-01-03": [
     "serangoon",
     "western-islands"
   ],
   "2030-01-04": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "paya-lebar"
   ],
   "2030-01-05": [
-    "tampines",
-    "western-islands"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2030-01-06": [
-    "simpang",
-    "outram"
+    "museum",
+    "simpang"
   ],
   "2030-01-07": [
-    "clementi",
-    "changi"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2030-01-08": [
     "jurong-east",
-    "punggol"
+    "sengkang"
   ],
   "2030-01-09": [
     "marina-south",
-    "western-water-catchment"
+    "woodlands"
   ],
   "2030-01-10": [
-    "simpang",
-    "southern-islands"
+    "serangoon",
+    "tuas"
   ],
   "2030-01-11": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-01-12": [
     "straits-view",
@@ -7357,11 +7357,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-01-13": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2030-01-14": [
     "simpang",
-    "outram"
+    "marina-south"
   ],
   "2030-01-15": [
     "marina-south",
@@ -7369,23 +7369,23 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-01-16": [
     "pioneer",
-    "tampines"
+    "toa-payoh"
   ],
   "2030-01-17": [
     "orchard",
-    "punggol"
+    "simpang"
   ],
   "2030-01-18": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2030-01-19": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "marine-parade"
   ],
   "2030-01-20": [
-    "changi",
-    "western-water-catchment"
+    "changi-bay",
+    "woodlands"
   ],
   "2030-01-21": [
     "pasir-ris",
@@ -7393,55 +7393,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-01-22": [
     "museum",
-    "punggol"
+    "simpang"
   ],
   "2030-01-23": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2030-01-24": [
     "jurong-east",
-    "bedok"
+    "changi"
   ],
   "2030-01-25": [
-    "woodlands",
-    "straits-view"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2030-01-26": [
     "river-valley",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-01-27": [
     "marine-parade",
     "jurong-west"
   ],
   "2030-01-28": [
-    "marina-south",
+    "bukit-merah",
     "punggol"
   ],
   "2030-01-29": [
     "jurong-west",
-    "changi"
+    "geylang"
   ],
   "2030-01-30": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2030-01-31": [
-    "tuas",
-    "north-eastern-islands"
+    "tengah",
+    "tampines"
   ],
   "2030-02-01": [
-    "bedok",
-    "tengah"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2030-02-02": [
     "singapore-river",
-    "changi-bay"
+    "punggol"
   ],
   "2030-02-03": [
-    "sengkang",
-    "boon-lay"
+    "sungei-kadut",
+    "marina-south"
   ],
   "2030-02-04": [
     "pasir-ris",
@@ -7461,11 +7461,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-02-08": [
     "tuas",
-    "tampines"
+    "yishun"
   ],
   "2030-02-09": [
-    "singapore-river",
-    "changi-bay"
+    "simpang",
+    "outram"
   ],
   "2030-02-10": [
     "lim-chu-kang",
@@ -7473,43 +7473,43 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-02-11": [
     "pioneer",
-    "marina-east"
+    "kallang"
   ],
   "2030-02-12": [
     "changi-bay",
     "bukit-merah"
   ],
   "2030-02-13": [
-    "clementi",
-    "changi-bay"
+    "downtown-core",
+    "mandai"
   ],
   "2030-02-14": [
-    "river-valley",
-    "changi-bay"
+    "mandai",
+    "rochor"
   ],
   "2030-02-15": [
     "pioneer",
-    "marine-parade"
+    "museum"
   ],
   "2030-02-16": [
     "pioneer",
-    "changi"
+    "bishan"
   ],
   "2030-02-17": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "bedok"
   ],
   "2030-02-18": [
     "marina-south",
-    "north-eastern-islands"
+    "pioneer"
   ],
   "2030-02-19": [
-    "tuas",
-    "bedok"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-02-20": [
     "rochor",
-    "tuas"
+    "sembawang"
   ],
   "2030-02-21": [
     "singapore-river",
@@ -7521,19 +7521,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-02-23": [
     "changi",
-    "western-water-catchment"
+    "tengah"
   ],
   "2030-02-24": [
     "punggol",
-    "outram"
+    "orchard"
   ],
   "2030-02-25": [
     "punggol",
-    "river-valley"
+    "queenstown"
   ],
   "2030-02-26": [
-    "sembawang",
-    "southern-islands"
+    "orchard",
+    "punggol"
   ],
   "2030-02-27": [
     "bukit-merah",
@@ -7541,23 +7541,23 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-02-28": [
     "lim-chu-kang",
-    "marina-south"
+    "geylang"
   ],
   "2030-03-01": [
     "sembawang",
     "straits-view"
   ],
   "2030-03-02": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "seletar"
   ],
   "2030-03-03": [
     "marina-south",
-    "tuas"
+    "sungei-kadut"
   ],
   "2030-03-04": [
-    "sembawang",
-    "marina-south"
+    "tengah",
+    "punggol"
   ],
   "2030-03-05": [
     "clementi",
@@ -7568,188 +7568,188 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "boon-lay"
   ],
   "2030-03-07": [
-    "museum",
-    "changi"
+    "marine-parade",
+    "boon-lay"
   ],
   "2030-03-08": [
     "simpang",
-    "outram"
+    "marina-south"
   ],
   "2030-03-09": [
-    "punggol",
-    "jurong-west"
+    "downtown-core",
+    "lim-chu-kang"
   ],
   "2030-03-10": [
     "straits-view",
-    "north-eastern-islands"
+    "mandai"
   ],
   "2030-03-11": [
-    "hougang",
-    "western-islands"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-03-12": [
-    "simpang",
-    "outram"
+    "museum",
+    "simpang"
   ],
   "2030-03-13": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "changi",
+    "tengah"
   ],
   "2030-03-14": [
     "boon-lay",
-    "marine-parade"
+    "hougang"
   ],
   "2030-03-15": [
     "jurong-west",
-    "marine-parade"
+    "pasir-ris"
   ],
   "2030-03-16": [
-    "singapore-river",
-    "changi-bay"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-03-17": [
-    "tengah",
-    "bedok"
+    "boon-lay",
+    "sembawang"
   ],
   "2030-03-18": [
-    "north-eastern-islands",
-    "bukit-batok"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2030-03-19": [
-    "western-water-catchment",
-    "marina-south"
+    "ang-mo-kio",
+    "western-islands"
   ],
   "2030-03-20": [
-    "changi",
-    "bukit-merah"
+    "mandai",
+    "marina-east"
   ],
   "2030-03-21": [
-    "bukit-merah",
-    "punggol"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-03-22": [
-    "paya-lebar",
-    "boon-lay"
+    "bishan",
+    "tuas"
   ],
   "2030-03-23": [
     "boon-lay",
-    "paya-lebar"
+    "seletar"
   ],
   "2030-03-24": [
     "rochor",
-    "tuas"
+    "simpang"
   ],
   "2030-03-25": [
     "tampines",
-    "tengah"
+    "lim-chu-kang"
   ],
   "2030-03-26": [
     "jurong-west",
-    "tampines"
+    "serangoon"
   ],
   "2030-03-27": [
-    "geylang",
-    "western-islands"
+    "kallang",
+    "pioneer"
   ],
   "2030-03-28": [
     "museum",
-    "pioneer"
+    "punggol"
   ],
   "2030-03-29": [
     "simpang",
-    "outram"
+    "orchard"
   ],
   "2030-03-30": [
-    "museum",
-    "punggol"
+    "changi",
+    "tengah"
   ],
   "2030-03-31": [
     "hougang",
     "boon-lay"
   ],
   "2030-04-01": [
-    "singapore-river",
-    "punggol"
+    "simpang",
+    "tuas"
   ],
   "2030-04-02": [
     "bedok",
-    "jurong-west"
+    "jurong-east"
   ],
   "2030-04-03": [
-    "orchard",
-    "changi-bay"
+    "outram",
+    "mandai"
   ],
   "2030-04-04": [
-    "tampines",
-    "boon-lay"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-04-05": [
     "museum",
-    "punggol"
+    "simpang"
   ],
   "2030-04-06": [
-    "north-eastern-islands",
-    "singapore-river"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-04-07": [
-    "straits-view",
-    "simpang"
+    "southern-islands",
+    "woodlands"
   ],
   "2030-04-08": [
     "marina-east",
     "pioneer"
   ],
   "2030-04-09": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-04-10": [
-    "tuas",
-    "rochor"
+    "toa-payoh",
+    "tuas"
   ],
   "2030-04-11": [
-    "western-islands",
-    "tampines"
-  ],
-  "2030-04-12": [
-    "sengkang",
+    "ang-mo-kio",
     "western-islands"
   ],
+  "2030-04-12": [
+    "toa-payoh",
+    "tuas"
+  ],
   "2030-04-13": [
-    "clementi",
-    "changi-bay"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-04-14": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-04-15": [
-    "bukit-merah",
+    "bukit-batok",
     "punggol"
   ],
   "2030-04-16": [
-    "singapore-river",
-    "changi-bay"
+    "simpang",
+    "marina-south"
   ],
   "2030-04-17": [
-    "simpang",
-    "outram"
+    "straits-view",
+    "woodlands"
   ],
   "2030-04-18": [
     "clementi",
     "changi"
   ],
   "2030-04-19": [
-    "geylang",
-    "western-islands"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2030-04-20": [
-    "pasir-ris",
-    "tuas"
+    "tengah",
+    "pasir-ris"
   ],
   "2030-04-21": [
-    "jurong-east",
-    "pasir-ris"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-04-22": [
     "serangoon",
@@ -7757,11 +7757,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-04-23": [
     "punggol",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-04-24": [
-    "changi",
-    "jurong-east"
+    "orchard",
+    "changi"
   ],
   "2030-04-25": [
     "woodlands",
@@ -7769,63 +7769,63 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-04-26": [
     "sembawang",
-    "marina-south"
+    "bukit-merah"
   ],
   "2030-04-27": [
-    "jurong-east",
-    "changi-bay"
+    "tengah",
+    "changi"
   ],
   "2030-04-28": [
-    "singapore-river",
-    "changi"
+    "yishun",
+    "tuas"
   ],
   "2030-04-29": [
     "sengkang",
     "boon-lay"
   ],
   "2030-04-30": [
-    "straits-view",
-    "lim-chu-kang"
+    "southern-islands",
+    "changi"
   ],
   "2030-05-01": [
-    "pasir-ris",
+    "tampines",
     "jurong-east"
   ],
   "2030-05-02": [
-    "pioneer",
-    "changi"
+    "punggol",
+    "bukit-merah"
   ],
   "2030-05-03": [
-    "pasir-ris",
-    "tengah"
+    "downtown-core",
+    "woodlands"
   ],
   "2030-05-04": [
-    "clementi",
-    "north-eastern-islands"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-05-05": [
     "museum",
-    "punggol"
+    "tuas"
   ],
   "2030-05-06": [
-    "punggol",
-    "river-valley"
+    "queenstown",
+    "changi-bay"
   ],
   "2030-05-07": [
     "orchard",
     "changi-bay"
   ],
   "2030-05-08": [
-    "straits-view",
-    "punggol"
+    "southern-islands",
+    "mandai"
   ],
   "2030-05-09": [
-    "north-eastern-islands",
-    "outram"
+    "orchard",
+    "simpang"
   ],
   "2030-05-10": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sembawang"
   ],
   "2030-05-11": [
     "marina-south",
@@ -7833,71 +7833,71 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-05-12": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2030-05-13": [
     "bedok",
     "boon-lay"
   ],
   "2030-05-14": [
-    "tuas",
-    "rochor"
+    "bishan",
+    "tuas"
   ],
   "2030-05-15": [
     "choa-chu-kang",
-    "changi"
+    "bedok"
   ],
   "2030-05-16": [
     "punggol",
-    "museum"
+    "jurong-west"
   ],
   "2030-05-17": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2030-05-18": [
-    "tuas",
-    "museum"
+    "toa-payoh",
+    "tuas"
   ],
   "2030-05-19": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2030-05-20": [
     "queenstown",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-05-21": [
     "bedok",
-    "jurong-east"
+    "choa-chu-kang"
   ],
   "2030-05-22": [
-    "pioneer",
-    "north-eastern-islands"
+    "ang-mo-kio",
+    "pioneer"
   ],
   "2030-05-23": [
-    "boon-lay",
-    "seletar"
+    "tampines",
+    "jurong-west"
   ],
   "2030-05-24": [
-    "singapore-river",
-    "changi-bay"
+    "simpang",
+    "outram"
   ],
   "2030-05-25": [
     "jurong-west",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2030-05-26": [
     "southern-islands",
-    "simpang"
+    "woodlands"
   ],
   "2030-05-27": [
     "choa-chu-kang",
     "changi-bay"
   ],
   "2030-05-28": [
-    "museum",
-    "north-eastern-islands"
+    "geylang",
+    "jurong-west"
   ],
   "2030-05-29": [
     "choa-chu-kang",
@@ -7905,39 +7905,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-05-30": [
     "punggol",
-    "pioneer"
+    "orchard"
   ],
   "2030-05-31": [
     "simpang",
-    "southern-islands"
+    "rochor"
   ],
   "2030-06-01": [
-    "hougang",
-    "western-islands"
+    "jurong-east",
+    "punggol"
   ],
   "2030-06-02": [
     "marine-parade",
-    "pioneer"
+    "tuas"
   ],
   "2030-06-03": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-06-04": [
-    "tengah",
-    "changi-bay"
+    "mandai",
+    "museum"
   ],
   "2030-06-05": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-06-06": [
     "punggol",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-06-07": [
-    "changi-bay",
-    "queenstown"
+    "bishan",
+    "pioneer"
   ],
   "2030-06-08": [
     "bukit-batok",
@@ -7945,11 +7945,11 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-06-09": [
     "museum",
-    "north-eastern-islands"
+    "pioneer"
   ],
   "2030-06-10": [
     "seletar",
-    "southern-islands"
+    "outram"
   ],
   "2030-06-11": [
     "jurong-east",
@@ -7961,19 +7961,19 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-06-13": [
     "seletar",
-    "western-islands"
+    "straits-view"
   ],
   "2030-06-14": [
     "outram",
-    "punggol"
+    "seletar"
   ],
   "2030-06-15": [
     "serangoon",
-    "boon-lay"
+    "jurong-west"
   ],
   "2030-06-16": [
-    "boon-lay",
-    "punggol"
+    "bukit-panjang",
+    "changi"
   ],
   "2030-06-17": [
     "woodlands",
@@ -7981,39 +7981,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-06-18": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2030-06-19": [
     "seletar",
-    "southern-islands"
+    "outram"
   ],
   "2030-06-20": [
     "jurong-east",
-    "pasir-ris"
+    "seletar"
   ],
   "2030-06-21": [
-    "southern-islands",
-    "changi-bay"
+    "singapore-river",
+    "changi"
   ],
   "2030-06-22": [
-    "tuas",
-    "marina-east"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-06-23": [
-    "bedok",
-    "tuas"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-06-24": [
-    "changi",
-    "jurong-west"
+    "changi-bay",
+    "jurong-east"
   ],
   "2030-06-25": [
-    "changi-bay",
-    "museum"
+    "choa-chu-kang",
+    "changi-bay"
   ],
   "2030-06-26": [
-    "choa-chu-kang",
-    "north-eastern-islands"
+    "ang-mo-kio",
+    "boon-lay"
   ],
   "2030-06-27": [
     "marina-east",
@@ -8021,171 +8021,171 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-06-28": [
     "jurong-east",
-    "changi"
+    "changi-bay"
   ],
   "2030-06-29": [
-    "western-islands",
+    "tuas",
     "geylang"
   ],
   "2030-06-30": [
-    "orchard",
-    "punggol"
+    "outram",
+    "yishun"
   ],
   "2030-07-01": [
     "river-valley",
     "changi"
   ],
   "2030-07-02": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "woodlands",
+    "southern-islands"
   ],
   "2030-07-03": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2030-07-04": [
     "marine-parade",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2030-07-05": [
-    "bukit-merah",
-    "changi-bay"
+    "kallang",
+    "pioneer"
   ],
   "2030-07-06": [
-    "queenstown",
-    "north-eastern-islands"
+    "lim-chu-kang",
+    "outram"
   ],
   "2030-07-07": [
     "marina-east",
     "tuas"
   ],
   "2030-07-08": [
-    "tengah",
-    "changi"
+    "changi",
+    "southern-islands"
   ],
   "2030-07-09": [
     "western-islands",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2030-07-10": [
     "punggol",
-    "boon-lay"
+    "bukit-batok"
   ],
   "2030-07-11": [
     "changi",
-    "western-water-catchment"
+    "tengah"
   ],
   "2030-07-12": [
     "woodlands",
-    "straits-view"
+    "tuas"
   ],
   "2030-07-13": [
-    "western-islands",
-    "seletar"
+    "tuas",
+    "rochor"
   ],
   "2030-07-14": [
-    "simpang",
-    "outram"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2030-07-15": [
     "clementi",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-07-16": [
     "serangoon",
-    "boon-lay"
+    "jurong-west"
   ],
   "2030-07-17": [
     "jurong-west",
-    "punggol"
+    "sengkang"
   ],
   "2030-07-18": [
     "bedok",
-    "jurong-east"
+    "choa-chu-kang"
   ],
   "2030-07-19": [
     "river-valley",
     "changi"
   ],
   "2030-07-20": [
-    "southern-islands",
-    "north-eastern-islands"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-07-21": [
     "jurong-east",
     "bedok"
   ],
   "2030-07-22": [
-    "marina-east",
-    "tuas"
+    "bukit-merah",
+    "changi-bay"
   ],
   "2030-07-23": [
-    "orchard",
-    "north-eastern-islands"
+    "outram",
+    "simpang"
   ],
   "2030-07-24": [
-    "museum",
-    "punggol"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-07-25": [
-    "straits-view",
-    "lim-chu-kang"
+    "southern-islands",
+    "changi"
   ],
   "2030-07-26": [
-    "clementi",
-    "north-eastern-islands"
+    "kallang",
+    "pioneer"
   ],
   "2030-07-27": [
     "marina-east",
     "pioneer"
   ],
   "2030-07-28": [
-    "marina-east",
-    "tuas"
+    "yishun",
+    "western-islands"
   ],
   "2030-07-29": [
-    "simpang",
-    "outram"
+    "geylang",
+    "boon-lay"
   ],
   "2030-07-30": [
-    "tuas",
-    "museum"
+    "mandai",
+    "tuas"
   ],
   "2030-07-31": [
-    "changi",
+    "changi-bay",
     "bukit-batok"
   ],
   "2030-08-01": [
     "seletar",
-    "outram"
+    "marina-south"
   ],
   "2030-08-02": [
-    "queenstown",
-    "north-eastern-islands"
+    "ang-mo-kio",
+    "tuas"
   ],
   "2030-08-03": [
-    "western-water-catchment",
-    "north-eastern-islands"
+    "western-islands",
+    "simpang"
   ],
   "2030-08-04": [
-    "tuas",
-    "changi"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-08-05": [
-    "tuas",
-    "north-eastern-islands"
+    "toa-payoh",
+    "tuas"
   ],
   "2030-08-06": [
-    "serangoon",
-    "western-islands"
+    "bishan",
+    "tuas"
   ],
   "2030-08-07": [
-    "tuas",
-    "marine-parade"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-08-08": [
     "seletar",
-    "straits-view"
+    "southern-islands"
   ],
   "2030-08-09": [
     "western-islands",
@@ -8193,42 +8193,42 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-08-10": [
     "simpang",
-    "straits-view"
+    "southern-islands"
   ],
   "2030-08-11": [
     "rochor",
-    "tuas"
+    "simpang"
   ],
   "2030-08-12": [
     "paya-lebar",
-    "boon-lay"
-  ],
-  "2030-08-13": [
-    "clementi",
-    "changi"
-  ],
-  "2030-08-14": [
-    "pioneer",
-    "marine-parade"
-  ],
-  "2030-08-15": [
-    "museum",
-    "tuas"
-  ],
-  "2030-08-16": [
-    "marine-parade",
-    "western-islands"
-  ],
-  "2030-08-17": [
-    "seletar",
-    "western-islands"
-  ],
-  "2030-08-18": [
-    "rochor",
     "pioneer"
   ],
+  "2030-08-13": [
+    "downtown-core",
+    "mandai"
+  ],
+  "2030-08-14": [
+    "punggol",
+    "orchard"
+  ],
+  "2030-08-15": [
+    "bishan",
+    "pioneer"
+  ],
+  "2030-08-16": [
+    "bukit-merah",
+    "simpang"
+  ],
+  "2030-08-17": [
+    "rochor",
+    "woodlands"
+  ],
+  "2030-08-18": [
+    "bukit-panjang",
+    "changi-bay"
+  ],
   "2030-08-19": [
-    "pasir-ris",
+    "paya-lebar",
     "tuas"
   ],
   "2030-08-20": [
@@ -8236,16 +8236,16 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "changi"
   ],
   "2030-08-21": [
-    "sembawang",
-    "southern-islands"
+    "bishan",
+    "tuas"
   ],
   "2030-08-22": [
-    "orchard",
-    "punggol"
+    "outram",
+    "yishun"
   ],
   "2030-08-23": [
     "sembawang",
-    "southern-islands"
+    "river-valley"
   ],
   "2030-08-24": [
     "jurong-west",
@@ -8256,184 +8256,184 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "tuas"
   ],
   "2030-08-26": [
-    "straits-view",
-    "simpang"
+    "southern-islands",
+    "woodlands"
   ],
   "2030-08-27": [
-    "boon-lay",
-    "tampines"
+    "mandai",
+    "downtown-core"
   ],
   "2030-08-28": [
-    "tuas",
-    "marina-east"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-08-29": [
-    "museum",
-    "tuas"
+    "marine-parade",
+    "woodlands"
   ],
   "2030-08-30": [
-    "paya-lebar",
-    "boon-lay"
+    "pioneer",
+    "marina-east"
   ],
   "2030-08-31": [
     "choa-chu-kang",
-    "marina-south"
+    "changi-bay"
   ],
   "2030-09-01": [
     "river-valley",
-    "punggol"
+    "simpang"
   ],
   "2030-09-02": [
     "choa-chu-kang",
-    "changi-bay"
+    "changi"
   ],
   "2030-09-03": [
-    "clementi",
-    "north-eastern-islands"
+    "downtown-core",
+    "woodlands"
   ],
   "2030-09-04": [
-    "marine-parade",
-    "tuas"
+    "marina-south",
+    "simpang"
   ],
   "2030-09-05": [
-    "western-water-catchment",
-    "changi-bay"
+    "western-islands",
+    "hougang"
   ],
   "2030-09-06": [
     "jurong-east",
-    "pasir-ris"
+    "punggol"
   ],
   "2030-09-07": [
     "marine-parade",
-    "tuas"
+    "western-islands"
   ],
   "2030-09-08": [
-    "serangoon",
+    "sengkang",
     "western-islands"
   ],
   "2030-09-09": [
     "boon-lay",
-    "pasir-ris"
+    "paya-lebar"
   ],
   "2030-09-10": [
     "geylang",
-    "western-islands"
+    "pioneer"
   ],
   "2030-09-11": [
     "paya-lebar",
-    "boon-lay"
+    "pioneer"
   ],
   "2030-09-12": [
-    "marine-parade",
-    "tuas"
+    "marina-south",
+    "simpang"
   ],
   "2030-09-13": [
     "pioneer",
-    "marina-east"
+    "kallang"
   ],
   "2030-09-14": [
     "woodlands",
     "straits-view"
   ],
   "2030-09-15": [
-    "singapore-river",
-    "punggol"
+    "simpang",
+    "straits-view"
   ],
   "2030-09-16": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-09-17": [
     "changi-bay",
-    "western-water-catchment"
+    "tengah"
   ],
   "2030-09-18": [
     "southern-islands",
-    "seletar"
+    "sembawang"
   ],
   "2030-09-19": [
     "museum",
-    "changi-bay"
+    "mandai"
   ],
   "2030-09-20": [
     "bukit-batok",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-09-21": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2030-09-22": [
-    "hougang",
-    "boon-lay"
+    "orchard",
+    "simpang"
   ],
   "2030-09-23": [
     "outram",
-    "woodlands"
+    "yishun"
   ],
   "2030-09-24": [
     "geylang",
-    "western-islands"
+    "tuas"
   ],
   "2030-09-25": [
     "seletar",
-    "western-islands"
+    "straits-view"
   ],
   "2030-09-26": [
-    "river-valley",
-    "north-eastern-islands"
+    "bukit-merah",
+    "sembawang"
   ],
   "2030-09-27": [
-    "choa-chu-kang",
-    "changi-bay"
+    "clementi",
+    "changi"
   ],
   "2030-09-28": [
     "serangoon",
     "western-islands"
   ],
   "2030-09-29": [
-    "bukit-batok",
-    "north-eastern-islands"
+    "boon-lay",
+    "serangoon"
   ],
   "2030-09-30": [
-    "tuas",
-    "marina-south"
+    "yishun",
+    "western-islands"
   ],
   "2030-10-01": [
-    "western-islands",
-    "paya-lebar"
+    "bishan",
+    "tuas"
   ],
   "2030-10-02": [
-    "hougang",
-    "boon-lay"
+    "straits-view",
+    "punggol"
   ],
   "2030-10-03": [
     "rochor",
-    "pioneer"
+    "mandai"
   ],
   "2030-10-04": [
     "singapore-river",
-    "north-eastern-islands"
+    "punggol"
   ],
   "2030-10-05": [
-    "tampines",
-    "jurong-west"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-10-06": [
-    "punggol",
-    "southern-islands"
+    "queenstown",
+    "punggol"
   ],
   "2030-10-07": [
     "boon-lay",
-    "tampines"
+    "yishun"
   ],
   "2030-10-08": [
     "jurong-east",
     "bedok"
   ],
   "2030-10-09": [
-    "lim-chu-kang",
-    "outram"
+    "sungei-kadut",
+    "changi-bay"
   ],
   "2030-10-10": [
     "southern-islands",
@@ -8441,35 +8441,35 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-10-11": [
     "paya-lebar",
-    "western-islands"
+    "tuas"
   ],
   "2030-10-12": [
-    "marine-parade",
-    "pioneer"
+    "geylang",
+    "lim-chu-kang"
   ],
   "2030-10-13": [
-    "marine-parade",
-    "jurong-west"
+    "yishun",
+    "pioneer"
   ],
   "2030-10-14": [
     "boon-lay",
-    "serangoon"
+    "tampines"
   ],
   "2030-10-15": [
-    "singapore-river",
-    "punggol"
+    "simpang",
+    "tuas"
   ],
   "2030-10-16": [
     "tengah",
     "punggol"
   ],
   "2030-10-17": [
-    "choa-chu-kang",
+    "yishun",
     "marina-south"
   ],
   "2030-10-18": [
-    "changi",
-    "choa-chu-kang"
+    "changi-bay",
+    "bukit-merah"
   ],
   "2030-10-19": [
     "pasir-ris",
@@ -8481,83 +8481,83 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-10-21": [
     "hougang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2030-10-22": [
-    "paya-lebar",
-    "western-islands"
+    "pioneer",
+    "sengkang"
   ],
   "2030-10-23": [
-    "bukit-merah",
-    "changi-bay"
+    "mandai",
+    "museum"
   ],
   "2030-10-24": [
     "boon-lay",
-    "tampines"
+    "yishun"
   ],
   "2030-10-25": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "ang-mo-kio"
   ],
   "2030-10-26": [
     "bukit-batok",
     "changi-bay"
   ],
   "2030-10-27": [
-    "orchard",
-    "changi-bay"
+    "outram",
+    "mandai"
   ],
   "2030-10-28": [
-    "western-islands",
-    "tampines"
+    "tuas",
+    "yishun"
   ],
   "2030-10-29": [
     "queenstown",
     "changi-bay"
   ],
   "2030-10-30": [
-    "boon-lay",
-    "seletar"
+    "bishan",
+    "tuas"
   ],
   "2030-10-31": [
     "simpang",
-    "southern-islands"
+    "singapore-river"
   ],
   "2030-11-01": [
     "marina-south",
-    "sembawang"
+    "simpang"
   ],
   "2030-11-02": [
     "punggol",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-11-03": [
     "marine-parade",
     "tuas"
   ],
   "2030-11-04": [
-    "tampines",
+    "ang-mo-kio",
     "western-islands"
   ],
   "2030-11-05": [
     "sembawang",
-    "southern-islands"
+    "river-valley"
   ],
   "2030-11-06": [
-    "changi-bay",
-    "museum"
+    "toa-payoh",
+    "pioneer"
   ],
   "2030-11-07": [
-    "pasir-ris",
-    "jurong-east"
+    "paya-lebar",
+    "jurong-west"
   ],
   "2030-11-08": [
     "sengkang",
-    "boon-lay"
+    "jurong-west"
   ],
   "2030-11-09": [
     "punggol",
-    "jurong-east"
+    "clementi"
   ],
   "2030-11-10": [
     "southern-islands",
@@ -8569,39 +8569,39 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-11-12": [
     "straits-view",
-    "punggol"
+    "seletar"
   ],
   "2030-11-13": [
     "jurong-east",
     "bedok"
   ],
   "2030-11-14": [
-    "river-valley",
-    "changi"
+    "tengah",
+    "pasir-ris"
   ],
   "2030-11-15": [
-    "western-islands",
-    "paya-lebar"
+    "bukit-merah",
+    "simpang"
   ],
   "2030-11-16": [
     "sembawang",
-    "straits-view"
+    "southern-islands"
   ],
   "2030-11-17": [
     "boon-lay",
-    "pasir-ris"
+    "paya-lebar"
   ],
   "2030-11-18": [
     "southern-islands",
     "simpang"
   ],
   "2030-11-19": [
-    "north-eastern-islands",
-    "bukit-batok"
+    "bedok",
+    "lim-chu-kang"
   ],
   "2030-11-20": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "ang-mo-kio"
   ],
   "2030-11-21": [
     "tampines",
@@ -8609,55 +8609,55 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-11-22": [
     "simpang",
-    "straits-view"
-  ],
-  "2030-11-23": [
-    "marine-parade",
     "western-islands"
   ],
+  "2030-11-23": [
+    "kallang",
+    "pioneer"
+  ],
   "2030-11-24": [
-    "changi-bay",
-    "jurong-east"
+    "bukit-merah",
+    "simpang"
   ],
   "2030-11-25": [
     "pioneer",
     "marina-east"
   ],
   "2030-11-26": [
-    "jurong-east",
-    "pasir-ris"
+    "jurong-west",
+    "seletar"
   ],
   "2030-11-27": [
     "straits-view",
-    "seletar"
+    "sembawang"
   ],
   "2030-11-28": [
-    "geylang",
-    "boon-lay"
+    "downtown-core",
+    "mandai"
   ],
   "2030-11-29": [
     "boon-lay",
-    "punggol"
+    "sembawang"
   ],
   "2030-11-30": [
-    "jurong-east",
-    "pasir-ris"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2030-12-01": [
-    "western-water-catchment",
-    "marina-south"
+    "western-islands",
+    "sengkang"
   ],
   "2030-12-02": [
     "bedok",
     "boon-lay"
   ],
   "2030-12-03": [
-    "punggol",
-    "marina-south"
+    "kallang",
+    "pioneer"
   ],
   "2030-12-04": [
-    "western-water-catchment",
-    "changi"
+    "western-islands",
+    "geylang"
   ],
   "2030-12-05": [
     "outram",
@@ -8669,22 +8669,22 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-12-07": [
     "rochor",
-    "pioneer"
+    "lim-chu-kang"
   ],
   "2030-12-08": [
-    "simpang",
-    "straits-view"
+    "serangoon",
+    "tuas"
   ],
   "2030-12-09": [
     "lim-chu-kang",
-    "north-eastern-islands"
+    "marina-south"
   ],
   "2030-12-10": [
     "pioneer",
-    "bedok"
+    "ang-mo-kio"
   ],
   "2030-12-11": [
-    "pasir-ris",
+    "paya-lebar",
     "pioneer"
   ],
   "2030-12-12": [
@@ -8696,32 +8696,32 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
     "outram"
   ],
   "2030-12-14": [
-    "pasir-ris",
-    "tengah"
+    "bukit-panjang",
+    "changi-bay"
   ],
   "2030-12-15": [
-    "paya-lebar",
-    "boon-lay"
+    "straits-view",
+    "sembawang"
   ],
   "2030-12-16": [
-    "orchard",
-    "punggol"
+    "outram",
+    "yishun"
   ],
   "2030-12-17": [
     "marina-east",
-    "tuas"
+    "simpang"
   ],
   "2030-12-18": [
     "seletar",
-    "marina-south"
+    "jurong-west"
   ],
   "2030-12-19": [
-    "southern-islands",
-    "simpang"
+    "yishun",
+    "tuas"
   ],
   "2030-12-20": [
-    "serangoon",
-    "western-islands"
+    "sengkang",
+    "jurong-west"
   ],
   "2030-12-21": [
     "geylang",
@@ -8729,42 +8729,42 @@ export const CANONICAL_SINGAPORE_DAILY_CHALLENGES: Record<string, [string, strin
   ],
   "2030-12-22": [
     "sembawang",
-    "southern-islands"
+    "river-valley"
   ],
   "2030-12-23": [
-    "museum",
+    "sungei-kadut",
     "changi-bay"
   ],
   "2030-12-24": [
     "bedok",
-    "jurong-east"
+    "choa-chu-kang"
   ],
   "2030-12-25": [
     "lim-chu-kang",
-    "north-eastern-islands"
+    "museum"
   ],
   "2030-12-26": [
     "sembawang",
-    "marina-south"
+    "downtown-core"
   ],
   "2030-12-27": [
     "lim-chu-kang",
-    "changi-bay"
+    "geylang"
   ],
   "2030-12-28": [
-    "lim-chu-kang",
-    "changi"
+    "ang-mo-kio",
+    "jurong-west"
   ],
   "2030-12-29": [
-    "tampines",
-    "tuas"
+    "tengah",
+    "tampines"
   ],
   "2030-12-30": [
-    "changi-bay",
-    "western-water-catchment"
+    "choa-chu-kang",
+    "tampines"
   ],
   "2030-12-31": [
-    "hougang",
-    "western-islands"
+    "yishun",
+    "outram"
   ]
 };

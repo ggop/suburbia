@@ -238,11 +238,13 @@ const HISTORICAL_FACTS = {
 
 const rawSuburbs = [];
 const seenIds = new Set();
+const EXCLUDED_PLANNING_AREAS = new Set(['central-water-catchment', 'western-water-catchment']);
 
 for (const f of geoData.features) {
   const name = f.properties.planning_area || f.properties.name;
   if (!name) continue;
   const id = toSlug(name);
+  if (EXCLUDED_PLANNING_AREAS.has(id)) continue;
   if (seenIds.has(id)) continue;
   seenIds.add(id);
 
@@ -392,7 +394,6 @@ const KEY_CONNECTIONS = [
   ['tengah', 'bukit-batok'],
   ['tengah', 'jurong-west'],
   ['tengah', 'jurong-east'],
-  ['tengah', 'western-water-catchment'],
 
   // Simpang & Sembawang / Yishun
   ['simpang', 'sembawang'],
@@ -411,15 +412,7 @@ const KEY_CONNECTIONS = [
   ['seletar', 'sengkang'],
   ['seletar', 'punggol'],
   ['seletar', 'yishun'],
-  ['seletar', 'ang-mo-kio'],
-
-  // Central Water Catchment
-  ['central-water-catchment', 'mandai'],
-  ['central-water-catchment', 'yishun'],
-  ['central-water-catchment', 'ang-mo-kio'],
-  ['central-water-catchment', 'bishan'],
-  ['central-water-catchment', 'bukit-timah'],
-  ['central-water-catchment', 'bukit-panjang']
+  ['seletar', 'ang-mo-kio']
 ];
 
 for (const [s1, s2] of KEY_CONNECTIONS) {
